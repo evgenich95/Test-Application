@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import SnapKit
 
 class ServiceTableViewController: UITableViewController {
 
     var quotes: [Quote]?
+
+    lazy private var retryButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Retry failed load", forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(30)
+        button.addTarget(self, action: #selector(getRequest), forControlEvents: .TouchDown)
+        button.setTitleColor(UIColor.blueColor(), forState: .Normal)
+
+        return button
+    }()
 
     struct KeysForCell {
         static let serviceCell = "ServiceTableViewCell"
@@ -35,6 +46,7 @@ class ServiceTableViewController: UITableViewController {
 
     func getRequest() {
         self.startActivityIndicator(withText: "Loading data of chat")
+        tableView.backgroundView?.hidden = true
         WebService.getQuotes() { response, error in
             if let error = error {
                 self.stopActivityIndicator()
@@ -42,7 +54,7 @@ class ServiceTableViewController: UITableViewController {
                     error,
                     retryAction: self.getRequest,
                     cancelAction: {
-                        self.navigationController?.popViewControllerAnimated(true)
+                        self.tableView.backgroundView?.hidden = false
                 })
                 return
             }
@@ -65,6 +77,7 @@ class ServiceTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 88
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.backgroundView = retryButton
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
