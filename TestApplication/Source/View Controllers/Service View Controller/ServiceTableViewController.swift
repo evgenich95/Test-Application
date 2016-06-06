@@ -64,6 +64,7 @@ class ServiceTableViewController: UITableViewController {
         navigationController?.navigationBar.translucent = false
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 88
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
