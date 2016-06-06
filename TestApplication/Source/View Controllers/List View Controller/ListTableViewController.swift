@@ -106,6 +106,9 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        defer {
+            updateEditButtonItemStatus()
+        }
         if let sections = fetchedResultsController.sections {
             return sections.count
         }
@@ -237,6 +240,15 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     //MARK: Help functions
+
+    private func updateEditButtonItemStatus() {
+        var buttonStatus = true
+
+        if fetchedResultsController.fetchedObjects?.count == 0 {
+            buttonStatus = false
+        }
+        self.editButtonItem().enabled = buttonStatus
+    }
 
     private func tableViewHeader(title: String, imageName: String ) -> UITableViewHeaderFooterView {
         let header = UITableViewHeaderFooterView()
