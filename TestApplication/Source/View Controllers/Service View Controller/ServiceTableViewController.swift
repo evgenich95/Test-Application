@@ -25,7 +25,7 @@ class ServiceTableViewController: UITableViewController {
     }()
 
     struct KeysForCell {
-        static let serviceCell = "ServiceTableViewCell"
+        static let serviceCell = "QuoteTableViewCell"
     }
     //MARK:-
 
@@ -98,7 +98,7 @@ class ServiceTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         guard let cell = (tableView.dequeueReusableCellWithIdentifier(KeysForCell.serviceCell,
-            forIndexPath: indexPath)) as? ServiceTableViewCell else {
+            forIndexPath: indexPath)) as? QuoteTableViewCell else {
                 fatalError("Cell \(KeysForCell.serviceCell).xib is not registered")
         }
 
