@@ -1,5 +1,5 @@
 //
-//  StaffTableViewCell.swift
+//  StaffTableViewswift
 //  TestApplication
 //
 //  Created by developer on 10.05.16.
@@ -17,4 +17,18 @@ class StaffTableViewCell: UITableViewCell {
     @IBOutlet weak var workplaeNumberLabel: UILabel!
 
     @IBOutlet weak var mealTimeLabel: UILabel!
+
+    func updateUI(staff: Staff) {
+        fullNameLabel.text = staff.fullName
+        salaryLabel.text = staff.salary?.stringValue
+
+        switch (staff.startMealTime?.timeFormat,
+                staff.endMealTime?.timeFormat) {
+        case let(fromTime?, toTime?):
+            mealTimeLabel.text = "From \(fromTime) to \(toTime)"
+        default: break
+        }
+
+        workplaeNumberLabel.text = staff.workplaceNumber?.stringValue
+    }
 }

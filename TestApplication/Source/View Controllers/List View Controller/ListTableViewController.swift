@@ -138,21 +138,21 @@ class ListPersonTableViewController: UITableViewController {
 
             if let guidanceCell = (tableView.dequeueReusableCellWithIdentifier(
                 KeysForCells.guidanceTableViewCell, forIndexPath: indexPath)) as? GuidanceTableViewCell {
-                configureGuidanceCell(guidanceCell, aGuidance: guidance)
+                guidanceCell.updateUI(guidance)
                 maybeCell = guidanceCell
             }
 
         case let bookkeeping as Bookkeeping:
             if let bookkeepingCell = (tableView.dequeueReusableCellWithIdentifier(
                 KeysForCells.bookkeepingTableViewCell, forIndexPath: indexPath)) as? BookkeepingTableViewCell {
-                configureBookkeepingCell(bookkeepingCell, aBookkeeping: bookkeeping)
+                bookkeepingCell.updateUI(bookkeeping)
                 maybeCell = bookkeepingCell
             }
 
         case let staff as Staff:
             if let staffCell = (tableView.dequeueReusableCellWithIdentifier(
                 KeysForCells.staffTableViewCell, forIndexPath: indexPath)) as? StaffTableViewCell {
-                configureStaffCell(staffCell, aStaff: staff)
+                staffCell.updateUI(staff)
                 maybeCell = staffCell
             }
 
@@ -305,48 +305,8 @@ class ListPersonTableViewController: UITableViewController {
         }
     }
 
-    private func configureStaffCell(cell: StaffTableViewCell, aStaff: Staff) {
-        cell.fullNameLabel.text = aStaff.fullName
-        cell.salaryLabel.text = aStaff.salary?.stringValue
 
-        switch (aStaff.startMealTime?.timeFormat,
-                aStaff.endMealTime?.timeFormat) {
-        case let(fromTime?, toTime?):
-            cell.mealTimeLabel.text = "From \(fromTime) to \(toTime)"
-        default: break
-        }
 
-        cell.workplaeNumberLabel.text = aStaff.workplaceNumber?.stringValue
-    }
-
-    private func configureGuidanceCell(cell: GuidanceTableViewCell, aGuidance: Guidance) {
-        cell.fullNameLabel.text = aGuidance.fullName
-        cell.salaryLabel.text = aGuidance.salary?.stringValue
-
-        switch (aGuidance.startVisitingHours?.timeFormat,
-                aGuidance.endVisitingHours?.timeFormat) {
-        case let (fromTime?, toTime?):
-            cell.visitingHoursLabel.text = "From \(fromTime) to \(toTime)"
-        default:
-            break
-        }
-    }
-
-    private func configureBookkeepingCell(cell: BookkeepingTableViewCell, aBookkeeping: Bookkeeping) {
-        cell.fullNameLabel.text = aBookkeeping.fullName
-        cell.salaryLabel.text = aBookkeeping.salary?.stringValue
-
-        switch (aBookkeeping.startMealTime?.timeFormat,
-                aBookkeeping.endMealTime?.timeFormat) {
-        case let (fromTime?, toTime?):
-            cell.mealTimeLabel.text = "From \(fromTime) to \(toTime)"
-        default: break
-        }
-        
-        cell.workplaeNumberLabel.text = aBookkeeping.workplaceNumber?.stringValue
-        cell.bokkeepingTypeLabel.text = BookkeepingType(index: aBookkeeping.type?.integerValue ?? -1).description
-    }
-    
     //MARK: Structs
     struct KeysForCells {
         static let guidanceTableViewCell = "GuidanceTableViewCell"
