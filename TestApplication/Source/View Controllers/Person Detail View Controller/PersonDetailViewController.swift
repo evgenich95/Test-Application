@@ -49,7 +49,7 @@ class PersonDetailViewController: UIViewController {
         let hintLabel = UILabel()
         hintLabel.adjustsFontSizeToFitWidth = true
         hintLabel.textAlignment = .Center
-        hintLabel.numberOfLines = 3
+        hintLabel.numberOfLines = 0
         hintLabel.font = UIFont(name: "Helvetica Neue", size: 30)
         hintLabel.textColor = UIColor.grayColor()
         hintLabel.text = "Please, select a New person type"
