@@ -99,8 +99,7 @@ class ServiceTableViewController: UITableViewController {
         dateFormatter.dateFormat = "dd/MM/yyyy, hh:mm"
 
         if let quote = quotes?[indexPath.row] {
-            cell.dateLabel.text = dateFormatter.stringFromDate(quote.date)
-            cell.textQuoteLabel.text = quote.text
+            cell.updateUI(quote)
         }
 
         return cell
