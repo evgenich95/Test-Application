@@ -11,6 +11,7 @@ import SnapKit
 
 class ServiceTableViewController: UITableViewController {
 
+    //MARK: Patameters
     var quotes: [Quote]?
 
     lazy private var retryButton: UIButton = {
@@ -26,6 +27,7 @@ class ServiceTableViewController: UITableViewController {
     struct KeysForCell {
         static let serviceCell = "ServiceTableViewCell"
     }
+    //MARK:-
 
     init() {
         super.init(nibName: "ServiceTableViewController", bundle: nil)
@@ -40,10 +42,11 @@ class ServiceTableViewController: UITableViewController {
 
         self.navigationItem.title = "Service"
 
-        configureTableView()
+        setupTableView()
         getRequest()
     }
 
+    //MARK: Help functions
     func getRequest() {
         self.startActivityIndicator(withText: "Loading data of chat")
         tableView.backgroundView?.hidden = true
@@ -66,20 +69,24 @@ class ServiceTableViewController: UITableViewController {
         }
     }
 
-    private func configureTableView() {
+    private func setupTableView() {
         tableView.registerNib(
             UINib(nibName: KeysForCell.serviceCell, bundle: nil),
             forCellReuseIdentifier: KeysForCell.serviceCell
         )
-        view.backgroundColor = UIColor.whiteColor()
-        edgesForExtendedLayout = UIRectEdge.None
-        navigationController?.navigationBar.translucent = false
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 88
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundView = retryButton
     }
 
+    private func setupView() {
+        view.backgroundColor = UIColor.whiteColor()
+        edgesForExtendedLayout = UIRectEdge.None
+        navigationController?.navigationBar.translucent = false
+    }
+
+    //MARK: Working with tableView
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -94,9 +101,6 @@ class ServiceTableViewController: UITableViewController {
             forIndexPath: indexPath)) as? ServiceTableViewCell else {
                 fatalError("Cell \(KeysForCell.serviceCell).xib is not registered")
         }
-
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy, hh:mm"
 
         if let quote = quotes?[indexPath.row] {
             cell.updateUI(quote)
