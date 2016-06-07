@@ -68,13 +68,9 @@ class ListPersonTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "List"
-
         configureTableView()
-        createUIBarButton()
-
-        registrateNibForAllUsingCell()
-
+        setupNavigationItems()
+        registrateAllUsingCell()
         performFetch(self.fetchedResultsController)
     }
 
@@ -82,16 +78,18 @@ class ListPersonTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
-
         guard
             let firstPersonInSection = fetchedResultsController.sections?[section].objects.first,
             let iconAndTitleName = firstPersonInSection.entity.name
-        else {
-            return nil
-        }
+        else {return nil}
 
-        //Image name for entity = aPerson.entity.name
-        return tableViewHeader(iconAndTitleName, imageName: iconAndTitleName)
+        let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier(
+            KeysForCells.personTableViewHeader)
+        if let header = cell as? PersonTableViewHeader {
+            //sectionName = sectionIcon
+            header.updateUI(iconAndTitleName, sectionIconName: iconAndTitleName)
+        }
+        return cell
     }
 
     override func tableView(tableView: UITableView,
@@ -250,32 +248,12 @@ class ListPersonTableViewController: UITableViewController {
         self.editButtonItem().enabled = buttonStatus
     }
 
-    private func tableViewHeader(title: String, imageName: String ) -> UITableViewHeaderFooterView {
-        let header = UITableViewHeaderFooterView()
+    private func registrateAllUsingCell () {
 
-        let iconForSection = UIImageView()
-        iconForSection.setImageWithoutCache(imageName)
+        tableView.registerNib(UINib(nibName: KeysForCells.personTableViewHeader,
+            bundle: nil),
+                              forHeaderFooterViewReuseIdentifier: KeysForCells.personTableViewHeader)
 
-        let sectionNameLabel = UILabel()
-        sectionNameLabel.text = title
-
-        header.addSubview(iconForSection)
-        header.addSubview(sectionNameLabel)
-
-        iconForSection.snp_makeConstraints {(make) -> Void in
-            make.top.bottom.equalTo(header)
-            make.width.equalTo(iconForSection.snp_height)
-            make.leading.equalTo(header).offset(8)
-        }
-
-        sectionNameLabel.snp_makeConstraints {(make) -> Void in
-            make.top.bottom.equalTo(header)
-            make.left.equalTo(iconForSection.snp_right).offset(8)
-        }
-        return header
-    }
-
-    private func registrateNibForAllUsingCell () {
         tableView.registerNib(UINib(nibName: KeysForCells.guidanceTableViewCell, bundle: nil),
                               forCellReuseIdentifier: KeysForCells.guidanceTableViewCell)
 
@@ -291,7 +269,8 @@ class ListPersonTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 88
     }
 
-    private func createUIBarButton() {
+    private func setupNavigationItems() {
+        self.navigationItem.title = "List"
         navigationItem.rightBarButtonItem = addButton
         navigationItem.leftBarButtonItem = self.editButtonItem()
     }
@@ -305,12 +284,11 @@ class ListPersonTableViewController: UITableViewController {
         }
     }
 
-
-
     //MARK: Structs
     struct KeysForCells {
         static let guidanceTableViewCell = "GuidanceTableViewCell"
         static let bookkeepingTableViewCell = "BookkeepingTableViewCell"
         static let staffTableViewCell = "StaffTableViewCell"
+        static let personTableViewHeader = "PersonTableViewHeader"
     }
 }
