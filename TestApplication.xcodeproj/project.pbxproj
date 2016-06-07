@@ -14,13 +14,12 @@
 		8B0951731D06D65600F67C9A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0951711D06D65600F67C9A /* Manager.swift */; };
 		8B3961E71CEE0FCA00EDC4C0 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3961E61CEE0FCA00EDC4C0 /* GalleryViewController.swift */; };
 		8B3EA9981CF3A7910057B57A /* NetworkErrorDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3EA9971CF3A7910057B57A /* NetworkErrorDetector.swift */; };
+		8B4B0B0C1D070A6D009C0807 /* PersonTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */; };
 		8B5B26781CE03DE3004B3223 /* UIStackView+setConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B26771CE03DE3004B3223 /* UIStackView+setConfigurations.swift */; };
 		8B5B26821CE0474D004B3223 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B267A1CE0474D004B3223 /* Staff.swift */; };
 		8B5B26861CE0474D004B3223 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B267E1CE0474D004B3223 /* Person.swift */; };
 		8B5B26881CE0474D004B3223 /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B26801CE0474D004B3223 /* Accountant.swift */; };
 		8B5B268A1CE06ADD004B3223 /* NSDate+timeFormating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B26891CE06ADD004B3223 /* NSDate+timeFormating.swift */; };
-		8B6F6EA71D06606800D6DF55 /* PersonTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F6EA61D06606800D6DF55 /* PersonTableViewHeader.swift */; };
-		8B6F6EA91D06607E00D6DF55 /* PersonTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B6F6EA81D06607E00D6DF55 /* PersonTableViewHeader.xib */; };
 		8B7DCCD51CDB2A4A008AEDF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7DCCD41CDB2A4A008AEDF6 /* AppDelegate.swift */; };
 		8B7DCCDF1CDB2A4A008AEDF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B7DCCDE1CDB2A4A008AEDF6 /* Assets.xcassets */; };
 		8B7DCCF01CDB2B10008AEDF6 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7DCCEE1CDB2B10008AEDF6 /* StartViewController.swift */; };
@@ -68,13 +67,12 @@
 		8B3961E61CEE0FCA00EDC4C0 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		8B3EA9941CF37A440057B57A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3EA9971CF3A7910057B57A /* NetworkErrorDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorDetector.swift; sourceTree = "<group>"; };
+		8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewHeader.swift; sourceTree = "<group>"; };
 		8B5B26771CE03DE3004B3223 /* UIStackView+setConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+setConfigurations.swift"; sourceTree = "<group>"; };
 		8B5B267A1CE0474D004B3223 /* Staff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
 		8B5B267E1CE0474D004B3223 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		8B5B26801CE0474D004B3223 /* Accountant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accountant.swift; sourceTree = "<group>"; };
 		8B5B26891CE06ADD004B3223 /* NSDate+timeFormating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+timeFormating.swift"; sourceTree = "<group>"; };
-		8B6F6EA61D06606800D6DF55 /* PersonTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewHeader.swift; sourceTree = "<group>"; };
-		8B6F6EA81D06607E00D6DF55 /* PersonTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonTableViewHeader.xib; sourceTree = "<group>"; };
 		8B7DCCD11CDB2A4A008AEDF6 /* TestApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7DCCD41CDB2A4A008AEDF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B7DCCDE1CDB2A4A008AEDF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,15 +189,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8B6F6EAA1D06610B00D6DF55 /* PersonTableViewHeader */ = {
-			isa = PBXGroup;
-			children = (
-				8B6F6EA61D06606800D6DF55 /* PersonTableViewHeader.swift */,
-				8B6F6EA81D06607E00D6DF55 /* PersonTableViewHeader.xib */,
-			);
-			name = PersonTableViewHeader;
-			sourceTree = "<group>";
-		};
 		8B7DCCC81CDB2A4A008AEDF6 = {
 			isa = PBXGroup;
 			children = (
@@ -242,8 +231,8 @@
 		8B7DCCEA1CDB2A61008AEDF6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */,
 				8B3EA9961CF386FE0057B57A /* UITableViewCells */,
-				8B6F6EAA1D06610B00D6DF55 /* PersonTableViewHeader */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,13 +268,13 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		8B87C7D51CE1C80C00A667C6 /* ManagerTable View Cell */ = {
+		8B87C7D51CE1C80C00A667C6 /* Manager Table View Cell */ = {
 			isa = PBXGroup;
 			children = (
 				8B87C7D11CE1C80500A667C6 /* ManagerTableViewCell.swift */,
 				8B87C7D21CE1C80500A667C6 /* ManagerTableViewCell.xib */,
 			);
-			name = "ManagerTable View Cell";
+			name = "Manager Table View Cell";
 			path = "Guidance Table View Cell";
 			sourceTree = "<group>";
 		};
@@ -378,7 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				8B87C7DA1CE1CA0900A667C6 /* Accountant Table View Cell */,
-				8B87C7D51CE1C80C00A667C6 /* ManagerTable View Cell */,
+				8B87C7D51CE1C80C00A667C6 /* Manager Table View Cell */,
 				8B87C7DF1CE1CB2400A667C6 /* Staff Table View Cell */,
 			);
 			path = List;
@@ -493,7 +482,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B87C7D91CE1CA0600A667C6 /* AccountantTableViewCell.xib in Resources */,
-				8B6F6EA91D06607E00D6DF55 /* PersonTableViewHeader.xib in Resources */,
 				8B87C7DE1CE1CB2100A667C6 /* StaffTableViewCell.xib in Resources */,
 				8B7DCCF11CDB2B10008AEDF6 /* StartViewController.xib in Resources */,
 				8BF275DD1CDB524600E1566D /* ListPersonTableViewController.xib in Resources */,
@@ -574,7 +562,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B7DCCFC1CDB2C14008AEDF6 /* TestApplication.xcdatamodeld in Sources */,
-				8B6F6EA71D06606800D6DF55 /* PersonTableViewHeader.swift in Sources */,
 				8B87C7D81CE1CA0600A667C6 /* AccountantTableViewCell.swift in Sources */,
 				8B001DCF1CF203AA001EB1C0 /* UIImageView+setImage.swift in Sources */,
 				8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift in Sources */,
@@ -610,6 +597,7 @@
 				8B5B268A1CE06ADD004B3223 /* NSDate+timeFormating.swift in Sources */,
 				8BF337D11CECAE9E005CB57B /* UIViewController+EZLoading.swift in Sources */,
 				8BF6F2951CEF03EF00565E92 /* ZoomedPhotoViewController.swift in Sources */,
+				8B4B0B0C1D070A6D009C0807 /* PersonTableViewHeader.swift in Sources */,
 				8BA93DF51CE4E8B400E55BA7 /* SimpleTextFieldCell.swift in Sources */,
 				8BF7FFDF1CE58B4E0002C5F1 /* DateInputViewCell.swift in Sources */,
 			);
