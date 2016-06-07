@@ -249,10 +249,7 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     private func registrateAllUsingCell () {
-
-        tableView.registerNib(UINib(nibName: KeysForCells.personTableViewHeader,
-            bundle: nil),
-                              forHeaderFooterViewReuseIdentifier: KeysForCells.personTableViewHeader)
+        tableView.registerClass(PersonTableViewHeader.self, forHeaderFooterViewReuseIdentifier: KeysForCells.personTableViewHeader)
 
         tableView.registerNib(UINib(nibName: KeysForCells.managerTableViewCell, bundle: nil),
                               forCellReuseIdentifier: KeysForCells.managerTableViewCell)
@@ -266,7 +263,9 @@ class ListPersonTableViewController: UITableViewController {
 
     private func configureTableView() {
         tableView.tableFooterView = UIView()
-        tableView.estimatedRowHeight = 88
+
+        tableView.estimatedRowHeight = 190
+        tableView.sectionHeaderHeight = 40
     }
 
     private func setupNavigationItems() {
