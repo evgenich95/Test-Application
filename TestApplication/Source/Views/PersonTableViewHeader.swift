@@ -25,8 +25,7 @@ class PersonTableViewHeader: UITableViewHeaderFooterView {
 
     private func createView() {
         self.contentView.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3)
-        sectionName.textColor = UIColor.blueColor()
-
+        sectionName.textColor = UIColor(red: 0.0, green: 122/255, blue: 1.0, alpha: 1)
         self.addSubview(sectionIcon)
         self.addSubview(sectionName)
 
