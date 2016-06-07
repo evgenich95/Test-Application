@@ -16,7 +16,7 @@ struct UserInfoKeys {
     static let attributeOrderIndex = "orderIndex"
 }
 
-enum BookkeepingType: CustomStringConvertible {
+enum AccountantType: CustomStringConvertible {
     case SalaryAccounting
     case MaterialAccounting
 
@@ -39,7 +39,7 @@ enum BookkeepingType: CustomStringConvertible {
         case 1:
             self = .MaterialAccounting
         default:
-            fatalError("invalid index of BookkeepingType")
+            fatalError("invalid index of AccountantType")
         }
     }
 }

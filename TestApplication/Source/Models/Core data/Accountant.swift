@@ -1,5 +1,5 @@
 //
-//  Bookkeeping.swift
+//  Accountant.swift
 //  TestApplication
 //
 //  Created by developer on 09.05.16.
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-class Bookkeeping: Staff {
+class Accountant: Staff {
     @NSManaged var type: NSNumber?
 
     override class var entityName: String {
-        return "Bookkeeping"
+        return "Accountant"
     }
 }

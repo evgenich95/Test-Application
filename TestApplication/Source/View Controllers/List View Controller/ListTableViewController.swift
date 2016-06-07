@@ -140,11 +140,11 @@ class ListPersonTableViewController: UITableViewController {
                 maybeCell = managerCell
             }
 
-        case let bookkeeping as Bookkeeping:
-            if let bookkeepingCell = (tableView.dequeueReusableCellWithIdentifier(
-                KeysForCells.bookkeepingTableViewCell, forIndexPath: indexPath)) as? BookkeepingTableViewCell {
-                bookkeepingCell.updateUI(bookkeeping)
-                maybeCell = bookkeepingCell
+        case let accountant as Accountant:
+            if let accountantCell = (tableView.dequeueReusableCellWithIdentifier(
+                KeysForCells.accountantTableViewCell, forIndexPath: indexPath)) as? AccountantTableViewCell {
+                accountantCell.updateUI(accountant)
+                maybeCell = accountantCell
             }
 
         case let staff as Staff:
@@ -260,8 +260,8 @@ class ListPersonTableViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: KeysForCells.staffTableViewCell, bundle: nil),
                               forCellReuseIdentifier: KeysForCells.staffTableViewCell)
 
-        tableView.registerNib(UINib(nibName: KeysForCells.bookkeepingTableViewCell, bundle: nil),
-                              forCellReuseIdentifier: KeysForCells.bookkeepingTableViewCell)
+        tableView.registerNib(UINib(nibName: KeysForCells.accountantTableViewCell, bundle: nil),
+                              forCellReuseIdentifier: KeysForCells.accountantTableViewCell)
     }
 
     private func configureTableView() {
@@ -287,7 +287,7 @@ class ListPersonTableViewController: UITableViewController {
     //MARK: Structs
     struct KeysForCells {
         static let managerTableViewCell = "ManagerTableViewCell"
-        static let bookkeepingTableViewCell = "BookkeepingTableViewCell"
+        static let accountantTableViewCell = "AccountantTableViewCell"
         static let staffTableViewCell = "StaffTableViewCell"
         static let personTableViewHeader = "PersonTableViewHeader"
     }

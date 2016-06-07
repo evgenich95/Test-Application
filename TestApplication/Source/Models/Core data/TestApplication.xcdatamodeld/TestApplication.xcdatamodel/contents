@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
-    <entity name="Bookkeeping" representedClassName=".Bookkeeping" parentEntity="Staff" syncable="YES">
+    <entity name="Accountant" representedClassName=".Accountant" parentEntity="Staff" syncable="YES">
         <attribute name="type" attributeType="Integer 32" syncable="YES">
             <userInfo>
                 <entry key="description" value="Type:"/>
@@ -79,7 +79,7 @@
         </userInfo>
     </entity>
     <elements>
-        <element name="Bookkeeping" positionX="-81" positionY="140" width="128" height="60"/>
+        <element name="Accountant" positionX="-81" positionY="140" width="128" height="60"/>
         <element name="Manager" positionX="153" positionY="-4" width="153" height="75"/>
         <element name="Person" positionX="34" positionY="-156" width="128" height="90"/>
         <element name="Staff" positionX="-81" positionY="-9" width="128" height="90"/>
