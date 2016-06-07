@@ -16,6 +16,9 @@ class PersonTableViewHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var sectionName: UILabel!
 
     func updateUI(sectionName: String, sectionIconName: String) {
+        self.backgroundView = UIView(frame: self.bounds)
+        self.backgroundView?.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3)
+        
         sectionIcon.setImageWithoutCache(sectionIconName)
         self.sectionName.text = sectionName
     }
