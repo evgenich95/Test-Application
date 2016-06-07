@@ -11,7 +11,6 @@ import UIKit
 
 class BrowsingState: State {
     //MARK: Parameters
-
     typealias Owner = PersonDetailViewController
     var owner: Owner
 

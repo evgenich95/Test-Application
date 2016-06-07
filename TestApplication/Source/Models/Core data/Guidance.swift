@@ -1,5 +1,5 @@
 //
-//  Guidance.swift
+//  Manager.swift
 //  TestApplication
 //
 //  Created by developer on 09.05.16.
@@ -10,11 +10,11 @@ import Foundation
 import CoreData
 
 
-class Guidance: Person {
+class Manager: Person {
     @NSManaged var startVisitingHours: NSDate?
     @NSManaged var endVisitingHours: NSDate?
 
     override class var entityName: String {
-        return "Guidance"
+        return "Manager"
     }
 }

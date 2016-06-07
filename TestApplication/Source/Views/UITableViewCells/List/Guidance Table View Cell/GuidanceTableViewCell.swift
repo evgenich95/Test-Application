@@ -18,8 +18,8 @@ class GuidanceTableViewCell: UITableViewCell {
         fullNameLabel.text = guidance.fullName
         salaryLabel.text = guidance.salary?.stringValue
 
-        switch (guidance.startVisitingHours?.timeFormat,
-                guidance.endVisitingHours?.timeFormat) {
+        switch (guidance.startVisitingHours?.timeFormating,
+                guidance.endVisitingHours?.timeFormating) {
         case let (fromTime?, toTime?):
             visitingHoursLabel.text = "From \(fromTime) to \(toTime)"
         default:

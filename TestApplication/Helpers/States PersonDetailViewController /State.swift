@@ -9,7 +9,6 @@
 import Foundation
 
 protocol State {
-
     var owner: PersonDetailViewController {get set}
 
     init(contex: PersonDetailViewController)

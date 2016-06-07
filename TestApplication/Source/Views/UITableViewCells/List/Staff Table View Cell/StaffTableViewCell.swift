@@ -22,8 +22,8 @@ class StaffTableViewCell: UITableViewCell {
         fullNameLabel.text = staff.fullName
         salaryLabel.text = staff.salary?.stringValue
 
-        switch (staff.startMealTime?.timeFormat,
-                staff.endMealTime?.timeFormat) {
+        switch (staff.startMealTime?.timeFormating,
+                staff.endMealTime?.timeFormating) {
         case let(fromTime?, toTime?):
             mealTimeLabel.text = "From \(fromTime) to \(toTime)"
         default: break

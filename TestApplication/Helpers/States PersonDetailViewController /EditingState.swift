@@ -11,7 +11,6 @@ import UIKit
 
 class EditingState: State {
     //MARK: Parameters
-
     typealias Owner = PersonDetailViewController
     var owner: Owner
     var copyOfPerson: Person?

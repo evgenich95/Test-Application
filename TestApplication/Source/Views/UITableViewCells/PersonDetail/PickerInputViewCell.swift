@@ -1,5 +1,5 @@
 //
-//  TableViewCellWithPickerInputView.swift
+//  PickerInputViewCell.swift
 //  TestApplication
 //
 //  Created by developer on 13.05.16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewCellWithPickerInputView: CustomTableViewCell {
+class PickerInputViewCell: CustomTableViewCell {
 
     typealias ResultDataActionType = ((data: AnyObject) -> Void)?
     var handleDataAction: ResultDataActionType
@@ -61,7 +61,7 @@ class TableViewCellWithPickerInputView: CustomTableViewCell {
     }
 }
 
-extension TableViewCellWithPickerInputView: UIPickerViewDelegate {
+extension PickerInputViewCell: UIPickerViewDelegate {
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1

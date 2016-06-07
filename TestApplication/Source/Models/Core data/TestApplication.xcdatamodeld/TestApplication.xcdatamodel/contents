@@ -12,7 +12,7 @@
             <entry key="orderIndex" value="2"/>
         </userInfo>
     </entity>
-    <entity name="Guidance" representedClassName=".Guidance" parentEntity="Person" syncable="YES">
+    <entity name="Manager" representedClassName=".Guidance" parentEntity="Person" syncable="YES">
         <attribute name="endVisitingHours" attributeType="Date" syncable="YES">
             <userInfo>
                 <entry key="aggregate" value="1"/>
@@ -80,7 +80,7 @@
     </entity>
     <elements>
         <element name="Bookkeeping" positionX="-81" positionY="140" width="128" height="60"/>
-        <element name="Guidance" positionX="153" positionY="-4" width="153" height="75"/>
+        <element name="Manager" positionX="153" positionY="-4" width="153" height="75"/>
         <element name="Person" positionX="34" positionY="-156" width="128" height="90"/>
         <element name="Staff" positionX="-81" positionY="-9" width="128" height="90"/>
     </elements>

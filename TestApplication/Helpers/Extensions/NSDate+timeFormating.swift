@@ -9,7 +9,7 @@
 import Foundation
 
 extension NSDate {
-    var timeFormat: String {
+    var timeFormating: String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH:mm"
 

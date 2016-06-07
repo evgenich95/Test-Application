@@ -1,5 +1,5 @@
 //
-//  CellWithDateInputView.swift
+//  DateInputViewCell.swift
 //  TestApplication
 //
 //  Created by developer on 13.05.16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellWithDateInputView: CustomTableViewCell {
+class DateInputViewCell: CustomTableViewCell {
 
     //MARK: Parameters
     typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate)
@@ -149,7 +149,7 @@ class CellWithDateInputView: CustomTableViewCell {
     func updateDateValue() {
         switch (startTime, endTime) {
         case let (startTime?, endTime?):
-            attributeValueString = "from \(startTime.timeFormat) to \(endTime.timeFormat)"
+            attributeValueString = "from \(startTime.timeFormating) to \(endTime.timeFormating)"
             startTimeDatePicker.date = startTime
             endTimeDatePicker.date = endTime
         default:

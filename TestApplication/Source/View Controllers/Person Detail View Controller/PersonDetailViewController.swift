@@ -239,7 +239,7 @@ class PersonDetailViewController: UIViewController {
                     fatalError("Составной атибут не имеет значения в  userInfo['keys'] ")
             }
 
-            let cell =  CellWithDateInputView(
+            let cell =  DateInputViewCell(
                 description: [
                     attributeDescription,
                     attributePlaceholder
@@ -264,7 +264,7 @@ class PersonDetailViewController: UIViewController {
         let attributeValue = self.person?.valueForKey(personAttribute.name)
 
         if personAttribute.name == "type" {
-            let cell = TableViewCellWithPickerInputView(
+            let cell = PickerInputViewCell(
                 description: [
                     attributeDescription,
                     attributePlaceholder
