@@ -1,5 +1,5 @@
 //
-//  StaffTableViewswift
+//  WorkerTableViewswift
 //  TestApplication
 //
 //  Created by developer on 10.05.16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StaffTableViewCell: UITableViewCell {
+class WorkerTableViewCell: UITableViewCell {
 
     @IBOutlet weak var fullNameLabel: UILabel!
 
@@ -18,17 +18,17 @@ class StaffTableViewCell: UITableViewCell {
 
     @IBOutlet weak var mealTimeLabel: UILabel!
 
-    func updateUI(staff: Staff) {
-        fullNameLabel.text = staff.fullName
-        salaryLabel.text = staff.salary?.stringValue
+    func updateUI(worker: Worker) {
+        fullNameLabel.text = worker.fullName
+        salaryLabel.text = worker.salary?.stringValue
 
-        switch (staff.startMealTime?.timeFormating,
-                staff.endMealTime?.timeFormating) {
+        switch (worker.startMealTime?.timeFormating,
+                worker.endMealTime?.timeFormating) {
         case let(fromTime?, toTime?):
             mealTimeLabel.text = "From \(fromTime) to \(toTime)"
         default: break
         }
 
-        workplaeNumberLabel.text = staff.workplaceNumber?.stringValue
+        workplaeNumberLabel.text = worker.workplaceNumber?.stringValue
     }
 }

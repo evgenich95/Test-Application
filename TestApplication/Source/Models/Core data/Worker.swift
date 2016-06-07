@@ -1,5 +1,5 @@
 //
-//  Staff.swift
+//  Worker.swift
 //  TestApplication
 //
 //  Created by developer on 09.05.16.
@@ -10,12 +10,12 @@ import Foundation
 import CoreData
 
 
-class Staff: Person {
+class Worker: Person {
     @NSManaged var workplaceNumber: NSNumber?
     @NSManaged var startMealTime: NSDate?
     @NSManaged var endMealTime: NSDate?
 
     override class var entityName: String {
-        return "Staff"
+        return "Worker"
     }
 }

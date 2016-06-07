@@ -147,11 +147,11 @@ class ListPersonTableViewController: UITableViewController {
                 maybeCell = accountantCell
             }
 
-        case let staff as Staff:
-            if let staffCell = (tableView.dequeueReusableCellWithIdentifier(
-                KeysForCells.staffTableViewCell, forIndexPath: indexPath)) as? StaffTableViewCell {
-                staffCell.updateUI(staff)
-                maybeCell = staffCell
+        case let worker as Worker:
+            if let workerCell = (tableView.dequeueReusableCellWithIdentifier(
+                KeysForCells.workerTableViewCell, forIndexPath: indexPath)) as? WorkerTableViewCell {
+                workerCell.updateUI(worker)
+                maybeCell = workerCell
             }
 
         default: break
@@ -254,8 +254,8 @@ class ListPersonTableViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: KeysForCells.managerTableViewCell, bundle: nil),
                               forCellReuseIdentifier: KeysForCells.managerTableViewCell)
 
-        tableView.registerNib(UINib(nibName: KeysForCells.staffTableViewCell, bundle: nil),
-                              forCellReuseIdentifier: KeysForCells.staffTableViewCell)
+        tableView.registerNib(UINib(nibName: KeysForCells.workerTableViewCell, bundle: nil),
+                              forCellReuseIdentifier: KeysForCells.workerTableViewCell)
 
         tableView.registerNib(UINib(nibName: KeysForCells.accountantTableViewCell, bundle: nil),
                               forCellReuseIdentifier: KeysForCells.accountantTableViewCell)
@@ -287,7 +287,7 @@ class ListPersonTableViewController: UITableViewController {
     struct KeysForCells {
         static let managerTableViewCell = "ManagerTableViewCell"
         static let accountantTableViewCell = "AccountantTableViewCell"
-        static let staffTableViewCell = "StaffTableViewCell"
+        static let workerTableViewCell = "WorkerTableViewCell"
         static let personTableViewHeader = "PersonTableViewHeader"
     }
 }

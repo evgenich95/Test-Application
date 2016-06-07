@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Accountant: Staff {
+class Accountant: Worker {
     @NSManaged var type: NSNumber?
 
     override class var entityName: String {
