@@ -132,12 +132,12 @@ class ListPersonTableViewController: UITableViewController {
             else { fatalError("Don't have aPerson for \(indexPath) indexPath ") }
 
         switch person {
-        case let guidance as Guidance :
+        case let manager as Manager :
 
-            if let guidanceCell = (tableView.dequeueReusableCellWithIdentifier(
-                KeysForCells.guidanceTableViewCell, forIndexPath: indexPath)) as? GuidanceTableViewCell {
-                guidanceCell.updateUI(guidance)
-                maybeCell = guidanceCell
+            if let managerCell = (tableView.dequeueReusableCellWithIdentifier(
+                KeysForCells.managerTableViewCell, forIndexPath: indexPath)) as? ManagerTableViewCell {
+                managerCell.updateUI(manager)
+                maybeCell = managerCell
             }
 
         case let bookkeeping as Bookkeeping:
@@ -254,8 +254,8 @@ class ListPersonTableViewController: UITableViewController {
             bundle: nil),
                               forHeaderFooterViewReuseIdentifier: KeysForCells.personTableViewHeader)
 
-        tableView.registerNib(UINib(nibName: KeysForCells.guidanceTableViewCell, bundle: nil),
-                              forCellReuseIdentifier: KeysForCells.guidanceTableViewCell)
+        tableView.registerNib(UINib(nibName: KeysForCells.managerTableViewCell, bundle: nil),
+                              forCellReuseIdentifier: KeysForCells.managerTableViewCell)
 
         tableView.registerNib(UINib(nibName: KeysForCells.staffTableViewCell, bundle: nil),
                               forCellReuseIdentifier: KeysForCells.staffTableViewCell)
@@ -286,7 +286,7 @@ class ListPersonTableViewController: UITableViewController {
 
     //MARK: Structs
     struct KeysForCells {
-        static let guidanceTableViewCell = "GuidanceTableViewCell"
+        static let managerTableViewCell = "ManagerTableViewCell"
         static let bookkeepingTableViewCell = "BookkeepingTableViewCell"
         static let staffTableViewCell = "StaffTableViewCell"
         static let personTableViewHeader = "PersonTableViewHeader"
