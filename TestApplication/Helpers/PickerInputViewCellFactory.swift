@@ -17,7 +17,7 @@ class PickerInputViewCellFactory: AbstractFactory {
                 attributeDescription.description,
                 attributeDescription.placeholder
             ],
-            data: attributeDictionary[attributeDescription.rawValue],
+            data: attributeDictionary[attributeDescription.key.first ?? ""],
             action: { (data) in
 //                self.person?.setValue(data, forKey: personAttribute.name)
 //                self.addNewKeyForValid(personAttribute.name)

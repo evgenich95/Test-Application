@@ -233,22 +233,22 @@ class PersonDetailViewController: UIViewController {
     }
 
    // swiftlint:disable function_body_length
-    private func cellForProperty(attributeKey: String, attributeValue: AnyObject ) -> CustomTableViewCell? {
-
-        let avalibleTypeForCellWithSimpeTextField = [
-            NSAttributeType.StringAttributeType,
-            NSAttributeType.Integer32AttributeType,
-            NSAttributeType.DoubleAttributeType]
-
-
-        guard
-            let attributeDescription = PersonAttributeDescription(
-                attributeKey: attributeKey)?.description,
-            let attributePlaceholder = PersonAttributeDescription(
-                attributeKey: attributeKey)?.placeholder
-        else {
-            fatalError("fatalError: Attribute doesn't conform")
-        }
+//    private func cellForProperty(attributeKey: String, attributeValue: AnyObject ) -> CustomTableViewCell? {
+//
+//        let avalibleTypeForCellWithSimpeTextField = [
+//            NSAttributeType.StringAttributeType,
+//            NSAttributeType.Integer32AttributeType,
+//            NSAttributeType.DoubleAttributeType]
+//
+//
+//        guard
+//            let attributeDescription = PersonAttributeDescription(
+//                attributeKey: attributeKey)?.description,
+//            let attributePlaceholder = PersonAttributeDescription(
+//                attributeKey: attributeKey)?.placeholder
+//        else {
+//            fatalError("fatalError: Attribute doesn't conform")
+//        }
 //
 //        let attributeType = personAttribute.attributeType
 //
@@ -303,29 +303,29 @@ class PersonDetailViewController: UIViewController {
 //        }
 //
 
-            let cell = SimpleTextFieldCell(
-                description: [
-                    attributeDescription,
-                    attributePlaceholder
-                ],
-                data: attributeValue,
-
-                action: { (data) in
-                    self.personAttributeDictionary[attributeKey] = data
-//                    self.person?.setValue(data, forKey: personAttribute.name)
-//                    self.addNewKeyForValid(personAttribute.name)
-                },
-                actionForClearField: {
+//            let cell = SimpleTextFieldCell(
+//                description: [
+//                    attributeDescription,
+//                    attributePlaceholder
+//                ],
+//                data: attributeValue,
+//
+//                action: { (data) in
+//                    self.personAttributeDictionary[attributeKey] = data
+////                    self.person?.setValue(data, forKey: personAttribute.name)
+////                    self.addNewKeyForValid(personAttribute.name)
+//                },
+//                actionForClearField: {
 //                    self.arrayOfFilledAttributes.removeObject(personAttribute.name)
 //                    self.checkValid()
-                })
-            cell.delegate = self
-            return cell
-
-        return nil
-    }
-
-    // swiftlint:enable function_body_length
+//                })
+//            cell.delegate = self
+//            return cell
+//
+//        return nil
+//    }
+//
+//    // swiftlint:enable function_body_length
 }
 
 //MARK: -
@@ -395,26 +395,9 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
         let attributeKey = Array(personAttributeDictionary.keys)[indexPath.row]
 
-        return CustomCellFactory.cellFor(attributeKey, attributeDictionary: personAttributeDictionary)
-
-        
-
-
-
-
-//        if let cell =  cellForProperty(currentAttribute) {
-//            return cell
-//        }
-
-
-//        guard let attributes = self.person?.personAttributesByName
-//            else {
-//                fatalError("entity \(self.person?.entity.name) is absent for displaying")
-//        }
-//        
-//        if let cell =  cellForProperty(attributes[indexPath.row]) {
-//            return cell
-//        }
+        if let attributeDescription = PersonAttributeDescription(attributeKey: attributeKey) {
+            return CustomCellFactory.cellFor(attributeDescription, attributeDictionary: personAttributeDictionary)
+        }
 
         return UITableViewCell()
     }

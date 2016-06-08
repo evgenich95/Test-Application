@@ -10,25 +10,31 @@ import Foundation
 import UIKit
 
 enum CustomCellFactory {
-    //возвращать нил в default или выдавать fatalError() ?!??!?!
-        static func appropriateFactory(attributeDescription: PersonAttributeDescription) -> AbstractFactory? {
+
+    static func cellFor(attributeDescription: PersonAttributeDescription, attributeDictionary: [String: AnyObject]) -> UITableViewCell {
+
         switch attributeDescription {
         case .FullName, .Salary, .WorkplaceNumber:
             return SimpleTextFieldCellFactory()
+                .createCustomTableViewCell(
+                    attributeDescription,
+                    attributeDictionary: attributeDictionary
+            )
         case .AccountantType:
             return PickerInputViewCellFactory()
+                .createCustomTableViewCell(
+                    attributeDescription,
+                    attributeDictionary: attributeDictionary
+            )
+        case .MealTime:
+            return DateInputViewCellFactory()
+            .createCustomTableViewCell(
+                attributeDescription, attributeDictionary: attributeDictionary
+            )
+
+            
         default:
-            return nil
+            return UITableViewCell()
         }
-    }
-
-    static func cellFor(attributeKey: String, attributeDictionary: [String: AnyObject]) -> UITableViewCell {
-        guard let attributeDescription = PersonAttributeDescription(attributeKey: attributeKey),
-        let factory = self.appropriateFactory(attributeDescription)
-            else {
-                return UITableViewCell()
-        }
-
-        return factory.createCustomTableViewCell(attributeDescription, attributeDictionary: attributeDictionary)
     }
 }

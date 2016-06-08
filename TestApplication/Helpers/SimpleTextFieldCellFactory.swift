@@ -16,7 +16,7 @@ class SimpleTextFieldCellFactory: AbstractFactory {
                 attributeDescription.description,
                 attributeDescription.placeholder
             ],
-            data: attributeDictionary[attributeDescription.rawValue],
+            data: attributeDictionary[attributeDescription.key.first ?? ""],
 
             action: { (data) in
 
