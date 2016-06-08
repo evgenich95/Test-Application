@@ -16,7 +16,6 @@
 		8B3961E71CEE0FCA00EDC4C0 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3961E61CEE0FCA00EDC4C0 /* GalleryViewController.swift */; };
 		8B3EA9981CF3A7910057B57A /* NetworkErrorDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3EA9971CF3A7910057B57A /* NetworkErrorDetector.swift */; };
 		8B4B0B0C1D070A6D009C0807 /* PersonTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */; };
-		8B4B0B0E1D072E20009C0807 /* ManagerAttributeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B0B0D1D072E20009C0807 /* ManagerAttributeDictionary.swift */; };
 		8B5B26821CE0474D004B3223 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B267A1CE0474D004B3223 /* Worker.swift */; };
 		8B5B26861CE0474D004B3223 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B267E1CE0474D004B3223 /* Person.swift */; };
 		8B5B26881CE0474D004B3223 /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B26801CE0474D004B3223 /* Accountant.swift */; };
@@ -70,7 +69,6 @@
 		8B3EA9941CF37A440057B57A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3EA9971CF3A7910057B57A /* NetworkErrorDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorDetector.swift; sourceTree = "<group>"; };
 		8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewHeader.swift; sourceTree = "<group>"; };
-		8B4B0B0D1D072E20009C0807 /* ManagerAttributeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerAttributeDictionary.swift; sourceTree = "<group>"; };
 		8B5B267A1CE0474D004B3223 /* Worker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
 		8B5B267E1CE0474D004B3223 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		8B5B26801CE0474D004B3223 /* Accountant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accountant.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				8BFF16021CE3780700F200CF /* Constants.swift */,
 				8B3EA9971CF3A7910057B57A /* NetworkErrorDetector.swift */,
 				8B9E1FD01CEC52670071C648 /* WebService.swift */,
-				8B4B0B0D1D072E20009C0807 /* ManagerAttributeDictionary.swift */,
 				8B35BD3C1D07CA5D006B028D /* PersonTypeRecognizer.swift */,
 			);
 			path = Helpers;
@@ -565,7 +562,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B4B0B0E1D072E20009C0807 /* ManagerAttributeDictionary.swift in Sources */,
 				8B7DCCFC1CDB2C14008AEDF6 /* TestApplication.xcdatamodeld in Sources */,
 				8B87C7D81CE1CA0600A667C6 /* AccountantTableViewCell.swift in Sources */,
 				8B001DCF1CF203AA001EB1C0 /* UIImageView+setImage.swift in Sources */,
