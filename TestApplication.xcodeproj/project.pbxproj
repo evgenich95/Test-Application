@@ -12,9 +12,11 @@
 		8B067D1C1CE71C9100CC9F5F /* CoreDataStack+save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B067D1B1CE71C9100CC9F5F /* CoreDataStack+save.swift */; };
 		8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift */; };
 		8B0951731D06D65600F67C9A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0951711D06D65600F67C9A /* Manager.swift */; };
+		8B35BD3D1D07CA5D006B028D /* PersonTypeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35BD3C1D07CA5D006B028D /* PersonTypeRecognizer.swift */; };
 		8B3961E71CEE0FCA00EDC4C0 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3961E61CEE0FCA00EDC4C0 /* GalleryViewController.swift */; };
 		8B3EA9981CF3A7910057B57A /* NetworkErrorDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3EA9971CF3A7910057B57A /* NetworkErrorDetector.swift */; };
 		8B4B0B0C1D070A6D009C0807 /* PersonTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */; };
+		8B4B0B0E1D072E20009C0807 /* ManagerAttributeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B0B0D1D072E20009C0807 /* ManagerAttributeDictionary.swift */; };
 		8B5B26821CE0474D004B3223 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B267A1CE0474D004B3223 /* Worker.swift */; };
 		8B5B26861CE0474D004B3223 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B267E1CE0474D004B3223 /* Person.swift */; };
 		8B5B26881CE0474D004B3223 /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B26801CE0474D004B3223 /* Accountant.swift */; };
@@ -63,10 +65,12 @@
 		8B067D1B1CE71C9100CC9F5F /* CoreDataStack+save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+save.swift"; sourceTree = "<group>"; };
 		8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+orderIndex.swift"; sourceTree = "<group>"; };
 		8B0951711D06D65600F67C9A /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		8B35BD3C1D07CA5D006B028D /* PersonTypeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTypeRecognizer.swift; sourceTree = "<group>"; };
 		8B3961E61CEE0FCA00EDC4C0 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		8B3EA9941CF37A440057B57A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3EA9971CF3A7910057B57A /* NetworkErrorDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorDetector.swift; sourceTree = "<group>"; };
 		8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewHeader.swift; sourceTree = "<group>"; };
+		8B4B0B0D1D072E20009C0807 /* ManagerAttributeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerAttributeDictionary.swift; sourceTree = "<group>"; };
 		8B5B267A1CE0474D004B3223 /* Worker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
 		8B5B267E1CE0474D004B3223 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		8B5B26801CE0474D004B3223 /* Accountant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accountant.swift; sourceTree = "<group>"; };
@@ -127,8 +131,8 @@
 		8B001DCD1CF1ED97001EB1C0 /* PersonDetail */ = {
 			isa = PBXGroup;
 			children = (
-				8BF7FFDE1CE58B4E0002C5F1 /* DateInputViewCell.swift */,
 				8BA93DF21CE4E3DA00E55BA7 /* CustomTableViewCell.swift */,
+				8BF7FFDE1CE58B4E0002C5F1 /* DateInputViewCell.swift */,
 				8BA93DF41CE4E8B400E55BA7 /* SimpleTextFieldCell.swift */,
 				8BF7FFE01CE5C9930002C5F1 /* PickerInputViewCell.swift */,
 			);
@@ -170,6 +174,8 @@
 				8BFF16021CE3780700F200CF /* Constants.swift */,
 				8B3EA9971CF3A7910057B57A /* NetworkErrorDetector.swift */,
 				8B9E1FD01CEC52670071C648 /* WebService.swift */,
+				8B4B0B0D1D072E20009C0807 /* ManagerAttributeDictionary.swift */,
+				8B35BD3C1D07CA5D006B028D /* PersonTypeRecognizer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -336,8 +342,8 @@
 		8BF275C01CDB332500E1566D /* List View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8BF275DB1CDB524600E1566D /* ListPersonTableViewController.xib */,
 				8BF275DA1CDB524600E1566D /* ListTableViewController.swift */,
+				8BF275DB1CDB524600E1566D /* ListPersonTableViewController.xib */,
 				8B87C7E01CE1F47500A667C6 /* PersonsFetchedResultsControllerDelegate.swift */,
 			);
 			path = "List View Controller";
@@ -559,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B4B0B0E1D072E20009C0807 /* ManagerAttributeDictionary.swift in Sources */,
 				8B7DCCFC1CDB2C14008AEDF6 /* TestApplication.xcdatamodeld in Sources */,
 				8B87C7D81CE1CA0600A667C6 /* AccountantTableViewCell.swift in Sources */,
 				8B001DCF1CF203AA001EB1C0 /* UIImageView+setImage.swift in Sources */,
@@ -580,6 +587,7 @@
 				8B87C7D31CE1C80500A667C6 /* ManagerTableViewCell.swift in Sources */,
 				8BF41B331CE43E8900E98285 /* PersonDetailViewController.swift in Sources */,
 				8BF347691CEB4C5700241D23 /* CreatingState.swift in Sources */,
+				8B35BD3D1D07CA5D006B028D /* PersonTypeRecognizer.swift in Sources */,
 				8BF347671CEB496000241D23 /* BrowsingState.swift in Sources */,
 				8B5B26881CE0474D004B3223 /* Accountant.swift in Sources */,
 				8B3961E71CEE0FCA00EDC4C0 /* GalleryViewController.swift in Sources */,
