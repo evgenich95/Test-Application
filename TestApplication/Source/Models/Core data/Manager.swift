@@ -17,4 +17,13 @@ class Manager: Person {
     override class var entityName: String {
         return "Manager"
     }
+
+    override var attributeDictionary: [String : AnyObject] {
+        var attributeDictionary = super.attributeDictionary
+
+        attributeDictionary["startVisitingHours"] = startVisitingHours
+        attributeDictionary["endVisitingHours"] = endVisitingHours
+
+        return attributeDictionary
+    }
 }

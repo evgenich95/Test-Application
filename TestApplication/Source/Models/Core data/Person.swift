@@ -30,6 +30,20 @@ class Person: NSManagedObject, CoreDataModelable {
         }
     }
 
+    var attributeDictionary: [String: AnyObject] {
+        var attributeDictionary = [String: AnyObject]()
+
+        attributeDictionary["fullName"] = fullName
+        attributeDictionary["salary"] = salary
+
+        return attributeDictionary
+    }
+
+    func fillAttributes(dictionary: [String: AnyObject]) {
+        for (key, value) in dictionary {
+            self.setValue(value, forKey: key)
+        }
+    }
     lazy var personDisplayedAttributeKeys: [String] = {
         var personKeys = [String]()
         let allAttributes = self.entity.propertiesByName

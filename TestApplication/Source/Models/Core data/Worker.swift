@@ -18,4 +18,15 @@ class Worker: Person {
     override class var entityName: String {
         return "Worker"
     }
+
+    override var attributeDictionary: [String : AnyObject] {
+        var attributeDictionary = super.attributeDictionary
+
+        attributeDictionary["workplaceNumber"] = workplaceNumber
+        attributeDictionary["startMealTime"] = startMealTime
+        attributeDictionary["endMealTime"] = endMealTime
+    
+        print("Worker.attributeDictionary = \(attributeDictionary)")
+        return attributeDictionary
+    }
 }

@@ -16,4 +16,10 @@ class Accountant: Worker {
     override class var entityName: String {
         return "Accountant"
     }
+
+    override var attributeDictionary: [String : AnyObject] {
+        var attributeDictionary = super.attributeDictionary
+        attributeDictionary["AccountantType"] = type
+        return attributeDictionary
+    }
 }
