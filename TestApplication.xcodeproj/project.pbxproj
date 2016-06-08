@@ -54,6 +54,10 @@
 		8BF4E3591CEC1226005AE3D5 /* Array+removeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF4E3581CEC1226005AE3D5 /* Array+removeObject.swift */; };
 		8BF6F2951CEF03EF00565E92 /* ZoomedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF6F2941CEF03EF00565E92 /* ZoomedPhotoViewController.swift */; };
 		8BF776A31D085AA900BBC55C /* CustomCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776A21D085AA900BBC55C /* CustomCellFactory.swift */; };
+		8BF776A51D085FA400BBC55C /* AbstractFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776A41D085FA400BBC55C /* AbstractFactory.swift */; };
+		8BF776A71D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776A61D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift */; };
+		8BF776A91D08600100BBC55C /* DateInputViewCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776A81D08600100BBC55C /* DateInputViewCellFactory.swift */; };
+		8BF776AB1D08601400BBC55C /* PickerInputViewCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776AA1D08601400BBC55C /* PickerInputViewCellFactory.swift */; };
 		8BF7FFDF1CE58B4E0002C5F1 /* DateInputViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FFDE1CE58B4E0002C5F1 /* DateInputViewCell.swift */; };
 		8BF7FFE11CE5C9930002C5F1 /* PickerInputViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FFE01CE5C9930002C5F1 /* PickerInputViewCell.swift */; };
 		8BFF16031CE3780700F200CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF16021CE3780700F200CF /* Constants.swift */; };
@@ -109,6 +113,10 @@
 		8BF4E3581CEC1226005AE3D5 /* Array+removeObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+removeObject.swift"; sourceTree = "<group>"; };
 		8BF6F2941CEF03EF00565E92 /* ZoomedPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomedPhotoViewController.swift; sourceTree = "<group>"; };
 		8BF776A21D085AA900BBC55C /* CustomCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellFactory.swift; sourceTree = "<group>"; };
+		8BF776A41D085FA400BBC55C /* AbstractFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractFactory.swift; sourceTree = "<group>"; };
+		8BF776A61D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldCellFactory.swift; sourceTree = "<group>"; };
+		8BF776A81D08600100BBC55C /* DateInputViewCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateInputViewCellFactory.swift; sourceTree = "<group>"; };
+		8BF776AA1D08601400BBC55C /* PickerInputViewCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerInputViewCellFactory.swift; sourceTree = "<group>"; };
 		8BF7FFDE1CE58B4E0002C5F1 /* DateInputViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateInputViewCell.swift; sourceTree = "<group>"; };
 		8BF7FFE01CE5C9930002C5F1 /* PickerInputViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerInputViewCell.swift; sourceTree = "<group>"; };
 		8BFF16021CE3780700F200CF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -409,7 +417,11 @@
 		8BF776A11D085A7A00BBC55C /* Custom cell factory */ = {
 			isa = PBXGroup;
 			children = (
+				8BF776A41D085FA400BBC55C /* AbstractFactory.swift */,
 				8BF776A21D085AA900BBC55C /* CustomCellFactory.swift */,
+				8BF776A61D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift */,
+				8BF776A81D08600100BBC55C /* DateInputViewCellFactory.swift */,
+				8BF776AA1D08601400BBC55C /* PickerInputViewCellFactory.swift */,
 			);
 			name = "Custom cell factory";
 			sourceTree = "<group>";
@@ -575,6 +587,7 @@
 			files = (
 				8B7DCCFC1CDB2C14008AEDF6 /* TestApplication.xcdatamodeld in Sources */,
 				8B87C7D81CE1CA0600A667C6 /* AccountantTableViewCell.swift in Sources */,
+				8BF776A71D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift in Sources */,
 				8B001DCF1CF203AA001EB1C0 /* UIImageView+setImage.swift in Sources */,
 				8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift in Sources */,
 				8BF275DC1CDB524600E1566D /* ListTableViewController.swift in Sources */,
@@ -589,6 +602,7 @@
 				8BF347651CEB465500241D23 /* State.swift in Sources */,
 				8BFF16031CE3780700F200CF /* Constants.swift in Sources */,
 				8B87C7DD1CE1CB2100A667C6 /* WorkerTableViewCell.swift in Sources */,
+				8BF776AB1D08601400BBC55C /* PickerInputViewCellFactory.swift in Sources */,
 				8B0951731D06D65600F67C9A /* Manager.swift in Sources */,
 				8BF7FFE11CE5C9930002C5F1 /* PickerInputViewCell.swift in Sources */,
 				8B87C7D31CE1C80500A667C6 /* ManagerTableViewCell.swift in Sources */,
@@ -602,6 +616,8 @@
 				8BF4E3591CEC1226005AE3D5 /* Array+removeObject.swift in Sources */,
 				8B3EA9981CF3A7910057B57A /* NetworkErrorDetector.swift in Sources */,
 				8B9E1FD41CEC55190071C648 /* Quote.swift in Sources */,
+				8BF776A51D085FA400BBC55C /* AbstractFactory.swift in Sources */,
+				8BF776A91D08600100BBC55C /* DateInputViewCellFactory.swift in Sources */,
 				8B7DCCF01CDB2B10008AEDF6 /* StartViewController.swift in Sources */,
 				8BA93DF31CE4E3DA00E55BA7 /* CustomTableViewCell.swift in Sources */,
 				8B7DCCD51CDB2A4A008AEDF6 /* AppDelegate.swift in Sources */,

@@ -10,32 +10,25 @@ import Foundation
 import UIKit
 
 enum CustomCellFactory {
-    static func cellFor(attributeKey: String, attributeValue: AnyObject) -> UITableViewCell {
-        guard let attributeDescription = PersonAttributeDescription(attributeKey: attributeKey)
-            else {
-                fatalError("invalid attribute \(attributeKey)")
-        }
-
+    //возвращать нил в default или выдавать fatalError() ?!??!?!
+        static func appropriateFactory(attributeDescription: PersonAttributeDescription) -> AbstractFactory? {
         switch attributeDescription {
         case .FullName, .Salary, .WorkplaceNumber:
-            return SimpleTextFieldCell(
-                description: [
-                    attributeDescription.description,
-                    attributeDescription.placeholder
-                ],
-                data: attributeValue,
-
-                action: { (data) in
-//                    self.personAttributeDictionary[attributeKey] = data
-                    //                    self.person?.setValue(data, forKey: personAttribute.name)
-                    //                    self.addNewKeyForValid(personAttribute.name)
-                },
-                actionForClearField: {
-                    //                    self.arrayOfFilledAttributes.removeObject(personAttribute.name)
-                    //                    self.checkValid()
-            })
+            return SimpleTextFieldCellFactory()
+        case .AccountantType:
+            return PickerInputViewCellFactory()
         default:
-            return UITableViewCell()
+            return nil
         }
+    }
+
+    static func cellFor(attributeKey: String, attributeDictionary: [String: AnyObject]) -> UITableViewCell {
+        guard let attributeDescription = PersonAttributeDescription(attributeKey: attributeKey),
+        let factory = self.appropriateFactory(attributeDescription)
+            else {
+                return UITableViewCell()
+        }
+
+        return factory.createCustomTableViewCell(attributeDescription, attributeDictionary: attributeDictionary)
     }
 }

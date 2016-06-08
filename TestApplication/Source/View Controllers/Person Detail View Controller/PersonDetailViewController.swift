@@ -395,9 +395,8 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
         let attributeKey = Array(personAttributeDictionary.keys)[indexPath.row]
 
-        if let attributeValue = personAttributeDictionary[attributeKey] {
-            return CustomCellFactory.cellFor(attributeKey, attributeValue:attributeValue)
-        }
+        return CustomCellFactory.cellFor(attributeKey, attributeDictionary: personAttributeDictionary)
+
         
 
 
