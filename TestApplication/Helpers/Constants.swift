@@ -16,33 +16,33 @@ struct UserInfoKeys {
     static let attributeOrderIndex = "orderIndex"
 }
 
-enum PersonAttributeDescription: CustomStringConvertible {
-    case FullName
-    case Salary
-    case EndVisitingHours
-    case StartVisitingHours
-    case EndMealTime
-    case StartMealTime
-    case WorkplaceNumber
-    case AccountantType
+enum PersonAttributeDescription: String, CustomStringConvertible {
+    case FullName = "fullName"
+    case Salary = "salary"
+    case EndVisitingHours = "endVisitingHours"
+    case StartVisitingHours = "startVisitingHours"
+    case EndMealTime = "endMealTime"
+    case StartMealTime = "startMealTime"
+    case WorkplaceNumber = "workplaceNumber"
+    case AccountantType = "accountantType"
 
     init?(attributeKey: String) {
         switch attributeKey {
-        case "fullName":
+        case FullName.rawValue:
             self = .FullName
-        case "salary":
+        case Salary.rawValue:
             self = .Salary
-        case "endVisitingHours":
+        case EndVisitingHours.rawValue:
             self = .EndVisitingHours
-        case "startVisitingHours":
+        case StartVisitingHours.rawValue:
             self = .StartVisitingHours
-        case "endMealTime":
+        case EndMealTime.rawValue:
             self = .EndMealTime
-        case "startMealTime":
+        case StartMealTime.rawValue:
             self = .StartMealTime
-        case "workplaceNumber":
+        case WorkplaceNumber.rawValue:
             self = .WorkplaceNumber
-        case "accountantType":
+        case AccountantType.rawValue:
             self = .AccountantType
         default:
             return nil
