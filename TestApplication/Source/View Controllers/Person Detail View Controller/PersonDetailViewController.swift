@@ -75,7 +75,11 @@ class PersonDetailViewController: UIViewController {
 
     lazy var personTypeSegmentControl: UISegmentedControl = {
 
-        let entityNames = self.coreDataStack.entityNamesSortedByOrderIndex()
+        let entityNames = [
+            PersonTypeRecognizer.ManagerType.description,
+            PersonTypeRecognizer.WorkerType.description,
+            PersonTypeRecognizer.AccountantType.description
+        ]
         let segment = UISegmentedControl(items: entityNames)
 
         if let _ = self.person {
@@ -83,7 +87,8 @@ class PersonDetailViewController: UIViewController {
         }
         //если тип Person выбран, то отображаем данные tableView
         //иначе выводим table.backgroundView = self.hintView
-        switch self.person?.entityOrderIndex {
+        let index = PersonTypeRecognizer(aPerson: self.person)?.orderIndex
+        switch index {
         case let (index?):
             segment.selectedSegmentIndex = index
             self.changeStateToBrowsing()
