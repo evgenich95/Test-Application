@@ -19,7 +19,7 @@ class Accountant: Worker {
 
     override var attributeDictionary: [String : AnyObject] {
         var attributeDictionary = super.attributeDictionary
-        attributeDictionary["AccountantType"] = type
+        attributeDictionary[PersonAttributeKeys.accountantType] = type
         return attributeDictionary
     }
 }

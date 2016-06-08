@@ -22,9 +22,9 @@ class Worker: Person {
     override var attributeDictionary: [String : AnyObject] {
         var attributeDictionary = super.attributeDictionary
 
-        attributeDictionary["workplaceNumber"] = workplaceNumber
-        attributeDictionary["startMealTime"] = startMealTime
-        attributeDictionary["endMealTime"] = endMealTime
+        attributeDictionary[PersonAttributeKeys.workplaceNumber] = workplaceNumber
+        attributeDictionary[PersonAttributeKeys.startMealTime] = startMealTime
+        attributeDictionary[PersonAttributeKeys.endMealTime] = endMealTime
     
         print("Worker.attributeDictionary = \(attributeDictionary)")
         return attributeDictionary

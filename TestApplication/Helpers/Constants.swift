@@ -25,6 +25,16 @@ enum PersonAttributeDescription: String, CustomStringConvertible {
     case StartMealTime = "startMealTime"
     case WorkplaceNumber = "workplaceNumber"
     case AccountantType = "accountantType"
+struct PersonAttributeKeys {
+    static let fullName = "fullName"
+    static let salary = "salary"
+    static let startVisitingHours = "startVisitingHours"
+    static let endVisitingHours = "endVisitingHours"
+    static let workplaceNumber = "workplaceNumber"
+    static let startMealTime = "startMealTime"
+    static let endMealTime = "endMealTime"
+    static let accountantType = "accountantType"
+}
 
     init?(attributeKey: String) {
         switch attributeKey {

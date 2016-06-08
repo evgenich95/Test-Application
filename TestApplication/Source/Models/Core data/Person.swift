@@ -33,8 +33,8 @@ class Person: NSManagedObject, CoreDataModelable {
     var attributeDictionary: [String: AnyObject] {
         var attributeDictionary = [String: AnyObject]()
 
-        attributeDictionary["fullName"] = fullName
-        attributeDictionary["salary"] = salary
+        attributeDictionary[PersonAttributeKeys.fullName] = fullName
+        attributeDictionary[PersonAttributeKeys.salary] = salary
 
         return attributeDictionary
     }

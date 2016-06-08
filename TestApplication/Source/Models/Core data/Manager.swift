@@ -21,8 +21,8 @@ class Manager: Person {
     override var attributeDictionary: [String : AnyObject] {
         var attributeDictionary = super.attributeDictionary
 
-        attributeDictionary["startVisitingHours"] = startVisitingHours
-        attributeDictionary["endVisitingHours"] = endVisitingHours
+        attributeDictionary[PersonAttributeKeys.startVisitingHours] = startVisitingHours
+        attributeDictionary[PersonAttributeKeys.endVisitingHours] = endVisitingHours
 
         return attributeDictionary
     }
