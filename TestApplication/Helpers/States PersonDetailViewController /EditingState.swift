@@ -35,7 +35,7 @@ class EditingState: State {
         self.owner = contex
         setupNavigationItem()
         setupView()
-        makeCopy(owner.person)
+//        makeCopy(owner.person)
     }
     //MARK:-
 
@@ -50,16 +50,18 @@ class EditingState: State {
     }
 
     @objc func cancelAction() {
-        if let didntCompletedPerson = owner.person {
-            owner.coreDataStack.mainQueueContext.deleteObject(didntCompletedPerson)
-        }
-        saveAndExit()
+        owner.navigationController?.popViewControllerAnimated(true)
+//        if let didntCompletedPerson = owner.person {
+//            owner.coreDataStack.mainQueueContext.deleteObject(didntCompletedPerson)
+//        }
+//        saveAndExit()
     }
 
     @objc func doneAction() {
-        if let copy = self.copyOfPerson {
-            owner.coreDataStack.mainQueueContext.deleteObject(copy)
-        }
+        owner.person?.fillAttributes(owner.personAttributeDictionary)
+//        if let copy = self.copyOfPerson {
+//            owner.coreDataStack.mainQueueContext.deleteObject(copy)
+//        }
         saveAndExit()
     }
 

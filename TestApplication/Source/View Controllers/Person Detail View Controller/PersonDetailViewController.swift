@@ -38,6 +38,9 @@ class PersonDetailViewController: UIViewController {
     var person: Person?
     var coreDataStack: CoreDataStack!
 
+    typealias AttributeDictionary = [String: AnyObject]
+
+    var personAttributeDictionary = AttributeDictionary()
     var arrayOfFilledAttributes = [String]()
 
     //MARK: -
@@ -85,9 +88,9 @@ class PersonDetailViewController: UIViewController {
         if let _ = self.person {
             segment.enabled = self.editing
         }
-        //если тип Person выбран, то отображаем данные tableView
-        //иначе выводим table.backgroundView = self.hintView
+
         let index = PersonTypeRecognizer(aPerson: self.person)?.orderIndex
+
         switch index {
         case let (index?):
             segment.selectedSegmentIndex = index
@@ -115,6 +118,10 @@ class PersonDetailViewController: UIViewController {
         super.viewDidLoad()
         configureView()
 
+        if let person = self.person {
+            personAttributeDictionary = person.attributeDictionary
+        }
+
         //Если segment не выбран, значит переходим в режим Создания
         if personTypeSegmentControl.selectedSegmentIndex == UISegmentedControlNoSegment {
             changeStateToCreating()
@@ -125,18 +132,23 @@ class PersonDetailViewController: UIViewController {
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
         let idx = personTypeSegmentControl.selectedSegmentIndex
 
-        guard let newPerson = self.coreDataStack.createEntityWithOrderIndex(idx) as? Person else {
-            fatalError("Expected a subclass of Person")
-        }
-
+        //создал словарь атрибутов прошлого персон
         if let pastPerson = self.person {
-            newPerson.copyAttributesFrom(pastPerson)
-            self.coreDataStack.mainQueueContext.deleteObject(pastPerson)
-            // NOTE: не сохраняем контекст, потому что новый (незаполненный)
-            // объект тоже сохранится
+            personAttributeDictionary = pastPerson.attributeDictionary
         }
 
-        self.person = newPerson
+//        guard let newPerson = self.coreDataStack.createEntityWithOrderIndex(idx) as? Person else {
+//            fatalError("Expected a subclass of Person")
+//        }
+
+//        if let pastPerson = self.person {
+//            newPerson.copyAttributesFrom(pastPerson)
+//            self.coreDataStack.mainQueueContext.deleteObject(pastPerson)
+//            // NOTE: не сохраняем контекст, потому что новый (незаполненный)
+//            // объект тоже сохранится
+//        }
+
+//        self.person = newPerson
         updateArrayOfFilledAttribute()
         self.customTableView.dataSource = self
         self.customTableView.reloadData()
@@ -221,91 +233,95 @@ class PersonDetailViewController: UIViewController {
     }
 
    // swiftlint:disable function_body_length
-    private func cellForProperty(personAttribute: NSAttributeDescription) -> CustomTableViewCell? {
+    private func cellForProperty(attributeKey: String, attributeValue: AnyObject ) -> CustomTableViewCell? {
 
         let avalibleTypeForCellWithSimpeTextField = [
             NSAttributeType.StringAttributeType,
             NSAttributeType.Integer32AttributeType,
             NSAttributeType.DoubleAttributeType]
 
+
         guard
-            let attributeDescription = personAttribute.userInfo?[UserInfoKeys.attributeDescription] as? String,
-            let attributePlaceholder = personAttribute.userInfo?[UserInfoKeys.attributePlaceholder] as? String
+            let attributeDescription = PersonAttributeDescription(
+                attributeKey: attributeKey)?.description,
+            let attributePlaceholder = PersonAttributeDescription(
+                attributeKey: attributeKey)?.placeholder
         else {
             fatalError("fatalError: Attribute doesn't conform")
         }
+//
+//        let attributeType = personAttribute.attributeType
+//
+//        //если атрибут составной, то получаем значения по 2 ключам
+//        if personAttribute.optional {
+//            guard let valueKeys = personAttribute.userInfo?["keys"] as? [String]
+//                else {
+//                    fatalError("Составной атибут не имеет значения в  userInfo['keys'] ")
+//            }
+//
+//            let cell =  DateInputViewCell(
+//                description: [
+//                    attributeDescription,
+//                    attributePlaceholder
+//                ],
+//                startTime: self.person?.valueForKey(valueKeys[0]) as? NSDate,
+//                endTime: self.person?.valueForKey(valueKeys[1]) as? NSDate,
+//                action: { (startDate, endDate) in
+//                    self.person?.setValue(startDate, forKey: valueKeys[0])
+//                    self.person?.setValue(endDate, forKey: valueKeys[1])
+//                    self.addNewKeyForValid(valueKeys[0])
+//                    self.addNewKeyForValid(valueKeys[1])
+//                },
+//                actionForClearField: {
+//                    self.arrayOfFilledAttributes.removeObjectsInArray(valueKeys)
+//                    self.checkValid()
+//                })
+//
+//            cell.delegate = self
+//            return cell
+//        }
+//
+//        let attributeValue = self.person?.valueForKey(personAttribute.name)
+//
+//        if personAttribute.name == "type" {
+//            let cell = PickerInputViewCell(
+//                description: [
+//                    attributeDescription,
+//                    attributePlaceholder
+//                ],
+//                data: attributeValue,
+//                action: { (data) in
+//                    self.person?.setValue(data, forKey: personAttribute.name)
+//                    self.addNewKeyForValid(personAttribute.name)
+//                },
+//                actionForClearField: {
+//                    self.arrayOfFilledAttributes.removeObject(personAttribute.name)
+//                    self.checkValid()
+//                })
+//            cell.delegate = self
+//            return cell
+//        }
+//
 
-        let attributeType = personAttribute.attributeType
-
-        //если атрибут составной, то получаем значения по 2 ключам
-        if personAttribute.optional {
-            guard let valueKeys = personAttribute.userInfo?["keys"] as? [String]
-                else {
-                    fatalError("Составной атибут не имеет значения в  userInfo['keys'] ")
-            }
-
-            let cell =  DateInputViewCell(
-                description: [
-                    attributeDescription,
-                    attributePlaceholder
-                ],
-                startTime: self.person?.valueForKey(valueKeys[0]) as? NSDate,
-                endTime: self.person?.valueForKey(valueKeys[1]) as? NSDate,
-                action: { (startDate, endDate) in
-                    self.person?.setValue(startDate, forKey: valueKeys[0])
-                    self.person?.setValue(endDate, forKey: valueKeys[1])
-                    self.addNewKeyForValid(valueKeys[0])
-                    self.addNewKeyForValid(valueKeys[1])
-                },
-                actionForClearField: {
-                    self.arrayOfFilledAttributes.removeObjectsInArray(valueKeys)
-                    self.checkValid()
-                })
-
-            cell.delegate = self
-            return cell
-        }
-
-        let attributeValue = self.person?.valueForKey(personAttribute.name)
-
-        if personAttribute.name == "type" {
-            let cell = PickerInputViewCell(
-                description: [
-                    attributeDescription,
-                    attributePlaceholder
-                ],
-                data: attributeValue,
-                action: { (data) in
-                    self.person?.setValue(data, forKey: personAttribute.name)
-                    self.addNewKeyForValid(personAttribute.name)
-                },
-                actionForClearField: {
-                    self.arrayOfFilledAttributes.removeObject(personAttribute.name)
-                    self.checkValid()
-                })
-            cell.delegate = self
-            return cell
-        }
-
-        if avalibleTypeForCellWithSimpeTextField.contains(attributeType) {
             let cell = SimpleTextFieldCell(
                 description: [
                     attributeDescription,
                     attributePlaceholder
                 ],
                 data: attributeValue,
-                inputDataType: attributeType,
+
                 action: { (data) in
-                    self.person?.setValue(data, forKey: personAttribute.name)
-                    self.addNewKeyForValid(personAttribute.name)
+                    self.personAttributeDictionary[attributeKey] = data
+//                    self.person?.setValue(data, forKey: personAttribute.name)
+//                    self.addNewKeyForValid(personAttribute.name)
                 },
                 actionForClearField: {
-                    self.arrayOfFilledAttributes.removeObject(personAttribute.name)
-                    self.checkValid()
+//                    self.arrayOfFilledAttributes.removeObject(personAttribute.name)
+//                    self.checkValid()
                 })
             cell.delegate = self
             return cell
-        }
+
         return nil
     }
 
@@ -362,8 +378,8 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if let numberOfPatameters = self.person?.entity.properties.count {
-            //-2, т.к. во всех dataRange представлен 2 поля start и end
-            return numberOfPatameters-2
+            //-1, becouse order doesn't needed
+            return numberOfPatameters-1
         }
 
         return 0
@@ -372,15 +388,38 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
     // Return the row for the corresponding section and row
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        guard let attributes = self.person?.personAttributesByName
-            else {
-                fatalError("entity \(self.person?.entity.name) is absent for displaying")
+        if personAttributeDictionary.count < 1 {
+            return UITableViewCell()
         }
-        
-        if let cell =  cellForProperty(attributes[indexPath.row]) {
-            return cell
+
+
+        let attributeKey = Array(personAttributeDictionary.keys)[indexPath.row]
+
+        if let attributeValue = personAttributeDictionary[attributeKey] {
+
+            if let cell = cellForProperty(attributeKey, attributeValue:attributeValue) {
+                return cell
+            }
         }
-        
+
+
+
+
+
+//        if let cell =  cellForProperty(currentAttribute) {
+//            return cell
+//        }
+
+
+//        guard let attributes = self.person?.personAttributesByName
+//            else {
+//                fatalError("entity \(self.person?.entity.name) is absent for displaying")
+//        }
+//        
+//        if let cell =  cellForProperty(attributes[indexPath.row]) {
+//            return cell
+//        }
+
         return UITableViewCell()
     }
 
