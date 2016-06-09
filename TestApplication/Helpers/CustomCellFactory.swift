@@ -13,6 +13,7 @@ enum CustomCellFactory {
 
     private static func appropriateFactory(attributeDescription: PersonAttributeDescription) -> AbstractFactory {
 
+//        print("factory for \(attributeDescription)")
         switch attributeDescription {
             case .FullName, .Salary, .WorkplaceNumber:
                 return SimpleTextFieldCellFactory()
@@ -34,6 +35,8 @@ enum CustomCellFactory {
             keys = attributeKeys
         }
 
+        keys.removeObjectsInArray(notDisplayedAttributes)
+        
         for key in keys {
             guard
                 let attributeDescription = PersonAttributeDescription(
