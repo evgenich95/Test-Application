@@ -61,4 +61,29 @@ enum PersonTypeRecognizer: CustomStringConvertible {
                 return 2
             }
     }
+
+    var attributeDictionary: [String: AnyObject] {
+        print("\nPersonTypeRecognizer")
+        var attributeDictionary = [String: AnyObject]()
+        var keys = [String]()
+        
+        switch self {
+        case .ManagerType:
+            keys = Manager.keys
+        case .WorkerType:
+            keys = Worker.keys
+        case .AccountantType:
+            keys = Accountant.keys
+        }
+
+//        for key in keys {
+//            attributeDictionary.
+//        }
+        keys.forEach() {
+            attributeDictionary[$0] = ""
+            print("key = \($0)")
+        }
+        print("attributeDictionary = \(attributeDictionary)\n")
+        return attributeDictionary
+    }
 }
