@@ -36,17 +36,17 @@ extension CoreDataStack {
         return entities.map {$0.name ?? ""}
     }
 
-    func createEntityWithOrderIndex(index: Int) -> NSManagedObject {
-        let entityNames = entityNamesSortedByOrderIndex()
-        if index >= entityNames.count {
-            fatalError("Invalid orderIndex passed in createEntityWithOrderIndex()")
-        }
-        let entityName = entityNames[index]
+    func createEntityByName(entityName: String) -> NSManagedObject {
 
-        guard let description = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.mainQueueContext) else {
+        guard let description = NSEntityDescription
+            .entityForName(entityName,
+                           inManagedObjectContext: self.mainQueueContext)
+        else {
             fatalError("Could not create an entity with the given name: \"\(entityName)\"")
         }
 
-        return NSManagedObject.init(entity: description, insertIntoManagedObjectContext: self.mainQueueContext)
+        return NSManagedObject
+            .init(entity: description,
+                  insertIntoManagedObjectContext: self.mainQueueContext)
     }
 }
