@@ -18,17 +18,19 @@ class Manager: Person {
         return "Manager"
     }
 
-    override var attributeDictionary: [String : AnyObject] {
-        var attributeDictionary = super.attributeDictionary
-
-        attributeDictionary[PersonAttributeKeys.startVisitingHours] = startVisitingHours
-        attributeDictionary[PersonAttributeKeys.endVisitingHours] = endVisitingHours
-
-        return attributeDictionary
     override class var keys: [String] {
         var keys = super.keys
         keys.append(PersonAttributeKeys.startVisitingHours)
         keys.append(PersonAttributeKeys.endVisitingHours)
         return keys
     }
+
+//    override var attributeDictionary: [String : AnyObject] {
+//        var attributeDictionary = super.attributeDictionary
+//
+//        attributeDictionary[PersonAttributeKeys.startVisitingHours] = startVisitingHours
+//        attributeDictionary[PersonAttributeKeys.endVisitingHours] = endVisitingHours
+//
+//        return attributeDictionary
+//    }
 }

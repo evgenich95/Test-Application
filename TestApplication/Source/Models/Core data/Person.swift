@@ -37,12 +37,26 @@ class Person: NSManagedObject, CoreDataModelable {
         }
     }
 
+//    var attributeDictionary: [String: AnyObject] {
+//        var attributeDictionary = [String: AnyObject]()
+//
+//        attributeDictionary[PersonAttributeKeys.fullName] = fullName
+//        attributeDictionary[PersonAttributeKeys.salary] = salary
+//
+//        return attributeDictionary
+//    }
+
     var attributeDictionary: [String: AnyObject] {
-        var attributeDictionary = [String: AnyObject]()
+        guard var attributeDictionary = PersonTypeRecognizer.init(aPerson: self)?
+                    .attributeDictionary
+            else {
+                fatalError("Person's subcluss \(self.entity.name) doesn't have PersonTypeRecognizer")
+        }
 
-        attributeDictionary[PersonAttributeKeys.fullName] = fullName
-        attributeDictionary[PersonAttributeKeys.salary] = salary
-
+        attributeDictionary.keys.forEach() {
+            attributeDictionary[$0] = self.valueForKey($0)
+        }
+        print("attributeDictionary for \(self.entity.name) is \n \(attributeDictionary) ")
         return attributeDictionary
     }
 

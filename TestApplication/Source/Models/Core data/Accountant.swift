@@ -17,13 +17,15 @@ class Accountant: Worker {
         return "Accountant"
     }
 
-    override var attributeDictionary: [String : AnyObject] {
-        var attributeDictionary = super.attributeDictionary
-        attributeDictionary[PersonAttributeKeys.accountantType] = type
-        return attributeDictionary
     override class var keys: [String] {
         var keys = super.keys
         keys.append(PersonAttributeKeys.accountantType)
         return keys
     }
+
+//    override var attributeDictionary: [String : AnyObject] {
+//        var attributeDictionary = super.attributeDictionary
+//        attributeDictionary[PersonAttributeKeys.accountantType] = type
+//        return attributeDictionary
+//    }
 }
