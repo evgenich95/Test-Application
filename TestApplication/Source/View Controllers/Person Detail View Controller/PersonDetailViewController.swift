@@ -234,40 +234,40 @@ class PersonDetailViewController: UIViewController {
         }
         arrayOfFilledAttributes = tempArray
 
-        checkValid()
+//        checkValid()
     }
 
-    func checkValid() {
-        print("----checkValid----")
-        guard
-            let filledAttributeKeys = personAttributeDictionary?
-                .valuesDictionary.keys,
-            let allAttributeKeys = personAttributeDictionary?.displayedPersonType
-                .attributeKeys
-        else {
-            print("Блокирую кнопку Save")
-            self.navigationItem.rightBarButtonItem?.enabled = false
-            return
-        }
-
-//        let personAttributeKeys = person.attributeDictionary.keys
-
-        var canTapSave = true
-        for key in allAttributeKeys {
-            if !filledAttributeKeys.contains(key) {
-                canTapSave = false
-            }
-        }
-        print("Могу нажать на Save - \(canTapSave)")
-        self.navigationItem.rightBarButtonItem?.enabled = canTapSave
-    }
+//    func checkValid() {
+//        print("----checkValid----")
+//        guard
+//            let filledAttributeKeys = personAttributeDictionary?
+//                .valuesDictionary.keys,
+//            let allAttributeKeys = personAttributeDictionary?.displayedPersonType
+//                .attributeKeys
+//        else {
+//            print("Блокирую кнопку Save")
+//            self.navigationItem.rightBarButtonItem?.enabled = false
+//            return
+//        }
+//
+////        let personAttributeKeys = person.attributeDictionary.keys
+//
+//        var canTapSave = true
+//        for key in allAttributeKeys {
+//            if !filledAttributeKeys.contains(key) {
+//                canTapSave = false
+//            }
+//        }
+//        print("Могу нажать на Save - \(canTapSave)")
+//        self.navigationItem.rightBarButtonItem?.enabled = canTapSave
+//    }
 
     private func addNewKeyForValid(key: String) {
 
         if !arrayOfFilledAttributes.contains(key) {
             arrayOfFilledAttributes.append(key)
         }
-        checkValid()
+//        checkValid()
     }
 
     override func setEditing(editing: Bool, animated: Bool) {
@@ -411,7 +411,6 @@ extension PersonDetailViewController: DelegateForCustomCell {
         self.navigationItem.rightBarButtonItem?.enabled = false
     }
     func cellDidEndEditing() {
-        checkValid()
         self.navigationItem.leftBarButtonItem?.enabled = true
         self.personTypeSegmentControl.enabled = true
         self.navigationItem.rightBarButtonItem?.enabled = true
