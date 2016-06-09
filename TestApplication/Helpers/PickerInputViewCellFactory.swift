@@ -16,14 +16,12 @@ class PickerInputViewCellFactory: AbstractFactory {
             attributeDescription: attributeDescription,
             attributeDictionary: attributeDictionary,
             action: { (data) in
-//                self.person?.setValue(data, forKey: personAttribute.name)
-//                self.addNewKeyForValid(personAttribute.name)
+                //                self.person?.setValue(data, forKey: personAttribute.name)
+                //                self.addNewKeyForValid(personAttribute.name)
             },
             actionForClearField: {
-//                self.arrayOfFilledAttributes.removeObject(personAttribute.name)
-//                self.checkValid()
+                //                self.arrayOfFilledAttributes.removeObject(personAttribute.name)
+                //                self.checkValid()
         })
-
-
-}
+    }
 }
