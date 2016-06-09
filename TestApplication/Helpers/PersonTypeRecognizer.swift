@@ -70,6 +70,7 @@ enum PersonTypeRecognizer: CustomStringConvertible {
         case .WorkerType:
             return Worker.keys
         case .AccountantType:
+            print("Accountant.keys.count = \(Accountant.keys.count)")
             return Accountant.keys
         }
     }
@@ -77,11 +78,11 @@ enum PersonTypeRecognizer: CustomStringConvertible {
     var numberDisplayedAttributes: Int {
         switch self {
         case .ManagerType:
-            return 3
+            return Manager.keys.count-1
         case .WorkerType:
-            return 4
+            return Worker.keys.count-1
         case .AccountantType:
-            return 5
+            return Accountant.keys.count-1
         }
 
 
