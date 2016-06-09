@@ -30,25 +30,11 @@ enum CustomCellFactory {
 
         var cells = [CustomTableViewCell]()
 
-//        var keys = displayedPersonType?.attributeKeys ?? [String]()
-
-//        print("his keys.count = \(keys.count)")
-
-//        keys.removeObjectsInArray(notDisplayedAttributes)
-//        
-//        for key in keys {
-//            guard
-//                let attributeDescription = PersonAttributeDescription(
-//                    attributeKey: key)
-//            else {
-//                fatalError("attributeKey - \(key) didn't describe in PersonAttributeDescription")
-//            }
-
         for description in personAttributeDictionary.attributeDescriptions {
             let factory = appropriateFactory(description)
             cells.append(factory.createCustomTableViewCell(
                 description,
-                attributeDictionary: personAttributeDictionary.valuesDictionary
+                personAttributeDictionary: personAttributeDictionary
                 )
             )
         }

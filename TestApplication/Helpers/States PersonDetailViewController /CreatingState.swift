@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class CreatingState: State {
     //MARK: Parameters
@@ -56,13 +57,40 @@ class CreatingState: State {
         doneAction()
     }
     @objc func doneAction() {
-        owner.coreDataStack.saveAndLog()
+        let moc = owner.coreDataStack.mainQueueContext
+        guard
+            let valuesDictionary = owner
+                                        .personAttributeDictionary?
+                                        .valuesDictionary,
+            let entityName = owner
+                                .personAttributeDictionary?
+                                .displayedPersonType
+                                .description
+        else {
+            owner.navigationController?.popViewControllerAnimated(true)
+            return
+        }
+
+        guard
+            let description = NSEntityDescription
+                .entityForName(entityName,
+                               inManagedObjectContext: moc)
+        else {
+            fatalError("Could not create an entity with the given name: \"\(entityName)\"")
+        }
+
+        if let newPerson = NSManagedObject.init(entity: description,
+                                                insertIntoManagedObjectContext: moc) as? Person {
+
+            newPerson.fillAttributes(valuesDictionary)
+            owner.coreDataStack.saveAndLog()
+        }
         owner.navigationController?.popViewControllerAnimated(true)
     }
 
     //MARK: Help functions
     func setupView() {
-//        owner.checkValid()
+        owner.checkValid()
 //        owner.customTableView.backgroundView?.hidden = false
     }
     

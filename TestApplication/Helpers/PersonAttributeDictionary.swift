@@ -19,6 +19,7 @@ class PersonAttributeDictionary {
         }
     }
     var attributeDescriptions = [PersonAttributeDescription]()
+    
     var valuesDictionary = [String: AnyObject]()
 
     init(displayedPersonType: PersonTypeRecognizer, aPerson: Person?) {

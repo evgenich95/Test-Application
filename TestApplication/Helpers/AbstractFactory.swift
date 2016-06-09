@@ -9,5 +9,7 @@
 import Foundation
 
 protocol AbstractFactory {
-    func createCustomTableViewCell(attributeDescription: PersonAttributeDescription, attributeDictionary: [String: AnyObject]) -> CustomTableViewCell
+    func createCustomTableViewCell(
+        attributeDescription: PersonAttributeDescription,
+        personAttributeDictionary: PersonAttributeDictionary) -> CustomTableViewCell
 }

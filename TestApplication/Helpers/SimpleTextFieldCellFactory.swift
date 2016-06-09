@@ -10,11 +10,16 @@ import Foundation
 
 class SimpleTextFieldCellFactory: AbstractFactory {
 
-    func createCustomTableViewCell(attributeDescription: PersonAttributeDescription, attributeDictionary: [String: AnyObject]) -> CustomTableViewCell {
+    func createCustomTableViewCell(
+        attributeDescription: PersonAttributeDescription,
+        personAttributeDictionary: PersonAttributeDictionary) -> CustomTableViewCell {
         return SimpleTextFieldCell(
             attributeDescription: attributeDescription,
-            attributeDictionary: attributeDictionary,
+            attributeDictionary: personAttributeDictionary.valuesDictionary,
             action: { (data) in
+                let key = attributeDescription.key.first ?? ""
+                personAttributeDictionary.valuesDictionary[key] = data
+                print("personAttributeDictionary.valuesDictionary\n\(personAttributeDictionary.valuesDictionary)")
 
             },
             actionForClearField: {

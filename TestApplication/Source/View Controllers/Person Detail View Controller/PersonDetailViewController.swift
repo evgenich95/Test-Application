@@ -169,9 +169,10 @@ class PersonDetailViewController: UIViewController {
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
-        print("segmentControlChangeValue")
+
 
         selectedPersonType = personTypeSegmentControl.selectedSegmentIndex
+//        checkValid()
 
 //        guard let currentDisplayedPersonType = self.currentDisplayedPersonType
 //            else {
@@ -237,20 +238,27 @@ class PersonDetailViewController: UIViewController {
     }
 
     func checkValid() {
-        guard let person = self.person else {
+        print("----checkValid----")
+        guard
+            let filledAttributeKeys = personAttributeDictionary?
+                .valuesDictionary.keys,
+            let allAttributeKeys = personAttributeDictionary?.displayedPersonType
+                .attributeKeys
+        else {
+            print("Блокирую кнопку Save")
             self.navigationItem.rightBarButtonItem?.enabled = false
             return
         }
 
-        let personAttributeKeys = person.attributeDictionary.keys
+//        let personAttributeKeys = person.attributeDictionary.keys
 
         var canTapSave = true
-        for key in personAttributeKeys {
-            if !arrayOfFilledAttributes.contains(key) {
+        for key in allAttributeKeys {
+            if !filledAttributeKeys.contains(key) {
                 canTapSave = false
             }
         }
-
+        print("Могу нажать на Save - \(canTapSave)")
         self.navigationItem.rightBarButtonItem?.enabled = canTapSave
     }
 
@@ -403,6 +411,7 @@ extension PersonDetailViewController: DelegateForCustomCell {
         self.navigationItem.rightBarButtonItem?.enabled = false
     }
     func cellDidEndEditing() {
+        checkValid()
         self.navigationItem.leftBarButtonItem?.enabled = true
         self.personTypeSegmentControl.enabled = true
         self.navigationItem.rightBarButtonItem?.enabled = true

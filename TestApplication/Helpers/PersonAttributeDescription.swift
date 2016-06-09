@@ -67,8 +67,8 @@ enum PersonAttributeDescription: CustomStringConvertible {
             return [PersonAttributeKeys.workplaceNumber]
         case .VisitingHours:
             return [
-                PersonAttributeKeys.endVisitingHours,
-                PersonAttributeKeys.startVisitingHours
+                PersonAttributeKeys.startVisitingHours,
+                PersonAttributeKeys.endVisitingHours
             ]
         case .MealTime:
             return [

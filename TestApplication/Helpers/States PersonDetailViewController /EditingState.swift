@@ -75,10 +75,10 @@ class EditingState: State {
     }
 
     func setupView() {
-        owner.customTableView.backgroundView?.hidden = true
-        if let browsingPersonAttribute = owner.person?.personDisplayedAttributeKeys {
-            owner.arrayOfFilledAttributes = browsingPersonAttribute
-        }
+//        owner.customTableView.backgroundView?.hidden = true
+//        if let browsingPersonAttribute = owner.person?.personDisplayedAttributeKeys {
+//            owner.arrayOfFilledAttributes = browsingPersonAttribute
+//        }
         owner.checkValid()
     }
 

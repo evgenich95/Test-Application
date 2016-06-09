@@ -10,12 +10,19 @@ import Foundation
 
 class DateInputViewCellFactory: AbstractFactory {
 
-    func createCustomTableViewCell(attributeDescription: PersonAttributeDescription, attributeDictionary: [String: AnyObject]) -> CustomTableViewCell {
+    func createCustomTableViewCell(
+        attributeDescription: PersonAttributeDescription,
+        personAttributeDictionary: PersonAttributeDictionary) -> CustomTableViewCell {
 
         return DateInputViewCell(
             attributeDescription: attributeDescription,
-            attributeDictionary: attributeDictionary,
+            attributeDictionary: personAttributeDictionary.valuesDictionary,
             action: { (startDate, endDate) in
+                let startDateKey = attributeDescription.key[0]
+                let endDateKey = attributeDescription.key[1]
+                personAttributeDictionary.valuesDictionary[startDateKey] = startDate
+                personAttributeDictionary.valuesDictionary[endDateKey] = endDate
+                print("personAttributeDictionary.valuesDictionary\n\(personAttributeDictionary.valuesDictionary)")
                 //            self.person?.setValue(startDate, forKey: valueKeys[0])
                 //            self.person?.setValue(endDate, forKey: valueKeys[1])
                 //            self.addNewKeyForValid(valueKeys[0])
