@@ -47,6 +47,7 @@
 		8BF337D81CECB505005CB57B /* ServiceTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF337D61CECB505005CB57B /* ServiceTableViewController.xib */; };
 		8BF337DD1CECB7A8005CB57B /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF337DB1CECB7A8005CB57B /* QuoteTableViewCell.swift */; };
 		8BF337DE1CECB7A8005CB57B /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF337DC1CECB7A8005CB57B /* QuoteTableViewCell.xib */; };
+		8BF344D91D0978AC007FC518 /* PersonAttributeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF344D81D0978AC007FC518 /* PersonAttributeDictionary.swift */; };
 		8BF347651CEB465500241D23 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF347641CEB465500241D23 /* State.swift */; };
 		8BF347671CEB496000241D23 /* BrowsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF347661CEB496000241D23 /* BrowsingState.swift */; };
 		8BF347691CEB4C5700241D23 /* CreatingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF347681CEB4C5700241D23 /* CreatingState.swift */; };
@@ -107,6 +108,7 @@
 		8BF337D61CECB505005CB57B /* ServiceTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceTableViewController.xib; sourceTree = "<group>"; };
 		8BF337DB1CECB7A8005CB57B /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteTableViewCell.swift; sourceTree = "<group>"; };
 		8BF337DC1CECB7A8005CB57B /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuoteTableViewCell.xib; sourceTree = "<group>"; };
+		8BF344D81D0978AC007FC518 /* PersonAttributeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonAttributeDictionary.swift; sourceTree = "<group>"; };
 		8BF347641CEB465500241D23 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		8BF347661CEB496000241D23 /* BrowsingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowsingState.swift; sourceTree = "<group>"; };
 		8BF347681CEB4C5700241D23 /* CreatingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatingState.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				8B9E1FD01CEC52670071C648 /* WebService.swift */,
 				8B35BD3C1D07CA5D006B028D /* PersonTypeRecognizer.swift */,
 				8B3613701D090A2700B4BFE4 /* PersonAttributeDescription.swift */,
+				8BF344D81D0978AC007FC518 /* PersonAttributeDictionary.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				8BF275DC1CDB524600E1566D /* ListTableViewController.swift in Sources */,
 				8B7DCD091CDB2C3F008AEDF6 /* LaunchViewController.swift in Sources */,
 				8B067D1C1CE71C9100CC9F5F /* CoreDataStack+save.swift in Sources */,
+				8BF344D91D0978AC007FC518 /* PersonAttributeDictionary.swift in Sources */,
 				8B3613711D090A2700B4BFE4 /* PersonAttributeDescription.swift in Sources */,
 				8B9E1FD11CEC52680071C648 /* WebService.swift in Sources */,
 				8BF337D21CECAE9E005CB57B /* UIViewController+handleError.swift in Sources */,

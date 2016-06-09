@@ -58,7 +58,11 @@ class EditingState: State {
     }
 
     @objc func doneAction() {
-        owner.person?.fillAttributes(owner.personAttributeDictionary)
+        guard
+        let person = owner.person,
+        let valuesDictionary = owner.personAttributeDictionary?.valuesDictionary
+            else {return}
+        person.fillAttributes(valuesDictionary)
 //        if let copy = self.copyOfPerson {
 //            owner.coreDataStack.mainQueueContext.deleteObject(copy)
 //        }

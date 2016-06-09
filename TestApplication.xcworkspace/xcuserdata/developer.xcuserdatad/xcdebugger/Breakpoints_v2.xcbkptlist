@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApplication/Source/View Controllers/Person Detail View Controller/PersonDetailViewController.swift"
-            timestampString = "487155364.605545"
+            timestampString = "487170027.092884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
@@ -58,7 +58,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApplication/Source/View Controllers/Person Detail View Controller/PersonDetailViewController.swift"
-            timestampString = "487155545.974883"
+            timestampString = "487174071.477498"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "segmentControlChangeValue(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestApplication/Source/View Controllers/Person Detail View Controller/PersonDetailViewController.swift"
+            timestampString = "487174071.477498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -74,13 +90,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApplication/Source/View Controllers/Person Detail View Controller/PersonDetailViewController.swift"
-            timestampString = "487159255.892061"
+            timestampString = "487172845.669562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "segmentControlChangeValue(_:)"
-            landmarkType = "5">
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "PersonDetailViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,13 +106,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApplication/Source/View Controllers/Person Detail View Controller/PersonDetailViewController.swift"
-            timestampString = "487155531.590743"
+            timestampString = "487174071.477498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "personTypeSegmentControl"
-            landmarkType = "19">
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -105,13 +121,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TestApplication/Helpers/CustomCellFactory.swift"
-            timestampString = "487159569.767166"
+            filePath = "TestApplication/Helpers/PersonAttributeDictionary.swift"
+            timestampString = "487173595.155595"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "cellsFor(_:attributeDictionary:)"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "PersonAttributeDictionary"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestApplication/Helpers/PersonAttributeDictionary.swift"
+            timestampString = "487174017.864417"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "updateValuesDictionary()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestApplication/Helpers/PersonAttributeDictionary.swift"
+            timestampString = "487174155.633712"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "updateAttributeDescriptions()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

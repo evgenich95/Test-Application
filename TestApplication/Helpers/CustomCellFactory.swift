@@ -13,7 +13,7 @@ enum CustomCellFactory {
 
     private static func appropriateFactory(attributeDescription: PersonAttributeDescription) -> AbstractFactory {
 
-//        print("factory for \(attributeDescription)")
+        print("factory for \(attributeDescription)")
         switch attributeDescription {
             case .FullName, .Salary, .WorkplaceNumber:
                 return SimpleTextFieldCellFactory()
@@ -24,31 +24,31 @@ enum CustomCellFactory {
         }
     }
 
-    static func cellsFor(displayedPersonType: PersonTypeRecognizer?,
-                         attributeDictionary: [String: AnyObject]) -> [CustomTableViewCell] {
+    static func cellsFor(personAttributeDictionary: PersonAttributeDictionary) -> [CustomTableViewCell] {
 //        print("\n\nCustomCellFactory.cellsFor")
 //        print("Person type = \(displayedPersonType!.description)")
 
         var cells = [CustomTableViewCell]()
 
-        var keys = displayedPersonType?.attributeKeys ?? [String]()
+//        var keys = displayedPersonType?.attributeKeys ?? [String]()
 
 //        print("his keys.count = \(keys.count)")
 
-        keys.removeObjectsInArray(notDisplayedAttributes)
-        
-        for key in keys {
-            guard
-                let attributeDescription = PersonAttributeDescription(
-                    attributeKey: key)
-            else {
-                fatalError("attributeKey - \(key) didn't describe in PersonAttributeDescription")
-            }
+//        keys.removeObjectsInArray(notDisplayedAttributes)
+//        
+//        for key in keys {
+//            guard
+//                let attributeDescription = PersonAttributeDescription(
+//                    attributeKey: key)
+//            else {
+//                fatalError("attributeKey - \(key) didn't describe in PersonAttributeDescription")
+//            }
 
-            let factory = appropriateFactory(attributeDescription)
+        for description in personAttributeDictionary.attributeDescriptions {
+            let factory = appropriateFactory(description)
             cells.append(factory.createCustomTableViewCell(
-                attributeDescription,
-                attributeDictionary: attributeDictionary
+                description,
+                attributeDictionary: personAttributeDictionary.valuesDictionary
                 )
             )
         }

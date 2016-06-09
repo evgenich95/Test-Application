@@ -40,18 +40,38 @@ class PersonDetailViewController: UIViewController {
 
     var selectedPersonType: Int? {
         willSet {
-            if let currentOrderIndex = newValue {
-            currentDisplayedPersonType = PersonTypeRecognizer(
-                orderIndex: currentOrderIndex)
+            print("Изменился тип Person,selectedPersonType.willSet()")
+
+            guard
+                let currentOrderIndex = newValue,
+                let currentDisplayedPersonType = PersonTypeRecognizer(
+                    orderIndex: currentOrderIndex)
+            else { return }
+
+            personAttributeDictionary?.displayedPersonType = currentDisplayedPersonType
+
+            print("attributeDescriptions = \n\(personAttributeDictionary?.attributeDescriptions)")
+            print("displayedPersonType = \(personAttributeDictionary?.displayedPersonType)")
+
+            if let attributeDictionary = personAttributeDictionary {
+                print("Пересоздал массив ячеек")
+                customCells = CustomCellFactory.cellsFor(attributeDictionary)
             }
+            print("customCells.count=\(customCells.count)")
+            print("-------------------------\n")
         }
     }
 
     typealias AttributeDictionary = [String: AnyObject]
 
-    var personAttributeDictionary = AttributeDictionary()
+    var personAttributeDictionary: PersonAttributeDictionary?
     var customCells = [UITableViewCell]()
-    var currentDisplayedPersonType: PersonTypeRecognizer?
+
+//    var currentDisplayedPersonType: PersonTypeRecognizer? {
+//        let displayedTypeOrderIndex = self.personTypeSegmentControl.selectedSegmentIndex
+//        return PersonTypeRecognizer(orderIndex: displayedTypeOrderIndex)
+//    }
+
     var arrayOfFilledAttributes = [String]()
 
     //MARK: -
@@ -66,7 +86,7 @@ class PersonDetailViewController: UIViewController {
     }()
 
     lazy var personTypeSegmentControl: UISegmentedControl = {
-
+        print("Создаю personTypeSegmentControl")
         defer {
             self.selectedPersonType = segment.selectedSegmentIndex
         }
@@ -79,7 +99,7 @@ class PersonDetailViewController: UIViewController {
         let segment = UISegmentedControl(items: entityNames)
 
         if let person = self.person {
-            self.personAttributeDictionary = person.attributeDictionary
+//            self.personAttributeDictionary = person.attributeDictionary
             segment.enabled = self.editing
             self.changeStateToBrowsing()
         } else {
@@ -112,41 +132,66 @@ class PersonDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("\nviewDidLoad()")
+
         configureView()
+        guard
+            let orderIndex = selectedPersonType,
+            let displayedPersonType = PersonTypeRecognizer(orderIndex: orderIndex)
+            else { return }
+
+        print("Инициализировал personAttributeDictionary ")
+        personAttributeDictionary = PersonAttributeDictionary(
+            displayedPersonType: displayedPersonType,
+            aPerson: person)
+
+        print("attributeDescriptions = \n\(personAttributeDictionary?.attributeDescriptions)")
+        print("displayedPersonType = \(personAttributeDictionary?.displayedPersonType)")
+
+        if let attributeDictionary = personAttributeDictionary {
+            print("Создал первый раз массив ячеек")
+            customCells = CustomCellFactory.cellsFor(attributeDictionary)
+        }
+        print("customCells.count=\(customCells.count)")
+
+        print("-------------------------------\n")
+
 
 //        let displayedTypeOrderIndex = personTypeSegmentControl.selectedSegmentIndex
 //        currentDisplayedPersonType = PersonTypeRecognizer(
 //            orderIndex: displayedTypeOrderIndex)
 
-        customCells = CustomCellFactory.cellsFor(
-            currentDisplayedPersonType,
-            attributeDictionary: personAttributeDictionary
-        )
+//        customCells = CustomCellFactory.cellsFor(
+//            currentDisplayedPersonType,
+//            attributeDictionary: personAttributeDictionary
+//        )
     }
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
+        print("segmentControlChangeValue")
+
         selectedPersonType = personTypeSegmentControl.selectedSegmentIndex
 
-        guard let currentDisplayedPersonType = self.currentDisplayedPersonType
-            else {
-                fatalError("currentDisplayedPersonType must be created")
-        }
+//        guard let currentDisplayedPersonType = self.currentDisplayedPersonType
+//            else {
+//                fatalError("currentDisplayedPersonType must be created")
+//        }
 //        print("\n Before changingType")
 //        print("\tpersonAttributeDictionary.count\(personAttributeDictionary.count)")
 //        var newPersonAttributeDictionary = AttributeDictionary()
-        for key in personAttributeDictionary.keys {
-            if !currentDisplayedPersonType.attributeKeys.contains(key) {
-                personAttributeDictionary[key] = nil
-            }
-        }
+//        for key in personAttributeDictionary.keys {
+//            if !currentDisplayedPersonType.attributeKeys.contains(key) {
+//                personAttributeDictionary[key] = nil
+//            }
+//        }
 //        print("\n After changingType")
 //        print("\tpersonAttributeDictionary.count\(personAttributeDictionary.count)")
 
-        customCells = CustomCellFactory.cellsFor(
-            currentDisplayedPersonType,
-            attributeDictionary: personAttributeDictionary
-        )
+//        customCells = CustomCellFactory.cellsFor(
+//            currentDisplayedPersonType,
+//            attributeDictionary: personAttributeDictionary
+//        )
 
 
 
@@ -170,7 +215,7 @@ class PersonDetailViewController: UIViewController {
 
 //        self.person = newPerson
         updateArrayOfFilledAttribute()
-        self.customTableView.dataSource = self
+
         self.customTableView.reloadData()
     }
 
@@ -397,18 +442,20 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
     // Return the number of rows for each section in your static table
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let displayedType = self.currentDisplayedPersonType {
-            return displayedType.numberDisplayedAttributes
-        }
-        return 0
+//        print("for \(personAttributeDictionary?.displayedPersonType)")
+//        print("numberOfRowsInSection = \(personAttributeDictionary?.displayedPersonType.numberDisplayedAttributes ?? 0)")
+        return personAttributeDictionary?.displayedPersonType
+            .numberDisplayedAttributes ?? 0
     }
 
     // Return the row for the corresponding section and row
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        print("customCells.count = \(customCells.count)")
+        print("cellForRowAtIndexPath")
+        print("customCells.count = \(customCells.count)")
 //        print("\(currentDisplayedPersonType?.description).AtrCount = \(currentDisplayedPersonType?.attributeKeys.count)")
 
         return customCells[indexPath.row]
+//        return UITableViewCell()
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
