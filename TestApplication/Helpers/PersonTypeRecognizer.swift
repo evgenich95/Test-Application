@@ -26,6 +26,20 @@ enum PersonTypeRecognizer: CustomStringConvertible {
             }
     }
 
+    init?(orderIndex: Int) {
+        switch orderIndex {
+        case 0:
+            self = .ManagerType
+        case 1:
+            self = .WorkerType
+        case 2:
+            self = .AccountantType
+        default:
+            return nil
+        }
+
+    }
+
     var description: String {
         switch self {
             case .ManagerType:
