@@ -126,8 +126,29 @@ class PersonDetailViewController: UIViewController {
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
-
         selectedPersonType = personTypeSegmentControl.selectedSegmentIndex
+
+        guard let currentDisplayedPersonType = self.currentDisplayedPersonType
+            else {
+                fatalError("currentDisplayedPersonType must be created")
+        }
+//        print("\n Before changingType")
+//        print("\tpersonAttributeDictionary.count\(personAttributeDictionary.count)")
+//        var newPersonAttributeDictionary = AttributeDictionary()
+        for key in personAttributeDictionary.keys {
+            if !currentDisplayedPersonType.attributeKeys.contains(key) {
+                personAttributeDictionary[key] = nil
+            }
+        }
+//        print("\n After changingType")
+//        print("\tpersonAttributeDictionary.count\(personAttributeDictionary.count)")
+
+        customCells = CustomCellFactory.cellsFor(
+            currentDisplayedPersonType,
+            attributeDictionary: personAttributeDictionary
+        )
+
+
 
 //        let idx = personTypeSegmentControl.selectedSegmentIndex
 
@@ -384,7 +405,8 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
     // Return the row for the corresponding section and row
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("customCells.count = \(customCells.count)")
+//        print("customCells.count = \(customCells.count)")
+//        print("\(currentDisplayedPersonType?.description).AtrCount = \(currentDisplayedPersonType?.attributeKeys.count)")
 
         return customCells[indexPath.row]
     }
