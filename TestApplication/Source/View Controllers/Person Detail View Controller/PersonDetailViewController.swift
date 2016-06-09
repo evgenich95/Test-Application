@@ -38,6 +38,15 @@ class PersonDetailViewController: UIViewController {
     var person: Person?
     var coreDataStack: CoreDataStack!
 
+    var selectedPersonType: Int? {
+        willSet {
+            if let currentOrderIndex = newValue {
+            currentDisplayedPersonType = PersonTypeRecognizer(
+                orderIndex: currentOrderIndex)
+            }
+        }
+    }
+
     typealias AttributeDictionary = [String: AnyObject]
 
     var personAttributeDictionary = AttributeDictionary()
@@ -57,6 +66,10 @@ class PersonDetailViewController: UIViewController {
     }()
 
     lazy var personTypeSegmentControl: UISegmentedControl = {
+
+        defer {
+            self.selectedPersonType = segment.selectedSegmentIndex
+        }
 
         let entityNames = [
             PersonTypeRecognizer.ManagerType.description,
@@ -101,9 +114,9 @@ class PersonDetailViewController: UIViewController {
         super.viewDidLoad()
         configureView()
 
-        let displayedTypeOrderIndex = personTypeSegmentControl.selectedSegmentIndex
-        currentDisplayedPersonType = PersonTypeRecognizer(
-            orderIndex: displayedTypeOrderIndex)
+//        let displayedTypeOrderIndex = personTypeSegmentControl.selectedSegmentIndex
+//        currentDisplayedPersonType = PersonTypeRecognizer(
+//            orderIndex: displayedTypeOrderIndex)
 
         customCells = CustomCellFactory.cellsFor(
             currentDisplayedPersonType,
@@ -113,6 +126,9 @@ class PersonDetailViewController: UIViewController {
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
+
+        selectedPersonType = personTypeSegmentControl.selectedSegmentIndex
+
 //        let idx = personTypeSegmentControl.selectedSegmentIndex
 
         //создал словарь атрибутов прошлого персон
