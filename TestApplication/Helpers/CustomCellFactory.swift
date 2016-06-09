@@ -18,18 +18,23 @@ enum CustomCellFactory {
                 return SimpleTextFieldCellFactory()
             case .AccountantType:
                 return PickerInputViewCellFactory()
-            case .MealTime:
+            case .MealTime, .VisitingHours:
                 return DateInputViewCellFactory()
-            default:
-                fatalError("Invalid attributeDescription - \(attributeDescription)")
         }
     }
 
-    static func cellsFor(attributeDictionary: [String: AnyObject]) -> [CustomTableViewCell] {
+    static func cellsFor(displayedPersonType: PersonTypeRecognizer?,
+                         attributeDictionary: [String: AnyObject]) -> [CustomTableViewCell] {
 
         var cells = [CustomTableViewCell]()
+        var keys = Array(attributeDictionary.keys)
 
-        for key in attributeDictionary.keys {
+        if  attributeDictionary.isEmpty,
+            let attributeKeys = displayedPersonType?.attributeKeys {
+            keys = attributeKeys
+        }
+
+        for key in keys {
             guard
                 let attributeDescription = PersonAttributeDescription(
                     attributeKey: key)

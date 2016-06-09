@@ -32,8 +32,9 @@ class CreatingState: State {
     //MARK:-
     required init(contex: Owner) {
         self.owner = contex
+//        createAttributeDictionary()
         setupNavigationItem()
-        setupView()
+//        setupView()
     }
     //MARK:-
 
@@ -61,7 +62,13 @@ class CreatingState: State {
 
     //MARK: Help functions
     func setupView() {
-        owner.checkValid()
-        owner.customTableView.backgroundView?.hidden = false
+//        owner.checkValid()
+//        owner.customTableView.backgroundView?.hidden = false
     }
+    
+//    func createAttributeDictionary() {
+////        let indexOfSelectedType = owner.personTypeSegmentControl.selectedSegmentIndex
+//        let indexOfSelectedType = 0
+//        owner.currentDisplayedPersonType = PersonTypeRecognizer(orderIndex: indexOfSelectedType)
+//    }
 }

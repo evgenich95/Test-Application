@@ -101,9 +101,9 @@ enum PersonAttributeDescription: CustomStringConvertible {
                 return NSAttributeType.StringAttributeType
             case Salary:
                 return NSAttributeType.DoubleAttributeType
-            case AccountantType,WorkplaceNumber:
+            case AccountantType, WorkplaceNumber:
                 return NSAttributeType.Integer32AttributeType
-            case .VisitingHours,.MealTime:
+            case VisitingHours, MealTime:
                 return NSAttributeType.DateAttributeType
             }
     }

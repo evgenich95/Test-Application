@@ -63,7 +63,7 @@ enum PersonTypeRecognizer: CustomStringConvertible {
     }
 
     var attributeKeys: [String] {
-
+        
         switch self {
         case .ManagerType:
             return Manager.keys
@@ -72,5 +72,18 @@ enum PersonTypeRecognizer: CustomStringConvertible {
         case .AccountantType:
             return Accountant.keys
         }
+    }
+
+    var numberDisplayedAttributes: Int {
+        switch self {
+        case .ManagerType:
+            return 3
+        case .WorkerType:
+            return 4
+        case .AccountantType:
+            return 5
+        }
+
+
     }
 }

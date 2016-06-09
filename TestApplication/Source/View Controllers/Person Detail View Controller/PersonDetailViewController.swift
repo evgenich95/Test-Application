@@ -42,37 +42,16 @@ class PersonDetailViewController: UIViewController {
 
     var personAttributeDictionary = AttributeDictionary()
     var customCells = [UITableViewCell]()
+    var currentDisplayedPersonType: PersonTypeRecognizer?
     var arrayOfFilledAttributes = [String]()
 
     //MARK: -
     //MARK: Lazy parameters
-    lazy private var hintView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3)
-
-        let hintLabel = UILabel()
-        hintLabel.adjustsFontSizeToFitWidth = true
-        hintLabel.textAlignment = .Center
-        hintLabel.numberOfLines = 0
-        hintLabel.font = UIFont(name: "Helvetica Neue", size: 30)
-        hintLabel.textColor = UIColor.grayColor()
-        hintLabel.text = "Please, select a New person type"
-
-        view.addSubview(hintLabel)
-
-        hintLabel.snp_makeConstraints { (make) -> Void in
-            make.leading.trailing.equalTo(view)
-            make.center.equalTo(view)
-            make.height.lessThanOrEqualTo(view.snp_height).dividedBy(2)
-        }
-        return view
-    }()
 
     lazy var customTableView: UITableView = {
         let table = UITableView()
         table.delegate = self
         table.dataSource = self
-        table.backgroundView = self.hintView
         self.view.addSubview(table)
         return table
     }()
@@ -86,8 +65,12 @@ class PersonDetailViewController: UIViewController {
         ]
         let segment = UISegmentedControl(items: entityNames)
 
-        if let _ = self.person {
+        if let person = self.person {
+            self.personAttributeDictionary = person.attributeDictionary
             segment.enabled = self.editing
+            self.changeStateToBrowsing()
+        } else {
+            self.changeStateToCreating()
         }
 
         let index = PersonTypeRecognizer(aPerson: self.person)?.orderIndex
@@ -95,10 +78,8 @@ class PersonDetailViewController: UIViewController {
         switch index {
         case let (index?):
             segment.selectedSegmentIndex = index
-            self.changeStateToBrowsing()
         default:
-            self.customTableView.dataSource = nil
-            self.changeStateToCreating()
+            segment.selectedSegmentIndex = 0
         }
 
         segment.addTarget(self, action: #selector(segmentControlChangeValue), forControlEvents: .ValueChanged)
@@ -120,23 +101,24 @@ class PersonDetailViewController: UIViewController {
         super.viewDidLoad()
         configureView()
 
-        if let person = self.person {
-            personAttributeDictionary = person.attributeDictionary
-        }
+        let displayedTypeOrderIndex = personTypeSegmentControl.selectedSegmentIndex
+        currentDisplayedPersonType = PersonTypeRecognizer(
+            orderIndex: displayedTypeOrderIndex)
 
-        customCells = CustomCellFactory.cellsFor(personAttributeDictionary)
-
-        
-            }
+        customCells = CustomCellFactory.cellsFor(
+            currentDisplayedPersonType,
+            attributeDictionary: personAttributeDictionary
+        )
+    }
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
 //        let idx = personTypeSegmentControl.selectedSegmentIndex
 
         //создал словарь атрибутов прошлого персон
-        if let pastPerson = self.person {
-            personAttributeDictionary = pastPerson.attributeDictionary
-        }
+//        if let pastPerson = self.person {
+//            personAttributeDictionary = pastPerson.attributeDictionary
+//        }
 
 //        guard let newPerson = self.coreDataStack.createEntityWithOrderIndex(idx) as? Person else {
 //            fatalError("Expected a subclass of Person")
@@ -362,9 +344,9 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
             cell.backgroundColor = UIColor.whiteColor()
         }
 
-        if personTypeSegmentControl.selectedSegmentIndex != UISegmentedControlNoSegment {
-            self.customTableView.backgroundView?.hidden = true
-        }
+//        if personTypeSegmentControl.selectedSegmentIndex != UISegmentedControlNoSegment {
+//            self.customTableView.backgroundView?.hidden = true
+//        }
     }
 
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -378,17 +360,15 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
     // Return the number of rows for each section in your static table
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        if let numberOfPatameters = self.person?.entity.properties.count {
-            //-1, becouse order doesn't needed
-            return numberOfPatameters-1
+        if let displayedType = self.currentDisplayedPersonType {
+            return displayedType.numberDisplayedAttributes
         }
-
         return 0
     }
 
     // Return the row for the corresponding section and row
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print("customCells.count = \(customCells.count)")
 
         return customCells[indexPath.row]
     }

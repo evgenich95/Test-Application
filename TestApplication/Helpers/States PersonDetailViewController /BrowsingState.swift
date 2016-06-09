@@ -25,6 +25,7 @@ class BrowsingState: State {
 
     required init(contex: Owner) {
         self.owner = contex
+//        createAttributeDictionary()
         setupView()
         setupNavigationItem()
     }
@@ -55,4 +56,11 @@ class BrowsingState: State {
     func setupView() {
         owner.customTableView.backgroundView?.hidden = true
     }
+
+//    func createAttributeDictionary() {
+//        if let person = owner.person {
+//            owner.personAttributeDictionary = person.attributeDictionary
+//        }
+
+//    }
 }
