@@ -133,7 +133,7 @@ class PersonDetailViewController: UIViewController {
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
-        let idx = personTypeSegmentControl.selectedSegmentIndex
+//        let idx = personTypeSegmentControl.selectedSegmentIndex
 
         //создал словарь атрибутов прошлого персон
         if let pastPerson = self.person {
@@ -180,7 +180,7 @@ class PersonDetailViewController: UIViewController {
             return
         }
 
-        let personAttributeKeys = person.personDisplayedAttributeKeys
+        let personAttributeKeys = person.attributeDictionary.keys
 
         var canTapSave = true
         for key in personAttributeKeys {
@@ -360,7 +360,8 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
             cell.userInteractionEnabled = false
             cell.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.2)
         default:
-            break
+            cell.userInteractionEnabled = true
+            cell.backgroundColor = UIColor.whiteColor()
         }
 
         if personTypeSegmentControl.selectedSegmentIndex != UISegmentedControlNoSegment {
