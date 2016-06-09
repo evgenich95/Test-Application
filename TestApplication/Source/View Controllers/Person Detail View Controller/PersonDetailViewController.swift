@@ -41,6 +41,7 @@ class PersonDetailViewController: UIViewController {
     typealias AttributeDictionary = [String: AnyObject]
 
     var personAttributeDictionary = AttributeDictionary()
+    var customCells = [UITableViewCell]()
     var arrayOfFilledAttributes = [String]()
 
     //MARK: -
@@ -121,6 +122,8 @@ class PersonDetailViewController: UIViewController {
         if let person = self.person {
             personAttributeDictionary = person.attributeDictionary
         }
+
+        customCells = CustomCellFactory.cellsFor(personAttributeDictionary)
 
         //Если segment не выбран, значит переходим в режим Создания
         if personTypeSegmentControl.selectedSegmentIndex == UISegmentedControlNoSegment {
@@ -388,18 +391,7 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
     // Return the row for the corresponding section and row
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        if personAttributeDictionary.count < 1 {
-            return UITableViewCell()
-        }
-
-
-        let attributeKey = Array(personAttributeDictionary.keys)[indexPath.row]
-
-        if let attributeDescription = PersonAttributeDescription(attributeKey: attributeKey) {
-            return CustomCellFactory.cellFor(attributeDescription, attributeDictionary: personAttributeDictionary)
-        }
-
-        return UITableViewCell()
+        return customCells[indexPath.row]
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
