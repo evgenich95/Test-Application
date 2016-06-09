@@ -98,6 +98,7 @@ class PersonDetailViewController: UIViewController {
             self.changeStateToBrowsing()
         default:
             self.customTableView.dataSource = nil
+            self.changeStateToCreating()
         }
 
         segment.addTarget(self, action: #selector(segmentControlChangeValue), forControlEvents: .ValueChanged)
@@ -125,11 +126,8 @@ class PersonDetailViewController: UIViewController {
 
         customCells = CustomCellFactory.cellsFor(personAttributeDictionary)
 
-        //Если segment не выбран, значит переходим в режим Создания
-        if personTypeSegmentControl.selectedSegmentIndex == UISegmentedControlNoSegment {
-            changeStateToCreating()
-        }
-    }
+        
+            }
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
