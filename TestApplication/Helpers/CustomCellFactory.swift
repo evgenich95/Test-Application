@@ -26,14 +26,14 @@ enum CustomCellFactory {
 
     static func cellsFor(displayedPersonType: PersonTypeRecognizer?,
                          attributeDictionary: [String: AnyObject]) -> [CustomTableViewCell] {
+//        print("\n\nCustomCellFactory.cellsFor")
+//        print("Person type = \(displayedPersonType!.description)")
 
         var cells = [CustomTableViewCell]()
-        var keys = Array(attributeDictionary.keys)
 
-        if  attributeDictionary.isEmpty,
-            let attributeKeys = displayedPersonType?.attributeKeys {
-            keys = attributeKeys
-        }
+        var keys = displayedPersonType?.attributeKeys ?? [String]()
+
+//        print("his keys.count = \(keys.count)")
 
         keys.removeObjectsInArray(notDisplayedAttributes)
         
