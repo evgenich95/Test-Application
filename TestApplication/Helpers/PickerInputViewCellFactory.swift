@@ -13,11 +13,8 @@ class PickerInputViewCellFactory: AbstractFactory {
     func createCustomTableViewCell(attributeDescription: PersonAttributeDescription, attributeDictionary: [String: AnyObject]) -> CustomTableViewCell {
 
         return PickerInputViewCell(
-            description: [
-                attributeDescription.description,
-                attributeDescription.placeholder
-            ],
-            data: attributeDictionary[attributeDescription.key.first ?? ""],
+            attributeDescription: attributeDescription,
+            attributeDictionary: attributeDictionary,
             action: { (data) in
 //                self.person?.setValue(data, forKey: personAttribute.name)
 //                self.addNewKeyForValid(personAttribute.name)

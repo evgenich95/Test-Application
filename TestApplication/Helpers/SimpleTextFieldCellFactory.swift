@@ -12,12 +12,8 @@ class SimpleTextFieldCellFactory: AbstractFactory {
 
     func createCustomTableViewCell(attributeDescription: PersonAttributeDescription, attributeDictionary: [String: AnyObject]) -> CustomTableViewCell {
         return SimpleTextFieldCell(
-            description: [
-                attributeDescription.description,
-                attributeDescription.placeholder
-            ],
-            data: attributeDictionary[attributeDescription.key.first ?? ""],
-
+            attributeDescription: attributeDescription,
+            attributeDictionary: attributeDictionary,
             action: { (data) in
 
             },

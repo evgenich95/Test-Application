@@ -28,17 +28,23 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
 
-    var attributeDescriptionString: [String]? {
+    var textFieldPlaceholder: String? {
         willSet {
-            switch (newValue?[0], newValue?[1]) {
-            case let (description, placeholder):
-                self.descriptionLabel.text = description
+            if let placeholder = newValue {
                 self.dataTextField.placeholder = placeholder
             }
         }
     }
 
-    var attributeValueString: AnyObject? {
+    var attributeDescriptionString: String? {
+        willSet {
+            if let description = newValue {
+                self.descriptionLabel.text = description
+            }
+        }
+    }
+
+    var attributeValue: AnyObject? {
         willSet {
             if let text = newValue as? String {
                 self.dataTextField.text = text

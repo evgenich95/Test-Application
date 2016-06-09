@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum PersonAttributeDescription: CustomStringConvertible {
     case FullName
@@ -94,17 +95,16 @@ enum PersonAttributeDescription: CustomStringConvertible {
         }
     }
 
-    //    var type: NSAttributeType {
-    //        switch self {
-    //        case FullName:
-    //            return NSAttributeType.StringAttributeType
-    //        case Salary:
-    //            return NSAttributeType.DoubleAttributeType
-    //        case AccountantType,WorkplaceNumber:
-    //            return "Material Accounting"
-    //        case WorkplaceNumber:
-    //            return "555"
-    //        case StartMealTime,EndMealTime,StartVisitingHours,EndVisitingHours:
-    //            return NSAttributeType.DateAttributeType
-    //        }
+        var type: NSAttributeType {
+            switch self {
+            case FullName:
+                return NSAttributeType.StringAttributeType
+            case Salary:
+                return NSAttributeType.DoubleAttributeType
+            case AccountantType,WorkplaceNumber:
+                return NSAttributeType.Integer32AttributeType
+            case .VisitingHours,.MealTime:
+                return NSAttributeType.DateAttributeType
+            }
+    }
 }

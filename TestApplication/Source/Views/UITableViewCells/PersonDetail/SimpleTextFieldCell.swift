@@ -14,18 +14,20 @@ class SimpleTextFieldCell: CustomTableViewCell {
     typealias ResultDataActionType = ((data: AnyObject) -> Void)?
     var handleDataAction: ResultDataActionType
 
-    init(description: [String]?,
-         data: AnyObject?,
-         inputDataType: NSAttributeType = .StringAttributeType,
+    init(attributeDescription: PersonAttributeDescription,
+         attributeDictionary: [String : AnyObject],
          action: ResultDataActionType,
          actionForClearField: () -> Void) {
 
-        super.init(inputDataType: inputDataType, actionForClearField: actionForClearField)
+        super.init(inputDataType: attributeDescription.type, actionForClearField: actionForClearField)
 
-        self.attributeDescriptionString = description
-        self.attributeValueString = data
+        self.attributeDescriptionString = attributeDescription.description
+        self.textFieldPlaceholder = attributeDescription.placeholder
+        let data = attributeDictionary[attributeDescription.key.first ?? ""]
+        self.attributeValue = data
         self.handleDataAction = action
     }
+
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

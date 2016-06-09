@@ -13,12 +13,8 @@ class DateInputViewCellFactory: AbstractFactory {
     func createCustomTableViewCell(attributeDescription: PersonAttributeDescription, attributeDictionary: [String: AnyObject]) -> CustomTableViewCell {
 
         return DateInputViewCell(
-            description: [
-                attributeDescription.description,
-                attributeDescription.placeholder
-            ],
-            startTime: attributeDictionary[attributeDescription.key[0]] as? NSDate,
-            endTime: attributeDictionary[attributeDescription.key[1]] as? NSDate,
+            attributeDescription: attributeDescription,
+            attributeDictionary: attributeDictionary,
             action: { (startDate, endDate) in
                 //            self.person?.setValue(startDate, forKey: valueKeys[0])
                 //            self.person?.setValue(endDate, forKey: valueKeys[1])

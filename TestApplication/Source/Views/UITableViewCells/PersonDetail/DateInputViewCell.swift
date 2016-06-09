@@ -98,19 +98,21 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: -
 
-    init(description: [String],
-         startTime: NSDate?,
-         endTime: NSDate?,
+    init(attributeDescription: PersonAttributeDescription,
+         attributeDictionary: [String : AnyObject],
          action: ResultDataActionType,
          actionForClearField: () -> Void) {
 
         super.init(actionForClearField: actionForClearField)
         defer {
-            self.startTime = startTime
-            self.endTime = endTime
+            self.startTime = attributeDictionary[attributeDescription.key[0]]
+                as? NSDate
+            self.endTime = attributeDictionary[attributeDescription.key[1]]
+                as? NSDate
         }
 
-        self.attributeDescriptionString = description
+        self.attributeDescriptionString = attributeDescription.description
+        self.textFieldPlaceholder = attributeDescription.placeholder
         self.handleDataAction = action
 
         setupView()
@@ -149,7 +151,7 @@ class DateInputViewCell: CustomTableViewCell {
     func updateDateValue() {
         switch (startTime, endTime) {
         case let (startTime?, endTime?):
-            attributeValueString = "from \(startTime.timeFormating) to \(endTime.timeFormating)"
+            attributeValue = "from \(startTime.timeFormating) to \(endTime.timeFormating)"
             startTimeDatePicker.date = startTime
             endTimeDatePicker.date = endTime
         default:

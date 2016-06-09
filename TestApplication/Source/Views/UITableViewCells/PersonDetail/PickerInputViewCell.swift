@@ -13,11 +13,11 @@ class PickerInputViewCell: CustomTableViewCell {
     typealias ResultDataActionType = ((data: AnyObject) -> Void)?
     var handleDataAction: ResultDataActionType
 
-    var currentType: AnyObject? {
+    var currentValue: AnyObject? {
         willSet {
             if let data = newValue as? NSNumber {
                 pickerView.selectRow(data.integerValue, inComponent: 0, animated: false)
-                attributeValueString = AccountantType.init(index: data.integerValue).description
+                attributeValue = AccountantType.init(index: data.integerValue).description
             }
         }
     }
@@ -28,17 +28,20 @@ class PickerInputViewCell: CustomTableViewCell {
         return picker
     }()
 
-    init(description: [String],
-         data: AnyObject?,
+    init(attributeDescription: PersonAttributeDescription,
+         attributeDictionary: [String : AnyObject],
          action: ResultDataActionType,
          actionForClearField: () -> Void) {
+
         defer {
-            self.currentType = data
+            let data = attributeDictionary[attributeDescription.key.first ?? ""]
+            self.currentValue = data
         }
 
         super.init(actionForClearField: actionForClearField)
 
-        self.attributeDescriptionString = description
+        self.attributeDescriptionString = attributeDescription.description
+        self.textFieldPlaceholder = attributeDescription.placeholder
         self.handleDataAction = action
 
         setupView()
@@ -55,7 +58,7 @@ class PickerInputViewCell: CustomTableViewCell {
 
     override func textFieldDidEndEditing(textField: UITextField) {
         super.textFieldDidEndEditing(textField)
-        if let type = currentType {
+        if let type = currentValue {
             handleDataAction?(data: type )
         }
     }
@@ -76,7 +79,7 @@ extension PickerInputViewCell: UIPickerViewDelegate {
     }
 
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currentType = row
+        currentValue = row
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
