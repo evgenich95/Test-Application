@@ -27,6 +27,10 @@ struct PersonAttributeKeys {
     static let accountantType = "accountantType"
 }
 
+ let notDisplayedAttributes = [
+    PersonAttributeKeys.endMealTime,
+    PersonAttributeKeys.endVisitingHours
+]
 enum AccountantType: CustomStringConvertible {
     case SalaryAccounting
     case MaterialAccounting
