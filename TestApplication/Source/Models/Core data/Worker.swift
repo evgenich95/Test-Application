@@ -28,5 +28,11 @@ class Worker: Person {
     
         print("Worker.attributeDictionary = \(attributeDictionary)")
         return attributeDictionary
+    override class var keys: [String] {
+        var keys = super.keys
+        keys.append(PersonAttributeKeys.workplaceNumber)
+        keys.append(PersonAttributeKeys.startMealTime)
+        keys.append(PersonAttributeKeys.endMealTime)
+        return keys
     }
 }

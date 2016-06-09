@@ -21,5 +21,9 @@ class Accountant: Worker {
         var attributeDictionary = super.attributeDictionary
         attributeDictionary[PersonAttributeKeys.accountantType] = type
         return attributeDictionary
+    override class var keys: [String] {
+        var keys = super.keys
+        keys.append(PersonAttributeKeys.accountantType)
+        return keys
     }
 }

@@ -21,6 +21,13 @@ class Person: NSManagedObject, CoreDataModelable {
         return "Person"
     }
 
+    class var keys: [String] {
+        var keys = [String]()
+        keys.append(PersonAttributeKeys.fullName)
+        keys.append(PersonAttributeKeys.salary)
+        return keys
+    }
+
     var entityOrderIndex: Int {
         switch self.entity.userInfo?["orderIndex"] {
         case let (orderIndex as NSString):
