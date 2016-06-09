@@ -11,30 +11,39 @@ import UIKit
 
 enum CustomCellFactory {
 
-    static func cellFor(attributeDescription: PersonAttributeDescription, attributeDictionary: [String: AnyObject]) -> UITableViewCell {
+    private static func appropriateFactory(attributeDescription: PersonAttributeDescription) -> AbstractFactory {
 
         switch attributeDescription {
-        case .FullName, .Salary, .WorkplaceNumber:
-            return SimpleTextFieldCellFactory()
-                .createCustomTableViewCell(
-                    attributeDescription,
-                    attributeDictionary: attributeDictionary
-            )
-        case .AccountantType:
-            return PickerInputViewCellFactory()
-                .createCustomTableViewCell(
-                    attributeDescription,
-                    attributeDictionary: attributeDictionary
-            )
-        case .MealTime:
-            return DateInputViewCellFactory()
-            .createCustomTableViewCell(
-                attributeDescription, attributeDictionary: attributeDictionary
-            )
-
-            
-        default:
-            return UITableViewCell()
+            case .FullName, .Salary, .WorkplaceNumber:
+                return SimpleTextFieldCellFactory()
+            case .AccountantType:
+                return PickerInputViewCellFactory()
+            case .MealTime:
+                return DateInputViewCellFactory()
+            default:
+                fatalError("Invalid attributeDescription - \(attributeDescription)")
         }
+    }
+
+    static func cellsFor(attributeDictionary: [String: AnyObject]) -> [CustomTableViewCell] {
+
+        var cells = [CustomTableViewCell]()
+
+        for key in attributeDictionary.keys {
+            guard
+                let attributeDescription = PersonAttributeDescription(
+                    attributeKey: key)
+            else {
+                fatalError("attributeKey - \(key) didn't describe in PersonAttributeDescription")
+            }
+
+            let factory = appropriateFactory(attributeDescription)
+            cells.append(factory.createCustomTableViewCell(
+                attributeDescription,
+                attributeDictionary: attributeDictionary
+                )
+            )
+        }
+        return cells
     }
 }
