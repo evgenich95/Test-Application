@@ -51,52 +51,34 @@ class CreatingState: State {
     }
 
     @objc func cancelAction() {
-        if let person = owner.person {
-            owner.coreDataStack.mainQueueContext.deleteObject(person)
-        }
-        doneAction()
+        owner.navigationController?.popViewControllerAnimated(true)
     }
+    
     @objc func doneAction() {
-        let moc = owner.coreDataStack.mainQueueContext
-        guard
-            let valuesDictionary = owner
-                                        .personAttributeDictionary?
-                                        .valuesDictionary,
-            let entityName = owner
-                                .personAttributeDictionary?
-                                .displayedPersonType
-                                .description
-        else {
+        defer {
             owner.navigationController?.popViewControllerAnimated(true)
-            return
         }
 
-        guard
-            let description = NSEntityDescription
-                .entityForName(entityName,
-                               inManagedObjectContext: moc)
-        else {
-            fatalError("Could not create an entity with the given name: \"\(entityName)\"")
+        guard let attributeDictionary = owner.personAttributeDictionary
+            else {
+                return
         }
 
-        if let newPerson = NSManagedObject.init(entity: description,
-                                                insertIntoManagedObjectContext: moc) as? Person {
+        let valuesDictionary = attributeDictionary.valuesDictionary
+        let entityName = attributeDictionary.displayedPersonType.description
+
+        if let newPerson = owner.coreDataStack
+            .createEntityByName(entityName) as? Person {
 
             newPerson.fillAttributes(valuesDictionary)
             owner.coreDataStack.saveAndLog()
         }
-        owner.navigationController?.popViewControllerAnimated(true)
     }
 
     //MARK: Help functions
     func setupView() {
-        owner.checkValid()
+//        owner.checkValid()
 //        owner.customTableView.backgroundView?.hidden = false
     }
     
-//    func createAttributeDictionary() {
-////        let indexOfSelectedType = owner.personTypeSegmentControl.selectedSegmentIndex
-//        let indexOfSelectedType = 0
-//        owner.currentDisplayedPersonType = PersonTypeRecognizer(orderIndex: indexOfSelectedType)
-//    }
 }

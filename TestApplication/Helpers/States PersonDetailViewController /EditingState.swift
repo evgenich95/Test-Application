@@ -34,7 +34,7 @@ class EditingState: State {
     required init(contex: Owner) {
         self.owner = contex
         setupNavigationItem()
-        setupView()
+//        setupView()
 //        makeCopy(owner.person)
     }
     //MARK:-
@@ -59,13 +59,25 @@ class EditingState: State {
 
     @objc func doneAction() {
         guard
-        let person = owner.person,
-        let valuesDictionary = owner.personAttributeDictionary?.valuesDictionary
-            else {return}
-        person.fillAttributes(valuesDictionary)
-//        if let copy = self.copyOfPerson {
-//            owner.coreDataStack.mainQueueContext.deleteObject(copy)
-//        }
+            let attributeDictionary = owner.personAttributeDictionary,
+            let editedPerson = owner.person
+        else {return}
+
+        let dataStack = owner.coreDataStack
+        let finalPersonTypeName = attributeDictionary
+                                                    .displayedPersonType
+                                                    .description
+        let valuesDictionary = attributeDictionary.valuesDictionary
+
+        if finalPersonTypeName == editedPerson.entity.name {
+            editedPerson.fillAttributes(valuesDictionary)
+        } else {
+            dataStack.mainQueueContext.deleteObject(editedPerson)
+            if let newPerson = dataStack
+                    .createEntityByName(finalPersonTypeName) as? Person {
+                newPerson.fillAttributes(valuesDictionary)
+            }
+        }
         saveAndExit()
     }
 
@@ -79,18 +91,6 @@ class EditingState: State {
 //        if let browsingPersonAttribute = owner.person?.personDisplayedAttributeKeys {
 //            owner.arrayOfFilledAttributes = browsingPersonAttribute
 //        }
-        owner.checkValid()
-    }
-
-    func makeCopy(person: Person?) {
-        guard let person = person
-            else {return}
-
-        let idx = person.entityOrderIndex
-
-        if let copy = owner.coreDataStack.createEntityWithOrderIndex(idx) as? Person {
-            copy.copyAttributesFrom(person)
-            self.copyOfPerson = copy
-        }
+//        owner.checkValid()
     }
 }

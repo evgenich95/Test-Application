@@ -44,7 +44,7 @@ class BrowsingState: State {
     }
 
     @objc func cancelAction() {
-        owner.coreDataStack.saveAndLog()
+//        owner.coreDataStack.saveAndLog()
         owner.navigationController?.popViewControllerAnimated(true)
     }
 
