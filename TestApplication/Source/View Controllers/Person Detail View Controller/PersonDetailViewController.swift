@@ -38,14 +38,14 @@ class PersonDetailViewController: UIViewController {
     var person: Person?
     var coreDataStack: CoreDataStack!
 
-    var selectedPersonType: Int? {
+    var selectedPersonType: Int = 0 {
         willSet {
             print("Изменился тип Person,selectedPersonType.willSet()")
 
             guard
-                let currentOrderIndex = newValue,
+
                 let currentDisplayedPersonType = PersonTypeRecognizer(
-                    orderIndex: currentOrderIndex)
+                    orderIndex: newValue)
             else { return }
 
             personAttributeDictionary?.displayedPersonType = currentDisplayedPersonType
@@ -136,9 +136,11 @@ class PersonDetailViewController: UIViewController {
 
         configureView()
         setupGestureRecognizer()
+
         guard
-            let orderIndex = selectedPersonType,
-            let displayedPersonType = PersonTypeRecognizer(orderIndex: orderIndex)
+
+            let displayedPersonType = PersonTypeRecognizer(
+                orderIndex: selectedPersonType)
             else { return }
 
         print("Инициализировал personAttributeDictionary ")
