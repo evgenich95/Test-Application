@@ -16,6 +16,8 @@ protocol DelegateForPersonAttributeDictionary {
 }
 
 class PersonAttributeDictionary {
+
+    var delegate: DelegateForPersonAttributeDictionary?
     var displayedPersonType: PersonTypeRecognizer {
         didSet {
             print("обновляю словарь значений)")
