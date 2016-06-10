@@ -174,54 +174,8 @@ class PersonDetailViewController: UIViewController {
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
-
-
+        //change currend dispayed PersonType
         selectedPersonType = personTypeSegmentControl.selectedSegmentIndex
-//        checkValid()
-
-//        guard let currentDisplayedPersonType = self.currentDisplayedPersonType
-//            else {
-//                fatalError("currentDisplayedPersonType must be created")
-//        }
-//        print("\n Before changingType")
-//        print("\tpersonAttributeDictionary.count\(personAttributeDictionary.count)")
-//        var newPersonAttributeDictionary = AttributeDictionary()
-//        for key in personAttributeDictionary.keys {
-//            if !currentDisplayedPersonType.attributeKeys.contains(key) {
-//                personAttributeDictionary[key] = nil
-//            }
-//        }
-//        print("\n After changingType")
-//        print("\tpersonAttributeDictionary.count\(personAttributeDictionary.count)")
-
-//        customCells = CustomCellFactory.cellsFor(
-//            currentDisplayedPersonType,
-//            attributeDictionary: personAttributeDictionary
-//        )
-
-
-
-//        let idx = personTypeSegmentControl.selectedSegmentIndex
-
-        //создал словарь атрибутов прошлого персон
-//        if let pastPerson = self.person {
-//            personAttributeDictionary = pastPerson.attributeDictionary
-//        }
-
-//        guard let newPerson = self.coreDataStack.createEntityWithOrderIndex(idx) as? Person else {
-//            fatalError("Expected a subclass of Person")
-//        }
-
-//        if let pastPerson = self.person {
-//            newPerson.copyAttributesFrom(pastPerson)
-//            self.coreDataStack.mainQueueContext.deleteObject(pastPerson)
-//            // NOTE: не сохраняем контекст, потому что новый (незаполненный)
-//            // объект тоже сохранится
-//        }
-
-//        self.person = newPerson
-        updateArrayOfFilledAttribute()
-
         self.customTableView.reloadData()
     }
 
@@ -239,22 +193,6 @@ class PersonDetailViewController: UIViewController {
 
     @objc func handleDoubleTap(recognizer: UITapGestureRecognizer) {
         customTableView.endEditing(true)
-    }
-
-    private func updateArrayOfFilledAttribute() {
-        var tempArray = [String]()
-
-        guard let newPersonAtributeKeys =  self.person?.personDisplayedAttributeKeys
-            else {return}
-
-        for key in arrayOfFilledAttributes {
-            if newPersonAtributeKeys.contains(key) {
-                tempArray.append(key)
-            }
-        }
-        arrayOfFilledAttributes = tempArray
-
-//        checkValid()
     }
 
     func checkValid() {
@@ -284,14 +222,6 @@ class PersonDetailViewController: UIViewController {
         print("Могу нажать на Save - \(canTapSave)")
         self.navigationItem.rightBarButtonItem?.enabled = canTapSave
         print("\n\n--------")
-    }
-
-    private func addNewKeyForValid(key: String) {
-
-        if !arrayOfFilledAttributes.contains(key) {
-            arrayOfFilledAttributes.append(key)
-        }
-//        checkValid()
     }
 
     override func setEditing(editing: Bool, animated: Bool) {
@@ -328,101 +258,6 @@ class PersonDetailViewController: UIViewController {
         self.navigationController?.navigationBar.translucent = false
         self.customTableView.tableFooterView = UIView()
     }
-
-   // swiftlint:disable function_body_length
-//    private func cellForProperty(attributeKey: String, attributeValue: AnyObject ) -> CustomTableViewCell? {
-//
-//        let avalibleTypeForCellWithSimpeTextField = [
-//            NSAttributeType.StringAttributeType,
-//            NSAttributeType.Integer32AttributeType,
-//            NSAttributeType.DoubleAttributeType]
-//
-//
-//        guard
-//            let attributeDescription = PersonAttributeDescription(
-//                attributeKey: attributeKey)?.description,
-//            let attributePlaceholder = PersonAttributeDescription(
-//                attributeKey: attributeKey)?.placeholder
-//        else {
-//            fatalError("fatalError: Attribute doesn't conform")
-//        }
-//
-//        let attributeType = personAttribute.attributeType
-//
-//        //если атрибут составной, то получаем значения по 2 ключам
-//        if personAttribute.optional {
-//            guard let valueKeys = personAttribute.userInfo?["keys"] as? [String]
-//                else {
-//                    fatalError("Составной атибут не имеет значения в  userInfo['keys'] ")
-//            }
-//
-//            let cell =  DateInputViewCell(
-//                description: [
-//                    attributeDescription,
-//                    attributePlaceholder
-//                ],
-//                startTime: self.person?.valueForKey(valueKeys[0]) as? NSDate,
-//                endTime: self.person?.valueForKey(valueKeys[1]) as? NSDate,
-//                action: { (startDate, endDate) in
-//                    self.person?.setValue(startDate, forKey: valueKeys[0])
-//                    self.person?.setValue(endDate, forKey: valueKeys[1])
-//                    self.addNewKeyForValid(valueKeys[0])
-//                    self.addNewKeyForValid(valueKeys[1])
-//                },
-//                actionForClearField: {
-//                    self.arrayOfFilledAttributes.removeObjectsInArray(valueKeys)
-//                    self.checkValid()
-//                })
-//
-//            cell.delegate = self
-//            return cell
-//        }
-//
-//        let attributeValue = self.person?.valueForKey(personAttribute.name)
-//
-//        if personAttribute.name == "type" {
-//            let cell = PickerInputViewCell(
-//                description: [
-//                    attributeDescription,
-//                    attributePlaceholder
-//                ],
-//                data: attributeValue,
-//                action: { (data) in
-//                    self.person?.setValue(data, forKey: personAttribute.name)
-//                    self.addNewKeyForValid(personAttribute.name)
-//                },
-//                actionForClearField: {
-//                    self.arrayOfFilledAttributes.removeObject(personAttribute.name)
-//                    self.checkValid()
-//                })
-//            cell.delegate = self
-//            return cell
-//        }
-//
-
-//            let cell = SimpleTextFieldCell(
-//                description: [
-//                    attributeDescription,
-//                    attributePlaceholder
-//                ],
-//                data: attributeValue,
-//
-//                action: { (data) in
-//                    self.personAttributeDictionary[attributeKey] = data
-////                    self.person?.setValue(data, forKey: personAttribute.name)
-////                    self.addNewKeyForValid(personAttribute.name)
-//                },
-//                actionForClearField: {
-//                    self.arrayOfFilledAttributes.removeObject(personAttribute.name)
-//                    self.checkValid()
-//                })
-//            cell.delegate = self
-//            return cell
-//
-//        return nil
-//    }
-//
-//    // swiftlint:enable function_body_length
 }
 
 //MARK: -
@@ -433,18 +268,6 @@ extension PersonDetailViewController: DelegateForPersonAttributeDictionary {
         checkValid()
     }
 }
-//extension PersonDetailViewController: DelegateForCustomCell {
-//    func cellBeginEditing() {
-//        self.navigationItem.leftBarButtonItem?.enabled = false
-//        self.personTypeSegmentControl.enabled = false
-//        self.navigationItem.rightBarButtonItem?.enabled = false
-//    }
-//    func cellDidEndEditing() {
-//        self.navigationItem.leftBarButtonItem?.enabled = true
-//        self.personTypeSegmentControl.enabled = true
-//        self.navigationItem.rightBarButtonItem?.enabled = true
-//    }
-//}
 //MARK: - UITableViewDelegate
 extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
@@ -462,10 +285,6 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
             cell.userInteractionEnabled = true
             cell.backgroundColor = UIColor.whiteColor()
         }
-
-//        if personTypeSegmentControl.selectedSegmentIndex != UISegmentedControlNoSegment {
-//            self.customTableView.backgroundView?.hidden = true
-//        }
     }
 
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -479,8 +298,6 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
     // Return the number of rows for each section in your static table
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print("for \(personAttributeDictionary?.displayedPersonType)")
-//        print("numberOfRowsInSection = \(personAttributeDictionary?.displayedPersonType.numberDisplayedAttributes ?? 0)")
         return personAttributeDictionary?.displayedPersonType
             .numberDisplayedAttributes ?? 0
     }
