@@ -419,17 +419,6 @@ class PersonDetailViewController: UIViewController {
 
 //MARK: -
 //MARK: Extension
-//MARK: - DelegateForCustomCell
-extension PersonDetailViewController: DelegateForCustomCell {
-    func cellBeginEditing() {
-        self.navigationItem.leftBarButtonItem?.enabled = false
-        self.personTypeSegmentControl.enabled = false
-        self.navigationItem.rightBarButtonItem?.enabled = false
-    }
-    func cellDidEndEditing() {
-        self.navigationItem.leftBarButtonItem?.enabled = true
-        self.personTypeSegmentControl.enabled = true
-        self.navigationItem.rightBarButtonItem?.enabled = true
     }
 }
 //MARK: - UITableViewDelegate

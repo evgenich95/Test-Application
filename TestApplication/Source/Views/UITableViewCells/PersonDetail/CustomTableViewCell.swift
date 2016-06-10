@@ -9,14 +9,8 @@
 import UIKit
 import CoreData
 
-protocol DelegateForCustomCell {
-    func cellBeginEditing()
-    func cellDidEndEditing()
-}
-
 class CustomTableViewCell: UITableViewCell {
 
-    var delegate: DelegateForCustomCell?
     private var actionForClearField: (() -> Void)?
 
     //MARK: Parameters
@@ -165,10 +159,10 @@ extension CustomTableViewCell: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(textField: UITextField) {
-        delegate?.cellDidEndEditing()
+//        delegate?.cellDidEndEditing()
     }
 
     func textFieldDidBeginEditing(textField: UITextField) {
-        delegate?.cellBeginEditing()
+//        delegate?.cellBeginEditing()
     }
 }
