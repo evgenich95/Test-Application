@@ -151,10 +151,6 @@ class CustomTableViewCell: UITableViewCell {
             make.left.equalTo(descriptionLabel.snp_right).offset(8)
         }
     }
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.endEditing(true)
-    }
 }
 
 //MARK:-
