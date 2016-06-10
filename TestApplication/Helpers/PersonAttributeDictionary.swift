@@ -8,6 +8,12 @@
 
 import Foundation
 
+protocol DelegateForPersonAttributeDictionary {
+//    func cellBeginEditing()
+//    func cellDidEndEditing()
+    func userEnteredData()
+    
+}
 
 class PersonAttributeDictionary {
     var displayedPersonType: PersonTypeRecognizer {
@@ -19,8 +25,14 @@ class PersonAttributeDictionary {
         }
     }
     var attributeDescriptions = [PersonAttributeDescription]()
-    
-    var valuesDictionary = [String: AnyObject]()
+
+    var valuesDictionary = [String: AnyObject]() {
+        didSet {
+            print("----\nvaluesDictionary.didSet ")
+            delegate?.userEnteredData()
+            print("valuesDictionary = \(valuesDictionary)\n------")
+        }
+    }
 
     init(displayedPersonType: PersonTypeRecognizer, aPerson: Person?) {
         self.displayedPersonType = displayedPersonType

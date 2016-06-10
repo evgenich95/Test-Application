@@ -18,12 +18,12 @@ class SimpleTextFieldCellFactory: AbstractFactory {
             attributeDictionary: personAttributeDictionary.valuesDictionary,
             action: { (data) in
                 let key = attributeDescription.key.first ?? ""
-                personAttributeDictionary.valuesDictionary[key] = data
-                print("personAttributeDictionary.valuesDictionary\n\(personAttributeDictionary.valuesDictionary)")
-
+                 personAttributeDictionary.valuesDictionary[key] = data
             },
             actionForClearField: {
 
+                let key = attributeDescription.key.first ?? ""
+                personAttributeDictionary.valuesDictionary[key] = nil
         })
     }
 }

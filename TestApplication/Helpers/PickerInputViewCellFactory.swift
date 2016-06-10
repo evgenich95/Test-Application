@@ -25,8 +25,8 @@ class PickerInputViewCellFactory: AbstractFactory {
                 //                self.addNewKeyForValid(personAttribute.name)
             },
             actionForClearField: {
-                //                self.arrayOfFilledAttributes.removeObject(personAttribute.name)
-                //                self.checkValid()
+                let key = attributeDescription.key.first ?? ""
+                personAttributeDictionary.valuesDictionary[key] = nil
         })
     }
 }

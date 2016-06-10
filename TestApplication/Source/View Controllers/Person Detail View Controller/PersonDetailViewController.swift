@@ -145,6 +145,7 @@ class PersonDetailViewController: UIViewController {
         personAttributeDictionary = PersonAttributeDictionary(
             displayedPersonType: displayedPersonType,
             aPerson: person)
+        personAttributeDictionary?.delegate = self
 
         print("attributeDescriptions = \n\(personAttributeDictionary?.attributeDescriptions)")
         print("displayedPersonType = \(personAttributeDictionary?.displayedPersonType)")
@@ -155,6 +156,7 @@ class PersonDetailViewController: UIViewController {
         }
         print("customCells.count=\(customCells.count)")
 
+        checkValid()
         print("-------------------------------\n")
 
 
@@ -253,30 +255,34 @@ class PersonDetailViewController: UIViewController {
 //        checkValid()
     }
 
-//    func checkValid() {
-//        print("----checkValid----")
-//        guard
-//            let filledAttributeKeys = personAttributeDictionary?
-//                .valuesDictionary.keys,
-//            let allAttributeKeys = personAttributeDictionary?.displayedPersonType
-//                .attributeKeys
-//        else {
-//            print("Блокирую кнопку Save")
-//            self.navigationItem.rightBarButtonItem?.enabled = false
-//            return
-//        }
-//
-////        let personAttributeKeys = person.attributeDictionary.keys
-//
-//        var canTapSave = true
-//        for key in allAttributeKeys {
-//            if !filledAttributeKeys.contains(key) {
-//                canTapSave = false
-//            }
-//        }
-//        print("Могу нажать на Save - \(canTapSave)")
-//        self.navigationItem.rightBarButtonItem?.enabled = canTapSave
-//    }
+    func checkValid() {
+        print("\n\n----checkValid----")
+        guard
+            let filledAttributeKeys = personAttributeDictionary?
+                                                    .valuesDictionary
+                                                    .keys,
+            let allAttributeKeys = personAttributeDictionary?
+                                                    .displayedPersonType
+                                                    .attributeKeys
+        else {
+            print("Блокирую кнопку Save")
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            return
+        }
+
+        print("allAttributeKeys =\n \(allAttributeKeys)")
+        print("filledAttributeKeys =\n \(filledAttributeKeys)")
+
+        var canTapSave = true
+        for key in allAttributeKeys {
+            if !filledAttributeKeys.contains(key) {
+                canTapSave = false
+            }
+        }
+        print("Могу нажать на Save - \(canTapSave)")
+        self.navigationItem.rightBarButtonItem?.enabled = canTapSave
+        print("\n\n--------")
+    }
 
     private func addNewKeyForValid(key: String) {
 
@@ -419,8 +425,24 @@ class PersonDetailViewController: UIViewController {
 
 //MARK: -
 //MARK: Extension
+//MARK: - DelegateForPersonAttributeDictionary
+extension PersonDetailViewController: DelegateForPersonAttributeDictionary {
+    func userEnteredData() {
+        checkValid()
     }
 }
+//extension PersonDetailViewController: DelegateForCustomCell {
+//    func cellBeginEditing() {
+//        self.navigationItem.leftBarButtonItem?.enabled = false
+//        self.personTypeSegmentControl.enabled = false
+//        self.navigationItem.rightBarButtonItem?.enabled = false
+//    }
+//    func cellDidEndEditing() {
+//        self.navigationItem.leftBarButtonItem?.enabled = true
+//        self.personTypeSegmentControl.enabled = true
+//        self.navigationItem.rightBarButtonItem?.enabled = true
+//    }
+//}
 //MARK: - UITableViewDelegate
 extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource {
 

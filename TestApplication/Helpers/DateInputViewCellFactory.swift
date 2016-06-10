@@ -29,8 +29,10 @@ class DateInputViewCellFactory: AbstractFactory {
                 //            self.addNewKeyForValid(valueKeys[1])
             },
             actionForClearField: {
-                //            self.arrayOfFilledAttributes.removeObjectsInArray(valueKeys)
-                //            self.checkValid()
+                let startDateKey = attributeDescription.key[0]
+                let endDateKey = attributeDescription.key[1]
+                personAttributeDictionary.valuesDictionary[startDateKey] = nil
+                personAttributeDictionary.valuesDictionary[endDateKey] = nil
         })
         
     }
