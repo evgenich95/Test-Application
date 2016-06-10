@@ -136,8 +136,8 @@ class DateInputViewCell: CustomTableViewCell {
         }
     }
 
-    override func textFieldDidEndEditing(textField: UITextField) {
-        super.textFieldDidEndEditing(textField)
+    override func handleEnteringData(textField: UITextField) {
+        print("DateInputViewCell.handleEnteringData()")
         switch (startTime, endTime) {
         case let (startTime?, endTime?):
             handleDataAction?(startDate: startTime, endDate: endTime)
@@ -145,6 +145,15 @@ class DateInputViewCell: CustomTableViewCell {
             break
         }
     }
+//    override func textFieldDidEndEditing(textField: UITextField) {
+//        super.textFieldDidEndEditing(textField)
+//        switch (startTime, endTime) {
+//        case let (startTime?, endTime?):
+//            handleDataAction?(startDate: startTime, endDate: endTime)
+//        default:
+//            break
+//        }
+//    }
 
     //MARK: Help functions
 

@@ -33,12 +33,7 @@ class SimpleTextFieldCell: CustomTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func textFieldDidEndEditing(textField: UITextField) {
-        super.textFieldDidEndEditing(textField)
-        if textField.text?.characters.count < 1 {
-            return
-        }
-
+    override func handleEnteringData(textField: UITextField) {
         if let text =  textField.text {
             if inputDataType == .StringAttributeType {
                 handleDataAction?(data: text)
@@ -49,4 +44,22 @@ class SimpleTextFieldCell: CustomTableViewCell {
             }
         }
     }
+
+
+//    override func textFieldDidEndEditing(textField: UITextField) {
+//        super.textFieldDidEndEditing(textField)
+//        if textField.text?.characters.count < 1 {
+//            return
+//        }
+//
+//        if let text =  textField.text {
+//            if inputDataType == .StringAttributeType {
+//                handleDataAction?(data: text)
+//            } else {
+//                if let integerValue = Int(text) {
+//                    handleDataAction?(data: NSNumber(integer: integerValue))
+//                }
+//            }
+//        }
+//    }
 }

@@ -110,6 +110,12 @@ class CustomTableViewCell: UITableViewCell {
         if dataTextField.text?.characters.count < 1 {
             actionForClearField?()
         }
+        handleEnteringData(dataTextField)
+
+    }
+
+    func handleEnteringData(textField: UITextField) {
+        fatalError("handleEnteringData must be implemet by subcluss")
     }
 
     //MARK: Help functions

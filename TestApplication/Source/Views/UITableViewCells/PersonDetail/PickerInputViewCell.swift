@@ -55,13 +55,18 @@ class PickerInputViewCell: CustomTableViewCell {
     func setupView() {
         dataTextFieldInputView = self.pickerView
     }
-
-    override func textFieldDidEndEditing(textField: UITextField) {
-        super.textFieldDidEndEditing(textField)
+    override func handleEnteringData(textField: UITextField) {
         if let type = currentValue {
             handleDataAction?(data: type )
         }
     }
+
+//    override func textFieldDidEndEditing(textField: UITextField) {
+//        super.textFieldDidEndEditing(textField)
+//        if let type = currentValue {
+//            handleDataAction?(data: type )
+//        }
+//    }
 }
 
 extension PickerInputViewCell: UIPickerViewDelegate {
