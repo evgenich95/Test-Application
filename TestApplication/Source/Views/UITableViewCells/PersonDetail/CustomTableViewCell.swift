@@ -41,11 +41,11 @@ class CustomTableViewCell: UITableViewCell {
     var attributeValue: AnyObject? {
         willSet {
             if let text = newValue as? String {
-                self.dataTextField.text = text
+                dataTextField.insertText(text)
             }
             
             if let text = newValue as? NSNumber {
-                self.dataTextField.text = text.stringValue
+                dataTextField.insertText(text.stringValue)
             }
         }
     }
