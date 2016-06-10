@@ -135,6 +135,7 @@ class PersonDetailViewController: UIViewController {
         print("\nviewDidLoad()")
 
         configureView()
+        setupGestureRecognizer()
         guard
             let orderIndex = selectedPersonType,
             let displayedPersonType = PersonTypeRecognizer(orderIndex: orderIndex)
@@ -221,6 +222,21 @@ class PersonDetailViewController: UIViewController {
     }
 
     //MARK: Help functions
+
+    func setupGestureRecognizer() {
+
+        let doubleTap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleDoubleTap)
+        )
+        doubleTap.numberOfTapsRequired = 1
+        view.addGestureRecognizer(doubleTap)
+    }
+
+    @objc func handleDoubleTap(recognizer: UITapGestureRecognizer) {
+        customTableView.endEditing(true)
+    }
+
     private func updateArrayOfFilledAttribute() {
         var tempArray = [String]()
 
