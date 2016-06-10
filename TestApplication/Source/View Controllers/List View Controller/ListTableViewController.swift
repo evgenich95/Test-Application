@@ -240,12 +240,13 @@ class ListPersonTableViewController: UITableViewController {
     //MARK: Help functions
 
     private func updateEditButtonItemStatus() {
-        var buttonStatus = true
+
+        self.editButtonItem().enabled = true
 
         if fetchedResultsController.fetchedObjects?.count == 0 {
-            buttonStatus = false
+            self.setEditing(false, animated: true)
+            self.editButtonItem().enabled = false
         }
-        self.editButtonItem().enabled = buttonStatus
     }
 
     private func registrateAllUsingCell () {
