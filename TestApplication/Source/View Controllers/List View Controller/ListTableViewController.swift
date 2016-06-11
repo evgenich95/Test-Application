@@ -130,21 +130,27 @@ class ListPersonTableViewController: UITableViewController {
         case let manager as Manager :
 
             if let managerCell = (tableView.dequeueReusableCellWithIdentifier(
-                KeysForCells.managerTableViewCell, forIndexPath: indexPath)) as? ManagerTableViewCell {
+                KeysForCells.managerTableViewCell,
+                forIndexPath: indexPath)) as? ManagerTableViewCell {
+
                 managerCell.updateUI(manager)
                 maybeCell = managerCell
             }
 
         case let accountant as Accountant:
             if let accountantCell = (tableView.dequeueReusableCellWithIdentifier(
-                KeysForCells.accountantTableViewCell, forIndexPath: indexPath)) as? AccountantTableViewCell {
+                KeysForCells.accountantTableViewCell,
+                forIndexPath: indexPath)) as? AccountantTableViewCell {
+
                 accountantCell.updateUI(accountant)
                 maybeCell = accountantCell
             }
 
         case let worker as Worker:
             if let workerCell = (tableView.dequeueReusableCellWithIdentifier(
-                KeysForCells.workerTableViewCell, forIndexPath: indexPath)) as? WorkerTableViewCell {
+                KeysForCells.workerTableViewCell,
+                forIndexPath: indexPath)) as? WorkerTableViewCell {
+
                 workerCell.updateUI(worker)
                 maybeCell = workerCell
             }
@@ -159,15 +165,17 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //отписываюсь от автоматических обновлений
-//        frcDelegate.tableView = nil
 
         if let person = fetchedResultsController.sections?[indexPath.section].objects[indexPath.row] {
 
-            let createNewPersonViewController = PersonDetailViewController(coreDataStack: coreDataStack)
+            let createNewPersonViewController = PersonDetailViewController(
+                                                coreDataStack: coreDataStack)
             createNewPersonViewController.person = person
 
-            self.navigationController?.pushViewController(createNewPersonViewController, animated: true)
+            self.navigationController?.pushViewController(
+                createNewPersonViewController,
+                animated: true
+            )
         }
     }
 
@@ -240,7 +248,8 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     private func registrateAllUsingCell () {
-        tableView.registerClass(PersonTableViewHeader.self, forHeaderFooterViewReuseIdentifier: KeysForCells.personTableViewHeader)
+        tableView.registerClass(PersonTableViewHeader.self,
+                                forHeaderFooterViewReuseIdentifier: KeysForCells.personTableViewHeader)
 
         tableView.registerNib(UINib(nibName: KeysForCells.managerTableViewCell, bundle: nil),
                               forCellReuseIdentifier: KeysForCells.managerTableViewCell)
@@ -254,7 +263,6 @@ class ListPersonTableViewController: UITableViewController {
 
     private func configureTableView() {
         tableView.tableFooterView = UIView()
-
         tableView.estimatedRowHeight = 190
         tableView.sectionHeaderHeight = 40
     }
