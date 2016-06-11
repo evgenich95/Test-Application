@@ -39,6 +39,7 @@
 		8B9E1FD41CEC55190071C648 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E1FD31CEC55190071C648 /* Quote.swift */; };
 		8BA93DF31CE4E3DA00E55BA7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA93DF21CE4E3DA00E55BA7 /* CustomTableViewCell.swift */; };
 		8BA93DF51CE4E8B400E55BA7 /* SimpleTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA93DF41CE4E8B400E55BA7 /* SimpleTextFieldCell.swift */; };
+		8BEF1E5D1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF1E5C1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift */; };
 		8BF275DC1CDB524600E1566D /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF275DA1CDB524600E1566D /* ListTableViewController.swift */; };
 		8BF275DD1CDB524600E1566D /* ListPersonTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF275DB1CDB524600E1566D /* ListPersonTableViewController.xib */; };
 		8BF337D11CECAE9E005CB57B /* UIViewController+EZLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF337CF1CECAE9E005CB57B /* UIViewController+EZLoading.swift */; };
@@ -100,6 +101,7 @@
 		8B9E1FD31CEC55190071C648 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		8BA93DF21CE4E3DA00E55BA7 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		8BA93DF41CE4E8B400E55BA7 /* SimpleTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldCell.swift; sourceTree = "<group>"; };
+		8BEF1E5C1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+addSubstructMinute.swift"; sourceTree = "<group>"; };
 		8BF275DA1CDB524600E1566D /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		8BF275DB1CDB524600E1566D /* ListPersonTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListPersonTableViewController.xib; sourceTree = "<group>"; };
 		8BF337CF1CECAE9E005CB57B /* UIViewController+EZLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+EZLoading.swift"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				8BF337CE1CECAE9E005CB57B /* UIViewController */,
 				8BF4E3581CEC1226005AE3D5 /* Array+removeObject.swift */,
 				8B5B26891CE06ADD004B3223 /* NSDate+timeFormating.swift */,
+				8BEF1E5C1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift */,
 				8B001DCE1CF203AA001EB1C0 /* UIImageView+setImage.swift */,
 			);
 			path = Extensions;
@@ -634,6 +637,7 @@
 				8B5B268A1CE06ADD004B3223 /* NSDate+timeFormating.swift in Sources */,
 				8BF337D11CECAE9E005CB57B /* UIViewController+EZLoading.swift in Sources */,
 				8BF6F2951CEF03EF00565E92 /* ZoomedPhotoViewController.swift in Sources */,
+				8BEF1E5D1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift in Sources */,
 				8B4B0B0C1D070A6D009C0807 /* PersonTableViewHeader.swift in Sources */,
 				8BA93DF51CE4E8B400E55BA7 /* SimpleTextFieldCell.swift in Sources */,
 				8BF7FFDF1CE58B4E0002C5F1 /* DateInputViewCell.swift in Sources */,
