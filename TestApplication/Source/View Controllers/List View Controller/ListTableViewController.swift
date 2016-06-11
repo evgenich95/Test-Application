@@ -222,7 +222,7 @@ class ListPersonTableViewController: UITableViewController {
 
         //отписываюсь от автообновлений, чтобы не было конфликтов
         //связанных с обновлением секций при добавлений и удалений
-        frcDelegate.tableView = nil
+//        frcDelegate.tableView = nil
 
         let addNewPersonViewController = PersonDetailViewController(coreDataStack: coreDataStack)
         self.navigationController?.pushViewController(addNewPersonViewController, animated: true)
