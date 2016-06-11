@@ -57,12 +57,7 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        //включаю наблюдатель и обновляю модель
-        //после возможных изменений в PersonDetailController-e
-        frcDelegate.tableView = self.tableView
-        performFetch(fetchedResultsController)
-
-        tableView.reloadData()
+         tableView.reloadData()
     }
 
     override func viewDidLoad() {
@@ -165,7 +160,7 @@ class ListPersonTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //отписываюсь от автоматических обновлений
-        frcDelegate.tableView = nil
+//        frcDelegate.tableView = nil
 
         if let person = fetchedResultsController.sections?[indexPath.section].objects[indexPath.row] {
 
