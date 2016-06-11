@@ -24,8 +24,7 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: -
     //MARK: Lazy parameters
-
-    lazy private var startTimeDatePicker: UIDatePicker = {
+    private var customTimeDatePicker: UIDatePicker {
         let datePicker = UIDatePicker()
         datePicker.backgroundColor = UIColor.grayColor()
         datePicker.datePickerMode = UIDatePickerMode.Time
@@ -33,21 +32,21 @@ class DateInputViewCell: CustomTableViewCell {
         datePicker.addTarget(self,
                              action: #selector(datePickerValueChange),
                              forControlEvents: .ValueChanged)
-        datePicker.tag = 0
+
         return datePicker
+    }
+
+
+    lazy private var startTimeDatePicker: UIDatePicker = {
+        let picker =  self.customTimeDatePicker
+        picker.tag = 0
+        return picker
     }()
 
     lazy private var endTimeDatePicker: UIDatePicker = {
-
-        let datePicker = UIDatePicker()
-        datePicker.backgroundColor = UIColor.grayColor()
-        datePicker.datePickerMode = UIDatePickerMode.Time
-        datePicker.locale = NSLocale(localeIdentifier: "en_GB")
-        datePicker.addTarget(self,
-                             action: #selector(datePickerValueChange),
-                             forControlEvents: .ValueChanged)
-        datePicker.tag = 1
-        return datePicker
+        let picker =  self.customTimeDatePicker
+        picker.tag = 1
+        return picker
     }()
 
     lazy private var dateInputView: UIView = {
@@ -109,9 +108,8 @@ class DateInputViewCell: CustomTableViewCell {
                     as? NSDate {
                 self.startTimeDatePicker.setDate(startDate, animated: false)
                 self.endTimeDatePicker.setDate(endDate, animated: false)
-                self.filedPickers[0] = startTimeDatePicker
-                self.filedPickers[1] = endTimeDatePicker
-//                updateDateValue()
+                self.filedPickers[startTimeDatePicker.tag] = startTimeDatePicker
+                self.filedPickers[endTimeDatePicker.tag] = endTimeDatePicker
             }
         }
 
