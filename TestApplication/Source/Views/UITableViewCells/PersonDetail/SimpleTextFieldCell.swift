@@ -34,17 +34,24 @@ class SimpleTextFieldCell: CustomTableViewCell {
     }
 
     override func handleEnteringData(textField: UITextField) {
-        if let text =  textField.text {
-            if inputDataType == .StringAttributeType {
-                handleDataAction?(data: text)
-            } else {
-                if let integerValue = Int(text) {
-                    handleDataAction?(data: NSNumber(integer: integerValue))
-                }
-            }
-        }
-    }
 
+        guard
+        let text = textField.text,
+        let inputType = inputDataType
+            else {return}
+
+        var returnData: AnyObject?
+
+        switch inputType {
+            case .StringAttributeType:
+                returnData = text
+            case .DoubleAttributeType:
+                returnData = (text as NSString).doubleValue
+            case .Integer32AttributeType:
+                returnData = (text as NSString).integerValue
+        default:
+            fatalError("Invalid input data type for attribute \(attributeDescriptionString)")
+        }
 
 //    override func textFieldDidEndEditing(textField: UITextField) {
 //        super.textFieldDidEndEditing(textField)
@@ -62,4 +69,8 @@ class SimpleTextFieldCell: CustomTableViewCell {
 //            }
 //        }
 //    }
+        if let data = returnData {
+            handleDataAction?(data: data)
+        }
+    }
 }
