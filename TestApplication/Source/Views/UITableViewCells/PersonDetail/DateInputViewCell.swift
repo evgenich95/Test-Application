@@ -14,19 +14,7 @@ class DateInputViewCell: CustomTableViewCell {
     typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate)
         -> Void)?
     var handleDataAction: ResultDataActionType
-
-
-    private var startTime: NSDate? {
-        didSet {
-            updateDateValue()
-        }
-    }
-
-    private var endTime: NSDate? {
-        didSet {
-            updateDateValue()
-        }
-    }
+    var filedPickers = [Int: UIDatePicker]()
 
     //MARK: -
     //MARK: Lazy parameters
@@ -105,10 +93,15 @@ class DateInputViewCell: CustomTableViewCell {
 
         super.init(actionForClearField: actionForClearField)
         defer {
-            self.startTime = attributeDictionary[attributeDescription.key[0]]
-                as? NSDate
-            self.endTime = attributeDictionary[attributeDescription.key[1]]
-                as? NSDate
+            if
+                let startDate = attributeDictionary[attributeDescription.key[0]]
+                    as? NSDate,
+                let endDate = attributeDictionary[attributeDescription.key[1]]
+                    as? NSDate {
+                self.startTimeDatePicker.setDate(startDate, animated: false)
+                self.endTimeDatePicker.setDate(endDate, animated: false)
+                updateDateValue()
+            }
         }
 
         self.attributeDescriptionString = attributeDescription.description
@@ -128,11 +121,9 @@ class DateInputViewCell: CustomTableViewCell {
         switch sender {
         case startTimeDatePicker :
             startTimeDatePicker.backgroundColor = UIColor.whiteColor()
-            startTime = sender.date
 
         case endTimeDatePicker:
             endTimeDatePicker.backgroundColor = UIColor.whiteColor()
-            endTime = sender.date
             direction *= -1
         default:
             break
@@ -151,12 +142,8 @@ class DateInputViewCell: CustomTableViewCell {
 
     override func handleEnteringData(textField: UITextField) {
         print("DateInputViewCell.handleEnteringData()")
-        switch (startTime, endTime) {
-        case let (startTime?, endTime?):
-            handleDataAction?(startDate: startTime, endDate: endTime)
-        default:
-            break
-        }
+
+        handleDataAction?(startDate: startTimeDatePicker.date, endDate: endTimeDatePicker.date)
     }
 //    override func textFieldDidEndEditing(textField: UITextField) {
 //        super.textFieldDidEndEditing(textField)
@@ -170,14 +157,14 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: Help functions
 
-    func updateDateValue() {
-        switch (startTime, endTime) {
-        case let (startTime?, endTime?):
-            attributeValue = "from \(startTime.timeFormating) to \(endTime.timeFormating)"
-            startTimeDatePicker.date = startTime
-            endTimeDatePicker.date = endTime
         default:
             break
+        }
+    }
+
+    func updateDateValue() {
+        if filedPickers.count == 2 {
+            attributeValue = "from \(startTimeDatePicker.date.timeFormating) to \(endTimeDatePicker.date.timeFormating)"
         }
     }
     
