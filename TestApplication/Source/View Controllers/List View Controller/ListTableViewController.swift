@@ -201,8 +201,9 @@ class ListPersonTableViewController: UITableViewController {
             return
         }
 
-        //отписываюсь от автом. обновления tableView
-        frcDelegate.tableView = nil
+        //disable auto updating tableView
+        //need to avoid error "invalid number of rows in section"
+        frcDelegate.userAreEditing = true
 
         if var persons = self.fetchedResultsController.sections?[fromIndexPath.section].objects {
             let person = persons[fromIndexPath.row] as Person
@@ -216,10 +217,10 @@ class ListPersonTableViewController: UITableViewController {
                 person.order = idx
             }
 
+            //need to save order of sections after reording elements
             coreDataStack.saveAndLog()
 
-            //надо обновить данные fetchedResultsController, иначе порядок элементов не изменится
-            frcDelegate.tableView = self.tableView
+            frcDelegate.userAreEditing = false
             performFetch(fetchedResultsController)
         }
     }

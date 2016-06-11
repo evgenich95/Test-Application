@@ -12,6 +12,7 @@ import BNRCoreDataStack
 
 class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate {
     weak var tableView: UITableView?
+    var userAreEditing = false
 
     // MARK: - Lifecycle
 
@@ -20,19 +21,24 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
     }
 
     func fetchedResultsControllerDidPerformFetch(controller: FetchedResultsController<Person>) {
+        if userAreEditing {return}
         tableView?.reloadData()
     }
 
     func fetchedResultsControllerWillChangeContent(controller: FetchedResultsController<Person>) {
+        if userAreEditing {return}
         tableView?.beginUpdates()
     }
 
     func fetchedResultsControllerDidChangeContent(controller: FetchedResultsController<Person>) {
+        if userAreEditing {return}
         tableView?.endUpdates()
     }
 
     func fetchedResultsController(controller: FetchedResultsController<Person>,
                                   didChangeObject change: FetchedResultsObjectChange<Person>) {
+        if userAreEditing {return}
+
         switch change {
         case let .Insert(_, indexPath):
             tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
@@ -50,6 +56,8 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
 
     func fetchedResultsController(controller: FetchedResultsController<Person>,
                                   didChangeSection change: FetchedResultsSectionChange<Person>) {
+        if userAreEditing {return}
+
         switch change {
         case let .Insert(_, index):
             tableView?.insertSections(NSIndexSet(index: index), withRowAnimation: .Automatic)
