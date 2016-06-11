@@ -61,6 +61,10 @@ class PickerInputViewCell: CustomTableViewCell {
             handleDataAction?(data: type )
         }
     }
+
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }
 }
 
 extension PickerInputViewCell: UIPickerViewDelegate {

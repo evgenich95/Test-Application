@@ -36,7 +36,6 @@ class DateInputViewCell: CustomTableViewCell {
         return datePicker
     }
 
-
     lazy private var startTimeDatePicker: UIDatePicker = {
         let picker =  self.customTimeDatePicker
         picker.tag = 0
@@ -173,13 +172,11 @@ class DateInputViewCell: CustomTableViewCell {
         }
     }
 
-    func updateDateValue() {
-        if filedPickers.count == 2 {
-            attributeValue = "from \(startTimeDatePicker.date.timeFormating) to \(endTimeDatePicker.date.timeFormating)"
-        }
-    }
-    
     func setupView() {
         dataTextFieldInputView = self.dateInputView
+    }
+
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
 }
