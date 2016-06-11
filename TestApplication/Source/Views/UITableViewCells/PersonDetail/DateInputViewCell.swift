@@ -124,16 +124,29 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: AddTarget's functions
     @objc func datePickerValueChange(sender: UIDatePicker) {
+        var direction: Double = 1
         switch sender {
         case startTimeDatePicker :
             startTimeDatePicker.backgroundColor = UIColor.whiteColor()
             startTime = sender.date
+
         case endTimeDatePicker:
             endTimeDatePicker.backgroundColor = UIColor.whiteColor()
             endTime = sender.date
+            direction *= -1
         default:
             break
         }
+
+        if startTime.compare(endTime) == NSComparisonResult.OrderedDescending {
+            print("moved endTime")
+            print("interval startTime to endTime = \(-1*startTime.timeIntervalSinceDate(endTime))")
+            let interval = startTime.timeIntervalSinceDate(endTime)
+            self.startTimeDatePicker.setDate(startTime.dateByAddingTimeInterval(-1*(interval+60*30)), animated: true)
+        }
+
+
+
     }
 
     override func handleEnteringData(textField: UITextField) {
