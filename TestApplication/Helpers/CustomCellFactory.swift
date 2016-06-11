@@ -13,7 +13,7 @@ enum CustomCellFactory {
 
     private static func appropriateFactory(attributeDescription: PersonAttributeDescription) -> AbstractFactory {
 
-        print("factory for \(attributeDescription)")
+//        print("factory for \(attributeDescription)")
         switch attributeDescription {
             case .FullName, .Salary, .WorkplaceNumber:
                 return SimpleTextFieldCellFactory()

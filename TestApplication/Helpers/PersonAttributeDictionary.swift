@@ -20,8 +20,8 @@ class PersonAttributeDictionary {
     var delegate: DelegateForPersonAttributeDictionary?
     var displayedPersonType: PersonTypeRecognizer {
         didSet {
-            print("обновляю словарь значений)")
-            print("Текущий отображ. тип изменился с \(oldValue) на \(displayedPersonType)")
+//            print("обновляю словарь значений)")
+//            print("Текущий отображ. тип изменился с \(oldValue) на \(displayedPersonType)")
             updateValuesDictionary()
             updateAttributeDescriptions()
         }
@@ -30,9 +30,9 @@ class PersonAttributeDictionary {
 
     var valuesDictionary = [String: AnyObject]() {
         didSet {
-            print("----\nvaluesDictionary.didSet ")
+//            print("----\nvaluesDictionary.didSet ")
             delegate?.userEnteredData()
-            print("valuesDictionary = \(valuesDictionary)\n------")
+//            print("valuesDictionary = \(valuesDictionary)\n------")
         }
     }
 
@@ -58,14 +58,14 @@ class PersonAttributeDictionary {
     }
     }
     func updateValuesDictionary() {
-        print("\nupdateValuesDictionary")
-        print("valuesDictionary = \(valuesDictionary)")
+//        print("\nupdateValuesDictionary")
+//        print("valuesDictionary = \(valuesDictionary)")
         for key in valuesDictionary.keys {
             if !displayedPersonType.attributeKeys.contains(key) {
                 valuesDictionary[key] = nil
                 print("убрал ключ \(key) из нового словаря значений")
             }
         }
-        print("\n\n")
+//        print("\n\n")
     }
 }

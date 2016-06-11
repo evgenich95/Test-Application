@@ -46,7 +46,6 @@ class CustomTableViewCell: UITableViewCell {
             }
             
             if let text = newValue as? NSNumber {
-//                dataTextField.insertText(text.stringValue)
                 dataTextField.text = text.stringValue
                 textFieldValueChange()
             }
@@ -165,13 +164,5 @@ extension CustomTableViewCell: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.endEditing(true)
         return true
-    }
-
-    func textFieldDidEndEditing(textField: UITextField) {
-//        delegate?.cellDidEndEditing()
-    }
-
-    func textFieldDidBeginEditing(textField: UITextField) {
-//        delegate?.cellBeginEditing()
     }
 }

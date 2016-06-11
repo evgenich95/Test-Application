@@ -70,7 +70,6 @@ enum PersonTypeRecognizer: CustomStringConvertible {
         case .WorkerType:
             return Worker.keys
         case .AccountantType:
-            print("Accountant.keys.count = \(Accountant.keys.count)")
             return Accountant.keys
         }
     }

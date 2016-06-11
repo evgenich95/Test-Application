@@ -136,8 +136,6 @@ class DateInputViewCell: CustomTableViewCell {
 
 
     override func handleEnteringData(textField: UITextField) {
-        print("DateInputViewCell.handleEnteringData()")
-
         handleDataAction?(startDate: startTimeDatePicker.date, endDate: endTimeDatePicker.date)
     }
 

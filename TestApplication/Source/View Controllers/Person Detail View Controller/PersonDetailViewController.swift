@@ -40,7 +40,7 @@ class PersonDetailViewController: UIViewController {
 
     var selectedPersonType: Int = 0 {
         willSet {
-            print("Изменился тип Person,selectedPersonType.willSet()")
+//            print("Изменился тип Person,selectedPersonType.willSet()")
 
             guard
 
@@ -49,16 +49,16 @@ class PersonDetailViewController: UIViewController {
             else { return }
 
             personAttributeDictionary?.displayedPersonType = currentDisplayedPersonType
-
-            print("attributeDescriptions = \n\(personAttributeDictionary?.attributeDescriptions)")
-            print("displayedPersonType = \(personAttributeDictionary?.displayedPersonType)")
+//
+//            print("attributeDescriptions = \n\(personAttributeDictionary?.attributeDescriptions)")
+//            print("displayedPersonType = \(personAttributeDictionary?.displayedPersonType)")
 
             if let attributeDictionary = personAttributeDictionary {
-                print("Пересоздал массив ячеек")
+//                print("Пересоздал массив ячеек")
                 customCells = CustomCellFactory.cellsFor(attributeDictionary)
             }
-            print("customCells.count=\(customCells.count)")
-            print("-------------------------\n")
+//            print("customCells.count=\(customCells.count)")
+//            print("-------------------------\n")
         }
     }
 
@@ -86,7 +86,7 @@ class PersonDetailViewController: UIViewController {
     }()
 
     lazy var personTypeSegmentControl: UISegmentedControl = {
-        print("Создаю personTypeSegmentControl")
+//        print("Создаю personTypeSegmentControl")
         defer {
             self.selectedPersonType = segment.selectedSegmentIndex
         }
@@ -132,7 +132,7 @@ class PersonDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\nviewDidLoad()")
+//        print("\nviewDidLoad()")
 
         configureView()
         setupGestureRecognizer()
@@ -143,23 +143,23 @@ class PersonDetailViewController: UIViewController {
                 orderIndex: selectedPersonType)
             else { return }
 
-        print("Инициализировал personAttributeDictionary ")
+//        print("Инициализировал personAttributeDictionary ")
         personAttributeDictionary = PersonAttributeDictionary(
             displayedPersonType: displayedPersonType,
             aPerson: person)
         personAttributeDictionary?.delegate = self
 
-        print("attributeDescriptions = \n\(personAttributeDictionary?.attributeDescriptions)")
-        print("displayedPersonType = \(personAttributeDictionary?.displayedPersonType)")
+//        print("attributeDescriptions = \n\(personAttributeDictionary?.attributeDescriptions)")
+//        print("displayedPersonType = \(personAttributeDictionary?.displayedPersonType)")
 
         if let attributeDictionary = personAttributeDictionary {
             print("Создал первый раз массив ячеек")
             customCells = CustomCellFactory.cellsFor(attributeDictionary)
         }
-        print("customCells.count=\(customCells.count)")
+//        print("customCells.count=\(customCells.count)")
 
         checkValid()
-        print("-------------------------------\n")
+//        print("-------------------------------\n")
 
 
 //        let displayedTypeOrderIndex = personTypeSegmentControl.selectedSegmentIndex
@@ -196,7 +196,7 @@ class PersonDetailViewController: UIViewController {
     }
 
     func checkValid() {
-        print("\n\n----checkValid----")
+//        print("\n\n----checkValid----")
         guard
             let filledAttributeKeys = personAttributeDictionary?
                                                     .valuesDictionary
@@ -205,13 +205,13 @@ class PersonDetailViewController: UIViewController {
                                                     .displayedPersonType
                                                     .attributeKeys
         else {
-            print("Блокирую кнопку Save")
+//            print("Блокирую кнопку Save")
             self.navigationItem.rightBarButtonItem?.enabled = false
             return
         }
 
-        print("allAttributeKeys =\n \(allAttributeKeys)")
-        print("filledAttributeKeys =\n \(filledAttributeKeys)")
+//        print("allAttributeKeys =\n \(allAttributeKeys)")
+//        print("filledAttributeKeys =\n \(filledAttributeKeys)")
 
         var canTapSave = true
         for key in allAttributeKeys {
@@ -219,9 +219,9 @@ class PersonDetailViewController: UIViewController {
                 canTapSave = false
             }
         }
-        print("Могу нажать на Save - \(canTapSave)")
+//        print("Могу нажать на Save - \(canTapSave)")
         self.navigationItem.rightBarButtonItem?.enabled = canTapSave
-        print("\n\n--------")
+//        print("\n\n--------")
     }
 
     override func setEditing(editing: Bool, animated: Bool) {
@@ -304,8 +304,8 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
     // Return the row for the corresponding section and row
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("cellForRowAtIndexPath")
-        print("customCells.count = \(customCells.count)")
+//        print("cellForRowAtIndexPath")
+//        print("customCells.count = \(customCells.count)")
 //        print("\(currentDisplayedPersonType?.description).AtrCount = \(currentDisplayedPersonType?.attributeKeys.count)")
 
         return customCells[indexPath.row]
