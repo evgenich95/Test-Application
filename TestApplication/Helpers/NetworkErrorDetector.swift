@@ -9,7 +9,6 @@
 import Foundation
 
 enum NetworkErrorDetector: CustomStringConvertible {
-
     case NoInternetConnection
     case UnsupportedURL
     case UnknownError

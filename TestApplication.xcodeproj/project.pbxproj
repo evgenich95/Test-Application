@@ -207,11 +207,11 @@
 			children = (
 				8BF776A11D085A7A00BBC55C /* Custom cell factory */,
 				8B5B26761CE03DAA004B3223 /* Extensions */,
+				8B3D75D51D0C3FFF00A41714 /* Person Helper */,
 				8BF347631CEB463700241D23 /* States PersonDetailViewController  */,
 				8BFF16021CE3780700F200CF /* Constants.swift */,
 				8B3EA9971CF3A7910057B57A /* NetworkErrorDetector.swift */,
 				8B9E1FD01CEC52670071C648 /* WebService.swift */,
-				8B3D75D51D0C3FFF00A41714 /* Person Helper */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

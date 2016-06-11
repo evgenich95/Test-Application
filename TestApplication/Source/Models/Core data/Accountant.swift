@@ -22,10 +22,4 @@ class Accountant: Worker {
         keys.append(PersonAttributeKeys.accountantType)
         return keys
     }
-
-//    override var attributeDictionary: [String : AnyObject] {
-//        var attributeDictionary = super.attributeDictionary
-//        attributeDictionary[PersonAttributeKeys.accountantType] = type
-//        return attributeDictionary
-//    }
 }

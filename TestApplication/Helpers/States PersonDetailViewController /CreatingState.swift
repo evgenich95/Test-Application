@@ -33,9 +33,7 @@ class CreatingState: State {
     //MARK:-
     required init(contex: Owner) {
         self.owner = contex
-//        createAttributeDictionary()
         setupNavigationItem()
-//        setupView()
     }
     //MARK:-
 
@@ -60,25 +58,15 @@ class CreatingState: State {
         }
 
         guard let attributeDictionary = owner.personAttributeContainer
-            else {
-                return
-        }
+            else {return}
 
         let valuesDictionary = attributeDictionary.valuesDictionary
         let entityName = attributeDictionary.displayedPersonType.description
 
         if let newPerson = owner.coreDataStack
-            .createEntityByName(entityName) as? Person {
-
+                                    .createEntityByName(entityName) as? Person {
             newPerson.fillAttributes(valuesDictionary)
             owner.coreDataStack.saveAndLog()
         }
     }
-
-    //MARK: Help functions
-    func setupView() {
-//        owner.checkValid()
-//        owner.customTableView.backgroundView?.hidden = false
-    }
-    
 }

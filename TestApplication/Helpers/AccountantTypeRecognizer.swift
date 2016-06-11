@@ -25,7 +25,6 @@ enum AccountantTypeRecognizer: CustomStringConvertible {
 
     init(index: Int) {
         switch index {
-
         case -1, 0:
             self = .SalaryAccounting
         case 1:

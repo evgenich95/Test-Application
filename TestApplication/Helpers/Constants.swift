@@ -19,5 +19,3 @@ struct PersonAttributeKeys {
     static let endMealTime = "endMealTime"
     static let accountantType = "type"
 }
-
-

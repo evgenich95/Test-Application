@@ -25,8 +25,6 @@ class BrowsingState: State {
 
     required init(contex: Owner) {
         self.owner = contex
-//        createAttributeDictionary()
- 
         setupNavigationItem()
     }
     //MARK:-
@@ -44,21 +42,10 @@ class BrowsingState: State {
     }
 
     @objc func cancelAction() {
-//        owner.coreDataStack.saveAndLog()
         owner.navigationController?.popViewControllerAnimated(true)
     }
 
     @objc func doneAction() {
 
     }
-
-    //MARK: Help functions
-
-
-//    func createAttributeDictionary() {
-//        if let person = owner.person {
-//            owner.personAttributeContainer = person.attributeDictionary
-//        }
-
-//    }
 }

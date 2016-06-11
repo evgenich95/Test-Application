@@ -24,13 +24,4 @@ class Manager: Person {
         keys.append(PersonAttributeKeys.endVisitingHours)
         return keys
     }
-
-//    override var attributeDictionary: [String : AnyObject] {
-//        var attributeDictionary = super.attributeDictionary
-//
-//        attributeDictionary[PersonAttributeKeys.startVisitingHours] = startVisitingHours
-//        attributeDictionary[PersonAttributeKeys.endVisitingHours] = endVisitingHours
-//
-//        return attributeDictionary
-//    }
 }

@@ -13,7 +13,6 @@ enum CustomCellFactory {
 
     private static func appropriateFactory(attributeDescription: PersonAttributeDescription) -> AbstractFactory {
 
-//        print("factory for \(attributeDescription)")
         switch attributeDescription {
             case .FullName, .Salary, .WorkplaceNumber:
                 return SimpleTextFieldCellFactory()
@@ -25,8 +24,6 @@ enum CustomCellFactory {
     }
 
     static func cellsFor(personAttributeContainer: PersonAttributeContainer) -> [CustomTableViewCell] {
-//        print("\n\nCustomCellFactory.cellsFor")
-//        print("Person type = \(displayedPersonType!.description)")
 
         var cells = [CustomTableViewCell]()
 

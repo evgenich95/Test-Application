@@ -34,8 +34,6 @@ class EditingState: State {
     required init(contex: Owner) {
         self.owner = contex
         setupNavigationItem()
-//        setupView()
-//        makeCopy(owner.person)
     }
     //MARK:-
 
@@ -51,10 +49,6 @@ class EditingState: State {
 
     @objc func cancelAction() {
         owner.navigationController?.popViewControllerAnimated(true)
-//        if let didntCompletedPerson = owner.person {
-//            owner.coreDataStack.mainQueueContext.deleteObject(didntCompletedPerson)
-//        }
-//        saveAndExit()
     }
 
     @objc func doneAction() {
@@ -84,13 +78,5 @@ class EditingState: State {
     func saveAndExit() {
         owner.coreDataStack.saveAndLog()
         owner.navigationController?.popViewControllerAnimated(true)
-    }
-
-    func setupView() {
-//        owner.customTableView.backgroundView?.hidden = true
-//        if let browsingPersonAttribute = owner.person?.personDisplayedAttributeKeys {
-//            owner.arrayOfFilledAttributes = browsingPersonAttribute
-//        }
-//        owner.checkValid()
     }
 }

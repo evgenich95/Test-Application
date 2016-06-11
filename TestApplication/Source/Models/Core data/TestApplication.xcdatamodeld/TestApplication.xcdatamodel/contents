@@ -1,82 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
     <entity name="Accountant" representedClassName=".Accountant" parentEntity="Worker" syncable="YES">
-        <attribute name="type" attributeType="Integer 32" syncable="YES">
-            <userInfo>
-                <entry key="description" value="Type:"/>
-                <entry key="orderIndex" value="4"/>
-                <entry key="placeholder" value="Material Accounting"/>
-            </userInfo>
-        </attribute>
-        <userInfo>
-            <entry key="orderIndex" value="2"/>
-        </userInfo>
+        <attribute name="type" attributeType="Integer 32" syncable="YES"/>
     </entity>
     <entity name="Manager" representedClassName=".Manager" parentEntity="Person" syncable="YES">
-        <attribute name="endVisitingHours" attributeType="Date" syncable="YES">
-            <userInfo>
-                <entry key="aggregate" value="1"/>
-                <entry key="description" value="Visiting hours:"/>
-                <entry key="orderIndex" value="2"/>
-                <entry key="placeholder" value="from 16:00 to 18:00"/>
-            </userInfo>
-        </attribute>
-        <attribute name="startVisitingHours" attributeType="Date" syncable="YES">
-            <userInfo>
-                <entry key="aggregate" value="0"/>
-                <entry key="description" value="Visiting hours:"/>
-                <entry key="orderIndex" value="2"/>
-                <entry key="placeholder" value="from 16:00 to 18:00"/>
-            </userInfo>
-        </attribute>
-        <userInfo>
-            <entry key="orderIndex" value="0"/>
-        </userInfo>
+        <attribute name="endVisitingHours" attributeType="Date" syncable="YES"/>
+        <attribute name="startVisitingHours" attributeType="Date" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName=".Person" isAbstract="YES" syncable="YES">
-        <attribute name="fullName" attributeType="String" syncable="YES">
-            <userInfo>
-                <entry key="description" value="Full name:"/>
-                <entry key="orderIndex" value="0"/>
-                <entry key="placeholder" value="Петров Сергей Иванович"/>
-            </userInfo>
-        </attribute>
+        <attribute name="fullName" attributeType="String" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="-1" syncable="YES"/>
-        <attribute name="salary" attributeType="Double" syncable="YES">
-            <userInfo>
-                <entry key="description" value="Salary:"/>
-                <entry key="orderIndex" value="1"/>
-                <entry key="placeholder" value="20000"/>
-            </userInfo>
-        </attribute>
+        <attribute name="salary" attributeType="Double" syncable="YES"/>
     </entity>
     <entity name="Worker" representedClassName=".Worker" parentEntity="Person" syncable="YES">
-        <attribute name="endMealTime" attributeType="Date" syncable="YES">
-            <userInfo>
-                <entry key="aggregate" value="1"/>
-                <entry key="description" value="Meal time:"/>
-                <entry key="orderIndex" value="2"/>
-                <entry key="placeholder" value="from 13:00 to 14:00"/>
-            </userInfo>
-        </attribute>
-        <attribute name="startMealTime" attributeType="Date" syncable="YES">
-            <userInfo>
-                <entry key="aggregate" value="0"/>
-                <entry key="description" value="Meal time:"/>
-                <entry key="orderIndex" value="2"/>
-                <entry key="placeholder" value="from 13:00 to 14:00"/>
-            </userInfo>
-        </attribute>
-        <attribute name="workplaceNumber" attributeType="Integer 32" syncable="YES">
-            <userInfo>
-                <entry key="description" value="Workplace number:"/>
-                <entry key="orderIndex" value="3"/>
-                <entry key="placeholder" value="555"/>
-            </userInfo>
-        </attribute>
-        <userInfo>
-            <entry key="orderIndex" value="1"/>
-        </userInfo>
+        <attribute name="endMealTime" attributeType="Date" syncable="YES"/>
+        <attribute name="startMealTime" attributeType="Date" syncable="YES"/>
+        <attribute name="workplaceNumber" attributeType="Integer 32" syncable="YES"/>
     </entity>
     <elements>
         <element name="Accountant" positionX="-81" positionY="140" width="128" height="60"/>

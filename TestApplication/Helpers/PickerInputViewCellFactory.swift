@@ -20,9 +20,6 @@ class PickerInputViewCellFactory: AbstractFactory {
             action: { (data) in
                 let key = attributeDescription.key.first ?? ""
                 personAttributeContainer.valuesDictionary[key] = data
-//                print("personAttributeContainer.valuesDictionary\n\(personAttributeContainer.valuesDictionary)")
-                //                self.person?.setValue(data, forKey: personAttribute.name)
-                //                self.addNewKeyForValid(personAttribute.name)
             },
             actionForClearField: {
                 let key = attributeDescription.key.first ?? ""

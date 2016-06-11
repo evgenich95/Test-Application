@@ -26,15 +26,4 @@ class Worker: Person {
         keys.append(PersonAttributeKeys.endMealTime)
         return keys
     }
-
-//    override var attributeDictionary: [String : AnyObject] {
-//        var attributeDictionary = super.attributeDictionary
-//
-//        attributeDictionary[PersonAttributeKeys.workplaceNumber] = workplaceNumber
-//        attributeDictionary[PersonAttributeKeys.startMealTime] = startMealTime
-//        attributeDictionary[PersonAttributeKeys.endMealTime] = endMealTime
-//    
-//        print("Worker.attributeDictionary = \(attributeDictionary)")
-//        return attributeDictionary
-//    }
 }

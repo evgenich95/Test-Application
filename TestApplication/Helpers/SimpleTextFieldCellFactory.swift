@@ -21,7 +21,6 @@ class SimpleTextFieldCellFactory: AbstractFactory {
                  personAttributeContainer.valuesDictionary[key] = data
             },
             actionForClearField: {
-
                 let key = attributeDescription.key.first ?? ""
                 personAttributeContainer.valuesDictionary[key] = nil
         })

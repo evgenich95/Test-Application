@@ -28,15 +28,6 @@ class Person: NSManagedObject, CoreDataModelable {
         return keys
     }
 
-    var entityOrderIndex: Int {
-        switch self.entity.userInfo?["orderIndex"] {
-        case let (orderIndex as NSString):
-            return orderIndex.integerValue
-        default:
-            fatalError("\(self.entity.name) is missing \"orderIndex\" user info key")
-        }
-    }
-
     var attributeDictionary: [String: AnyObject] {
         guard let selfAttributeKeys = PersonTypeRecognizer.init(aPerson: self)?
             .attributeKeys
