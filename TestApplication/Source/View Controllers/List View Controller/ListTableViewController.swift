@@ -19,7 +19,7 @@ class ListPersonTableViewController: UITableViewController {
         return UIBarButtonItem(
             barButtonSystemItem: .Add,
             target: self,
-            action: #selector(addNewPerson)
+            action: #selector(createNewPerson)
         )
     }()
 
@@ -164,10 +164,10 @@ class ListPersonTableViewController: UITableViewController {
 
         if let person = fetchedResultsController.sections?[indexPath.section].objects[indexPath.row] {
 
-            let addNewPersonViewController = PersonDetailViewController(coreDataStack: coreDataStack)
-            addNewPersonViewController.person = person
+            let createNewPersonViewController = PersonDetailViewController(coreDataStack: coreDataStack)
+            createNewPersonViewController.person = person
 
-            self.navigationController?.pushViewController(addNewPersonViewController, animated: true)
+            self.navigationController?.pushViewController(createNewPersonViewController, animated: true)
         }
     }
 
@@ -218,14 +218,9 @@ class ListPersonTableViewController: UITableViewController {
 
     //MARK: AddTarget's functions
 
-    @objc func addNewPerson() {
-
-        //отписываюсь от автообновлений, чтобы не было конфликтов
-        //связанных с обновлением секций при добавлений и удалений
-//        frcDelegate.tableView = nil
-
-        let addNewPersonViewController = PersonDetailViewController(coreDataStack: coreDataStack)
-        self.navigationController?.pushViewController(addNewPersonViewController, animated: true)
+    @objc func createNewPerson() {
+        let createNewPersonViewController = PersonDetailViewController(coreDataStack: coreDataStack)
+        self.navigationController?.pushViewController(createNewPersonViewController, animated: true)
     }
 
     @objc func editOrderOfList() {
