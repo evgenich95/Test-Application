@@ -97,7 +97,7 @@ class DateInputViewCell: CustomTableViewCell {
          action: ResultDataActionType,
          actionForClearField: () -> Void) {
 
-        super.init(actionForClearField: actionForClearField)
+        super.init(inputDataType: attributeDescription.type, actionForClearField: actionForClearField)
 
         defer {
             if
@@ -174,9 +174,5 @@ class DateInputViewCell: CustomTableViewCell {
 
     func setupView() {
         dataTextFieldInputView = self.dateInputView
-    }
-
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        return false
     }
 }

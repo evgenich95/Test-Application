@@ -62,7 +62,7 @@ class PickerInputViewCell: CustomTableViewCell {
         }
     }
 
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    override func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         return false
     }
 }

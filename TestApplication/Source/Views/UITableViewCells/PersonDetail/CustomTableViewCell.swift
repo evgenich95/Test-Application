@@ -113,7 +113,6 @@ class CustomTableViewCell: UITableViewCell {
         if dataTextField.text?.characters.count < 1 {
             actionForClearField?()
         }
-
     }
 
     func handleEnteringData(textField: UITextField) {
@@ -164,5 +163,23 @@ extension CustomTableViewCell: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.endEditing(true)
         return true
+    }
+
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+
+        guard let dataType = inputDataType
+            else {return true}
+
+        switch dataType {
+        case .StringAttributeType:
+            return true
+        case .DateAttributeType:
+            return false
+        default:
+            let aSet = NSCharacterSet(charactersInString:"0123456789.").invertedSet
+            let compSepByCharInSet = string.componentsSeparatedByCharactersInSet(aSet)
+            let numberFiltered = compSepByCharInSet.joinWithSeparator("")
+            return string == numberFiltered
+        }
     }
 }
