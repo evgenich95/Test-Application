@@ -14,7 +14,13 @@ class DateInputViewCell: CustomTableViewCell {
     typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate)
         -> Void)?
     var handleDataAction: ResultDataActionType
-    var filedPickers = [Int: UIDatePicker]()
+    var filedPickers = [Int: UIDatePicker]() {
+        didSet {
+            if filedPickers.count == 2 {
+                attributeValue = "from \(startTimeDatePicker.date.timeFormating) to \(endTimeDatePicker.date.timeFormating)"
+            }
+        }
+    }
 
     //MARK: -
     //MARK: Lazy parameters
@@ -27,6 +33,7 @@ class DateInputViewCell: CustomTableViewCell {
         datePicker.addTarget(self,
                              action: #selector(datePickerValueChange),
                              forControlEvents: .ValueChanged)
+        datePicker.tag = 0
         return datePicker
     }()
 
@@ -39,6 +46,7 @@ class DateInputViewCell: CustomTableViewCell {
         datePicker.addTarget(self,
                              action: #selector(datePickerValueChange),
                              forControlEvents: .ValueChanged)
+        datePicker.tag = 1
         return datePicker
     }()
 
@@ -101,7 +109,9 @@ class DateInputViewCell: CustomTableViewCell {
                     as? NSDate {
                 self.startTimeDatePicker.setDate(startDate, animated: false)
                 self.endTimeDatePicker.setDate(endDate, animated: false)
-                updateDateValue()
+                self.filedPickers[0] = startTimeDatePicker
+                self.filedPickers[1] = endTimeDatePicker
+//                updateDateValue()
             }
         }
 
@@ -121,19 +131,15 @@ class DateInputViewCell: CustomTableViewCell {
         switch sender {
         case startTimeDatePicker :
             startTimeDatePicker.backgroundColor = UIColor.whiteColor()
-            filedPickers[0] = sender
         case endTimeDatePicker:
             endTimeDatePicker.backgroundColor = UIColor.whiteColor()
-            filedPickers[1] = sender
         default:
             break
         }
 
+        filedPickers[sender.tag] = sender
         chekValidAfterInteredData(sender)
-        updateDateValue()
     }
-
-
 
     override func handleEnteringData(textField: UITextField) {
         handleDataAction?(startDate: startTimeDatePicker.date, endDate: endTimeDatePicker.date)
@@ -162,6 +168,7 @@ class DateInputViewCell: CustomTableViewCell {
                 break
             }
             needChangePicker.setDate(setDate, animated: true)
+            filedPickers[needChangePicker.tag] = needChangePicker
 
         default:
             break
