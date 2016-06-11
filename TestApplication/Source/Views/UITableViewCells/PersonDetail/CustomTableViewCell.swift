@@ -109,10 +109,10 @@ class CustomTableViewCell: UITableViewCell {
     //MARK: addTargert's functions
 
     @objc private func textFieldValueChange() {
+        handleEnteringData(dataTextField)
         if dataTextField.text?.characters.count < 1 {
             actionForClearField?()
         }
-        handleEnteringData(dataTextField)
 
     }
 
