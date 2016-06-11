@@ -92,6 +92,7 @@ class DateInputViewCell: CustomTableViewCell {
          actionForClearField: () -> Void) {
 
         super.init(actionForClearField: actionForClearField)
+
         defer {
             if
                 let startDate = attributeDictionary[attributeDescription.key[0]]
@@ -117,45 +118,52 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: AddTarget's functions
     @objc func datePickerValueChange(sender: UIDatePicker) {
-        var direction: Double = 1
         switch sender {
         case startTimeDatePicker :
             startTimeDatePicker.backgroundColor = UIColor.whiteColor()
-
+            filedPickers[0] = sender
         case endTimeDatePicker:
             endTimeDatePicker.backgroundColor = UIColor.whiteColor()
-            direction *= -1
+            filedPickers[1] = sender
         default:
             break
         }
 
-        if startTime.compare(endTime) == NSComparisonResult.OrderedDescending {
-            print("moved endTime")
-            print("interval startTime to endTime = \(-1*startTime.timeIntervalSinceDate(endTime))")
-            let interval = startTime.timeIntervalSinceDate(endTime)
-            self.startTimeDatePicker.setDate(startTime.dateByAddingTimeInterval(-1*(interval+60*30)), animated: true)
-        }
-
-
-
+        chekValidAfterInteredData(sender)
+        updateDateValue()
     }
+
+
 
     override func handleEnteringData(textField: UITextField) {
         print("DateInputViewCell.handleEnteringData()")
 
         handleDataAction?(startDate: startTimeDatePicker.date, endDate: endTimeDatePicker.date)
     }
-//    override func textFieldDidEndEditing(textField: UITextField) {
-//        super.textFieldDidEndEditing(textField)
-//        switch (startTime, endTime) {
-//        case let (startTime?, endTime?):
-//            handleDataAction?(startDate: startTime, endDate: endTime)
-//        default:
-//            break
-//        }
-//    }
 
     //MARK: Help functions
+
+    func chekValidAfterInteredData(inDatePicker: UIDatePicker) {
+
+        switch (filedPickers.count,
+                startTimeDatePicker.date.compare(endTimeDatePicker.date)) {
+        case (2, NSComparisonResult.OrderedDescending):
+            var needChangePicker = UIDatePicker()
+            var setDate = NSDate()
+
+            switch inDatePicker {
+            case startTimeDatePicker:
+                needChangePicker = endTimeDatePicker
+                setDate = NSDate
+                    .addMinuteToDate(30, date: startTimeDatePicker.date)
+            case endTimeDatePicker:
+                needChangePicker = startTimeDatePicker
+                setDate = NSDate
+                    .subscriptMinuteToDate(30, date: endTimeDatePicker.date)
+            default:
+                break
+            }
+            needChangePicker.setDate(setDate, animated: true)
 
         default:
             break
