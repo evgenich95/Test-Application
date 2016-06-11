@@ -13,16 +13,16 @@ class PickerInputViewCell: CustomTableViewCell {
     typealias ResultDataActionType = ((data: AnyObject) -> Void)?
     var handleDataAction: ResultDataActionType
 
-    var currentValue: AnyObject? {
-        willSet {
-            if let data = newValue as? NSNumber {
+    private var currentValue: AnyObject? {
+        didSet {
+            if let data = currentValue as? NSNumber {
                 pickerView.selectRow(data.integerValue, inComponent: 0, animated: false)
                 attributeValue = AccountantType.init(index: data.integerValue).description
             }
         }
     }
 
-    lazy var pickerView: UIPickerView = {
+    private lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.delegate = self
         return picker
@@ -33,12 +33,12 @@ class PickerInputViewCell: CustomTableViewCell {
          action: ResultDataActionType,
          actionForClearField: () -> Void) {
 
+        super.init(actionForClearField: actionForClearField)
+
         defer {
             let data = attributeDictionary[attributeDescription.key.first ?? ""]
             self.currentValue = data
         }
-
-        super.init(actionForClearField: actionForClearField)
 
         self.attributeDescriptionString = attributeDescription.description
         self.textFieldPlaceholder = attributeDescription.placeholder
@@ -55,18 +55,12 @@ class PickerInputViewCell: CustomTableViewCell {
     func setupView() {
         dataTextFieldInputView = self.pickerView
     }
+    
     override func handleEnteringData(textField: UITextField) {
         if let type = currentValue {
             handleDataAction?(data: type )
         }
     }
-
-//    override func textFieldDidEndEditing(textField: UITextField) {
-//        super.textFieldDidEndEditing(textField)
-//        if let type = currentValue {
-//            handleDataAction?(data: type )
-//        }
-//    }
 }
 
 extension PickerInputViewCell: UIPickerViewDelegate {
@@ -75,19 +69,25 @@ extension PickerInputViewCell: UIPickerViewDelegate {
         return 1
     }
 
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
         return AccountantType.count
     }
 
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
         return AccountantType(index: row).description
     }
 
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(pickerView: UIPickerView,
+                    didSelectRow row: Int,
+                    inComponent component: Int) {
         currentValue = row
     }
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    func adaptivePresentationStyleForPresentationController(
+        controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
     }
 }
