@@ -20,30 +20,4 @@ struct PersonAttributeKeys {
     static let accountantType = "type"
 }
 
-enum AccountantType: CustomStringConvertible {
-    case SalaryAccounting
-    case MaterialAccounting
 
-    static let count = 2
-
-    var description: String {
-        switch self {
-        case SalaryAccounting:
-            return "Salary Accounting"
-        case MaterialAccounting:
-            return "Material Accounting"
-        }
-    }
-
-    init(index: Int) {
-        switch index {
-
-        case -1, 0:
-            self = .SalaryAccounting
-        case 1:
-            self = .MaterialAccounting
-        default:
-            fatalError("invalid index of AccountantType")
-        }
-    }
-}

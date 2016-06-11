@@ -17,7 +17,7 @@ class PickerInputViewCell: CustomTableViewCell {
         didSet {
             if let data = currentValue as? NSNumber {
                 pickerView.selectRow(data.integerValue, inComponent: 0, animated: false)
-                attributeValue = AccountantType.init(index: data.integerValue).description
+                attributeValue = AccountantTypeRecognizer.init(index: data.integerValue).description
             }
         }
     }
@@ -75,13 +75,13 @@ extension PickerInputViewCell: UIPickerViewDelegate {
 
     func pickerView(pickerView: UIPickerView,
                     numberOfRowsInComponent component: Int) -> Int {
-        return AccountantType.count
+        return AccountantTypeRecognizer.count
     }
 
     func pickerView(pickerView: UIPickerView,
                     titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        return AccountantType(index: row).description
+        return AccountantTypeRecognizer(index: row).description
     }
 
     func pickerView(pickerView: UIPickerView,

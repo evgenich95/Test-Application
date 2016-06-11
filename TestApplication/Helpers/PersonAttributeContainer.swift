@@ -14,6 +14,7 @@ protocol DelegateForPersonAttributeContainer {
 
 class PersonAttributeContainer {
 
+    //MARK: Parameters
     var delegate: DelegateForPersonAttributeContainer?
     var displayedPersonType: PersonTypeRecognizer {
         didSet {
@@ -29,7 +30,7 @@ class PersonAttributeContainer {
     }
 
     var attributeDescriptions = [PersonAttributeDescription]()
-
+    //MARK:-
 
     init(displayedPersonType: PersonTypeRecognizer, aPerson: Person?) {
         self.displayedPersonType = displayedPersonType
