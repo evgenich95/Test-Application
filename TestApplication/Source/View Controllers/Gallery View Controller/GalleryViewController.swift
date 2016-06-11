@@ -316,15 +316,15 @@ extension GalleryViewController: UIScrollViewDelegate {
         if currentPage == lastpage {
             return
         }
-        
+
         //блокируем свайпы пользователя
         self.scrollView.scrollEnabled = false
-        
+
         let offset = ((currentPage) < lastpage) ? -1 : 1
-        
+
         let canChangeValue = (offset>0) ?
             canLoadNextPhoto : canLoadPreviousPhoto
-        
+
         if canChangeValue {
             currentImageIndex += offset
             loadImageForCurrentPage(offset)

@@ -12,7 +12,7 @@ protocol State {
     var owner: PersonDetailViewController {get set}
 
     init(contex: PersonDetailViewController)
-    
+
     func isBrowsing() -> Bool
     func isCreating() -> Bool
     func isEditing () -> Bool

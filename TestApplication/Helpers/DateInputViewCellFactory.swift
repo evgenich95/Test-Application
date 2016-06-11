@@ -29,6 +29,5 @@ class DateInputViewCellFactory: AbstractFactory {
                 personAttributeContainer.valuesDictionary[startDateKey] = nil
                 personAttributeContainer.valuesDictionary[endDateKey] = nil
         })
-        
     }
 }

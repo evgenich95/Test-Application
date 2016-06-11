@@ -44,7 +44,7 @@ class CustomTableViewCell: UITableViewCell {
                 dataTextField.text = text
                 textFieldValueChange()
             }
-            
+
             if let text = newValue as? NSNumber {
                 dataTextField.text = text.stringValue
                 textFieldValueChange()

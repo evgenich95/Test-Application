@@ -51,7 +51,7 @@ class CreatingState: State {
     @objc func cancelAction() {
         owner.navigationController?.popViewControllerAnimated(true)
     }
-    
+
     @objc func doneAction() {
         defer {
             owner.navigationController?.popViewControllerAnimated(true)

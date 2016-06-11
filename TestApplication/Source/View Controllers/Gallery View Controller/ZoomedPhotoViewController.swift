@@ -108,7 +108,7 @@ extension ZoomedPhotoViewController: UIScrollViewDelegate {
 
         scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
     }
-    
+
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }

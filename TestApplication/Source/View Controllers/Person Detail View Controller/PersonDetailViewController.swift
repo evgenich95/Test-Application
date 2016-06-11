@@ -40,25 +40,15 @@ class PersonDetailViewController: UIViewController {
 
     var selectedPersonType: Int = 0 {
         willSet {
-//            print("Изменился тип Person,selectedPersonType.willSet()")
-
-            guard
-
-                let currentDisplayedPersonType = PersonTypeRecognizer(
-                    orderIndex: newValue)
-            else { return }
+            guard let currentDisplayedPersonType = PersonTypeRecognizer(
+                orderIndex: newValue)
+            else {return}
 
             personAttributeContainer?.displayedPersonType = currentDisplayedPersonType
-//
-//            print("attributeDescriptions = \n\(personAttributeContainer?.attributeDescriptions)")
-//            print("displayedPersonType = \(personAttributeContainer?.displayedPersonType)")
 
             if let attributeDictionary = personAttributeContainer {
-//                print("Пересоздал массив ячеек")
                 customCells = CustomCellFactory.cellsFor(attributeDictionary)
             }
-//            print("customCells.count=\(customCells.count)")
-//            print("-------------------------\n")
         }
     }
 
@@ -66,13 +56,6 @@ class PersonDetailViewController: UIViewController {
 
     var personAttributeContainer: PersonAttributeContainer?
     var customCells = [UITableViewCell]()
-
-//    var currentDisplayedPersonType: PersonTypeRecognizer? {
-//        let displayedTypeOrderIndex = self.personTypeSegmentControl.selectedSegmentIndex
-//        return PersonTypeRecognizer(orderIndex: displayedTypeOrderIndex)
-//    }
-
-    var arrayOfFilledAttributes = [String]()
 
     //MARK: -
     //MARK: Lazy parameters
@@ -86,7 +69,6 @@ class PersonDetailViewController: UIViewController {
     }()
 
     lazy var personTypeSegmentControl: UISegmentedControl = {
-//        print("Создаю personTypeSegmentControl")
         defer {
             self.selectedPersonType = segment.selectedSegmentIndex
         }
@@ -99,7 +81,6 @@ class PersonDetailViewController: UIViewController {
         let segment = UISegmentedControl(items: entityNames)
 
         if let person = self.person {
-//            self.personAttributeContainer = person.attributeDictionary
             segment.enabled = self.editing
             self.changeStateToBrowsing()
         } else {
@@ -121,6 +102,7 @@ class PersonDetailViewController: UIViewController {
         return segment
     }()
     //MARK: -
+
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
         super.init(nibName: nil, bundle: nil)
@@ -132,49 +114,27 @@ class PersonDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("\nviewDidLoad()")
-
         configureView()
         setupGestureRecognizer()
 
         guard
-
             let displayedPersonType = PersonTypeRecognizer(
                 orderIndex: selectedPersonType)
-            else { return }
+            else {return}
 
-//        print("Инициализировал personAttributeContainer ")
         personAttributeContainer = PersonAttributeContainer(
             displayedPersonType: displayedPersonType,
             aPerson: person)
         personAttributeContainer?.delegate = self
 
-//        print("attributeDescriptions = \n\(personAttributeContainer?.attributeDescriptions)")
-//        print("displayedPersonType = \(personAttributeContainer?.displayedPersonType)")
-
         if let attributeDictionary = personAttributeContainer {
-            print("Создал первый раз массив ячеек")
             customCells = CustomCellFactory.cellsFor(attributeDictionary)
         }
-//        print("customCells.count=\(customCells.count)")
-
         checkValid()
-//        print("-------------------------------\n")
-
-
-//        let displayedTypeOrderIndex = personTypeSegmentControl.selectedSegmentIndex
-//        currentDisplayedPersonType = PersonTypeRecognizer(
-//            orderIndex: displayedTypeOrderIndex)
-
-//        customCells = CustomCellFactory.cellsFor(
-//            currentDisplayedPersonType,
-//            attributeDictionary: personAttributeContainer
-//        )
     }
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
-        //change currend dispayed PersonType
         selectedPersonType = personTypeSegmentControl.selectedSegmentIndex
         self.customTableView.reloadData()
     }
@@ -182,7 +142,6 @@ class PersonDetailViewController: UIViewController {
     //MARK: Help functions
 
     func setupGestureRecognizer() {
-
         let doubleTap = UITapGestureRecognizer(
             target: self,
             action: #selector(handleDoubleTap)
@@ -196,7 +155,6 @@ class PersonDetailViewController: UIViewController {
     }
 
     func checkValid() {
-//        print("\n\n----checkValid----")
         guard
             let filledAttributeKeys = personAttributeContainer?
                                                     .valuesDictionary
@@ -205,13 +163,9 @@ class PersonDetailViewController: UIViewController {
                                                     .displayedPersonType
                                                     .attributeKeys
         else {
-//            print("Блокирую кнопку Save")
             self.navigationItem.rightBarButtonItem?.enabled = false
             return
         }
-
-//        print("allAttributeKeys =\n \(allAttributeKeys)")
-//        print("filledAttributeKeys =\n \(filledAttributeKeys)")
 
         var canTapSave = true
         for key in allAttributeKeys {
@@ -219,9 +173,7 @@ class PersonDetailViewController: UIViewController {
                 canTapSave = false
             }
         }
-//        print("Могу нажать на Save - \(canTapSave)")
         self.navigationItem.rightBarButtonItem?.enabled = canTapSave
-//        print("\n\n--------")
     }
 
     override func setEditing(editing: Bool, animated: Bool) {
@@ -234,7 +186,6 @@ class PersonDetailViewController: UIViewController {
         } else {
             changeStateToBrowsing()
         }
-
         customTableView.reloadData()
     }
 
@@ -291,25 +242,17 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
         return false
     }
 
-
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    // Return the number of rows for each section in your static table
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return personAttributeContainer?.displayedPersonType
             .numberDisplayedAttributes ?? 0
     }
 
-    // Return the row for the corresponding section and row
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        print("cellForRowAtIndexPath")
-//        print("customCells.count = \(customCells.count)")
-//        print("\(currentDisplayedPersonType?.description).AtrCount = \(currentDisplayedPersonType?.attributeKeys.count)")
-
         return customCells[indexPath.row]
-//        return UITableViewCell()
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

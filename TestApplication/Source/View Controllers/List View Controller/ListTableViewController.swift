@@ -159,7 +159,7 @@ class ListPersonTableViewController: UITableViewController {
 
         guard let cell = maybeCell
             else { fatalError("Cell is not registered") }
-        
+
         return cell
     }
 

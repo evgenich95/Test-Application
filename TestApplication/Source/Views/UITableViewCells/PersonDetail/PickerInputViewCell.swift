@@ -55,7 +55,7 @@ class PickerInputViewCell: CustomTableViewCell {
     func setupView() {
         dataTextFieldInputView = self.pickerView
     }
-    
+
     override func handleEnteringData(textField: UITextField) {
         if let type = currentValue {
             handleDataAction?(data: type )
@@ -89,7 +89,7 @@ extension PickerInputViewCell: UIPickerViewDelegate {
                     inComponent component: Int) {
         currentValue = row
     }
-    
+
     func adaptivePresentationStyleForPresentationController(
         controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
