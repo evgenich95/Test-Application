@@ -153,6 +153,15 @@
 			path = PersonDetail;
 			sourceTree = "<group>";
 		};
+		8B3D75D41D0C3D2500A41714 /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				8B5B26891CE06ADD004B3223 /* NSDate+timeFormating.swift */,
+				8BEF1E5C1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift */,
+			);
+			name = NSDate;
+			sourceTree = "<group>";
+		};
 		8B3EA9961CF386FE0057B57A /* UITableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,10 +209,9 @@
 			isa = PBXGroup;
 			children = (
 				8B5A9F421CE88C8C00B75318 /* CoreDataStack */,
+				8B3D75D41D0C3D2500A41714 /* NSDate */,
 				8BF337CE1CECAE9E005CB57B /* UIViewController */,
 				8BF4E3581CEC1226005AE3D5 /* Array+removeObject.swift */,
-				8B5B26891CE06ADD004B3223 /* NSDate+timeFormating.swift */,
-				8BEF1E5C1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift */,
 				8B001DCE1CF203AA001EB1C0 /* UIImageView+setImage.swift */,
 			);
 			path = Extensions;

@@ -9,13 +9,6 @@
 import Foundation
 import BNRCoreDataStack
 
-struct UserInfoKeys {
-    static let entityOrderIndex = "orderIndex"
-    static let attributeDescription = "description"
-    static let attributePlaceholder = "placeholder"
-    static let attributeOrderIndex = "orderIndex"
-}
-
 struct PersonAttributeKeys {
     static let fullName = "fullName"
     static let salary = "salary"
