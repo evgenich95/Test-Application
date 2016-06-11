@@ -48,12 +48,12 @@ class PersonDetailViewController: UIViewController {
                     orderIndex: newValue)
             else { return }
 
-            personAttributeDictionary?.displayedPersonType = currentDisplayedPersonType
+            personAttributeContainer?.displayedPersonType = currentDisplayedPersonType
 //
-//            print("attributeDescriptions = \n\(personAttributeDictionary?.attributeDescriptions)")
-//            print("displayedPersonType = \(personAttributeDictionary?.displayedPersonType)")
+//            print("attributeDescriptions = \n\(personAttributeContainer?.attributeDescriptions)")
+//            print("displayedPersonType = \(personAttributeContainer?.displayedPersonType)")
 
-            if let attributeDictionary = personAttributeDictionary {
+            if let attributeDictionary = personAttributeContainer {
 //                print("Пересоздал массив ячеек")
                 customCells = CustomCellFactory.cellsFor(attributeDictionary)
             }
@@ -64,7 +64,7 @@ class PersonDetailViewController: UIViewController {
 
     typealias AttributeDictionary = [String: AnyObject]
 
-    var personAttributeDictionary: PersonAttributeDictionary?
+    var personAttributeContainer: PersonAttributeContainer?
     var customCells = [UITableViewCell]()
 
 //    var currentDisplayedPersonType: PersonTypeRecognizer? {
@@ -99,7 +99,7 @@ class PersonDetailViewController: UIViewController {
         let segment = UISegmentedControl(items: entityNames)
 
         if let person = self.person {
-//            self.personAttributeDictionary = person.attributeDictionary
+//            self.personAttributeContainer = person.attributeDictionary
             segment.enabled = self.editing
             self.changeStateToBrowsing()
         } else {
@@ -143,16 +143,16 @@ class PersonDetailViewController: UIViewController {
                 orderIndex: selectedPersonType)
             else { return }
 
-//        print("Инициализировал personAttributeDictionary ")
-        personAttributeDictionary = PersonAttributeDictionary(
+//        print("Инициализировал personAttributeContainer ")
+        personAttributeContainer = PersonAttributeContainer(
             displayedPersonType: displayedPersonType,
             aPerson: person)
-        personAttributeDictionary?.delegate = self
+        personAttributeContainer?.delegate = self
 
-//        print("attributeDescriptions = \n\(personAttributeDictionary?.attributeDescriptions)")
-//        print("displayedPersonType = \(personAttributeDictionary?.displayedPersonType)")
+//        print("attributeDescriptions = \n\(personAttributeContainer?.attributeDescriptions)")
+//        print("displayedPersonType = \(personAttributeContainer?.displayedPersonType)")
 
-        if let attributeDictionary = personAttributeDictionary {
+        if let attributeDictionary = personAttributeContainer {
             print("Создал первый раз массив ячеек")
             customCells = CustomCellFactory.cellsFor(attributeDictionary)
         }
@@ -168,7 +168,7 @@ class PersonDetailViewController: UIViewController {
 
 //        customCells = CustomCellFactory.cellsFor(
 //            currentDisplayedPersonType,
-//            attributeDictionary: personAttributeDictionary
+//            attributeDictionary: personAttributeContainer
 //        )
     }
 
@@ -198,10 +198,10 @@ class PersonDetailViewController: UIViewController {
     func checkValid() {
 //        print("\n\n----checkValid----")
         guard
-            let filledAttributeKeys = personAttributeDictionary?
+            let filledAttributeKeys = personAttributeContainer?
                                                     .valuesDictionary
                                                     .keys,
-            let allAttributeKeys = personAttributeDictionary?
+            let allAttributeKeys = personAttributeContainer?
                                                     .displayedPersonType
                                                     .attributeKeys
         else {
@@ -262,8 +262,8 @@ class PersonDetailViewController: UIViewController {
 
 //MARK: -
 //MARK: Extension
-//MARK: - DelegateForPersonAttributeDictionary
-extension PersonDetailViewController: DelegateForPersonAttributeDictionary {
+//MARK: - DelegateForPersonAttributeContainer
+extension PersonDetailViewController: DelegateForPersonAttributeContainer {
     func userEnteredData() {
         checkValid()
     }
@@ -298,7 +298,7 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
     // Return the number of rows for each section in your static table
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return personAttributeDictionary?.displayedPersonType
+        return personAttributeContainer?.displayedPersonType
             .numberDisplayedAttributes ?? 0
     }
 

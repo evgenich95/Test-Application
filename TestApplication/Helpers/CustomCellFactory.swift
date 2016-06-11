@@ -24,17 +24,17 @@ enum CustomCellFactory {
         }
     }
 
-    static func cellsFor(personAttributeDictionary: PersonAttributeDictionary) -> [CustomTableViewCell] {
+    static func cellsFor(personAttributeContainer: PersonAttributeContainer) -> [CustomTableViewCell] {
 //        print("\n\nCustomCellFactory.cellsFor")
 //        print("Person type = \(displayedPersonType!.description)")
 
         var cells = [CustomTableViewCell]()
 
-        for description in personAttributeDictionary.attributeDescriptions {
+        for description in personAttributeContainer.attributeDescriptions {
             let factory = appropriateFactory(description)
             cells.append(factory.createCustomTableViewCell(
                 description,
-                personAttributeDictionary: personAttributeDictionary
+                personAttributeContainer: personAttributeContainer
                 )
             )
         }

@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol DelegateForPersonAttributeDictionary {
+protocol DelegateForPersonAttributeContainer {
     func userEnteredData()
 }
 
-class PersonAttributeDictionary {
+class PersonAttributeContainer {
 
-    var delegate: DelegateForPersonAttributeDictionary?
+    var delegate: DelegateForPersonAttributeContainer?
     var displayedPersonType: PersonTypeRecognizer {
         didSet {
             updateValuesDictionary()

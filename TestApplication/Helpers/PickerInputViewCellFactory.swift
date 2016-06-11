@@ -12,21 +12,21 @@ class PickerInputViewCellFactory: AbstractFactory {
 
     func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,
-        personAttributeDictionary: PersonAttributeDictionary) -> CustomTableViewCell {
+        personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
 
         return PickerInputViewCell(
             attributeDescription: attributeDescription,
-            attributeDictionary: personAttributeDictionary.valuesDictionary,
+            attributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (data) in
                 let key = attributeDescription.key.first ?? ""
-                personAttributeDictionary.valuesDictionary[key] = data
-//                print("personAttributeDictionary.valuesDictionary\n\(personAttributeDictionary.valuesDictionary)")
+                personAttributeContainer.valuesDictionary[key] = data
+//                print("personAttributeContainer.valuesDictionary\n\(personAttributeContainer.valuesDictionary)")
                 //                self.person?.setValue(data, forKey: personAttribute.name)
                 //                self.addNewKeyForValid(personAttribute.name)
             },
             actionForClearField: {
                 let key = attributeDescription.key.first ?? ""
-                personAttributeDictionary.valuesDictionary[key] = nil
+                personAttributeContainer.valuesDictionary[key] = nil
         })
     }
 }

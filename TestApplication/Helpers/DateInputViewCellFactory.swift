@@ -12,17 +12,17 @@ class DateInputViewCellFactory: AbstractFactory {
 
     func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,
-        personAttributeDictionary: PersonAttributeDictionary) -> CustomTableViewCell {
+        personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
 
         return DateInputViewCell(
             attributeDescription: attributeDescription,
-            attributeDictionary: personAttributeDictionary.valuesDictionary,
+            attributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (startDate, endDate) in
                 let startDateKey = attributeDescription.key[0]
                 let endDateKey = attributeDescription.key[1]
-                personAttributeDictionary.valuesDictionary[startDateKey] = startDate
-                personAttributeDictionary.valuesDictionary[endDateKey] = endDate
-//                print("personAttributeDictionary.valuesDictionary\n\(personAttributeDictionary.valuesDictionary)")
+                personAttributeContainer.valuesDictionary[startDateKey] = startDate
+                personAttributeContainer.valuesDictionary[endDateKey] = endDate
+//                print("personAttributeContainer.valuesDictionary\n\(personAttributeContainer.valuesDictionary)")
                 //            self.person?.setValue(startDate, forKey: valueKeys[0])
                 //            self.person?.setValue(endDate, forKey: valueKeys[1])
                 //            self.addNewKeyForValid(valueKeys[0])
@@ -31,8 +31,8 @@ class DateInputViewCellFactory: AbstractFactory {
             actionForClearField: {
                 let startDateKey = attributeDescription.key[0]
                 let endDateKey = attributeDescription.key[1]
-                personAttributeDictionary.valuesDictionary[startDateKey] = nil
-                personAttributeDictionary.valuesDictionary[endDateKey] = nil
+                personAttributeContainer.valuesDictionary[startDateKey] = nil
+                personAttributeContainer.valuesDictionary[endDateKey] = nil
         })
         
     }

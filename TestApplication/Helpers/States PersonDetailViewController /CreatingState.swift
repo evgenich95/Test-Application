@@ -59,7 +59,7 @@ class CreatingState: State {
             owner.navigationController?.popViewControllerAnimated(true)
         }
 
-        guard let attributeDictionary = owner.personAttributeDictionary
+        guard let attributeDictionary = owner.personAttributeContainer
             else {
                 return
         }

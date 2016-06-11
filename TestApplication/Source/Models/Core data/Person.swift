@@ -37,15 +37,6 @@ class Person: NSManagedObject, CoreDataModelable {
         }
     }
 
-//    var attributeDictionary: [String: AnyObject] {
-//        var attributeDictionary = [String: AnyObject]()
-//
-//        attributeDictionary[PersonAttributeKeys.fullName] = fullName
-//        attributeDictionary[PersonAttributeKeys.salary] = salary
-//
-//        return attributeDictionary
-//    }
-
     var attributeDictionary: [String: AnyObject] {
         guard let selfAttributeKeys = PersonTypeRecognizer.init(aPerson: self)?
             .attributeKeys

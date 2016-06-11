@@ -59,7 +59,7 @@ class EditingState: State {
 
     @objc func doneAction() {
         guard
-            let attributeDictionary = owner.personAttributeDictionary,
+            let attributeDictionary = owner.personAttributeContainer,
             let editedPerson = owner.person
         else {return}
 

@@ -12,18 +12,18 @@ class SimpleTextFieldCellFactory: AbstractFactory {
 
     func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,
-        personAttributeDictionary: PersonAttributeDictionary) -> CustomTableViewCell {
+        personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
         return SimpleTextFieldCell(
             attributeDescription: attributeDescription,
-            attributeDictionary: personAttributeDictionary.valuesDictionary,
+            attributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (data) in
                 let key = attributeDescription.key.first ?? ""
-                 personAttributeDictionary.valuesDictionary[key] = data
+                 personAttributeContainer.valuesDictionary[key] = data
             },
             actionForClearField: {
 
                 let key = attributeDescription.key.first ?? ""
-                personAttributeDictionary.valuesDictionary[key] = nil
+                personAttributeContainer.valuesDictionary[key] = nil
         })
     }
 }

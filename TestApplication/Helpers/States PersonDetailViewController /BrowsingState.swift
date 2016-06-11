@@ -57,7 +57,7 @@ class BrowsingState: State {
 
 //    func createAttributeDictionary() {
 //        if let person = owner.person {
-//            owner.personAttributeDictionary = person.attributeDictionary
+//            owner.personAttributeContainer = person.attributeDictionary
 //        }
 
 //    }
