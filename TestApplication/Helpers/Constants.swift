@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import BNRCoreDataStack
 
 struct PersonAttributeKeys {
     static let fullName = "fullName"

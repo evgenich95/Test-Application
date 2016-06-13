@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AssetsLibrary
 
 class GalleryViewController: UIViewController {
 

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SWXMLHash
 
-class WebService {
+struct WebService {
 
     typealias CompletionHandler = ((response: [Quote]?, error: NSError?) -> Void)
     static let baseURL: String = "http://storage.space-o.ru/testXmlFeed.xml"

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SimpleTextFieldCellFactory: AbstractFactory {
+struct SimpleTextFieldCellFactory: AbstractFactory {
 
     func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 class CreatingState: State {
     //MARK: Parameters

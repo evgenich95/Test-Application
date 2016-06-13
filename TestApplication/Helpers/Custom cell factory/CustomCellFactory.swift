@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import UIKit
 
-enum CustomCellFactory {
+struct CustomCellFactory {
 
     private static func appropriateFactory(
         attributeDescription: PersonAttributeDescription) -> AbstractFactory {
@@ -33,8 +32,7 @@ enum CustomCellFactory {
             let factory = appropriateFactory(description)
             cells.append(factory.createCustomTableViewCell(
                 description,
-                personAttributeContainer: personAttributeContainer
-                )
+                personAttributeContainer: personAttributeContainer)
             )
         }
         return cells

@@ -8,7 +8,6 @@
 
 import UIKit
 import BNRCoreDataStack
-import SnapKit
 
 class ListPersonTableViewController: UITableViewController {
 

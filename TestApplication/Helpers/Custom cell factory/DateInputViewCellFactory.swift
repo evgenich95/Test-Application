@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DateInputViewCellFactory: AbstractFactory {
+struct DateInputViewCellFactory: AbstractFactory {
 
     func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PickerInputViewCellFactory: AbstractFactory {
+struct PickerInputViewCellFactory: AbstractFactory {
 
     func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,
