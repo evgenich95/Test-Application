@@ -13,11 +13,16 @@ class GalleryViewController: UIViewController {
 
     //MARK: Parameters
 
-    var imageNames: [String] {
-        get {
-            var array = [String]()
-            for i in 0...10 {
-                array.append("\(i)")
+    private lazy var imageNames: [String] = {
+        var names = [String]()
+        let fileManager = NSFileManager.defaultManager()
+        let str = NSBundle.mainBundle().resourcePath
+        let resource = str! + "/Images"
+        do {
+            let contents = try fileManager.contentsOfDirectoryAtPath(resource)
+            for image in contents {
+                let imagePath = resource + "/\(image)"
+                names.append(imagePath)
             }
             return array
         }
