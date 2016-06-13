@@ -166,12 +166,11 @@ class DateInputViewCell: CustomTableViewCell {
             }
             needChangePicker.setDate(setDate, animated: true)
             filedPickers[needChangePicker.tag] = needChangePicker
-            
         default:
             break
         }
     }
-    
+
     func setupView() {
         dataTextFieldInputView = self.dateInputView
     }
