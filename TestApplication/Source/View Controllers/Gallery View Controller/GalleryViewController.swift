@@ -29,13 +29,9 @@ class GalleryViewController: UIViewController {
 
         return names
     }()
+    var imageViews  = [UIImageView]()
 
-    var scrollWidth = CGFloat()
-    var viewFrame = CGRect() {
-        didSet {
-            print("viewFrame has changed on \(viewFrame)")
-        }
-    }
+
 
     var pageWidth: CGFloat {
         return self.view.frame.width
@@ -45,32 +41,18 @@ class GalleryViewController: UIViewController {
         return self.view.frame.height
     }
 
-    var imageViews  = [UIImageView]()
+    var arrowsButtonEnable = true
+    var screenIsRotating = false
 
-    var canChangePhoto = true {
-        didSet {
-
-//            disableBarButtonIfNeed()
-        }
-    }
-    var screenIsRotating = false {
-        didSet {
-//            print("screenIsRotating changed on \(screenIsRotating)")
-        }
-    }
-    var canResizePhotos = false {
-        didSet {
-            lastPage = currentVisiblePage
-        }
-    }
-    var current = Int(0)
-    var last = Int(0)
+    var currentPage = Int(0)
+    var lastPage: Int = 0
     var indexLastTransition: (Int, Int) = (0, 0)
 
-    var lastPage: Int = 0
-    var currentVisiblePage: Int {
-        return Int((scrollView.contentOffset.x + pageWidth / 2) / pageWidth)
-    }
+    var scrollWidth = CGFloat()
+
+//    var currentVisiblePage: Int {
+//        return Int((scrollView.contentOffset.x + pageWidth / 2) / pageWidth)
+//    }
 
     //MARK:-
 
@@ -114,7 +96,7 @@ class GalleryViewController: UIViewController {
     //MARK:-
 
     override func viewWillLayoutSubviews() {
-//        print("\n----\nviewWillLayoutSubviews\n")
+        //        print("\n----\nviewWillLayoutSubviews\n")
         if scrollWidth != scrollView.frame.width {
             screenIsRotating = true
 
@@ -122,57 +104,14 @@ class GalleryViewController: UIViewController {
                 width: pageWidth * CGFloat(imageViews.count),
                 height: pageHeight)
 
-            self.scrollView.scrollRectToVisible(imageViews[current].frame, animated: false)
-
+            self.scrollView.scrollRectToVisible(imageViews[currentPage].frame,
+                                                animated: false)
             scrollWidth = self.scrollView.frame.width
-
         }
         screenIsRotating = false
-//        print("viewWillLayoutSubviews END \n-----")
-
     }
-//
-//    }
-//    override func viewWillLayoutSubviews() {
-////screenIsRotating = true
-//        print("\n--->viewWillLayoutSubviews\n")
-//
-////        var count = Int(0)
-////        print("viewWillLayoutSubviews --- currentVisiblePage\(currentVisiblePage)")
-//////        if canResizePhotos {
-//        print("\(scrollWidth) != \(scrollView.frame.width) is = \(scrollWidth != scrollView.frame.width)")
-//        if scrollWidth != scrollView.frame.width {
-//            print("-----\nneed to reload contentSize")
-//            print("currentVisiblePage = \(currentVisiblePage)")
-//            print("CONSTANT CURRENT = \(current)")
-//            print("lastPage\(lastPage)")
-//
-////            screenIsRotating = true
-//
-//            self.scrollView.frame = CGRect.init(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-//            self.scrollView.contentSize = CGSize.init(width: self.scrollView.frame.width * CGFloat(imageViews.count), height: self.scrollView.frame.height)
-//
-//            scrollWidth = self.scrollView.frame.width
-////          
-//            for i in 0...imageViews.count - 1 {
-//                let index = CGFloat(Double(i))
-////                views[i].configureScrollView()
-//                imageViews[i].frame = CGRect.init(x: self.scrollView.frame.width * index, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
-//            }
-//
-//            self.scrollView.scrollRectToVisible(imageViews[current].frame,animated: false)
-//
-////            self.scrollView.contentOffset.x = CGFloat(current) * scrollView.frame.width
-//
-////            loadImagesForCurrentPage(current)
-//            print("currentVisiblePage after = \(currentVisiblePage)")
-//       }
-////        screenIsRotating = false
-//     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("viewDidLoad")
         navigationItem.title = "Photo gallery"
 
         configureView()
@@ -186,15 +125,12 @@ class GalleryViewController: UIViewController {
 
         imageViews[0].setImageWithoutCache(imageNames[0])
         imageViews[1].setImageWithoutCache(imageNames[1])
-//        scrollWidth = self.scrollView.frame.width
         disableBarButtonIfNeed()
-//        viewFrame = view.frame
-//        print("viewFrame = \(viewFrame)")
     }
 
     //MARK: Help functions
     func loadImagesForCurrentPage(newPage: Int) {
-//        print("loadImagesForCurrentPage")
+        //        print("loadImagesForCurrentPage")
 
         var direction: Int = 0
 
@@ -212,12 +148,12 @@ class GalleryViewController: UIViewController {
         let loadingIdx = newPage + direction
 
         if deletionIdx >= 0 && deletionIdx < imageViews.count {
-//            print("---->delete for index = \(deletionIdx)")
+            //            print("---->delete for index = \(deletionIdx)")
             imageViews[deletionIdx].image = nil
         }
 
         if loadingIdx >= 0 && loadingIdx < imageViews.count {
-//            print("load for index = \(loadingIdx)")
+            //            print("load for index = \(loadingIdx)")
             imageViews[loadingIdx].setImageWithoutCache(imageNames[loadingIdx])
         }
         indexLastTransition = (lastPage, newPage)
@@ -229,6 +165,7 @@ class GalleryViewController: UIViewController {
             y: 0,
             width: pageWidth,
             height: pageHeight)
+
         let newImage = UIImageView(frame: frame)
 
         var leftView: UIView = self.scrollView
@@ -254,8 +191,8 @@ class GalleryViewController: UIViewController {
     }
 
     func moveToPage (nextPage: Int) {
-//        canResizePhotos = false
-//        canChangePhoto = false
+        //        canResizePhotos = false
+        //        canChangePhoto = false
 
         self.scrollView.scrollRectToVisible(imageViews[nextPage].frame,
                                             animated: true)
@@ -282,17 +219,17 @@ class GalleryViewController: UIViewController {
 
     //MARK: addTarget's function
     @objc func arrowBarButtonAction(sender: UIBarButtonItem) {
-//        disableBarButtonIfNeed()
+        //        disableBarButtonIfNeed()
         print("\n-----\narrowBarButtonAction")
 
-        print("canChangePhoto = \(canChangePhoto)")
-        if !canChangePhoto {return}
-//        canChangePhoto = false
+        print("canChangePhoto = \(arrowsButtonEnable)")
+        if !arrowsButtonEnable {return}
+        //        canChangePhoto = false
 
         //leftButton.tag = -1 and rightButton.tag = 1
-        moveToPage(currentVisiblePage+sender.tag)
+        moveToPage(currentPage+sender.tag)
         print("arrowBarButtonAction END \n----------")
-        canChangePhoto = false
+        arrowsButtonEnable = false
     }
 
     func disableBarButtonIfNeed() {
@@ -304,15 +241,15 @@ class GalleryViewController: UIViewController {
         self.navigationItem.rightBarButtonItem?.enabled = true
         self.navigationItem.leftBarButtonItem?.enabled = true
 
-        print("\(current+1) >= \(imageViews.count)")
-        if current+1 >= imageViews.count {
+        print("\(currentPage+1) >= \(imageViews.count)")
+        if currentPage+1 >= imageViews.count {
             self.navigationItem.rightBarButtonItem?.enabled = false
-//            canChangePhoto = false
+            //            canChangePhoto = false
         }
 
-        if current-1 < 0 {
+        if currentPage-1 < 0 {
             self.navigationItem.leftBarButtonItem?.enabled = false
-//            canChangePhoto = false
+            //            canChangePhoto = false
         }
     }
 }
@@ -324,17 +261,17 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        canChangePhoto = true
+        arrowsButtonEnable = true
     }
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-//        canResizePhotos = false
-//        canChangePhoto = false
+        //        canResizePhotos = false
+        //        canChangePhoto = false
 
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
 
-//        canChangePhoto = false
+        //        canChangePhoto = false
         print("\n-----\nscrollViewDidScroll\n")
 
 
@@ -344,27 +281,18 @@ extension GalleryViewController: UIScrollViewDelegate {
             return
         }
 
-        print("current = \(current)")
+        print("current = \(currentPage)")
         print("lastPage = \(lastPage)")
 
-        current = currentVisiblePage
-        print("change current on  = \(current)")
+        currentPage = Int((scrollView.contentOffset.x+pageWidth/2)/pageWidth)
+        print("change current on  = \(currentPage)")
         disableBarButtonIfNeed()
         print("loading photo")
-
-        loadImagesForCurrentPage(currentVisiblePage)
-        lastPage = currentVisiblePage
-//        canChangePhoto = true
-//        print("change last page = \(lastPage)")
-        navigationItem.title = "last= \(lastPage); current= \(currentVisiblePage) "
-//        print("scrollViewDidScroll END\n----")
-
+        
+        loadImagesForCurrentPage(currentPage)
+        lastPage = currentPage
+        //        canChangePhoto = true
+        //        print("change last page = \(lastPage)")
         print("scrollViewDidScroll END \n -----------")
-
-    }
-
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-//        lastPage = currentVisiblePage
-//        current = currentVisiblePage
     }
 }
