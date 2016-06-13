@@ -70,10 +70,6 @@ class EditingState: State {
                 newPerson.fillAttributes(valuesDictionary)
             }
         }
-        saveAndExit()
-    }
-
-    func saveAndExit() {
         owner.coreDataStack.saveAndLog()
         owner.navigationController?.popViewControllerAnimated(true)
     }
