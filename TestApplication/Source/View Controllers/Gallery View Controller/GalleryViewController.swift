@@ -113,16 +113,40 @@ class GalleryViewController: UIViewController {
     //MARK:-
 
     override func viewWillLayoutSubviews() {
+        print("\n----\nviewWillLayoutSubviews\n")
         if scrollWidth != scrollView.frame.width {
             screenIsRotating = true
-            scrollWidth = self.scrollView.frame.width
-            self.scrollView.contentSize = CGSize.init(width: self.scrollView.frame.width * CGFloat(imageViews.count), height: self.scrollView.frame.height)
-            screenIsRotating = false
+
+            self.scrollView.frame = CGRect.init(
+                x: 0, y: 0,
+                width: view.bounds.width,
+                height: view.bounds.height)
+
+            self.scrollView.contentSize = CGSize.init(
+                width: self.scrollView.frame.width * CGFloat(imageViews.count),
+                height: self.scrollView.frame.height)
+
+
+            for i in 0...imageViews.count - 1 {
+                let index = CGFloat(Double(i))
+
+                imageViews[i].frame = CGRect.init(x: self.scrollView.frame.width * index, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
+                }
+
+
+//                self.scrollView.contentOffset.x = CGFloat(current) * scrollView.frame.width
 
             self.scrollView.scrollRectToVisible(imageViews[current].frame,animated: false)
+
+                scrollWidth = self.scrollView.frame.width
+
         }
+        screenIsRotating = false
+        print("viewWillLayoutSubviews END \n-----")
 
     }
+//
+//    }
 //    override func viewWillLayoutSubviews() {
 ////screenIsRotating = true
 //        print("\n--->viewWillLayoutSubviews\n")
@@ -176,7 +200,7 @@ class GalleryViewController: UIViewController {
 
         imageViews[0].setImageWithoutCache(imageNames[0])
         imageViews[1].setImageWithoutCache(imageNames[1])
-        scrollWidth = self.scrollView.frame.width
+//        scrollWidth = self.scrollView.frame.width
         disableBarButtonIfNeed()
 //        viewFrame = view.frame
 //        print("viewFrame = \(viewFrame)")
@@ -305,8 +329,8 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        lastPage = currentVisiblePage
-        current = currentVisiblePage
+//        lastPage = currentVisiblePage
+//        current = currentVisiblePage
     }
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
 //        canResizePhotos = false
@@ -316,19 +340,28 @@ extension GalleryViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
 
-        if screenIsRotating && view.frame.width == scrollWidth {
+        print("\n-----\nscrollViewDidScroll\n")
+
+        print("\(view.frame.width) ==  \(scrollWidth)")
+
+        if  screenIsRotating || view.frame.width != scrollWidth {
             return
         }
+        print("current = \(current)")
+        print("lastPage = \(lastPage)")
         current = currentVisiblePage
-        loadImagesForCurrentPage(current)
+        print("loading photo")
+        loadImagesForCurrentPage(currentVisiblePage)
         lastPage = currentVisiblePage
+        print("change last page = \(lastPage)")
         navigationItem.title = "last= \(lastPage); current= \(currentVisiblePage) "
+        print("scrollViewDidScroll END\n----")
 
 
     }
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        lastPage = currentVisiblePage
-        current = currentVisiblePage
+//        lastPage = currentVisiblePage
+//        current = currentVisiblePage
     }
 }
