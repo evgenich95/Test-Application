@@ -17,7 +17,11 @@ class QuoteTableViewCell: UITableViewCell {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy, hh:mm"
 
-        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+        let underlineAttribute = [
+            NSUnderlineStyleAttributeName: NSUnderlineStyle
+                                                    .StyleSingle
+                                                    .rawValue
+        ]
         let underlineAttributedString = NSAttributedString(
             string: dateFormatter.stringFromDate(quote.date),
             attributes: underlineAttribute

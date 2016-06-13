@@ -80,10 +80,9 @@ class CustomTableViewCell: UITableViewCell {
         separatedView.bounds.size = (CGSize(width: 2, height: 2))
         separatedView.backgroundColor = UIColor.grayColor()
         textField.inputAccessoryView = separatedView
-        textField.addTarget(
-            self,
-            action: #selector(textFieldValueChange),
-            forControlEvents: .EditingChanged)
+        textField.addTarget(self,
+                            action: #selector(textFieldValueChange),
+                            forControlEvents: .EditingChanged)
 
         self.addSubview(textField)
         return textField
@@ -93,6 +92,7 @@ class CustomTableViewCell: UITableViewCell {
 
     init(inputDataType: NSAttributeType = .StringAttributeType,
          actionForClearField: () -> Void) {
+
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: nil)
 
         defer {

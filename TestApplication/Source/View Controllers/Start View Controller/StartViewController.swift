@@ -34,10 +34,14 @@ class StartViewController: UITabBarController {
     }
     private func setupTabBar() {
 
-        let listVC = UINavigationController(rootViewController: ListPersonTableViewController(coreDataStack: coreDataStack))
-        let serviceVC = UINavigationController(rootViewController: ServiceTableViewController())
+        let listVC = UINavigationController(
+                            rootViewController: ListPersonTableViewController(
+                                coreDataStack: coreDataStack))
+        let serviceVC = UINavigationController(
+            rootViewController: ServiceTableViewController())
 
-        let gallerymyVC = UINavigationController(rootViewController: GalleryViewController())
+        let gallerymyVC = UINavigationController(
+            rootViewController: GalleryViewController())
 
         let controllers = [listVC, gallerymyVC, serviceVC]
         self.viewControllers = controllers
@@ -48,15 +52,18 @@ class StartViewController: UITabBarController {
         listVC.tabBarItem = UITabBarItem(
             title: "List",
             image: listVCImage,
-            tag: 1)
+            tag: 1
+        )
         serviceVC.tabBarItem = UITabBarItem(
             title: "Service",
             image: serviceVCImage,
-            tag:2)
+            tag: 2
+        )
 
         gallerymyVC.tabBarItem = UITabBarItem(
             title: "Gallery",
             image: galleryVCImage,
-            tag:3)
+            tag: 3
+        )
     }
 }

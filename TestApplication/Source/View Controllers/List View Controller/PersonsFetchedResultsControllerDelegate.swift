@@ -12,7 +12,7 @@ import BNRCoreDataStack
 
 class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate {
     weak var tableView: UITableView?
-    var userAreEditing = false
+    var userIsEditing = false
 
     // MARK: - Lifecycle
 
@@ -20,43 +20,53 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
         self.tableView = tableView
     }
 
-    func fetchedResultsControllerDidPerformFetch(controller: FetchedResultsController<Person>) {
-        if userAreEditing {return}
+    func fetchedResultsControllerDidPerformFetch(
+        controller: FetchedResultsController<Person>) {
+        if userIsEditing {return}
         tableView?.reloadData()
     }
 
-    func fetchedResultsControllerWillChangeContent(controller: FetchedResultsController<Person>) {
-        if userAreEditing {return}
+    func fetchedResultsControllerWillChangeContent(
+        controller: FetchedResultsController<Person>) {
+        if userIsEditing {return}
         tableView?.beginUpdates()
     }
 
-    func fetchedResultsControllerDidChangeContent(controller: FetchedResultsController<Person>) {
-        if userAreEditing {return}
+    func fetchedResultsControllerDidChangeContent(
+        controller: FetchedResultsController<Person>) {
+        if userIsEditing {return}
         tableView?.endUpdates()
     }
 
-    func fetchedResultsController(controller: FetchedResultsController<Person>,
-                                  didChangeObject change: FetchedResultsObjectChange<Person>) {
-        if userAreEditing {return}
+    func fetchedResultsController(
+        controller: FetchedResultsController<Person>,
+        didChangeObject change: FetchedResultsObjectChange<Person>) {
+        if userIsEditing {return}
 
         switch change {
         case let .Insert(_, indexPath):
-            tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView?.insertRowsAtIndexPaths([indexPath],
+                                              withRowAnimation: .Automatic)
 
         case let .Delete(_, indexPath):
-            tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView?.deleteRowsAtIndexPaths([indexPath],
+                                              withRowAnimation: .Automatic)
 
         case let .Move(_, fromIndexPath, toIndexPath):
-            tableView?.moveRowAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
+            tableView?.moveRowAtIndexPath(fromIndexPath,
+                                          toIndexPath: toIndexPath)
 
         case let .Update(_, indexPath):
-            tableView?.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView?.reloadRowsAtIndexPaths([indexPath],
+                                              withRowAnimation: .Automatic)
         }
     }
 
-    func fetchedResultsController(controller: FetchedResultsController<Person>,
-                                  didChangeSection change: FetchedResultsSectionChange<Person>) {
-        if userAreEditing {return}
+    func fetchedResultsController(
+        controller: FetchedResultsController<Person>,
+        didChangeSection change: FetchedResultsSectionChange<Person>) {
+
+        if userIsEditing {return}
 
         switch change {
         case let .Insert(_, index):

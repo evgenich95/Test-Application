@@ -46,6 +46,5 @@ class BrowsingState: State {
     }
 
     @objc func doneAction() {
-
     }
 }

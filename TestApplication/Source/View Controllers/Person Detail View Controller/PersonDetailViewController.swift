@@ -42,7 +42,7 @@ class PersonDetailViewController: UIViewController {
         willSet {
             guard let currentDisplayedPersonType = PersonTypeRecognizer(
                 orderIndex: newValue)
-            else {return}
+                else {return}
 
             personAttributeContainer?.displayedPersonType = currentDisplayedPersonType
 
@@ -81,7 +81,7 @@ class PersonDetailViewController: UIViewController {
         let segment = UISegmentedControl(items: entityNames)
 
         if let person = self.person {
-            segment.enabled = self.editing
+            segment.enabled = false
             self.changeStateToBrowsing()
         } else {
             self.changeStateToCreating()
@@ -96,7 +96,8 @@ class PersonDetailViewController: UIViewController {
             segment.selectedSegmentIndex = 0
         }
 
-        segment.addTarget(self, action: #selector(segmentControlChangeValue), forControlEvents: .ValueChanged)
+        segment.addTarget(self, action: #selector(segmentControlChangeValue),
+                          forControlEvents: .ValueChanged)
 
         self.view.addSubview(segment)
         return segment
@@ -117,8 +118,7 @@ class PersonDetailViewController: UIViewController {
         configureView()
         setupGestureRecognizer()
 
-        guard
-            let displayedPersonType = PersonTypeRecognizer(
+        guard let displayedPersonType = PersonTypeRecognizer(
                 orderIndex: selectedPersonType)
             else {return}
 
@@ -157,14 +157,14 @@ class PersonDetailViewController: UIViewController {
     func checkValid() {
         guard
             let filledAttributeKeys = personAttributeContainer?
-                                                    .valuesDictionary
-                                                    .keys,
+                                                .valuesDictionary
+                                                .keys,
             let allAttributeKeys = personAttributeContainer?
-                                                    .displayedPersonType
-                                                    .attributeKeys
-        else {
-            self.navigationItem.rightBarButtonItem?.enabled = false
-            return
+                                                .displayedPersonType
+                                                .attributeKeys
+            else {
+                self.navigationItem.rightBarButtonItem?.enabled = false
+                return
         }
 
         var canTapSave = true
@@ -214,19 +214,24 @@ class PersonDetailViewController: UIViewController {
 //MARK: -
 //MARK: Extension
 //MARK: - DelegateForPersonAttributeContainer
+
 extension PersonDetailViewController: DelegateForPersonAttributeContainer {
     func userEnteredData() {
         checkValid()
     }
 }
+
 //MARK: - UITableViewDelegate
 extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
-    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+    func tableView(tableView: UITableView,
+                   editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         return .None
     }
 
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView,
+                   willDisplayCell cell: UITableViewCell,
+                    forRowAtIndexPath indexPath: NSIndexPath) {
 
         switch state?.isBrowsing() {
         case (true?):
@@ -246,16 +251,21 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return personAttributeContainer?.displayedPersonType
-            .numberDisplayedAttributes ?? 0
+    func tableView(tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+        return personAttributeContainer?
+                            .displayedPersonType
+                            .numberDisplayedAttributes ?? 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView,
+                   cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         return customCells[indexPath.row]
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return "Profile"

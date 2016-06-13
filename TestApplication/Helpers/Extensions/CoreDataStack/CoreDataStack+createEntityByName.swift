@@ -1,5 +1,5 @@
 //
-//  CoreDataStack + entityNames.swift
+//  CoreDataStack+createEntityByName.swift
 //  TestApplication
 //
 //  Created by developer on 14.05.16.
@@ -9,6 +9,7 @@
 import BNRCoreDataStack
 
 extension CoreDataStack {
+
     func createEntityByName(entityName: String) -> NSManagedObject {
         guard let description = NSEntityDescription
             .entityForName(entityName,

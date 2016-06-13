@@ -1,5 +1,5 @@
 //
-//  Array + removeObject.swift
+//  Array+removeObject.swift
 //  TestApplication
 //
 //  Created by developer on 18.05.16.

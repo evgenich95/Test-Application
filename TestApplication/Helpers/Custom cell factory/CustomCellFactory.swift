@@ -11,7 +11,8 @@ import UIKit
 
 enum CustomCellFactory {
 
-    private static func appropriateFactory(attributeDescription: PersonAttributeDescription) -> AbstractFactory {
+    private static func appropriateFactory(
+        attributeDescription: PersonAttributeDescription) -> AbstractFactory {
 
         switch attributeDescription {
             case .FullName, .Salary, .WorkplaceNumber:
@@ -23,7 +24,8 @@ enum CustomCellFactory {
         }
     }
 
-    static func cellsFor(personAttributeContainer: PersonAttributeContainer) -> [CustomTableViewCell] {
+    static func cellsFor(
+        personAttributeContainer: PersonAttributeContainer) -> [CustomTableViewCell] {
 
         var cells = [CustomTableViewCell]()
 

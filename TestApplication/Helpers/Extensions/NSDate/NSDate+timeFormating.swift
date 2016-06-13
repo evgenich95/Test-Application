@@ -1,5 +1,5 @@
 //
-//  NSDate + getTime.swift
+//  NSDate+timeFormating.swift
 //  TestApplication
 //
 //  Created by developer on 09.05.16.

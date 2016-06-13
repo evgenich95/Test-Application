@@ -16,18 +16,16 @@ class EditingState: State {
     var copyOfPerson: Person?
 
     lazy private var cancelBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(
-            title: "Cancel",
-            style: .Plain,
-            target: self,
-            action: #selector(cancelAction))
+        return UIBarButtonItem(title: "Cancel",
+                               style: .Plain,
+                               target: self,
+                               action: #selector(cancelAction))
     }()
 
     lazy private var saveBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(
-            barButtonSystemItem: .Save,
-            target: self,
-            action: #selector(doneAction))
+        return UIBarButtonItem(barButtonSystemItem: .Save,
+                               target: self,
+                               action: #selector(doneAction))
     }()
     //MARK:-
 
@@ -55,20 +53,20 @@ class EditingState: State {
         guard
             let attributeDictionary = owner.personAttributeContainer,
             let editedPerson = owner.person
-        else {return}
+            else {return}
 
         let dataStack = owner.coreDataStack
-        let finalPersonTypeName = attributeDictionary
-                                                    .displayedPersonType
-                                                    .description
         let valuesDictionary = attributeDictionary.valuesDictionary
+        let finalPersonTypeName = attributeDictionary
+            .displayedPersonType
+            .description
 
         if finalPersonTypeName == editedPerson.entity.name {
             editedPerson.fillAttributes(valuesDictionary)
         } else {
             dataStack.mainQueueContext.deleteObject(editedPerson)
             if let newPerson = dataStack
-                    .createEntityByName(finalPersonTypeName) as? Person {
+                .createEntityByName(finalPersonTypeName) as? Person {
                 newPerson.fillAttributes(valuesDictionary)
             }
         }

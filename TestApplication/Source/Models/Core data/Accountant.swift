@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import CoreData
-
 
 class Accountant: Worker {
     @NSManaged var type: NSNumber?

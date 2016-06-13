@@ -19,7 +19,8 @@ class SimpleTextFieldCell: CustomTableViewCell {
          action: ResultDataActionType,
          actionForClearField: () -> Void) {
 
-        super.init(inputDataType: attributeDescription.type, actionForClearField: actionForClearField)
+        super.init(inputDataType: attributeDescription.type,
+                   actionForClearField: actionForClearField)
 
         attributeDescriptionString = attributeDescription.description
         textFieldPlaceholder = attributeDescription.placeholder
@@ -34,21 +35,20 @@ class SimpleTextFieldCell: CustomTableViewCell {
     }
 
     override func handleEnteringData(textField: UITextField) {
-
         guard
-        let text = textField.text,
-        let inputType = inputDataType
-            else {return}
+            let text = textField.text,
+            let inputType = inputDataType
+        else {return}
 
         var returnData: AnyObject?
 
         switch inputType {
-            case .StringAttributeType:
-                returnData = text
-            case .DoubleAttributeType:
-                returnData = (text as NSString).doubleValue
-            case .Integer32AttributeType:
-                returnData = (text as NSString).integerValue
+        case .StringAttributeType:
+            returnData = text
+        case .DoubleAttributeType:
+            returnData = (text as NSString).doubleValue
+        case .Integer32AttributeType:
+            returnData = (text as NSString).integerValue
         default:
             fatalError("Invalid input data type for attribute \(attributeDescriptionString)")
         }

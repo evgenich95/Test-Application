@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import CoreData
-
 
 class Worker: Person {
     @NSManaged var workplaceNumber: NSNumber?

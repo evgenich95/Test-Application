@@ -28,7 +28,7 @@ class WorkerTableViewCell: UITableViewCell {
             mealTimeLabel.text = "From \(fromTime) to \(toTime)"
         default: break
         }
-
+        
         workplaeNumberLabel.text = worker.workplaceNumber?.stringValue
     }
 }

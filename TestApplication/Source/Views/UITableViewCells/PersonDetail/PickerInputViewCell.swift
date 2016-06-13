@@ -16,8 +16,11 @@ class PickerInputViewCell: CustomTableViewCell {
     private var currentValue: AnyObject? {
         didSet {
             if let data = currentValue as? NSNumber {
-                pickerView.selectRow(data.integerValue, inComponent: 0, animated: false)
-                attributeValue = AccountantTypeRecognizer.init(index: data.integerValue).description
+                pickerView.selectRow(data.integerValue,
+                                     inComponent: 0,
+                                     animated: false)
+                attributeValue = AccountantTypeRecognizer
+                                    .init(index: data.integerValue).description
             }
         }
     }
@@ -62,7 +65,9 @@ class PickerInputViewCell: CustomTableViewCell {
         }
     }
 
-    override func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    override func textField(textField: UITextField,
+                            shouldChangeCharactersInRange range: NSRange,
+                            replacementString string: String) -> Bool {
         return false
     }
 }

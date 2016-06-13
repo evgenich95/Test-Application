@@ -26,5 +26,4 @@ class ManagerTableViewCell: UITableViewCell {
             break
         }
     }
-
 }

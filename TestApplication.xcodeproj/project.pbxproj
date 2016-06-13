@@ -10,7 +10,7 @@
 		03DE02B95183C98D93830241 /* Pods_TestApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5B598671519CB867635975 /* Pods_TestApplication.framework */; };
 		8B001DCF1CF203AA001EB1C0 /* UIImageView+setImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B001DCE1CF203AA001EB1C0 /* UIImageView+setImage.swift */; };
 		8B067D1C1CE71C9100CC9F5F /* CoreDataStack+save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B067D1B1CE71C9100CC9F5F /* CoreDataStack+save.swift */; };
-		8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift */; };
+		8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift */; };
 		8B0951731D06D65600F67C9A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0951711D06D65600F67C9A /* Manager.swift */; };
 		8B35BD3D1D07CA5D006B028D /* PersonTypeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35BD3C1D07CA5D006B028D /* PersonTypeRecognizer.swift */; };
 		8B3613711D090A2700B4BFE4 /* PersonAttributeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3613701D090A2700B4BFE4 /* PersonAttributeDescription.swift */; };
@@ -57,7 +57,6 @@
 		8BF3476B1CEB4E5900241D23 /* EditingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3476A1CEB4E5900241D23 /* EditingState.swift */; };
 		8BF41B331CE43E8900E98285 /* PersonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF41B321CE43E8900E98285 /* PersonDetailViewController.swift */; };
 		8BF4E3591CEC1226005AE3D5 /* Array+removeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF4E3581CEC1226005AE3D5 /* Array+removeObject.swift */; };
-		8BF6F2951CEF03EF00565E92 /* ZoomedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF6F2941CEF03EF00565E92 /* ZoomedPhotoViewController.swift */; };
 		8BF776A31D085AA900BBC55C /* CustomCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776A21D085AA900BBC55C /* CustomCellFactory.swift */; };
 		8BF776A51D085FA400BBC55C /* AbstractFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776A41D085FA400BBC55C /* AbstractFactory.swift */; };
 		8BF776A71D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776A61D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift */; };
@@ -72,7 +71,7 @@
 		86638BE5E2AACD143001D5C4 /* Pods-TestApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApplication.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestApplication/Pods-TestApplication.release.xcconfig"; sourceTree = "<group>"; };
 		8B001DCE1CF203AA001EB1C0 /* UIImageView+setImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+setImage.swift"; sourceTree = "<group>"; };
 		8B067D1B1CE71C9100CC9F5F /* CoreDataStack+save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+save.swift"; sourceTree = "<group>"; };
-		8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+orderIndex.swift"; sourceTree = "<group>"; };
+		8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+createEntityByName.swift"; sourceTree = "<group>"; };
 		8B0951711D06D65600F67C9A /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		8B35BD3C1D07CA5D006B028D /* PersonTypeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTypeRecognizer.swift; sourceTree = "<group>"; };
 		8B3613701D090A2700B4BFE4 /* PersonAttributeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonAttributeDescription.swift; sourceTree = "<group>"; };
@@ -121,7 +120,6 @@
 		8BF3476A1CEB4E5900241D23 /* EditingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingState.swift; sourceTree = "<group>"; };
 		8BF41B321CE43E8900E98285 /* PersonDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDetailViewController.swift; sourceTree = "<group>"; };
 		8BF4E3581CEC1226005AE3D5 /* Array+removeObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+removeObject.swift"; sourceTree = "<group>"; };
-		8BF6F2941CEF03EF00565E92 /* ZoomedPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomedPhotoViewController.swift; sourceTree = "<group>"; };
 		8BF776A21D085AA900BBC55C /* CustomCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellFactory.swift; sourceTree = "<group>"; };
 		8BF776A41D085FA400BBC55C /* AbstractFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractFactory.swift; sourceTree = "<group>"; };
 		8BF776A61D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldCellFactory.swift; sourceTree = "<group>"; };
@@ -169,6 +167,7 @@
 		8B3D75D51D0C3FFF00A41714 /* Person Helper */ = {
 			isa = PBXGroup;
 			children = (
+				8BF776A11D085A7A00BBC55C /* Custom cell factory */,
 				8B3D75D61D0C40E600A41714 /* AccountantTypeRecognizer.swift */,
 				8BF344D81D0978AC007FC518 /* PersonAttributeContainer.swift */,
 				8B3613701D090A2700B4BFE4 /* PersonAttributeDescription.swift */,
@@ -198,7 +197,7 @@
 		8B5A9F421CE88C8C00B75318 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
-				8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift */,
+				8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift */,
 				8B067D1B1CE71C9100CC9F5F /* CoreDataStack+save.swift */,
 			);
 			path = CoreDataStack;
@@ -207,7 +206,6 @@
 		8B5B26751CE03DA4004B3223 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8BF776A11D085A7A00BBC55C /* Custom cell factory */,
 				8B5B26761CE03DAA004B3223 /* Extensions */,
 				8B3D75D51D0C3FFF00A41714 /* Person Helper */,
 				8BF347631CEB463700241D23 /* States PersonDetailViewController  */,
@@ -347,11 +345,11 @@
 		8B9E1FD21CEC54EF0071C648 /* Core data */ = {
 			isa = PBXGroup;
 			children = (
-				8B5B26801CE0474D004B3223 /* Accountant.swift */,
-				8B0951711D06D65600F67C9A /* Manager.swift */,
 				8B5B267E1CE0474D004B3223 /* Person.swift */,
-				8B7DCCFA1CDB2C14008AEDF6 /* TestApplication.xcdatamodeld */,
+				8B0951711D06D65600F67C9A /* Manager.swift */,
+				8B5B26801CE0474D004B3223 /* Accountant.swift */,
 				8B5B267A1CE0474D004B3223 /* Worker.swift */,
+				8B7DCCFA1CDB2C14008AEDF6 /* TestApplication.xcdatamodeld */,
 			);
 			path = "Core data";
 			sourceTree = "<group>";
@@ -361,7 +359,6 @@
 			children = (
 				8B396CFC1D0E8A820082ED2F /* Images */,
 				8B3961E61CEE0FCA00EDC4C0 /* GalleryViewController.swift */,
-				8BF6F2941CEF03EF00565E92 /* ZoomedPhotoViewController.swift */,
 			);
 			path = "Gallery View Controller";
 			sourceTree = "<group>";
@@ -434,10 +431,10 @@
 		8BF347631CEB463700241D23 /* States PersonDetailViewController  */ = {
 			isa = PBXGroup;
 			children = (
+				8BF347641CEB465500241D23 /* State.swift */,
 				8BF347661CEB496000241D23 /* BrowsingState.swift */,
 				8BF347681CEB4C5700241D23 /* CreatingState.swift */,
 				8BF3476A1CEB4E5900241D23 /* EditingState.swift */,
-				8BF347641CEB465500241D23 /* State.swift */,
 			);
 			path = "States PersonDetailViewController ";
 			sourceTree = "<group>";
@@ -451,7 +448,8 @@
 				8BF776AA1D08601400BBC55C /* PickerInputViewCellFactory.swift */,
 				8BF776A61D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift */,
 			);
-			path = "Custom cell factory";
+			name = "Custom cell factory";
+			path = "../Custom cell factory";
 			sourceTree = "<group>";
 		};
 		BD5432C808E39929914DB593 /* Frameworks */ = {
@@ -619,7 +617,7 @@
 				8B87C7D81CE1CA0600A667C6 /* AccountantTableViewCell.swift in Sources */,
 				8BF776A71D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift in Sources */,
 				8B001DCF1CF203AA001EB1C0 /* UIImageView+setImage.swift in Sources */,
-				8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+orderIndex.swift in Sources */,
+				8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift in Sources */,
 				8BF275DC1CDB524600E1566D /* ListTableViewController.swift in Sources */,
 				8B7DCD091CDB2C3F008AEDF6 /* LaunchViewController.swift in Sources */,
 				8B067D1C1CE71C9100CC9F5F /* CoreDataStack+save.swift in Sources */,
@@ -658,7 +656,6 @@
 				8B5B26821CE0474D004B3223 /* Worker.swift in Sources */,
 				8B5B268A1CE06ADD004B3223 /* NSDate+timeFormating.swift in Sources */,
 				8BF337D11CECAE9E005CB57B /* UIViewController+EZLoading.swift in Sources */,
-				8BF6F2951CEF03EF00565E92 /* ZoomedPhotoViewController.swift in Sources */,
 				8BEF1E5D1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift in Sources */,
 				8B4B0B0C1D070A6D009C0807 /* PersonTableViewHeader.swift in Sources */,
 				8BA93DF51CE4E8B400E55BA7 /* SimpleTextFieldCell.swift in Sources */,

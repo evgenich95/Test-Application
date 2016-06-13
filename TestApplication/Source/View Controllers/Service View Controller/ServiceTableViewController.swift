@@ -17,10 +17,11 @@ class ServiceTableViewController: UITableViewController {
     lazy private var retryButton: UIButton = {
         let button = UIButton()
         button.setTitle("Retry failed load", forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(30)
-        button.addTarget(self, action: #selector(getRequest), forControlEvents: .TouchDown)
         button.setTitleColor(UIColor.blueColor(), forState: .Normal)
-
+        button.titleLabel?.font = UIFont.systemFontOfSize(30)
+        button.addTarget(self,
+                         action: #selector(getRequest),
+                         forControlEvents: .TouchDown)
         return button
     }()
 
@@ -39,9 +40,7 @@ class ServiceTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.navigationItem.title = "Service"
-
         setupTableView()
         getRequest()
     }

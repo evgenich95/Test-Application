@@ -11,8 +11,7 @@ import UIKit
 class DateInputViewCell: CustomTableViewCell {
 
     //MARK: Parameters
-    typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate)
-        -> Void)?
+    typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate) -> Void)?
     var handleDataAction: ResultDataActionType
     var filedPickers = [Int: UIDatePicker]() {
         didSet {
@@ -24,7 +23,7 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: -
     //MARK: Lazy parameters
-    private var customTimeDatePicker: UIDatePicker {
+    private var customTimePicker: UIDatePicker {
         let datePicker = UIDatePicker()
         datePicker.backgroundColor = UIColor.grayColor()
         datePicker.datePickerMode = UIDatePickerMode.Time
@@ -37,13 +36,13 @@ class DateInputViewCell: CustomTableViewCell {
     }
 
     lazy private var startTimeDatePicker: UIDatePicker = {
-        let picker =  self.customTimeDatePicker
+        let picker =  self.customTimePicker
         picker.tag = 0
         return picker
     }()
 
     lazy private var endTimeDatePicker: UIDatePicker = {
-        let picker =  self.customTimeDatePicker
+        let picker =  self.customTimePicker
         picker.tag = 1
         return picker
     }()
@@ -97,7 +96,8 @@ class DateInputViewCell: CustomTableViewCell {
          action: ResultDataActionType,
          actionForClearField: () -> Void) {
 
-        super.init(inputDataType: attributeDescription.type, actionForClearField: actionForClearField)
+        super.init(inputDataType: attributeDescription.type,
+                   actionForClearField: actionForClearField)
 
         defer {
             if
@@ -166,12 +166,12 @@ class DateInputViewCell: CustomTableViewCell {
             }
             needChangePicker.setDate(setDate, animated: true)
             filedPickers[needChangePicker.tag] = needChangePicker
-
+            
         default:
             break
         }
     }
-
+    
     func setupView() {
         dataTextFieldInputView = self.dateInputView
     }

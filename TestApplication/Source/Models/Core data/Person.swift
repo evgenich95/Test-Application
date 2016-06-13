@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import CoreData
 import BNRCoreDataStack
-
 
 class Person: NSManagedObject, CoreDataModelable {
 
@@ -29,8 +27,8 @@ class Person: NSManagedObject, CoreDataModelable {
     }
 
     var attributeDictionary: [String: AnyObject] {
-        guard let selfAttributeKeys = PersonTypeRecognizer.init(aPerson: self)?
-            .attributeKeys
+        guard let selfAttributeKeys = PersonTypeRecognizer
+                                        .init(aPerson: self)?.attributeKeys
             else {
                 fatalError("Person's subcluss \(self.entity.name) doesn't have PersonTypeRecognizer")
         }
@@ -47,5 +45,4 @@ class Person: NSManagedObject, CoreDataModelable {
             self.setValue(value, forKey: key)
         }
     }
-
 }

@@ -26,9 +26,12 @@ class ListPersonTableViewController: UITableViewController {
     lazy private var fetchedResultsController: FetchedResultsController<Person> = {
         let fetchRequest = NSFetchRequest(entityName: Person.entityName)
 
-        let nameSortDescriptor = NSSortDescriptor(key: "fullName", ascending:  true)
-        let typeSortDescriptor = NSSortDescriptor(key: "entity.name", ascending:  true)
-        let orderSortDescriptor = NSSortDescriptor(key: "order", ascending:  false)
+        let nameSortDescriptor = NSSortDescriptor(key: "fullName",
+                                                  ascending:  true)
+        let typeSortDescriptor = NSSortDescriptor(key: "entity.name",
+                                                  ascending:  true)
+        let orderSortDescriptor = NSSortDescriptor(key: "order",
+                                                   ascending:  false)
 
         fetchRequest.sortDescriptors = [typeSortDescriptor, orderSortDescriptor,
                                         nameSortDescriptor ]
@@ -57,7 +60,7 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-         tableView.reloadData()
+        tableView.reloadData()
     }
 
     override func viewDidLoad() {
@@ -74,14 +77,16 @@ class ListPersonTableViewController: UITableViewController {
     override func tableView(tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
         guard
-            let firstPersonInSection = fetchedResultsController.sections?[section].objects.first,
+            let firstPersonInSection = fetchedResultsController
+                                                .sections?[section]
+                                                .objects.first,
             let iconAndTitleName = firstPersonInSection.entity.name
         else {return nil}
 
         let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier(
             KeysForCells.personTableViewHeader)
         if let header = cell as? PersonTableViewHeader {
-            //sectionName = sectionIcon
+            //sectionName == sectionIcon
             header.updateUI(iconAndTitleName, sectionIconName: iconAndTitleName)
         }
         return cell
@@ -92,7 +97,9 @@ class ListPersonTableViewController: UITableViewController {
                             forRowAtIndexPath indexPath: NSIndexPath) {
 
         if editingStyle == .Delete {
-            if let person = fetchedResultsController.sections?[indexPath.section].objects[indexPath.row] {
+            if let person = fetchedResultsController
+                                            .sections?[indexPath.section]
+                                            .objects[indexPath.row] {
                 self.coreDataStack.mainQueueContext.deleteObject(person)
             }
         }
@@ -105,16 +112,16 @@ class ListPersonTableViewController: UITableViewController {
         if let sections = fetchedResultsController.sections {
             return sections.count
         }
-
         return 0
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
+
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
             return currentSection.objects.count
         }
-
         return 0
     }
 
@@ -123,7 +130,9 @@ class ListPersonTableViewController: UITableViewController {
 
         var maybeCell: UITableViewCell?
 
-        guard let person = fetchedResultsController.sections?[indexPath.section].objects[indexPath.row]
+        guard let person = fetchedResultsController
+                                    .sections?[indexPath.section]
+                                    .objects[indexPath.row]
             else { fatalError("Don't have aPerson for \(indexPath) indexPath ") }
 
         switch person {
@@ -154,22 +163,23 @@ class ListPersonTableViewController: UITableViewController {
                 workerCell.updateUI(worker)
                 maybeCell = workerCell
             }
-
         default: break
         }
 
         guard let cell = maybeCell
-            else { fatalError("Cell is not registered") }
+            else { fatalError("Cell \(maybeCell) is not registered") }
 
         return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        if let person = fetchedResultsController.sections?[indexPath.section].objects[indexPath.row] {
+        if let person = fetchedResultsController
+                                    .sections?[indexPath.section]
+                                    .objects[indexPath.row] {
 
             let createNewPersonViewController = PersonDetailViewController(
-                                                coreDataStack: coreDataStack)
+                coreDataStack: coreDataStack)
             createNewPersonViewController.person = person
 
             self.navigationController?.pushViewController(
@@ -196,16 +206,17 @@ class ListPersonTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
-        //нет смысла обновлять БД при равных позициях
         if fromIndexPath == toIndexPath {
             return
         }
 
         //disable auto updating tableView
         //need to avoid error "invalid number of rows in section"
-        frcDelegate.userAreEditing = true
+        frcDelegate.userIsEditing = true
 
-        if var persons = self.fetchedResultsController.sections?[fromIndexPath.section].objects {
+        if var persons = fetchedResultsController
+                            .sections?[fromIndexPath.section]
+                            .objects {
             let person = persons[fromIndexPath.row] as Person
 
             persons.removeAtIndex(fromIndexPath.row)
@@ -220,7 +231,7 @@ class ListPersonTableViewController: UITableViewController {
             //need to save order of sections after reording elements
             coreDataStack.saveAndLog()
 
-            frcDelegate.userAreEditing = false
+            frcDelegate.userIsEditing = false
             performFetch(fetchedResultsController)
         }
     }

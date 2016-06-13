@@ -16,18 +16,16 @@ class CreatingState: State {
     var owner: Owner
 
     lazy private var cancelBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(
-            title: "Cancel",
-            style: .Plain,
-            target: self,
-            action: #selector(cancelAction))
+        return UIBarButtonItem(title: "Cancel",
+                               style: .Plain,
+                               target: self,
+                               action: #selector(cancelAction))
     }()
 
     lazy private var saveNewPersonBarButton: UIBarButtonItem = {
-        return UIBarButtonItem(
-            barButtonSystemItem: .Save,
-            target: self,
-            action: #selector(doneAction))
+        return UIBarButtonItem(barButtonSystemItem: .Save,
+                               target: self,
+                               action: #selector(doneAction))
     }()
 
     //MARK:-
@@ -63,8 +61,9 @@ class CreatingState: State {
         let valuesDictionary = attributeDictionary.valuesDictionary
         let entityName = attributeDictionary.displayedPersonType.description
 
-        if let newPerson = owner.coreDataStack
-                                    .createEntityByName(entityName) as? Person {
+        if let newPerson = owner
+            .coreDataStack
+            .createEntityByName(entityName) as? Person {
             newPerson.fillAttributes(valuesDictionary)
             owner.coreDataStack.saveAndLog()
         }

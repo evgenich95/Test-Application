@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import CoreData
-
 
 class Manager: Person {
     @NSManaged var startVisitingHours: NSDate?
