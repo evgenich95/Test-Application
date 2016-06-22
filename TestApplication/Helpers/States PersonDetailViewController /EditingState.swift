@@ -50,9 +50,9 @@ class EditingState: State {
     }
 
     @objc func doneAction() {
-        guard
-            let attributeDictionary = owner.personAttributeContainer,
-            let editedPerson = owner.person
+        guard let
+            attributeDictionary = owner.personAttributeContainer,
+            editedPerson = owner.person
             else {return}
 
         let dataStack = owner.coreDataStack

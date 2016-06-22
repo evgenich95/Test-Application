@@ -34,9 +34,9 @@ class SimpleTextFieldCell: CustomTableViewCell {
     }
 
     override func handleEnteringData(textField: UITextField) {
-        guard
-            let text = textField.text,
-            let inputType = inputDataType
+        guard let
+            text = textField.text,
+            inputType = inputDataType
         else {return}
 
         var returnData: AnyObject?

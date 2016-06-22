@@ -94,7 +94,7 @@ class DateInputViewCell: CustomTableViewCell {
 
         if  let startDate = attributeDictionary[attributeDescription.key[0]]
                 as? NSDate,
-            let endDate = attributeDictionary[attributeDescription.key[1]]
+            endDate = attributeDictionary[attributeDescription.key[1]]
                 as? NSDate {
             self.startTimeDatePicker.setDate(startDate, animated: false)
             self.endTimeDatePicker.setDate(endDate, animated: false)

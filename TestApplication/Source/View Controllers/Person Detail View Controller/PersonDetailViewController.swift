@@ -154,11 +154,11 @@ class PersonDetailViewController: UIViewController {
     }
 
     func checkValid() {
-        guard
-            let filledAttributeKeys = personAttributeContainer?
+        guard let
+            filledAttributeKeys = personAttributeContainer?
                                                 .valuesDictionary
                                                 .keys,
-            let allAttributeKeys = personAttributeContainer?
+            allAttributeKeys = personAttributeContainer?
                                                 .displayedPersonType
                                                 .attributeKeys
             else {
