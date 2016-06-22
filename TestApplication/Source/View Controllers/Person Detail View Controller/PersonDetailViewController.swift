@@ -215,7 +215,7 @@ class PersonDetailViewController: UIViewController {
 //MARK: - PersonAttributeContainerDelegate
 
 extension PersonDetailViewController: PersonAttributeContainerDelegate {
-    func userEnteredData() {
+    func personAttributeContainerDidEnterData(container: PersonAttributeContainer) {
         checkValid()
     }
 }

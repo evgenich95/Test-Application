@@ -9,7 +9,8 @@
 import Foundation
 
 protocol PersonAttributeContainerDelegate {
-    func userEnteredData()
+    func personAttributeContainerDidEnterData(
+        container: PersonAttributeContainer)
 }
 
 class PersonAttributeContainer {
@@ -25,7 +26,7 @@ class PersonAttributeContainer {
 
     var valuesDictionary = [String: AnyObject]() {
         didSet {
-            delegate?.userEnteredData()
+            delegate?.personAttributeContainerDidEnterData(self)
         }
     }
 
