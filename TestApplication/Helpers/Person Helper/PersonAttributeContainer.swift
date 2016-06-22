@@ -17,7 +17,7 @@ class PersonAttributeContainer {
 
     //MARK: Parameters
     var delegate: PersonAttributeContainerDelegate?
-    var displayedPersonType: PersonTypeRecognizer {
+    var displayedPersonType: EmployeeType {
         didSet {
             updateValuesDictionary()
             updateAttributeDescriptions()
@@ -33,7 +33,7 @@ class PersonAttributeContainer {
     var attributeDescriptions = [PersonAttributeDescription]()
     //MARK:-
 
-    init(displayedPersonType: PersonTypeRecognizer, aPerson: Person?) {
+    init(displayedPersonType: EmployeeType, aPerson: Person?) {
         self.displayedPersonType = displayedPersonType
         updateAttributeDescriptions()
 

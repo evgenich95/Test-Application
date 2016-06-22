@@ -39,7 +39,7 @@ class PersonDetailViewController: UIViewController {
 
     var selectedPersonType: Int = 0 {
         willSet {
-            guard let currentDisplayedPersonType = PersonTypeRecognizer(
+            guard let currentDisplayedPersonType = EmployeeType(
                 orderIndex: newValue)
                 else {return}
 
@@ -73,9 +73,9 @@ class PersonDetailViewController: UIViewController {
         }
 
         let entityNames = [
-            PersonTypeRecognizer.ManagerType.description,
-            PersonTypeRecognizer.WorkerType.description,
-            PersonTypeRecognizer.AccountantType.description
+            EmployeeType.Manager.description,
+            EmployeeType.Worker.description,
+            EmployeeType.Accountant.description
         ]
         let segment = UISegmentedControl(items: entityNames)
 
@@ -86,7 +86,7 @@ class PersonDetailViewController: UIViewController {
             self.changeStateToCreating()
         }
 
-        let index = PersonTypeRecognizer(aPerson: self.person)?.orderIndex
+        let index = EmployeeType(aPerson: self.person)?.orderIndex
 
         switch index {
         case let (index?):
@@ -117,7 +117,7 @@ class PersonDetailViewController: UIViewController {
         configureView()
         setupGestureRecognizer()
 
-        guard let displayedPersonType = PersonTypeRecognizer(
+        guard let displayedPersonType = EmployeeType(
                 orderIndex: selectedPersonType)
             else {return}
 

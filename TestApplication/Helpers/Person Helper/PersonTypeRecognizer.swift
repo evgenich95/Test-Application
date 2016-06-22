@@ -1,5 +1,5 @@
 //
-//  personTypeRecognizer.swift
+//  EmployeeType.swift
 //  TestApplication
 //
 //  Created by developer on 08.06.16.
@@ -7,20 +7,23 @@
 //
 
 import Foundation
+typealias ManagerClass = Manager
+typealias WorkerClass = Worker
+typealias AccountantClass = Accountant
 
-enum PersonTypeRecognizer: CustomStringConvertible {
-    case ManagerType
-    case WorkerType
-    case AccountantType
+enum EmployeeType: CustomStringConvertible {
+    case Manager
+    case Worker
+    case Accountant
 
     init?(aPerson: Person?) {
         switch aPerson?.entity.name ?? "" {
-        case Accountant.entityName:
-            self = .AccountantType
-        case Manager.entityName:
-            self = .ManagerType
-        case Worker.entityName:
-            self = .WorkerType
+        case AccountantClass.entityName:
+            self = .Accountant
+        case ManagerClass.entityName:
+            self = .Manager
+        case WorkerClass.entityName:
+            self = .Worker
         default:
             return nil
         }
@@ -29,11 +32,11 @@ enum PersonTypeRecognizer: CustomStringConvertible {
     init?(orderIndex: Int) {
         switch orderIndex {
         case 0:
-            self = .ManagerType
+            self = .Manager
         case 1:
-            self = .WorkerType
+            self = .Worker
         case 2:
-            self = .AccountantType
+            self = .Accountant
         default:
             return nil
         }
@@ -41,22 +44,22 @@ enum PersonTypeRecognizer: CustomStringConvertible {
 
     var description: String {
         switch self {
-        case .ManagerType:
+        case .Manager:
             return "Manager"
-        case .WorkerType:
+        case .Worker:
             return "Worker"
-        case .AccountantType:
+        case .Accountant:
             return "Accountant"
         }
     }
 
     var orderIndex: Int {
         switch self {
-        case .ManagerType:
+        case .Manager:
             return 0
-        case .WorkerType:
+        case .Worker:
             return 1
-        case .AccountantType:
+        case .Accountant:
             return 2
         }
     }
@@ -64,23 +67,23 @@ enum PersonTypeRecognizer: CustomStringConvertible {
     var attributeKeys: [String] {
 
         switch self {
-        case .ManagerType:
-            return Manager.keys
-        case .WorkerType:
-            return Worker.keys
-        case .AccountantType:
-            return Accountant.keys
+        case .Manager:
+            return ManagerClass.keys
+        case .Worker:
+            return WorkerClass.keys
+        case .Accountant:
+            return AccountantClass.keys
         }
     }
 
     var numberDisplayedAttributes: Int {
         switch self {
-        case .ManagerType:
-            return Manager.keys.count-1
-        case .WorkerType:
-            return Worker.keys.count-1
-        case .AccountantType:
-            return Accountant.keys.count-1
+        case .Manager:
+            return ManagerClass.keys.count-1
+        case .Worker:
+            return WorkerClass.keys.count-1
+        case .Accountant:
+            return AccountantClass.keys.count-1
         }
     }
 }

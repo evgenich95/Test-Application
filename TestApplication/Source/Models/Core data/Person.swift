@@ -27,10 +27,10 @@ class Person: NSManagedObject, CoreDataModelable {
     }
 
     var attributeDictionary: [String: AnyObject] {
-        guard let selfAttributeKeys = PersonTypeRecognizer
+        guard let selfAttributeKeys = EmployeeType
                                         .init(aPerson: self)?.attributeKeys
             else {
-                fatalError("Person's subcluss \(self.entity.name) doesn't have PersonTypeRecognizer")
+                fatalError("Person's subcluss \(self.entity.name) doesn't have EmployeeType")
         }
         var attributeDictionary = [String: AnyObject]()
 
