@@ -8,6 +8,11 @@
 
 import UIKit
 
+private enum Direction: Int {
+    case Left = -1
+    case Rigth = 1
+}
+
 class GalleryViewController: UIViewController {
 
     //MARK: Parameters
@@ -27,6 +32,7 @@ class GalleryViewController: UIViewController {
 
         return names
     }()
+
     var imageViews  = [UIImageView]()
 
     var pageWidth: CGFloat {
@@ -54,7 +60,6 @@ class GalleryViewController: UIViewController {
             style: .Plain,
             target: self,
             action: #selector(arrowBarButtonAction))
-        leftButton.tag = -1
         return leftButton
     }()
 
@@ -64,7 +69,6 @@ class GalleryViewController: UIViewController {
             style: .Plain,
             target: self,
             action: #selector(arrowBarButtonAction))
-        button.tag = 1
         return button
     }()
 
@@ -121,20 +125,20 @@ class GalleryViewController: UIViewController {
 
     //MARK: Help functions
     func loadImagesForCurrentPage() {
-        var direction: Int = 0
+        var direction: Direction?
 
         if lastPage - currentPage > 0 {
-            direction = -1
+            direction = Direction.Left
         } else if lastPage - currentPage < 0 {
-            direction = 1
+            direction = Direction.Rigth
         }
 
-        if  direction == 0 || (lastPage, currentPage) == indexLastTransition {
+        if  direction == nil || (lastPage, currentPage) == indexLastTransition {
             return
         }
 
-        let deletionIdx = currentPage - 2 * direction
-        let loadingIdx = currentPage + direction
+        let deletionIdx = currentPage - 2 * (direction?.rawValue ?? 0)
+        let loadingIdx = currentPage + (direction?.rawValue ?? 0)
 
         if deletionIdx >= 0 && deletionIdx < imageViews.count {
             imageViews[deletionIdx].image = nil
@@ -177,9 +181,10 @@ class GalleryViewController: UIViewController {
             height: pageHeight)
     }
 
-    func moveToPage (nextPage: Int) {
-        self.scrollView.scrollRectToVisible(imageViews[nextPage].frame,
-                                            animated: true)
+    private func moveToPage (direction: Direction) {
+        self.scrollView.scrollRectToVisible(
+            imageViews[currentPage + direction.rawValue].frame,
+            animated: true)
     }
 
     func disableBarButtonIfNeed() {
@@ -218,8 +223,14 @@ class GalleryViewController: UIViewController {
     @objc func arrowBarButtonAction(sender: UIBarButtonItem) {
         if !arrowsButtonEnable {return}
 
-        //leftButton.tag = -1 and rightButton.tag = 1
-        moveToPage(currentPage+sender.tag)
+        switch sender {
+        case leftArrowBarButton:
+            moveToPage(Direction.Left)
+        case rightArrowBarButton:
+            moveToPage(Direction.Rigth)
+        default:
+            break
+        }
         arrowsButtonEnable = false
     }
 }
