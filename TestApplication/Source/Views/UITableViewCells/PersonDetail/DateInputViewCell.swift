@@ -122,7 +122,7 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: Help functions
     func updateTextFieldValue() {
-        attributeValue = "from \(startTimeDatePicker.date.timeFormating) to \(endTimeDatePicker.date.timeFormating)"
+        attributeValue = "from \(startTimeDatePicker.date.timeString) to \(endTimeDatePicker.date.timeString)"
     }
 
     func chekValidAfterInteredData(inDatePicker: UIDatePicker) {

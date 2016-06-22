@@ -1,5 +1,5 @@
 //
-//  NSDate+timeFormating.swift
+//  NSDate+timeFormatting.swift
 //  TestApplication
 //
 //  Created by developer on 09.05.16.
@@ -9,7 +9,7 @@
 import Foundation
 
 extension NSDate {
-    var timeFormating: String {
+    var timeString: String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH:mm"
 

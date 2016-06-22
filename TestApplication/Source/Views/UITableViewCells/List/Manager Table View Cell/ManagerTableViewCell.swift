@@ -18,8 +18,8 @@ class ManagerTableViewCell: UITableViewCell {
         fullNameLabel.text = manager.fullName
         salaryLabel.text = manager.salary?.stringValue
 
-        switch (manager.startVisitingHours?.timeFormating,
-                manager.endVisitingHours?.timeFormating) {
+        switch (manager.startVisitingHours?.timeString,
+                manager.endVisitingHours?.timeString) {
         case let (fromTime?, toTime?):
             visitingHoursLabel.text = "From \(fromTime) to \(toTime)"
         default:
