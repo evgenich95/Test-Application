@@ -18,14 +18,14 @@ struct DateInputViewCellFactory: AbstractFactory {
             attributeDescription: attributeDescription,
             attributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (startDate, endDate) in
-                let startDateKey = attributeDescription.key[0]
-                let endDateKey = attributeDescription.key[1]
+                let startDateKey = attributeDescription.keys[0]
+                let endDateKey = attributeDescription.keys[1]
                 personAttributeContainer.valuesDictionary[startDateKey] = startDate
                 personAttributeContainer.valuesDictionary[endDateKey] = endDate
             },
             actionForClearField: {
-                let startDateKey = attributeDescription.key[0]
-                let endDateKey = attributeDescription.key[1]
+                let startDateKey = attributeDescription.keys[0]
+                let endDateKey = attributeDescription.keys[1]
                 personAttributeContainer.valuesDictionary[startDateKey] = nil
                 personAttributeContainer.valuesDictionary[endDateKey] = nil
         })

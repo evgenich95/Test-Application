@@ -55,7 +55,7 @@ enum PersonAttributeDescription: CustomStringConvertible {
         }
     }
 
-    var key: [String] {
+    var keys: [String] {
         switch self {
         case FullName:
             return [PersonAttributeKeys.fullName]

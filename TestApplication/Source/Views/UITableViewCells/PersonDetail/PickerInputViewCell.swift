@@ -39,7 +39,7 @@ class PickerInputViewCell: CustomTableViewCell {
         super.init(actionForClearField: actionForClearField)
 
         defer {
-            let data = attributeDictionary[attributeDescription.key.first ?? ""]
+            let data = attributeDictionary[attributeDescription.keys.first ?? ""]
             self.currentValue = data
         }
 

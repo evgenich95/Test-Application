@@ -23,7 +23,7 @@ class SimpleTextFieldCell: CustomTableViewCell {
 
         attributeDescriptionString = attributeDescription.description
         textFieldPlaceholder = attributeDescription.placeholder
-        let data = attributeDictionary[attributeDescription.key.first ?? ""]
+        let data = attributeDictionary[attributeDescription.keys.first ?? ""]
         attributeValue = data
         handleDataAction = action
     }

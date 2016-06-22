@@ -92,9 +92,9 @@ class DateInputViewCell: CustomTableViewCell {
         self.textFieldPlaceholder = attributeDescription.placeholder
         self.handleDataAction = action
 
-        if  let startDate = attributeDictionary[attributeDescription.key[0]]
+        if  let startDate = attributeDictionary[attributeDescription.keys[0]]
                 as? NSDate,
-            endDate = attributeDictionary[attributeDescription.key[1]]
+            endDate = attributeDictionary[attributeDescription.keys[1]]
                 as? NSDate {
             self.startTimeDatePicker.setDate(startDate, animated: false)
             self.endTimeDatePicker.setDate(endDate, animated: false)

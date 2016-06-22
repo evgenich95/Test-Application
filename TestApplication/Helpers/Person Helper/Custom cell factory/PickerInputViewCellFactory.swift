@@ -18,11 +18,11 @@ struct PickerInputViewCellFactory: AbstractFactory {
             attributeDescription: attributeDescription,
             attributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (data) in
-                let key = attributeDescription.key.first ?? ""
+                let key = attributeDescription.keys.first ?? ""
                 personAttributeContainer.valuesDictionary[key] = data
             },
             actionForClearField: {
-                let key = attributeDescription.key.first ?? ""
+                let key = attributeDescription.keys.first ?? ""
                 personAttributeContainer.valuesDictionary[key] = nil
         })
     }
