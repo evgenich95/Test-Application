@@ -59,7 +59,7 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        performFetch(fetchedResultsController)
+        performFetch()
     }
 
     override func viewDidLoad() {
@@ -68,18 +68,18 @@ class ListPersonTableViewController: UITableViewController {
         configureTableView()
         setupNavigationItems()
         registrateAllUsingCell()
-        performFetch(self.fetchedResultsController)
+        performFetch()
     }
 
     //MARK: Working with TableView
 
     override func tableView(tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
-        guard
-            let firstPersonInSection = fetchedResultsController
+        guard let
+            firstPersonInSection = fetchedResultsController
                                                 .sections?[section]
                                                 .objects.first,
-            let iconAndTitleName = firstPersonInSection.entity.name
+            iconAndTitleName = firstPersonInSection.entity.name
         else {return nil}
 
         let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier(
@@ -231,7 +231,7 @@ class ListPersonTableViewController: UITableViewController {
             coreDataStack.saveAndLog()
 
             frcDelegate.userIsEditing = false
-            performFetch(fetchedResultsController)
+            performFetch()
         }
     }
 
@@ -284,7 +284,7 @@ class ListPersonTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = self.editButtonItem()
     }
 
-    private func performFetch(fetchedResultsController: FetchedResultsController<Person>) {
+    private func performFetch() {
         do {
             try fetchedResultsController.performFetch()
         } catch {
