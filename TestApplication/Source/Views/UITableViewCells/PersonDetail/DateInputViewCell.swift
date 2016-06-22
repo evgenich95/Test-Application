@@ -13,13 +13,6 @@ class DateInputViewCell: CustomTableViewCell {
     //MARK: Parameters
     typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate) -> Void)?
     var handleDataAction: ResultDataActionType
-    var filedPickers = [Int: UIDatePicker]() {
-        didSet {
-            if filedPickers.count == 2 {
-                attributeValue = "from \(startTimeDatePicker.date.timeFormating) to \(endTimeDatePicker.date.timeFormating)"
-            }
-        }
-    }
 
     //MARK: -
     //MARK: Lazy parameters
@@ -36,15 +29,11 @@ class DateInputViewCell: CustomTableViewCell {
     }
 
     lazy private var startTimeDatePicker: UIDatePicker = {
-        let picker =  self.customTimePicker
-        picker.tag = 0
-        return picker
+        return self.customTimePicker
     }()
 
     lazy private var endTimeDatePicker: UIDatePicker = {
-        let picker =  self.customTimePicker
-        picker.tag = 1
-        return picker
+        return self.customTimePicker
     }()
 
     lazy private var dateInputView: UIView = {
@@ -99,23 +88,18 @@ class DateInputViewCell: CustomTableViewCell {
         super.init(inputDataType: attributeDescription.type,
                    actionForClearField: actionForClearField)
 
-        defer {
-            if
-                let startDate = attributeDictionary[attributeDescription.key[0]]
-                    as? NSDate,
-                let endDate = attributeDictionary[attributeDescription.key[1]]
-                    as? NSDate {
-                self.startTimeDatePicker.setDate(startDate, animated: false)
-                self.endTimeDatePicker.setDate(endDate, animated: false)
-                self.filedPickers[startTimeDatePicker.tag] = startTimeDatePicker
-                self.filedPickers[endTimeDatePicker.tag] = endTimeDatePicker
-            }
-        }
-
         self.attributeDescriptionString = attributeDescription.description
         self.textFieldPlaceholder = attributeDescription.placeholder
         self.handleDataAction = action
 
+        if  let startDate = attributeDictionary[attributeDescription.key[0]]
+                as? NSDate,
+            let endDate = attributeDictionary[attributeDescription.key[1]]
+                as? NSDate {
+            self.startTimeDatePicker.setDate(startDate, animated: false)
+            self.endTimeDatePicker.setDate(endDate, animated: false)
+            updateTextFieldValue()
+        }
         setupView()
     }
 
@@ -125,17 +109,11 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: AddTarget's functions
     @objc func datePickerValueChange(sender: UIDatePicker) {
-        switch sender {
-        case startTimeDatePicker :
-            startTimeDatePicker.backgroundColor = UIColor.whiteColor()
-        case endTimeDatePicker:
-            endTimeDatePicker.backgroundColor = UIColor.whiteColor()
-        default:
-            break
-        }
+        startTimeDatePicker.backgroundColor = UIColor.whiteColor()
+        endTimeDatePicker.backgroundColor = UIColor.whiteColor()
 
-        filedPickers[sender.tag] = sender
         chekValidAfterInteredData(sender)
+        updateTextFieldValue()
     }
 
     override func handleEnteringData(textField: UITextField) {
@@ -143,12 +121,13 @@ class DateInputViewCell: CustomTableViewCell {
     }
 
     //MARK: Help functions
+    func updateTextFieldValue() {
+        attributeValue = "from \(startTimeDatePicker.date.timeFormating) to \(endTimeDatePicker.date.timeFormating)"
+    }
 
     func chekValidAfterInteredData(inDatePicker: UIDatePicker) {
+        if startTimeDatePicker.date.compare(endTimeDatePicker.date) == NSComparisonResult.OrderedDescending {
 
-        switch (filedPickers.count,
-                startTimeDatePicker.date.compare(endTimeDatePicker.date)) {
-        case (2, NSComparisonResult.OrderedDescending):
             var needChangePicker = UIDatePicker()
             var setDate = NSDate()
 
@@ -165,9 +144,6 @@ class DateInputViewCell: CustomTableViewCell {
                 break
             }
             needChangePicker.setDate(setDate, animated: true)
-            filedPickers[needChangePicker.tag] = needChangePicker
-        default:
-            break
         }
     }
 
