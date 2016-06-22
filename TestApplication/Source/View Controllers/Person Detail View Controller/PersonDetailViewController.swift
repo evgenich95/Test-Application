@@ -212,9 +212,9 @@ class PersonDetailViewController: UIViewController {
 
 //MARK: -
 //MARK: Extension
-//MARK: - DelegateForPersonAttributeContainer
+//MARK: - PersonAttributeContainerDelegate
 
-extension PersonDetailViewController: DelegateForPersonAttributeContainer {
+extension PersonDetailViewController: PersonAttributeContainerDelegate {
     func userEnteredData() {
         checkValid()
     }

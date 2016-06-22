@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol DelegateForPersonAttributeContainer {
+protocol PersonAttributeContainerDelegate {
     func userEnteredData()
 }
 
 class PersonAttributeContainer {
 
     //MARK: Parameters
-    var delegate: DelegateForPersonAttributeContainer?
+    var delegate: PersonAttributeContainerDelegate?
     var displayedPersonType: PersonTypeRecognizer {
         didSet {
             updateValuesDictionary()
