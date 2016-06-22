@@ -59,7 +59,7 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        performFetch()
+//        performFetch()
     }
 
     override func viewDidLoad() {

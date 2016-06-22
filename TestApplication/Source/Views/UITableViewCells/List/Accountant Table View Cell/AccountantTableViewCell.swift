@@ -32,7 +32,7 @@ class AccountantTableViewCell: UITableViewCell {
         }
 
         workplaeNumberLabel.text = accountant.workplaceNumber?.stringValue
-        accountantTypeLabel.text = AccountantTypeRecognizer(
+        accountantTypeLabel.text = AccountantType(
             index: accountant.type?.integerValue ?? -1).description
     }
 }
