@@ -134,12 +134,10 @@ class DateInputViewCell: CustomTableViewCell {
             switch inDatePicker {
             case startTimeDatePicker:
                 needChangePicker = endTimeDatePicker
-                setDate = NSDate
-                    .addMinuteToDate(30, date: startTimeDatePicker.date)
+                setDate = startTimeDatePicker.date.byAddingMinutes(30)
             case endTimeDatePicker:
                 needChangePicker = startTimeDatePicker
-                setDate = NSDate
-                    .subscriptMinuteToDate(30, date: endTimeDatePicker.date)
+                setDate = endTimeDatePicker.date.bySubtractingMinutes(30)
             default:
                 break
             }

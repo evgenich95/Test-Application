@@ -9,15 +9,15 @@
 import Foundation
 
 extension NSDate {
-    static func addMinuteToDate(minute: Int, date: NSDate) -> NSDate! {
+    func byAddingMinutes(minute: Int) -> NSDate! {
         return NSCalendar.currentCalendar()
             .dateByAddingUnit(.Minute,
                               value: minute,
-                              toDate: date,
+                              toDate: self,
                               options: [])
     }
 
-    static func subscriptMinuteToDate(minute: Int, date: NSDate) -> NSDate! {
-        return self.addMinuteToDate(-1*minute, date: date)
+    func bySubtractingMinutes(minute: Int) -> NSDate! {
+        return  self.byAddingMinutes(-1*minute)
     }
 }
