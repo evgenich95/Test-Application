@@ -1,5 +1,5 @@
 //
-//  NetworkErrorDetector.swift
+//  NetworkError.swift
 //  WeatherToday
 //
 //  Created by developer on 28.04.16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum NetworkErrorDetector: CustomStringConvertible {
+enum NetworkError: CustomStringConvertible {
     case NoInternetConnection
     case UnsupportedURL
     case UnknownError

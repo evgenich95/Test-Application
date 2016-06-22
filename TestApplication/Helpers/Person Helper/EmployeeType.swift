@@ -65,7 +65,6 @@ enum EmployeeType: CustomStringConvertible {
     }
 
     var attributeKeys: [String] {
-
         switch self {
         case .Manager:
             return ManagerClass.keys

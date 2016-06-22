@@ -13,7 +13,7 @@ extension UIViewController {
 
     func handleError (error: NSError, retryAction: () -> Void, cancelAction: (() -> Void)?) {
 
-        let detectedError = NetworkErrorDetector(error: error)
+        let detectedError = NetworkError(error: error)
 
         let alertController = UIAlertController(title: "Error", message: detectedError.description, preferredStyle: .Alert)
 

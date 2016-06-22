@@ -1,5 +1,5 @@
 //
-//  AccountantTypeRecognizerRecognizer.swift
+//  AccountantType.swift
 //  TestApplication
 //
 //  Created by developer on 11.06.16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AccountantTypeRecognizer: CustomStringConvertible {
+enum AccountantType: CustomStringConvertible {
     case SalaryAccounting
     case MaterialAccounting
 
