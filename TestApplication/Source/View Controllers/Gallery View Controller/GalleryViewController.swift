@@ -9,10 +9,7 @@
 import UIKit
 
 
-private enum Direction: Int {
-    case Left = -1
-    case Rigth = 1
-}
+
 
 class GalleryViewController: UIViewController {
 
@@ -34,10 +31,40 @@ class GalleryViewController: UIViewController {
         return names
     }()
 
-    var imagesCacheDimension: Int = 7
+    private static let imagesCacheDimension: Int = 6
+    var count = 0 {
+        didSet {
+            if count > 6 {
+                fatalError("count = \(count)")
+            }
+        }
+    }
+
 
     var imageViews  = [UIImageView]()
 
+    private enum Direction: Int {
+        case Left = -1
+        case Rigth = 1
+
+        var numberPhotoInThisSide: Int {
+            if imagesCacheDimension % 2 == 0 &&
+                self == .Left {
+                return imagesCacheDimension/2-1
+            } else {
+                return imagesCacheDimension/2
+            }
+        }
+
+        var numberPhotoInOppositeSide: Int {
+            if imagesCacheDimension % 2 == 0 &&
+                self == .Rigth {
+                return imagesCacheDimension/2-1
+            } else {
+                return imagesCacheDimension/2
+            }
+        }
+    }
 
     var pageWidth: CGFloat {
         return self.view.frame.width
@@ -123,7 +150,7 @@ class GalleryViewController: UIViewController {
         }
 
         print("Initial loading")
-        for i in 0...imagesCacheDimension/2 {
+        for i in 0...Direction.Rigth.numberPhotoInThisSide {
             imageViews[i].setImageWithoutCache(imageNames[i])
             print("Loaded \(i)'s photo")
             count += 1
@@ -132,47 +159,79 @@ class GalleryViewController: UIViewController {
         print("ViewDidLoad END\n-----------")
     }
 
-    var count = 0 {
-        didSet {
-            if count > imagesCacheDimension {
-                fatalError("count = \(count)")
-            }
-        }
-    }
-    //MARK: Help functions
+        //MARK: Help functions
     func loadImagesForCurrentPage() {
         var direction: Direction?
 
         if lastPage - currentPage > 0 {
             direction = Direction.Left
-            print("Двигаюсь Влево <---")
+//            print("Двигаюсь Влево <---")
         } else if lastPage - currentPage < 0 {
             direction = Direction.Rigth
-            print("Двигаюсь вправо --->")
+//            print("Двигаюсь вправо --->")
         }
 
         if  direction == nil || (lastPage, currentPage) == indexLastTransition {
             return
         }
+        let deletionIdx = currentPage
+            - ((direction?.numberPhotoInOppositeSide ?? 0) + 1)
+            * (direction?.rawValue ?? 0)
 
-        let deletionIdx = currentPage - (imagesCacheDimension/2+1) * (direction?.rawValue ?? 0)
-        let loadingIdx = currentPage + imagesCacheDimension/2 * (direction?.rawValue ?? 0)
-
-        print("\(deletionIdx) = \(currentPage) - \(imagesCacheDimension/2+1) * \(direction?.rawValue)")
+        let loadingIdx = currentPage
+            + (direction?.numberPhotoInThisSide ?? 0)
+            * (direction?.rawValue ?? 0)
 
         if deletionIdx >= 0 && deletionIdx < imageViews.count {
             imageViews[deletionIdx].image = nil
-            print("DeletionIdx = \(deletionIdx)")
+//            print("DeletionIdx = \(deletionIdx)")
             count -= 1
         }
 
         if loadingIdx >= 0 && loadingIdx < imageViews.count {
             imageViews[loadingIdx].setImageWithoutCache(imageNames[loadingIdx])
-            print("LoadingIdx = \(loadingIdx)")
+//            print("LoadingIdx = \(loadingIdx)")
             count += 1
         }
         //to avoid same loadings
         indexLastTransition = (lastPage, currentPage)
+
+//        showLoadedImagesSheme()
+        var loadedPhoto = 0
+        for image in imageViews {
+            if image.image != nil {
+                loadedPhoto += 1
+            }
+        }
+
+        if loadedPhoto > 6 {
+            showLoadedImagesSheme()
+            fatalError("loadedPhoto = \(loadedPhoto)")
+        }
+
+    }
+
+    func showLoadedImagesSheme() {
+        var indexes = [String]()
+        var array = [String]()
+
+        for i in 0..<imageNames.count {
+            indexes.append("\(i)")
+            array.append("0")
+        }
+
+        for image in imageViews {
+            if image.image != nil {
+                array[imageViews.indexOf(image)!] = "1"
+            }
+        }
+
+        array[currentPage] = "+"
+        print("-----\n")
+        print(indexes)
+        print(array)
+        print("\n-----")
+
     }
 
     func loadTemplateForImage() {
@@ -267,7 +326,6 @@ extension GalleryViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
         arrowsButtonEnable = true
-        print("count = \(count)")
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -276,9 +334,24 @@ extension GalleryViewController: UIScrollViewDelegate {
             return
         }
 
+        
+
         currentPage = Int((scrollView.contentOffset.x+pageWidth/2)/pageWidth)
         disableBarButtonIfNeed()
         loadImagesForCurrentPage()
         lastPage = currentPage
+
+        var loadedPhoto = 0
+        for image in imageViews {
+            if image.image != nil {
+                loadedPhoto += 1
+            }
+        }
+
+        if loadedPhoto > 7 {
+            showLoadedImagesSheme()
+            fatalError("loadedPhoto = \(loadedPhoto)")
+        }
+
     }
 }
