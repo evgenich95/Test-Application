@@ -8,9 +8,6 @@
 
 import UIKit
 
-
-
-
 class GalleryViewController: UIViewController {
 
     //MARK: Parameters
@@ -31,44 +28,24 @@ class GalleryViewController: UIViewController {
         return names
     }()
 
-    private static let imagesCacheDimension: Int = 6
+    private let imagesCacheDimension: Int = 3
+
     var count = 0 {
         didSet {
-            if count > 6 {
+//            print("count = \(count)")
+            if count > 3 {
+                showLoadedImagesSheme()
                 fatalError("count = \(count)")
             }
         }
     }
 
-
     var imageViews  = [UIImageView]()
-
-    private enum Direction: Int {
-        case Left = -1
-        case Rigth = 1
-
-        var numberPhotoInThisSide: Int {
-            if imagesCacheDimension % 2 == 0 &&
-                self == .Left {
-                return imagesCacheDimension/2-1
-            } else {
-                return imagesCacheDimension/2
-            }
-        }
-
-        var numberPhotoInOppositeSide: Int {
-            if imagesCacheDimension % 2 == 0 &&
-                self == .Rigth {
-                return imagesCacheDimension/2-1
-            } else {
-                return imagesCacheDimension/2
-            }
-        }
-    }
 
     var pageWidth: CGFloat {
         return self.view.frame.width
     }
+
     var pageHeight: CGFloat {
         return self.view.frame.height
     }
@@ -118,6 +95,10 @@ class GalleryViewController: UIViewController {
 
         return scrollView
     }()
+
+    lazy var navigationFlow: NavigationFlow = {
+        return NavigationFlow(imagesCacheDimension: self.imagesCacheDimension)
+    }()
     //MARK:-
 
     override func viewWillLayoutSubviews() {
@@ -150,7 +131,8 @@ class GalleryViewController: UIViewController {
         }
 
         print("Initial loading")
-        for i in 0...Direction.Rigth.numberPhotoInThisSide {
+//        for i in 0...navigationFlow.
+        for i in 0...imagesCacheDimension/2 {
             imageViews[i].setImageWithoutCache(imageNames[i])
             print("Loaded \(i)'s photo")
             count += 1
@@ -161,26 +143,24 @@ class GalleryViewController: UIViewController {
 
         //MARK: Help functions
     func loadImagesForCurrentPage() {
-        var direction: Direction?
 
+        navigationFlow.direction = nil
         if lastPage - currentPage > 0 {
-            direction = Direction.Left
+            navigationFlow.direction = .Left
 //            print("Двигаюсь Влево <---")
         } else if lastPage - currentPage < 0 {
-            direction = Direction.Rigth
+            navigationFlow.direction = .Rigth
 //            print("Двигаюсь вправо --->")
         }
 
-        if  direction == nil || (lastPage, currentPage) == indexLastTransition {
+        if  navigationFlow.direction == nil || (lastPage, currentPage) == indexLastTransition {
             return
         }
-        let deletionIdx = currentPage
-            - ((direction?.numberPhotoInOppositeSide ?? 0) + 1)
-            * (direction?.rawValue ?? 0)
 
-        let loadingIdx = currentPage
-            + (direction?.numberPhotoInThisSide ?? 0)
-            * (direction?.rawValue ?? 0)
+        let deletionIdx = navigationFlow.indexOfPhotosToDelete(
+            forPage: currentPage)
+
+        let loadingIdx = navigationFlow.indexOfPhotosToLoad(forPage: currentPage)
 
         if deletionIdx >= 0 && deletionIdx < imageViews.count {
             imageViews[deletionIdx].image = nil
@@ -204,7 +184,7 @@ class GalleryViewController: UIViewController {
             }
         }
 
-        if loadedPhoto > 6 {
+        if loadedPhoto > 3 {
             showLoadedImagesSheme()
             fatalError("loadedPhoto = \(loadedPhoto)")
         }
@@ -264,7 +244,7 @@ class GalleryViewController: UIViewController {
             height: pageHeight)
     }
 
-    private func moveToPage (direction: Direction) {
+    private func moveToPage (direction: NavigationDirection) {
         self.scrollView.scrollRectToVisible(
             imageViews[currentPage + direction.rawValue].frame,
             animated: true)
@@ -308,9 +288,9 @@ class GalleryViewController: UIViewController {
 
         switch sender {
         case leftArrowBarButton:
-            moveToPage(Direction.Left)
+            moveToPage(NavigationDirection.Left)
         case rightArrowBarButton:
-            moveToPage(Direction.Rigth)
+            moveToPage(NavigationDirection.Rigth)
         default:
             break
         }
@@ -334,8 +314,6 @@ extension GalleryViewController: UIScrollViewDelegate {
             return
         }
 
-        
-
         currentPage = Int((scrollView.contentOffset.x+pageWidth/2)/pageWidth)
         disableBarButtonIfNeed()
         loadImagesForCurrentPage()
@@ -348,10 +326,9 @@ extension GalleryViewController: UIScrollViewDelegate {
             }
         }
 
-        if loadedPhoto > 7 {
+        if loadedPhoto > 3 {
             showLoadedImagesSheme()
             fatalError("loadedPhoto = \(loadedPhoto)")
         }
-
     }
 }
