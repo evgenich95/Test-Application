@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 private enum Direction: Int {
     case Left = -1
     case Rigth = 1
@@ -33,7 +34,10 @@ class GalleryViewController: UIViewController {
         return names
     }()
 
+    var imagesCacheDimension: Int = 7
+
     var imageViews  = [UIImageView]()
+
 
     var pageWidth: CGFloat {
         return self.view.frame.width
@@ -118,34 +122,54 @@ class GalleryViewController: UIViewController {
             loadTemplateForImage()
         }
 
-        imageViews[0].setImageWithoutCache(imageNames[0])
-        imageViews[1].setImageWithoutCache(imageNames[1])
+        print("Initial loading")
+        for i in 0...imagesCacheDimension/2 {
+            imageViews[i].setImageWithoutCache(imageNames[i])
+            print("Loaded \(i)'s photo")
+            count += 1
+        }
         disableBarButtonIfNeed()
+        print("ViewDidLoad END\n-----------")
     }
 
+    var count = 0 {
+        didSet {
+            if count > imagesCacheDimension {
+                fatalError("count = \(count)")
+            }
+        }
+    }
     //MARK: Help functions
     func loadImagesForCurrentPage() {
         var direction: Direction?
 
         if lastPage - currentPage > 0 {
             direction = Direction.Left
+            print("Двигаюсь Влево <---")
         } else if lastPage - currentPage < 0 {
             direction = Direction.Rigth
+            print("Двигаюсь вправо --->")
         }
 
         if  direction == nil || (lastPage, currentPage) == indexLastTransition {
             return
         }
 
-        let deletionIdx = currentPage - 2 * (direction?.rawValue ?? 0)
-        let loadingIdx = currentPage + (direction?.rawValue ?? 0)
+        let deletionIdx = currentPage - (imagesCacheDimension/2+1) * (direction?.rawValue ?? 0)
+        let loadingIdx = currentPage + imagesCacheDimension/2 * (direction?.rawValue ?? 0)
+
+        print("\(deletionIdx) = \(currentPage) - \(imagesCacheDimension/2+1) * \(direction?.rawValue)")
 
         if deletionIdx >= 0 && deletionIdx < imageViews.count {
             imageViews[deletionIdx].image = nil
+            print("DeletionIdx = \(deletionIdx)")
+            count -= 1
         }
 
         if loadingIdx >= 0 && loadingIdx < imageViews.count {
             imageViews[loadingIdx].setImageWithoutCache(imageNames[loadingIdx])
+            print("LoadingIdx = \(loadingIdx)")
+            count += 1
         }
         //to avoid same loadings
         indexLastTransition = (lastPage, currentPage)
@@ -243,6 +267,7 @@ extension GalleryViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
         arrowsButtonEnable = true
+        print("count = \(count)")
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
