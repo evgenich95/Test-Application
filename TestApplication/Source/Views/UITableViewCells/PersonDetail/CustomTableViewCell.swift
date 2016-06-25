@@ -102,35 +102,10 @@ class CustomTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureView()
     }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    
-//    inputDataType: NSAttributeType = .StringAttributeType,
-//    actionForClearField: () -> Void
-
-//    init(reuseIdentifier: String?) {
-//        super.ini
-//        super.init(reuseIdentifier: reuseIdentifier)
-//        configureView()
-//    }
-
-//    init(reuseIdentifier: String?) {
-//
-//        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
-//
-////        defer {
-////            self.inputDataType = inputDataType
-////        }
-////        self.actionForClearField = actionForClearField
-//        configureView()
-//    }
-
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
 
     //MARK: addTargert's functions
 

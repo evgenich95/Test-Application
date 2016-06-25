@@ -12,23 +12,8 @@ class SimpleTextFieldCell: CustomTableViewCell {
 
     static let reuseIdentifier = "SimpleTextFieldCell"
 
-    typealias ResultDataActionType = ((data: AnyObject) -> Void)?
+    typealias ResultDataActionType = ((data: AnyObject) -> Void)
     var handleDataAction: ResultDataActionType?
-
-
-    //    override init() {
-//
-////        super.init(inputDataType: attributeDescription.type,
-////                   actionForClearField: actionForClearField)
-//        super.init()
-//
-////        attributeDescriptionString = attributeDescription.description
-////        textFieldPlaceholder = attributeDescription.placeholder
-////        let data = attributeDictionary[attributeDescription.keys.first ?? ""]
-////        attributeValue = data
-////        handleDataAction = action
-//    }
-
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,15 +36,13 @@ class SimpleTextFieldCell: CustomTableViewCell {
         let data = attributeDictionary[attributeDescription.keys.first ?? ""]
         attributeValue = data
         handleDataAction = action
-
-
     }
 
     override func handleEnteringData(textField: UITextField) {
         guard let
             text = textField.text,
             inputType = inputDataType
-        else {return}
+            else {return}
 
         var returnData: AnyObject?
 
@@ -75,7 +58,7 @@ class SimpleTextFieldCell: CustomTableViewCell {
         }
 
         if let data = returnData {
-            handleDataAction?!(data: data)
+            handleDataAction?(data: data)
         }
     }
 }

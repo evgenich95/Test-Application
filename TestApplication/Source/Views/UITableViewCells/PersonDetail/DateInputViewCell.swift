@@ -12,7 +12,7 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: Parameters
     static let reuseIdentifier = "DateInputViewCell"
-    typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate) -> Void)?
+    typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate) -> Void)
     var handleDataAction: ResultDataActionType?
 
     //MARK: -
@@ -81,6 +81,29 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: -
 
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    //MARK: AddTarget's functions
+    @objc func datePickerValueChange(sender: UIDatePicker) {
+        startTimeDatePicker.backgroundColor = UIColor.whiteColor()
+        endTimeDatePicker.backgroundColor = UIColor.whiteColor()
+
+        chekValidAfterInteredData(sender)
+        updateTextFieldValue()
+    }
+
+    override func handleEnteringData(textField: UITextField) {
+        handleDataAction?(startDate: startTimeDatePicker.date, endDate: endTimeDatePicker.date)
+    }
+
+    //MARK: Help functions
     func updateUI(attributeDescription: PersonAttributeDescription,
                   attributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
@@ -103,55 +126,7 @@ class DateInputViewCell: CustomTableViewCell {
         }
     }
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-
-    
-//    init() {
-//
-////        super.init(inputDataType: attributeDescription.type,
-////                   actionForClearField: actionForClearField)
-//        super.init(reuseIdentifier: "DateInputViewCell")
-//
-////        self.attributeDescriptionString = attributeDescription.description
-////        self.textFieldPlaceholder = attributeDescription.placeholder
-////        self.handleDataAction = action
-////
-////        if  let startDate = attributeDictionary[attributeDescription.keys[0]]
-////                as? NSDate,
-////            endDate = attributeDictionary[attributeDescription.keys[1]]
-////                as? NSDate {
-////            self.startTimeDatePicker.setDate(startDate, animated: false)
-////            self.endTimeDatePicker.setDate(endDate, animated: false)
-////            updateTextFieldValue()
-////        }
-//        setupView()
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-
-    //MARK: AddTarget's functions
-    @objc func datePickerValueChange(sender: UIDatePicker) {
-        startTimeDatePicker.backgroundColor = UIColor.whiteColor()
-        endTimeDatePicker.backgroundColor = UIColor.whiteColor()
-
-        chekValidAfterInteredData(sender)
-        updateTextFieldValue()
-    }
-
-    override func handleEnteringData(textField: UITextField) {
-        handleDataAction?!(startDate: startTimeDatePicker.date, endDate: endTimeDatePicker.date)
-    }
-
-    //MARK: Help functions
     func updateTextFieldValue() {
         attributeValue = "from \(startTimeDatePicker.date.timeString) to \(endTimeDatePicker.date.timeString)"
     }
@@ -175,7 +150,7 @@ class DateInputViewCell: CustomTableViewCell {
             needChangePicker.setDate(setDate, animated: true)
         }
     }
-
+    
     func setupView() {
         dataTextFieldInputView = self.dateInputView
     }

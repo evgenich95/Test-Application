@@ -12,8 +12,8 @@ class PickerInputViewCell: CustomTableViewCell {
 
     static let reuseIdentifier = "PickerInputViewCell"
 
-    typealias ResultDataActionType = ((data: AnyObject) -> Void)?
-    var handleDataAction: ResultDataActionType
+    typealias ResultDataActionType = ((data: AnyObject) -> Void)
+    var handleDataAction: ResultDataActionType?
 
     private var currentValue: AnyObject? {
         didSet {
@@ -22,7 +22,7 @@ class PickerInputViewCell: CustomTableViewCell {
                                      inComponent: 0,
                                      animated: false)
                 attributeValue = AccountantType
-                                    .init(index: data.integerValue).description
+                    .init(index: data.integerValue).description
             }
         }
     }
@@ -33,6 +33,15 @@ class PickerInputViewCell: CustomTableViewCell {
         return picker
     }()
 
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    //MARK: Help functions
     func updateUI(attributeDescription: PersonAttributeDescription,
                   attributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
@@ -51,33 +60,6 @@ class PickerInputViewCell: CustomTableViewCell {
         self.handleDataAction = action
     }
 
-//    init() {
-//
-////        super.init(actionForClearField: actionForClearField)
-//
-//        super.init(reuseIdentifier: "PickerInputViewCell")
-//
-////        defer {
-////            let data = attributeDictionary[attributeDescription.keys.first ?? ""]
-////            self.currentValue = data
-////        }
-////
-////        self.attributeDescriptionString = attributeDescription.description
-////        self.textFieldPlaceholder = attributeDescription.placeholder
-////        self.handleDataAction = action
-//
-//        setupView()
-//    }
-
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    //MARK: Help functions
     func setupView() {
         dataTextFieldInputView = self.pickerView
     }
@@ -90,7 +72,7 @@ class PickerInputViewCell: CustomTableViewCell {
 
     override func textField(textField: UITextField,
                             shouldChangeCharactersInRange range: NSRange,
-                            replacementString string: String) -> Bool {
+                                                          replacementString string: String) -> Bool {
         return false
     }
 }
@@ -108,13 +90,13 @@ extension PickerInputViewCell: UIPickerViewDelegate {
 
     func pickerView(pickerView: UIPickerView,
                     titleForRow row: Int,
-                    forComponent component: Int) -> String? {
+                                forComponent component: Int) -> String? {
         return AccountantType(index: row).description
     }
 
     func pickerView(pickerView: UIPickerView,
                     didSelectRow row: Int,
-                    inComponent component: Int) {
+                                 inComponent component: Int) {
         currentValue = row
     }
 
