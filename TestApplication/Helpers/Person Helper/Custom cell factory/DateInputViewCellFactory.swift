@@ -7,15 +7,29 @@
 //
 
 import Foundation
+import UIKit
 
 struct DateInputViewCellFactory: AbstractFactory {
 
-    func createCustomTableViewCell(
+    var tableView: UITableView
+
+    init(tableView: UITableView) {
+        self.tableView = tableView
+        self.tableView.registerClass(
+            DateInputViewCell.self,
+            forCellReuseIdentifier: DateInputViewCell.reuseIdentifier)
+    }
+
+    mutating func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,
         personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
 
-        return DateInputViewCell(
-            attributeDescription: attributeDescription,
+        guard let cell = self.tableView.dequeueReusableCellWithIdentifier(
+            DateInputViewCell.reuseIdentifier) as? DateInputViewCell
+        else {fatalError()}
+
+        cell.updateUI(
+            attributeDescription,
             attributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (startDate, endDate) in
                 let startDateKey = attributeDescription.keys[0]
@@ -29,5 +43,6 @@ struct DateInputViewCellFactory: AbstractFactory {
                 personAttributeContainer.valuesDictionary[startDateKey] = nil
                 personAttributeContainer.valuesDictionary[endDateKey] = nil
         })
+        return cell
     }
 }

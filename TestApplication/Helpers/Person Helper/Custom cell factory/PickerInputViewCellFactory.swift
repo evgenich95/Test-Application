@@ -7,15 +7,30 @@
 //
 
 import Foundation
+import UIKit
 
 struct PickerInputViewCellFactory: AbstractFactory {
 
-    func createCustomTableViewCell(
+    var tableView: UITableView
+
+    init(tableView: UITableView) {
+        self.tableView = tableView
+        self.tableView.registerClass(
+            PickerInputViewCell.self,
+            forCellReuseIdentifier: PickerInputViewCell.reuseIdentifier)
+    }
+
+    mutating func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,
         personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
 
-        return PickerInputViewCell(
-            attributeDescription: attributeDescription,
+        guard let cell = self.tableView
+            .dequeueReusableCellWithIdentifier(
+                PickerInputViewCell.reuseIdentifier) as? PickerInputViewCell
+        else {fatalError()}
+
+        cell.updateUI(
+            attributeDescription,
             attributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (data) in
                 let key = attributeDescription.keys.first ?? ""
@@ -25,5 +40,6 @@ struct PickerInputViewCellFactory: AbstractFactory {
                 let key = attributeDescription.keys.first ?? ""
                 personAttributeContainer.valuesDictionary[key] = nil
         })
+        return cell
     }
 }

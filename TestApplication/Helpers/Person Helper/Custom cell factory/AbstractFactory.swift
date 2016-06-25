@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol AbstractFactory {
-    func createCustomTableViewCell(
+    var tableView: UITableView { get set }
+
+    mutating func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,
         personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell
 }

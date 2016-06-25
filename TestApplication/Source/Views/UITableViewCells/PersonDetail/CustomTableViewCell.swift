@@ -90,21 +90,47 @@ class CustomTableViewCell: UITableViewCell {
 
     //MARK:-
 
-    init(inputDataType: NSAttributeType = .StringAttributeType,
-         actionForClearField: () -> Void) {
-
-        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: nil)
-
+    func update(inputDataType: NSAttributeType = .StringAttributeType,
+                actionForClearField: () -> Void) {
         defer {
             self.inputDataType = inputDataType
         }
         self.actionForClearField = actionForClearField
+
+    }
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureView()
     }
-
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
+
+    
+//    inputDataType: NSAttributeType = .StringAttributeType,
+//    actionForClearField: () -> Void
+
+//    init(reuseIdentifier: String?) {
+//        super.ini
+//        super.init(reuseIdentifier: reuseIdentifier)
+//        configureView()
+//    }
+
+//    init(reuseIdentifier: String?) {
+//
+//        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
+//
+////        defer {
+////            self.inputDataType = inputDataType
+////        }
+////        self.actionForClearField = actionForClearField
+//        configureView()
+//    }
+
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//    }
 
     //MARK: addTargert's functions
 

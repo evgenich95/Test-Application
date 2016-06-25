@@ -7,34 +7,47 @@
 //
 
 import Foundation
+import UIKit
 
 struct CustomCellFactory {
+    var tableView: UITableView
 
-    private static func appropriateFactory(
+    private lazy var simpleTextFieldCellFactory: SimpleTextFieldCellFactory = {
+        return SimpleTextFieldCellFactory(tableView: self.tableView)
+    }()
+
+    private lazy var pickerInputViewCellFactory: PickerInputViewCellFactory = {
+        return PickerInputViewCellFactory(tableView: self.tableView)
+    }()
+
+    private lazy var dateInputViewCellFactory: DateInputViewCellFactory = {
+        return DateInputViewCellFactory(tableView: self.tableView)
+    }()
+
+    init(tableView: UITableView) {
+        self.tableView = tableView
+    }
+
+    private mutating func appropriateFactory(
         attributeDescription: PersonAttributeDescription) -> AbstractFactory {
 
         switch attributeDescription {
-            case .FullName, .Salary, .WorkplaceNumber:
-                return SimpleTextFieldCellFactory()
-            case .AccountantType:
-                return PickerInputViewCellFactory()
-            case .MealTime, .VisitingHours:
-                return DateInputViewCellFactory()
+        case .FullName, .Salary, .WorkplaceNumber:
+            return simpleTextFieldCellFactory
+        case .AccountantType:
+            return pickerInputViewCellFactory
+        case .MealTime, .VisitingHours:
+            return dateInputViewCellFactory
         }
     }
 
-    static func cellsFor(
-        personAttributeContainer: PersonAttributeContainer) -> [CustomTableViewCell] {
-
-        var cells = [CustomTableViewCell]()
-
-        for description in personAttributeContainer.attributeDescriptions {
-            let factory = appropriateFactory(description)
-            cells.append(factory.createCustomTableViewCell(
-                description,
+    mutating func cellForAttribute(
+        personAttributeContainer: PersonAttributeContainer,
+        attributeDescription: PersonAttributeDescription)
+        -> UITableViewCell {
+            var factory = appropriateFactory(attributeDescription)
+            return factory.createCustomTableViewCell(
+                attributeDescription,
                 personAttributeContainer: personAttributeContainer)
-            )
-        }
-        return cells
     }
 }

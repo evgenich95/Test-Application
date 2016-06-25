@@ -11,8 +11,9 @@ import UIKit
 class DateInputViewCell: CustomTableViewCell {
 
     //MARK: Parameters
+    static let reuseIdentifier = "DateInputViewCell"
     typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate) -> Void)?
-    var handleDataAction: ResultDataActionType
+    var handleDataAction: ResultDataActionType?
 
     //MARK: -
     //MARK: Lazy parameters
@@ -80,32 +81,62 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: -
 
-    init(attributeDescription: PersonAttributeDescription,
-         attributeDictionary: [String : AnyObject],
-         action: ResultDataActionType,
-         actionForClearField: () -> Void) {
+    func updateUI(attributeDescription: PersonAttributeDescription,
+                  attributeDictionary: [String : AnyObject],
+                  action: ResultDataActionType,
+                  actionForClearField: () -> Void) {
 
-        super.init(inputDataType: attributeDescription.type,
-                   actionForClearField: actionForClearField)
+        super.update(attributeDescription.type,
+                     actionForClearField: actionForClearField)
 
         self.attributeDescriptionString = attributeDescription.description
         self.textFieldPlaceholder = attributeDescription.placeholder
         self.handleDataAction = action
 
         if  let startDate = attributeDictionary[attributeDescription.keys[0]]
-                as? NSDate,
+            as? NSDate,
             endDate = attributeDictionary[attributeDescription.keys[1]]
                 as? NSDate {
             self.startTimeDatePicker.setDate(startDate, animated: false)
             self.endTimeDatePicker.setDate(endDate, animated: false)
             updateTextFieldValue()
         }
-        setupView()
+    }
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+
+    
+//    init() {
+//
+////        super.init(inputDataType: attributeDescription.type,
+////                   actionForClearField: actionForClearField)
+//        super.init(reuseIdentifier: "DateInputViewCell")
+//
+////        self.attributeDescriptionString = attributeDescription.description
+////        self.textFieldPlaceholder = attributeDescription.placeholder
+////        self.handleDataAction = action
+////
+////        if  let startDate = attributeDictionary[attributeDescription.keys[0]]
+////                as? NSDate,
+////            endDate = attributeDictionary[attributeDescription.keys[1]]
+////                as? NSDate {
+////            self.startTimeDatePicker.setDate(startDate, animated: false)
+////            self.endTimeDatePicker.setDate(endDate, animated: false)
+////            updateTextFieldValue()
+////        }
+//        setupView()
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 
     //MARK: AddTarget's functions
     @objc func datePickerValueChange(sender: UIDatePicker) {
@@ -117,7 +148,7 @@ class DateInputViewCell: CustomTableViewCell {
     }
 
     override func handleEnteringData(textField: UITextField) {
-        handleDataAction?(startDate: startTimeDatePicker.date, endDate: endTimeDatePicker.date)
+        handleDataAction?!(startDate: startTimeDatePicker.date, endDate: endTimeDatePicker.date)
     }
 
     //MARK: Help functions

@@ -7,15 +7,30 @@
 //
 
 import Foundation
+import UIKit
 
 struct SimpleTextFieldCellFactory: AbstractFactory {
 
-    func createCustomTableViewCell(
+    var tableView: UITableView
+
+    init(tableView: UITableView) {
+        self.tableView = tableView
+        self.tableView.registerClass(
+            SimpleTextFieldCell.self,
+            forCellReuseIdentifier: SimpleTextFieldCell.reuseIdentifier)
+    }
+
+    mutating func createCustomTableViewCell(
         attributeDescription: PersonAttributeDescription,
         personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
 
-        return SimpleTextFieldCell(
-            attributeDescription: attributeDescription,
+        guard let cell = self.tableView
+            .dequeueReusableCellWithIdentifier(
+                SimpleTextFieldCell.reuseIdentifier) as? SimpleTextFieldCell
+        else {fatalError()}
+
+        cell.updateUI(
+            attributeDescription,
             attributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (data) in
                 let key = attributeDescription.keys.first ?? ""
@@ -25,5 +40,6 @@ struct SimpleTextFieldCellFactory: AbstractFactory {
                 let key = attributeDescription.keys.first ?? ""
                 personAttributeContainer.valuesDictionary[key] = nil
         })
+        return cell
     }
 }

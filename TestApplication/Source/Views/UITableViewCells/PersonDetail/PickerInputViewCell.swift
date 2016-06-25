@@ -10,6 +10,8 @@ import UIKit
 
 class PickerInputViewCell: CustomTableViewCell {
 
+    static let reuseIdentifier = "PickerInputViewCell"
+
     typealias ResultDataActionType = ((data: AnyObject) -> Void)?
     var handleDataAction: ResultDataActionType
 
@@ -31,12 +33,13 @@ class PickerInputViewCell: CustomTableViewCell {
         return picker
     }()
 
-    init(attributeDescription: PersonAttributeDescription,
-         attributeDictionary: [String : AnyObject],
-         action: ResultDataActionType,
-         actionForClearField: () -> Void) {
+    func updateUI(attributeDescription: PersonAttributeDescription,
+                  attributeDictionary: [String : AnyObject],
+                  action: ResultDataActionType,
+                  actionForClearField: () -> Void) {
 
-        super.init(actionForClearField: actionForClearField)
+        super.update(attributeDescription.type,
+                     actionForClearField: actionForClearField)
 
         defer {
             let data = attributeDictionary[attributeDescription.keys.first ?? ""]
@@ -46,8 +49,28 @@ class PickerInputViewCell: CustomTableViewCell {
         self.attributeDescriptionString = attributeDescription.description
         self.textFieldPlaceholder = attributeDescription.placeholder
         self.handleDataAction = action
+    }
 
-        setupView()
+//    init() {
+//
+////        super.init(actionForClearField: actionForClearField)
+//
+//        super.init(reuseIdentifier: "PickerInputViewCell")
+//
+////        defer {
+////            let data = attributeDictionary[attributeDescription.keys.first ?? ""]
+////            self.currentValue = data
+////        }
+////
+////        self.attributeDescriptionString = attributeDescription.description
+////        self.textFieldPlaceholder = attributeDescription.placeholder
+////        self.handleDataAction = action
+//
+//        setupView()
+//    }
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
     required init?(coder aDecoder: NSCoder) {

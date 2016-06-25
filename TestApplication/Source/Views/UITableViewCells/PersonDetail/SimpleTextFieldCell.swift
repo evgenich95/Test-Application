@@ -10,27 +10,49 @@ import UIKit
 
 class SimpleTextFieldCell: CustomTableViewCell {
 
+    static let reuseIdentifier = "SimpleTextFieldCell"
+
     typealias ResultDataActionType = ((data: AnyObject) -> Void)?
-    var handleDataAction: ResultDataActionType
+    var handleDataAction: ResultDataActionType?
 
-    init(attributeDescription: PersonAttributeDescription,
-         attributeDictionary: [String : AnyObject],
-         action: ResultDataActionType,
-         actionForClearField: () -> Void) {
 
-        super.init(inputDataType: attributeDescription.type,
-                   actionForClearField: actionForClearField)
+    //    override init() {
+//
+////        super.init(inputDataType: attributeDescription.type,
+////                   actionForClearField: actionForClearField)
+//        super.init()
+//
+////        attributeDescriptionString = attributeDescription.description
+////        textFieldPlaceholder = attributeDescription.placeholder
+////        let data = attributeDictionary[attributeDescription.keys.first ?? ""]
+////        attributeValue = data
+////        handleDataAction = action
+//    }
+
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func updateUI(attributeDescription: PersonAttributeDescription,
+                  attributeDictionary: [String : AnyObject],
+                  action: ResultDataActionType,
+                  actionForClearField: () -> Void) {
+
+        super.update(attributeDescription.type,
+                     actionForClearField: actionForClearField)
 
         attributeDescriptionString = attributeDescription.description
         textFieldPlaceholder = attributeDescription.placeholder
         let data = attributeDictionary[attributeDescription.keys.first ?? ""]
         attributeValue = data
         handleDataAction = action
-    }
 
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     override func handleEnteringData(textField: UITextField) {
@@ -53,7 +75,7 @@ class SimpleTextFieldCell: CustomTableViewCell {
         }
 
         if let data = returnData {
-            handleDataAction?(data: data)
+            handleDataAction?!(data: data)
         }
     }
 }

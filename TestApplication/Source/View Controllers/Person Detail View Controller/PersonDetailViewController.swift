@@ -45,9 +45,9 @@ class PersonDetailViewController: UIViewController {
 
             personAttributeContainer?.displayedPersonType = currentDisplayedPersonType
 
-            if let attributeDictionary = personAttributeContainer {
-                customCells = CustomCellFactory.cellsFor(attributeDictionary)
-            }
+//            if let attributeDictionary = personAttributeContainer {
+//                customCells = CustomCellFactory.cellsFor(self.customTableView, personAttributeContainer: attributeDictionary)
+//            }
         }
     }
 
@@ -58,6 +58,10 @@ class PersonDetailViewController: UIViewController {
 
     //MARK: -
     //MARK: Lazy parameters
+
+    private lazy var employeeAttributeCellFactory: CustomCellFactory = {
+        return CustomCellFactory(tableView: self.customTableView)
+    }()
 
     lazy var customTableView: UITableView = {
         let table = UITableView()
@@ -126,9 +130,9 @@ class PersonDetailViewController: UIViewController {
             aPerson: person)
         personAttributeContainer?.delegate = self
 
-        if let attributeDictionary = personAttributeContainer {
-            customCells = CustomCellFactory.cellsFor(attributeDictionary)
-        }
+//        if let attributeDictionary = personAttributeContainer {
+//            customCells = CustomCellFactory.cellsFor(self.customTableView, personAttributeContainer: attributeDictionary)
+//        }
         checkValid()
     }
 
@@ -260,7 +264,14 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(tableView: UITableView,
                    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        return customCells[indexPath.row]
+        if let attributeContainer = personAttributeContainer {
+            return employeeAttributeCellFactory.cellForAttribute(
+                attributeContainer,
+                attributeDescription: attributeContainer
+                    .attributeDescriptions[indexPath.row])
+        }
+
+        return UITableViewCell()
     }
 
     func tableView(tableView: UITableView,
