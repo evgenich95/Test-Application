@@ -95,6 +95,19 @@ enum PersonAttributeDescription: CustomStringConvertible {
         }
     }
 
+    var possibleValues: [AnyObject]? {
+        switch self {
+        case AccountantType:
+            return [
+                "Salary Accounting",
+                "Material Accounting"
+            ]
+        default:
+            return nil
+        }
+
+    }
+
     var type: NSAttributeType {
         switch self {
         case FullName:
