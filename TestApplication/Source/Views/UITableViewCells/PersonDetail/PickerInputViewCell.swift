@@ -90,7 +90,7 @@ extension PickerInputViewCell: UIPickerViewDelegate {
 
     func pickerView(pickerView: UIPickerView,
                     titleForRow row: Int,
-                                forComponent component: Int) -> String? {
+                    forComponent component: Int) -> String? {
         return AccountantType(index: row).description
     }
 

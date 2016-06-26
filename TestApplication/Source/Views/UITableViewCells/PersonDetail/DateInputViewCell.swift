@@ -150,7 +150,7 @@ class DateInputViewCell: CustomTableViewCell {
             needChangePicker.setDate(setDate, animated: true)
         }
     }
-    
+
     func setupView() {
         dataTextFieldInputView = self.dateInputView
     }
