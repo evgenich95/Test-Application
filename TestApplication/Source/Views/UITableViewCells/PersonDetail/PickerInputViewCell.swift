@@ -35,6 +35,7 @@ class PickerInputViewCell: CustomTableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,7 +48,7 @@ class PickerInputViewCell: CustomTableViewCell {
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {
 
-        super.update(attributeDescription.type,
+        super.updateUI(attributeDescription.type,
                      actionForClearField: actionForClearField)
 
         defer {

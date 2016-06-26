@@ -84,6 +84,7 @@ class DateInputViewCell: CustomTableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -109,7 +110,7 @@ class DateInputViewCell: CustomTableViewCell {
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {
 
-        super.update(attributeDescription.type,
+        super.updateUI(attributeDescription.type,
                      actionForClearField: actionForClearField)
 
         self.attributeDescriptionString = attributeDescription.description

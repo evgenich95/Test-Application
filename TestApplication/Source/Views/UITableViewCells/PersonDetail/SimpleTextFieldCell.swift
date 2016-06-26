@@ -28,7 +28,7 @@ class SimpleTextFieldCell: CustomTableViewCell {
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {
 
-        super.update(attributeDescription.type,
+        super.updateUI(attributeDescription.type,
                      actionForClearField: actionForClearField)
 
         attributeDescriptionString = attributeDescription.description

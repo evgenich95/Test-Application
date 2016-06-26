@@ -90,7 +90,7 @@ class CustomTableViewCell: UITableViewCell {
 
     //MARK:-
 
-    func update(inputDataType: NSAttributeType = .StringAttributeType,
+    func updateUI(inputDataType: NSAttributeType = .StringAttributeType,
                 actionForClearField: () -> Void) {
         defer {
             self.inputDataType = inputDataType
