@@ -60,11 +60,10 @@ class PickerInputViewCell: CustomTableViewCell {
         self.handleDataAction = action
 
         if let numberValues = attributeDescription.possibleValues as? [NSNumber] {
-            self.values = numberValues.map{$0.stringValue}
+            self.values = numberValues.map {$0.stringValue}
         } else if let numberValues = attributeDescription.possibleValues as? [String] {
             self.values =  numberValues
-        }
-        else {
+        } else {
             fatalError("Possible values for attribute \(attributeDescription.description) must be filled")
         }
 

@@ -39,6 +39,6 @@ class AccountantTableViewCell: UITableViewCell {
             idx = accountant.type?.integerValue,
             text = possibleValues[idx] as? String
         else {fatalError()}
-        accountantTypeLabel.text = text;
+        accountantTypeLabel.text = text
     }
 }
