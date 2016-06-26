@@ -43,10 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             assertionFailure("Stack was not setup first")
             return
         }
-        do {
-            try stack.mainQueueContext.save()
-        } catch {
-            print(error)
-        }
+        stack.saveAndLog()
     }
 }
