@@ -1,9 +1,9 @@
 PODS:
-  - Alamofire (3.4.0)
-  - BNRCoreDataStack (1.2.4)
+  - Alamofire (3.4.1)
+  - BNRCoreDataStack (1.2.5)
   - EZLoadingActivity (0.8)
   - SnapKit (0.15.0)
-  - SWXMLHash (2.3.1)
+  - SWXMLHash (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
@@ -13,10 +13,10 @@ DEPENDENCIES:
   - SWXMLHash (~> 2.3.0)
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
-  BNRCoreDataStack: 8b4102fe383c472141ffe5e31cc93e56dd80e1d2
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  BNRCoreDataStack: 968926d1cef9d6eee5e7c18b57762aa270f9b96c
   EZLoadingActivity: 6fd75a05765a4085f4b6fef6f62edf9f144b3139
   SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
-  SWXMLHash: 795c66e74f4cc9473ad6465c6653c5a6f59f417e
+  SWXMLHash: 2f8c49af765718ad56020c4f875ec3ff22612f06
 
 COCOAPODS: 0.39.0
