@@ -169,7 +169,9 @@ class GalleryViewController: UIViewController {
         }
 
         if loadingIdx >= 0 && loadingIdx < imageViews.count {
-            imageViews[loadingIdx].setImageWithoutCache(imageNames[loadingIdx])
+            imageViews[loadingIdx].image = UIImage(
+                contentsOfFile: imageNames[loadingIdx])
+//            setImageWithoutCache(imageNames[loadingIdx])
 //            print("LoadingIdx = \(loadingIdx)")
             count += 1
         }
@@ -177,17 +179,17 @@ class GalleryViewController: UIViewController {
         indexLastTransition = (lastPage, currentPage)
 
 //        showLoadedImagesSheme()
-        var loadedPhoto = 0
-        for image in imageViews {
-            if image.image != nil {
-                loadedPhoto += 1
-            }
-        }
-
-        if loadedPhoto > 3 {
-            showLoadedImagesSheme()
-            fatalError("loadedPhoto = \(loadedPhoto)")
-        }
+//        var loadedPhoto = 0
+//        for image in imageViews {
+//            if image.image != nil {
+//                loadedPhoto += 1
+//            }
+//        }
+//
+//        if loadedPhoto > 3 {
+//            showLoadedImagesSheme()
+//            fatalError("loadedPhoto = \(loadedPhoto)")
+//        }
 
     }
 
@@ -319,16 +321,16 @@ extension GalleryViewController: UIScrollViewDelegate {
         loadImagesForCurrentPage()
         lastPage = currentPage
 
-        var loadedPhoto = 0
-        for image in imageViews {
-            if image.image != nil {
-                loadedPhoto += 1
-            }
-        }
-
-        if loadedPhoto > 3 {
-            showLoadedImagesSheme()
-            fatalError("loadedPhoto = \(loadedPhoto)")
-        }
+//        var loadedPhoto = 0
+//        for image in imageViews {
+//            if image.image != nil {
+//                loadedPhoto += 1
+//            }
+//        }
+//
+//        if loadedPhoto > 3 {
+//            showLoadedImagesSheme()
+//            fatalError("loadedPhoto = \(loadedPhoto)")
+//        }
     }
 }
