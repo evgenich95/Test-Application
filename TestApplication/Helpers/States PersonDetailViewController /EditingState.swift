@@ -56,8 +56,8 @@ class EditingState: State {
         let dataStack = owner.coreDataStack
         let valuesDictionary = owner.personAttributeContainer.valuesDictionary
         let finalPersonTypeName = owner.personAttributeContainer
-            .displayedPersonType
-            .description
+                                                    .displayedPersonType
+                                                    .description
 
         if finalPersonTypeName == editedPerson.entity.name {
             editedPerson.fillAttributes(valuesDictionary)

@@ -11,7 +11,7 @@ import CoreData
 
 class CustomTableViewCell: UITableViewCell {
 
-    private var actionForClearField: (() -> Void)?
+    var actionForClearField: (() -> Void)?
 
     //MARK: Parameters
     var inputDataType: NSAttributeType? {

@@ -91,6 +91,13 @@ class DateInputViewCell: CustomTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.actionForClearField?()
+//        super.attributeValue = ""
+//        self.update
+//        updateTextFieldValue()
+    }
+
     //MARK: AddTarget's functions
     @objc func datePickerValueChange(sender: UIDatePicker) {
         startTimeDatePicker.backgroundColor = UIColor.whiteColor()
@@ -111,7 +118,7 @@ class DateInputViewCell: CustomTableViewCell {
                   actionForClearField: () -> Void) {
 
         super.updateUI(attributeDescription.type,
-                     actionForClearField: actionForClearField)
+                       actionForClearField: actionForClearField)
 
         self.attributeDescriptionString = attributeDescription.description
         self.textFieldPlaceholder = attributeDescription.placeholder
