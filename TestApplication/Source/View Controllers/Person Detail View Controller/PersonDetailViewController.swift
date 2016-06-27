@@ -34,33 +34,32 @@ class PersonDetailViewController: UIViewController {
     //MARK: -
 
     //MARK: Parameters
-    var person: Person?
     var coreDataStack: CoreDataStack!
 
-    var selectedPersonType: Int = 0 {
-        willSet {
-            guard let currentDisplayedPersonType = EmployeeType(
-                orderIndex: newValue)
-                else {return}
-
-            personAttributeContainer?.displayedPersonType = currentDisplayedPersonType
-
-//            if let attributeDictionary = personAttributeContainer {
-//                customCells = CustomCellFactory.cellsFor(self.customTableView, personAttributeContainer: attributeDictionary)
-//            }
+    var person: Person?
+    var currentDisplayedPersonType: EmployeeType {
+        guard let type = EmployeeType(
+            orderIndex: personTypeSegmentControl.selectedSegmentIndex)
+        else {
+            fatalError("Invalid selectedSegmentIndex (\(personTypeSegmentControl.selectedSegmentIndex)) for enum EmployeeType.init(_:)")
         }
+
+        return type
     }
-
-    typealias AttributeDictionary = [String: AnyObject]
-
-    var personAttributeContainer: PersonAttributeContainer?
-    var customCells = [UITableViewCell]()
-
     //MARK: -
     //MARK: Lazy parameters
 
     private lazy var employeeAttributeCellFactory: CustomCellFactory = {
         return CustomCellFactory(tableView: self.customTableView)
+    }()
+
+    lazy var personAttributeContainer: PersonAttributeContainer = {
+        let attributeContainer = PersonAttributeContainer(
+            displayedPersonType: self.currentDisplayedPersonType,
+            aPerson: self.person)
+
+        attributeContainer.delegate = self
+        return attributeContainer
     }()
 
     lazy var customTableView: UITableView = {
@@ -72,9 +71,6 @@ class PersonDetailViewController: UIViewController {
     }()
 
     lazy var personTypeSegmentControl: UISegmentedControl = {
-        defer {
-            self.selectedPersonType = segment.selectedSegmentIndex
-        }
 
         let entityNames = [
             EmployeeType.Manager.description,
@@ -120,25 +116,12 @@ class PersonDetailViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         setupGestureRecognizer()
-
-        guard let displayedPersonType = EmployeeType(
-                orderIndex: selectedPersonType)
-            else {return}
-
-        personAttributeContainer = PersonAttributeContainer(
-            displayedPersonType: displayedPersonType,
-            aPerson: person)
-        personAttributeContainer?.delegate = self
-
-//        if let attributeDictionary = personAttributeContainer {
-//            customCells = CustomCellFactory.cellsFor(self.customTableView, personAttributeContainer: attributeDictionary)
-//        }
         checkValid()
     }
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
-        selectedPersonType = personTypeSegmentControl.selectedSegmentIndex
+        personAttributeContainer.displayedPersonType = currentDisplayedPersonType
         self.customTableView.reloadData()
     }
 
@@ -158,18 +141,12 @@ class PersonDetailViewController: UIViewController {
     }
 
     func checkValid() {
-        guard let
-            filledAttributeKeys = personAttributeContainer?
-                                                .valuesDictionary
-                                                .keys,
-            allAttributeKeys = personAttributeContainer?
-                                                .displayedPersonType
-                                                .attributeKeys
-            else {
-                self.navigationItem.rightBarButtonItem?.enabled = false
-                return
-        }
-
+        let filledAttributeKeys = personAttributeContainer
+            .valuesDictionary
+            .keys
+        let allAttributeKeys = personAttributeContainer
+            .displayedPersonType
+            .attributeKeys
         var canTapSave = true
         for key in allAttributeKeys {
             if !filledAttributeKeys.contains(key) {
@@ -204,7 +181,6 @@ class PersonDetailViewController: UIViewController {
     }
 
     private func configureView() {
-
         setupAoutoLayoutConstrains()
 
         self.view.backgroundColor = UIColor.whiteColor()
@@ -219,7 +195,8 @@ class PersonDetailViewController: UIViewController {
 //MARK: - PersonAttributeContainerDelegate
 
 extension PersonDetailViewController: PersonAttributeContainerDelegate {
-    func personAttributeContainerDidEnterData(container: PersonAttributeContainer) {
+    func personAttributeContainerDidEnterData(
+        container: PersonAttributeContainer) {
         checkValid()
     }
 }
@@ -234,7 +211,7 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(tableView: UITableView,
                    willDisplayCell cell: UITableViewCell,
-                    forRowAtIndexPath indexPath: NSIndexPath) {
+                                   forRowAtIndexPath indexPath: NSIndexPath) {
 
         switch state?.isBrowsing() {
         case (true?):
@@ -256,22 +233,18 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        return personAttributeContainer?
-                            .displayedPersonType
-                            .numberDisplayedAttributes ?? 0
+        return personAttributeContainer
+                                .displayedPersonType
+                                .numberDisplayedAttributes
     }
 
     func tableView(tableView: UITableView,
                    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        if let attributeContainer = personAttributeContainer {
-            return employeeAttributeCellFactory.cellForAttribute(
-                attributeContainer,
-                attributeDescription: attributeContainer
-                    .attributeDescriptions[indexPath.row])
-        }
-
-        return UITableViewCell()
+        return employeeAttributeCellFactory.cellForAttribute(
+            personAttributeContainer,
+            attributeDescription: personAttributeContainer
+                .attributeDescriptions[indexPath.row])
     }
 
     func tableView(tableView: UITableView,

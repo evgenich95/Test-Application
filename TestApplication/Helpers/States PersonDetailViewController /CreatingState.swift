@@ -54,11 +54,11 @@ class CreatingState: State {
             owner.navigationController?.popViewControllerAnimated(true)
         }
 
-        guard let attributeDictionary = owner.personAttributeContainer
-            else {return}
+//        guard let attributeDictionary = owner.personAttributeContainer
+//            else {return}
 
-        let valuesDictionary = attributeDictionary.valuesDictionary
-        let entityName = attributeDictionary.displayedPersonType.description
+        let valuesDictionary = owner.personAttributeContainer.valuesDictionary
+        let entityName = owner.personAttributeContainer.displayedPersonType.description
 
         if let newPerson = owner
             .coreDataStack

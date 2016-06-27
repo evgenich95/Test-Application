@@ -17,6 +17,7 @@ class PersonAttributeContainer {
 
     //MARK: Parameters
     var delegate: PersonAttributeContainerDelegate?
+
     var displayedPersonType: EmployeeType {
         didSet {
             updateValuesDictionary()
