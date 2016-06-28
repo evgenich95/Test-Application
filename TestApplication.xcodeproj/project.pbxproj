@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		03DE02B95183C98D93830241 /* Pods_TestApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5B598671519CB867635975 /* Pods_TestApplication.framework */; };
-		8B001DCF1CF203AA001EB1C0 /* UIImageView+setImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B001DCE1CF203AA001EB1C0 /* UIImageView+setImage.swift */; };
 		8B067D1C1CE71C9100CC9F5F /* CoreDataStack+save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B067D1B1CE71C9100CC9F5F /* CoreDataStack+save.swift */; };
 		8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift */; };
 		8B0951731D06D65600F67C9A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0951711D06D65600F67C9A /* Manager.swift */; };
@@ -69,7 +68,6 @@
 
 /* Begin PBXFileReference section */
 		86638BE5E2AACD143001D5C4 /* Pods-TestApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApplication.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestApplication/Pods-TestApplication.release.xcconfig"; sourceTree = "<group>"; };
-		8B001DCE1CF203AA001EB1C0 /* UIImageView+setImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+setImage.swift"; sourceTree = "<group>"; };
 		8B067D1B1CE71C9100CC9F5F /* CoreDataStack+save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+save.swift"; sourceTree = "<group>"; };
 		8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+createEntityByName.swift"; sourceTree = "<group>"; };
 		8B0951711D06D65600F67C9A /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 				8B3D75D41D0C3D2500A41714 /* NSDate */,
 				8BF337CE1CECAE9E005CB57B /* UIViewController */,
 				8BF4E3581CEC1226005AE3D5 /* Array+removeObject.swift */,
-				8B001DCE1CF203AA001EB1C0 /* UIImageView+setImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -615,7 +612,6 @@
 				8B7DCCFC1CDB2C14008AEDF6 /* TestApplication.xcdatamodeld in Sources */,
 				8B87C7D81CE1CA0600A667C6 /* AccountantTableViewCell.swift in Sources */,
 				8BF776A71D085FEC00BBC55C /* SimpleTextFieldCellFactory.swift in Sources */,
-				8B001DCF1CF203AA001EB1C0 /* UIImageView+setImage.swift in Sources */,
 				8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift in Sources */,
 				8BF275DC1CDB524600E1566D /* ListTableViewController.swift in Sources */,
 				8B7DCD091CDB2C3F008AEDF6 /* LaunchViewController.swift in Sources */,
