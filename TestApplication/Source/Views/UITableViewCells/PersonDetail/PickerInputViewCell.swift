@@ -24,11 +24,11 @@ class PickerInputViewCell: CustomTableViewCell {
                                      animated: false)
                 guard let
                     possibleValues = PersonAttributeDescription.AccountantType.possibleValues where possibleValues.count > 0 else {
-                        fatalError("Sorry")
+                        fatalError()
                 }
 
                 guard let text = possibleValues[data.integerValue] as? String else {
-                    fatalError("")
+                    fatalError()
                 }
 
                 attributeValue = text
@@ -42,17 +42,28 @@ class PickerInputViewCell: CustomTableViewCell {
         return picker
     }()
 
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func prepareForReuse() {
         currentValue = nil
         attributeValue = nil
     }
+
+    //MARK: Help functions
+
     func updateUI(attributeDescription: PersonAttributeDescription,
                   valuesAttributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {
 
         super.updateUI(attributeDescription.type,
-                     actionForClearField: actionForClearField)
+                       actionForClearField: actionForClearField)
 
         defer {
             let data = valuesAttributeDictionary[attributeDescription.keys.first ?? ""]
@@ -70,19 +81,9 @@ class PickerInputViewCell: CustomTableViewCell {
         } else {
             fatalError("Possible values for attribute \(attributeDescription.description) must be filled")
         }
-
+        
     }
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupView()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    //MARK: Help functions
     func setupView() {
         dataTextFieldInputView = self.pickerView
     }
