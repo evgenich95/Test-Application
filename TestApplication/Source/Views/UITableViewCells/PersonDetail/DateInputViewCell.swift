@@ -109,7 +109,7 @@ class DateInputViewCell: CustomTableViewCell {
     }
 
     //MARK: Help functions
-    func updateUI(attributeDescription: PersonAttributeDescription,
+    func updateUI(attributeDescription: EmployeeAttribute,
                   valuesAttributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {

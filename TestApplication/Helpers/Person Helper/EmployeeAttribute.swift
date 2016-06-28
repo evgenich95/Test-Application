@@ -1,5 +1,5 @@
 //
-//  PersonAttributeDescription.swift
+//  EmployeeAttribute.swift
 //  TestApplication
 //
 //  Created by developer on 09.06.16.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-enum PersonAttributeDescription: CustomStringConvertible {
+enum EmployeeAttribute: CustomStringConvertible {
     case FullName
     case Salary
     case WorkplaceNumber

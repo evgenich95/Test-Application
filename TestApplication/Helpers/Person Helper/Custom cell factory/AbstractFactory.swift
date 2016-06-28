@@ -13,6 +13,6 @@ protocol AbstractFactory {
     var tableView: UITableView { get set }
 
     mutating func createCustomTableViewCell(
-        attributeDescription: PersonAttributeDescription,
+        attributeDescription: EmployeeAttribute,
         personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell
 }

@@ -13,7 +13,7 @@
 		8B067D1E1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift */; };
 		8B0951731D06D65600F67C9A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0951711D06D65600F67C9A /* Manager.swift */; };
 		8B35BD3D1D07CA5D006B028D /* EmployeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35BD3C1D07CA5D006B028D /* EmployeeType.swift */; };
-		8B3613711D090A2700B4BFE4 /* PersonAttributeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3613701D090A2700B4BFE4 /* PersonAttributeDescription.swift */; };
+		8B3613711D090A2700B4BFE4 /* EmployeeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3613701D090A2700B4BFE4 /* EmployeeAttribute.swift */; };
 		8B3961E71CEE0FCA00EDC4C0 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3961E61CEE0FCA00EDC4C0 /* GalleryViewController.swift */; };
 		8B396CFD1D0E8A820082ED2F /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 8B396CFC1D0E8A820082ED2F /* Images */; };
 		8B3EA9981CF3A7910057B57A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3EA9971CF3A7910057B57A /* NetworkError.swift */; };
@@ -74,7 +74,7 @@
 		8B067D1D1CE71F8A00CC9F5F /* CoreDataStack+createEntityByName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+createEntityByName.swift"; sourceTree = "<group>"; };
 		8B0951711D06D65600F67C9A /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		8B35BD3C1D07CA5D006B028D /* EmployeeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
-		8B3613701D090A2700B4BFE4 /* PersonAttributeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonAttributeDescription.swift; sourceTree = "<group>"; };
+		8B3613701D090A2700B4BFE4 /* EmployeeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeAttribute.swift; sourceTree = "<group>"; };
 		8B3961E61CEE0FCA00EDC4C0 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		8B396CFC1D0E8A820082ED2F /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		8B3EA9941CF37A440057B57A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 			children = (
 				8BF776A11D085A7A00BBC55C /* Custom cell factory */,
 				8BF344D81D0978AC007FC518 /* PersonAttributeContainer.swift */,
-				8B3613701D090A2700B4BFE4 /* PersonAttributeDescription.swift */,
+				8B3613701D090A2700B4BFE4 /* EmployeeAttribute.swift */,
 				8B35BD3C1D07CA5D006B028D /* EmployeeType.swift */,
 			);
 			path = "Person Helper";
@@ -621,7 +621,7 @@
 				8B7DCD091CDB2C3F008AEDF6 /* LaunchViewController.swift in Sources */,
 				8B067D1C1CE71C9100CC9F5F /* CoreDataStack+save.swift in Sources */,
 				8BF344D91D0978AC007FC518 /* PersonAttributeContainer.swift in Sources */,
-				8B3613711D090A2700B4BFE4 /* PersonAttributeDescription.swift in Sources */,
+				8B3613711D090A2700B4BFE4 /* EmployeeAttribute.swift in Sources */,
 				8B9E1FD11CEC52680071C648 /* WebService.swift in Sources */,
 				8BF337D21CECAE9E005CB57B /* UIViewController+handleError.swift in Sources */,
 				8BF337DD1CECB7A8005CB57B /* QuoteTableViewCell.swift in Sources */,

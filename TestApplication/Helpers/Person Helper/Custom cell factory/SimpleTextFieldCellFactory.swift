@@ -21,7 +21,7 @@ struct SimpleTextFieldCellFactory: AbstractFactory {
     }
 
     mutating func createCustomTableViewCell(
-        attributeDescription: PersonAttributeDescription,
+        attributeDescription: EmployeeAttribute,
         personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
 
         guard let cell = self.tableView

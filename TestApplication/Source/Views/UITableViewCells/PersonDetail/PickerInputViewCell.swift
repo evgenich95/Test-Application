@@ -23,7 +23,7 @@ class PickerInputViewCell: CustomTableViewCell {
                                      inComponent: 0,
                                      animated: false)
                 guard let
-                    possibleValues = PersonAttributeDescription.AccountantType.possibleValues where possibleValues.count > 0 else {
+                    possibleValues = EmployeeAttribute.AccountantType.possibleValues where possibleValues.count > 0 else {
                         fatalError()
                 }
 
@@ -57,7 +57,7 @@ class PickerInputViewCell: CustomTableViewCell {
 
     //MARK: Help functions
 
-    func updateUI(attributeDescription: PersonAttributeDescription,
+    func updateUI(attributeDescription: EmployeeAttribute,
                   valuesAttributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {

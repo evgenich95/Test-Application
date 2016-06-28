@@ -34,7 +34,7 @@ class AccountantTableViewCell: UITableViewCell {
         workplaeNumberLabel.text = accountant.workplaceNumber?.stringValue
 
         guard let
-            possibleValues = PersonAttributeDescription.AccountantType
+            possibleValues = EmployeeAttribute.AccountantType
                 .possibleValues,
             idx = accountant.type?.integerValue,
             text = possibleValues[idx] as? String

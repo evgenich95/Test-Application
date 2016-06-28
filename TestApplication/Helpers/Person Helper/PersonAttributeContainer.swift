@@ -31,7 +31,7 @@ class PersonAttributeContainer {
         }
     }
 
-    var attributeDescriptions = [PersonAttributeDescription]()
+    var attributeDescriptions = [EmployeeAttribute]()
     //MARK:-
 
     init(displayedPersonType: EmployeeType, aPerson: Person?) {
@@ -48,7 +48,7 @@ class PersonAttributeContainer {
     func updateAttributeDescriptions() {
         attributeDescriptions.removeAll()
         for key in displayedPersonType.attributeKeys {
-            if let description = PersonAttributeDescription(attributeKey: key) {
+            if let description = EmployeeAttribute(attributeKey: key) {
                 if !attributeDescriptions.contains(description) {
                     attributeDescriptions.append(description)
                 }

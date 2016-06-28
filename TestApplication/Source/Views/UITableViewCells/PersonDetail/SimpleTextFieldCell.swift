@@ -23,7 +23,7 @@ class SimpleTextFieldCell: CustomTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updateUI(attributeDescription: PersonAttributeDescription,
+    func updateUI(attributeDescription: EmployeeAttribute,
                   valuesAttributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {

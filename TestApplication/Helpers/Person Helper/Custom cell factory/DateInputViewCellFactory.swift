@@ -21,7 +21,7 @@ struct DateInputViewCellFactory: AbstractFactory {
     }
 
     mutating func createCustomTableViewCell(
-        attributeDescription: PersonAttributeDescription,
+        attributeDescription: EmployeeAttribute,
         personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
 
         guard let cell = self.tableView.dequeueReusableCellWithIdentifier(

@@ -29,7 +29,7 @@ struct CustomCellFactory {
     }
 
     private mutating func appropriateFactory(
-        attributeDescription: PersonAttributeDescription) -> AbstractFactory {
+        attributeDescription: EmployeeAttribute) -> AbstractFactory {
 
         switch attributeDescription {
         case .FullName, .Salary, .WorkplaceNumber:
@@ -43,7 +43,7 @@ struct CustomCellFactory {
 
     mutating func cellForAttribute(
         personAttributeContainer: PersonAttributeContainer,
-        attributeDescription: PersonAttributeDescription)
+        attributeDescription: EmployeeAttribute)
         -> UITableViewCell {
             var factory = appropriateFactory(attributeDescription)
             return factory.createCustomTableViewCell(
