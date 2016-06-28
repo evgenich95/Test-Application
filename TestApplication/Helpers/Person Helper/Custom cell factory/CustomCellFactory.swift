@@ -42,12 +42,12 @@ struct CustomCellFactory {
     }
 
     mutating func cellForAttribute(
-        personAttributeContainer: PersonAttributeContainer,
+        employeeAttributeContainer: EmployeeAttributeContainer,
         attributeDescription: EmployeeAttribute)
         -> UITableViewCell {
             var factory = appropriateFactory(attributeDescription)
             return factory.createCustomTableViewCell(
                 attributeDescription,
-                personAttributeContainer: personAttributeContainer)
+                employeeAttributeContainer: employeeAttributeContainer)
     }
 }

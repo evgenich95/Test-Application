@@ -54,8 +54,8 @@ class EditingState: State {
             else {return}
 
         let dataStack = owner.coreDataStack
-        let valuesDictionary = owner.personAttributeContainer.valuesDictionary
-        let finalPersonTypeName = owner.personAttributeContainer
+        let valuesDictionary = owner.employeeAttributeContainer.valuesDictionary
+        let finalPersonTypeName = owner.employeeAttributeContainer
                                                     .displayedPersonType
                                                     .description
 

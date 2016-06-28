@@ -53,8 +53,8 @@ class PersonDetailViewController: UIViewController {
         return CustomCellFactory(tableView: self.customTableView)
     }()
 
-    lazy var personAttributeContainer: PersonAttributeContainer = {
-        let attributeContainer = PersonAttributeContainer(
+    lazy var employeeAttributeContainer: EmployeeAttributeContainer = {
+        let attributeContainer = EmployeeAttributeContainer(
             displayedPersonType: self.currentDisplayedPersonType,
             aPerson: self.person)
 
@@ -121,7 +121,7 @@ class PersonDetailViewController: UIViewController {
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
-        personAttributeContainer.displayedPersonType = currentDisplayedPersonType
+        employeeAttributeContainer.displayedPersonType = currentDisplayedPersonType
         self.customTableView.reloadData()
     }
 
@@ -141,10 +141,10 @@ class PersonDetailViewController: UIViewController {
     }
 
     func checkValid() {
-        let filledAttributeKeys = personAttributeContainer
+        let filledAttributeKeys = employeeAttributeContainer
             .valuesDictionary
             .keys
-        let allAttributeKeys = personAttributeContainer
+        let allAttributeKeys = employeeAttributeContainer
             .displayedPersonType
             .attributeKeys
         var canTapSave = true
@@ -192,11 +192,11 @@ class PersonDetailViewController: UIViewController {
 
 //MARK: -
 //MARK: Extension
-//MARK: - PersonAttributeContainerDelegate
+//MARK: - EmployeeAttributeContainerDelegate
 
-extension PersonDetailViewController: PersonAttributeContainerDelegate {
-    func personAttributeContainerDidEnterData(
-        container: PersonAttributeContainer) {
+extension PersonDetailViewController: EmployeeAttributeContainerDelegate {
+    func employeeAttributeContainerDidEnterData(
+        container: EmployeeAttributeContainer) {
         checkValid()
     }
 }
@@ -233,7 +233,7 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        return personAttributeContainer
+        return employeeAttributeContainer
                                 .displayedPersonType
                                 .numberDisplayedAttributes
     }
@@ -242,8 +242,8 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
                    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         return employeeAttributeCellFactory.cellForAttribute(
-            personAttributeContainer,
-            attributeDescription: personAttributeContainer
+            employeeAttributeContainer,
+            attributeDescription: employeeAttributeContainer
                 .attributeDescriptions[indexPath.row])
     }
 

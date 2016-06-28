@@ -8,15 +8,15 @@
 
 import Foundation
 
-protocol PersonAttributeContainerDelegate {
-    func personAttributeContainerDidEnterData(
-        container: PersonAttributeContainer)
+protocol EmployeeAttributeContainerDelegate {
+    func employeeAttributeContainerDidEnterData(
+        container: EmployeeAttributeContainer)
 }
 
-class PersonAttributeContainer {
+class EmployeeAttributeContainer {
 
     //MARK: Parameters
-    var delegate: PersonAttributeContainerDelegate?
+    var delegate: EmployeeAttributeContainerDelegate?
 
     var displayedPersonType: EmployeeType {
         didSet {
@@ -27,7 +27,7 @@ class PersonAttributeContainer {
 
     var valuesDictionary = [String: AnyObject]() {
         didSet {
-            delegate?.personAttributeContainerDidEnterData(self)
+            delegate?.employeeAttributeContainerDidEnterData(self)
         }
     }
 

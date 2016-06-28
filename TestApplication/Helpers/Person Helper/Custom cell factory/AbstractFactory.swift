@@ -14,5 +14,5 @@ protocol AbstractFactory {
 
     mutating func createCustomTableViewCell(
         attributeDescription: EmployeeAttribute,
-        personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell
+        employeeAttributeContainer: EmployeeAttributeContainer) -> CustomTableViewCell
 }

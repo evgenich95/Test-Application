@@ -22,7 +22,7 @@ struct DateInputViewCellFactory: AbstractFactory {
 
     mutating func createCustomTableViewCell(
         attributeDescription: EmployeeAttribute,
-        personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
+        employeeAttributeContainer: EmployeeAttributeContainer) -> CustomTableViewCell {
 
         guard let cell = self.tableView.dequeueReusableCellWithIdentifier(
             DateInputViewCell.reuseIdentifier) as? DateInputViewCell
@@ -30,18 +30,18 @@ struct DateInputViewCellFactory: AbstractFactory {
 
         cell.updateUI(
             attributeDescription,
-            valuesAttributeDictionary: personAttributeContainer.valuesDictionary,
+            valuesAttributeDictionary: employeeAttributeContainer.valuesDictionary,
             action: { (startDate, endDate) in
                 let startDateKey = attributeDescription.keys[0]
                 let endDateKey = attributeDescription.keys[1]
-                personAttributeContainer.valuesDictionary[startDateKey] = startDate
-                personAttributeContainer.valuesDictionary[endDateKey] = endDate
+                employeeAttributeContainer.valuesDictionary[startDateKey] = startDate
+                employeeAttributeContainer.valuesDictionary[endDateKey] = endDate
             },
             actionForClearField: {
                 let startDateKey = attributeDescription.keys[0]
                 let endDateKey = attributeDescription.keys[1]
-                personAttributeContainer.valuesDictionary[startDateKey] = nil
-                personAttributeContainer.valuesDictionary[endDateKey] = nil
+                employeeAttributeContainer.valuesDictionary[startDateKey] = nil
+                employeeAttributeContainer.valuesDictionary[endDateKey] = nil
         })
         return cell
     }

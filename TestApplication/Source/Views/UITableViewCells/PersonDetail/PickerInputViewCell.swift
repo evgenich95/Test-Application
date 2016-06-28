@@ -122,7 +122,6 @@ extension PickerInputViewCell: UIPickerViewDelegate {
                                  inComponent component: Int) {
         currentValue = row
     }
-    
     func adaptivePresentationStyleForPresentationController(
         controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None

@@ -22,7 +22,7 @@ struct PickerInputViewCellFactory: AbstractFactory {
 
     mutating func createCustomTableViewCell(
         attributeDescription: EmployeeAttribute,
-        personAttributeContainer: PersonAttributeContainer) -> CustomTableViewCell {
+        employeeAttributeContainer: EmployeeAttributeContainer) -> CustomTableViewCell {
 
         guard let cell = self.tableView
             .dequeueReusableCellWithIdentifier(
@@ -31,14 +31,14 @@ struct PickerInputViewCellFactory: AbstractFactory {
 
         cell.updateUI(
             attributeDescription,
-            valuesAttributeDictionary: personAttributeContainer.valuesDictionary,
+            valuesAttributeDictionary: employeeAttributeContainer.valuesDictionary,
             action: { (data) in
                 let key = attributeDescription.keys.first ?? ""
-                personAttributeContainer.valuesDictionary[key] = data
+                employeeAttributeContainer.valuesDictionary[key] = data
             },
             actionForClearField: {
                 let key = attributeDescription.keys.first ?? ""
-                personAttributeContainer.valuesDictionary[key] = nil
+                employeeAttributeContainer.valuesDictionary[key] = nil
         })
         return cell
     }
