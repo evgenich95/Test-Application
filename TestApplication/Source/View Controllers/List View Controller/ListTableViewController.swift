@@ -185,6 +185,8 @@ class ListPersonTableViewController: UITableViewController {
                 createNewPersonViewController,
                 animated: true
             )
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.selected = false
         }
     }
 
