@@ -40,7 +40,6 @@ class GalleryViewController: UIViewController {
         return self.view.frame.height
     }
 
-    var arrowsButtonEnable = true
     var screenIsRotating = false
 
     var currentPage = Int(0)
@@ -192,9 +191,11 @@ class GalleryViewController: UIViewController {
     }
 
     private func moveToPage (direction: NavigationDirection) {
+        UIView.animateWithDuration(0.2) {
         self.scrollView.scrollRectToVisible(
-            imageViews[currentPage + direction.rawValue].frame,
-            animated: true)
+            self.imageViews[self.currentPage + direction.rawValue].frame,
+            animated: false)
+        }
     }
 
     func disableBarButtonIfNeed() {
@@ -231,8 +232,6 @@ class GalleryViewController: UIViewController {
 
     //MARK: addTarget's function
     @objc func arrowBarButtonAction(sender: UIBarButtonItem) {
-        if !arrowsButtonEnable {return}
-
         switch sender {
         case leftArrowBarButton:
             moveToPage(NavigationDirection.Left)
@@ -241,7 +240,6 @@ class GalleryViewController: UIViewController {
         default:
             break
         }
-        arrowsButtonEnable = false
     }
 }
 
@@ -250,10 +248,6 @@ class GalleryViewController: UIViewController {
 //MARK: - UIScrollViewDelegate
 
 extension GalleryViewController: UIScrollViewDelegate {
-
-    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        arrowsButtonEnable = true
-    }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // if screen orientation is changed --> return
