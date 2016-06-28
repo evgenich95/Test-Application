@@ -42,6 +42,10 @@ class PickerInputViewCell: CustomTableViewCell {
         return picker
     }()
 
+    override func prepareForReuse() {
+        currentValue = nil
+        attributeValue = nil
+    }
     func updateUI(attributeDescription: PersonAttributeDescription,
                   valuesAttributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
