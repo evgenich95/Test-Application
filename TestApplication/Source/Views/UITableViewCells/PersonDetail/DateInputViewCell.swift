@@ -92,10 +92,7 @@ class DateInputViewCell: CustomTableViewCell {
     }
 
     override func prepareForReuse() {
-        super.actionForClearField?()
-//        super.attributeValue = ""
-//        self.update
-//        updateTextFieldValue()
+        attributeValue = nil
     }
 
     //MARK: AddTarget's functions

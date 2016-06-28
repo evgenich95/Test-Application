@@ -40,15 +40,19 @@ class CustomTableViewCell: UITableViewCell {
 
     var attributeValue: AnyObject? {
         willSet {
-            if let text = newValue as? String {
+            guard let value = newValue
+                else {
+                    dataTextField.text = ""
+                    return
+            }
+            if let text = value as? String {
                 dataTextField.text = text
-                textFieldValueChange()
             }
 
-            if let text = newValue as? NSNumber {
+            if let text = value as? NSNumber {
                 dataTextField.text = text.stringValue
-                textFieldValueChange()
             }
+            textFieldValueChange()
         }
     }
     var dataTextFieldInputView: UIView? {
