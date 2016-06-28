@@ -47,7 +47,7 @@ class PersonTableViewHeader: UITableViewHeaderFooterView {
     }
 
     func updateUI(sectionName: String, sectionIconName: String) {
-        sectionIcon.setImageWithoutCache(sectionIconName)
+        sectionIcon.image = UIImage(named: sectionIconName)
         self.sectionName.text = sectionName
     }
 }

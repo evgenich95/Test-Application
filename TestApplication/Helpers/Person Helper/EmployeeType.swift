@@ -7,6 +7,8 @@
 //
 
 import Foundation
+
+//to avoid naming conflict between enum's cases and class type
 typealias ManagerClass = Manager
 typealias WorkerClass = Worker
 typealias AccountantClass = Accountant

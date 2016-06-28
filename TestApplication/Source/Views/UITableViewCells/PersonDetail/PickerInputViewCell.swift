@@ -81,7 +81,6 @@ class PickerInputViewCell: CustomTableViewCell {
         } else {
             fatalError("Possible values for attribute \(attributeDescription.description) must be filled")
         }
-        
     }
 
     func setupView() {

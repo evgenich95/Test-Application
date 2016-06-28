@@ -30,16 +30,6 @@ class GalleryViewController: UIViewController {
 
     private let imagesCacheDimension: Int = 3
 
-    var count = 0 {
-        didSet {
-//            print("count = \(count)")
-            if count > 3 {
-                showLoadedImagesSheme()
-                fatalError("count = \(count)")
-            }
-        }
-    }
-
     var imageViews  = [UIImageView]()
 
     var pageWidth: CGFloat {
@@ -129,28 +119,24 @@ class GalleryViewController: UIViewController {
         for _ in imageNames {
             loadTemplateForImage()
         }
-
-        print("Initial loading")
-//        for i in 0...navigationFlow.
-        for i in 0...imagesCacheDimension/2 {
-            imageViews[i].setImageWithoutCache(imageNames[i])
-            print("Loaded \(i)'s photo")
-            count += 1
-        }
+        loadInitialImageViews()
         disableBarButtonIfNeed()
-        print("ViewDidLoad END\n-----------")
     }
 
-        //MARK: Help functions
+    //MARK: Help functions
+    func loadInitialImageViews() {
+        for i in 0...imagesCacheDimension/2 {
+            imageViews[i].image = UIImage(contentsOfFile: imageNames[i])
+        }
+    }
+
     func loadImagesForCurrentPage() {
 
         navigationFlow.direction = nil
         if lastPage - currentPage > 0 {
             navigationFlow.direction = .Left
-//            print("Двигаюсь Влево <---")
         } else if lastPage - currentPage < 0 {
             navigationFlow.direction = .Rigth
-//            print("Двигаюсь вправо --->")
         }
 
         if  navigationFlow.direction == nil || (lastPage, currentPage) == indexLastTransition {
@@ -164,56 +150,15 @@ class GalleryViewController: UIViewController {
 
         if deletionIdx >= 0 && deletionIdx < imageViews.count {
             imageViews[deletionIdx].image = nil
-//            print("DeletionIdx = \(deletionIdx)")
-            count -= 1
         }
 
         if loadingIdx >= 0 && loadingIdx < imageViews.count {
             imageViews[loadingIdx].image = UIImage(
                 contentsOfFile: imageNames[loadingIdx])
-//            setImageWithoutCache(imageNames[loadingIdx])
-//            print("LoadingIdx = \(loadingIdx)")
-            count += 1
+
         }
         //to avoid same loadings
         indexLastTransition = (lastPage, currentPage)
-
-//        showLoadedImagesSheme()
-//        var loadedPhoto = 0
-//        for image in imageViews {
-//            if image.image != nil {
-//                loadedPhoto += 1
-//            }
-//        }
-//
-//        if loadedPhoto > 3 {
-//            showLoadedImagesSheme()
-//            fatalError("loadedPhoto = \(loadedPhoto)")
-//        }
-
-    }
-
-    func showLoadedImagesSheme() {
-        var indexes = [String]()
-        var array = [String]()
-
-        for i in 0..<imageNames.count {
-            indexes.append("\(i)")
-            array.append("0")
-        }
-
-        for image in imageViews {
-            if image.image != nil {
-                array[imageViews.indexOf(image)!] = "1"
-            }
-        }
-
-        array[currentPage] = "+"
-        print("-----\n")
-        print(indexes)
-        print(array)
-        print("\n-----")
-
     }
 
     func loadTemplateForImage() {
@@ -315,22 +260,9 @@ extension GalleryViewController: UIScrollViewDelegate {
         if  screenIsRotating || view.frame.width != scrollWidth {
             return
         }
-
         currentPage = Int((scrollView.contentOffset.x+pageWidth/2)/pageWidth)
         disableBarButtonIfNeed()
         loadImagesForCurrentPage()
         lastPage = currentPage
-
-//        var loadedPhoto = 0
-//        for image in imageViews {
-//            if image.image != nil {
-//                loadedPhoto += 1
-//            }
-//        }
-//
-//        if loadedPhoto > 3 {
-//            showLoadedImagesSheme()
-//            fatalError("loadedPhoto = \(loadedPhoto)")
-//        }
     }
 }
