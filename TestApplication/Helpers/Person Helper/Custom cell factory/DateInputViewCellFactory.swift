@@ -30,7 +30,7 @@ struct DateInputViewCellFactory: AbstractFactory {
 
         cell.updateUI(
             attributeDescription,
-            attributeDictionary: personAttributeContainer.valuesDictionary,
+            valuesAttributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (startDate, endDate) in
                 let startDateKey = attributeDescription.keys[0]
                 let endDateKey = attributeDescription.keys[1]

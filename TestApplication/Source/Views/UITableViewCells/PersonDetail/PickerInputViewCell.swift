@@ -43,7 +43,7 @@ class PickerInputViewCell: CustomTableViewCell {
     }()
 
     func updateUI(attributeDescription: PersonAttributeDescription,
-                  attributeDictionary: [String : AnyObject],
+                  valuesAttributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {
 
@@ -51,7 +51,7 @@ class PickerInputViewCell: CustomTableViewCell {
                      actionForClearField: actionForClearField)
 
         defer {
-            let data = attributeDictionary[attributeDescription.keys.first ?? ""]
+            let data = valuesAttributeDictionary[attributeDescription.keys.first ?? ""]
             self.currentValue = data
         }
 

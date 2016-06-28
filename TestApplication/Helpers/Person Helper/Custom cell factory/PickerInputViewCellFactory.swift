@@ -31,7 +31,7 @@ struct PickerInputViewCellFactory: AbstractFactory {
 
         cell.updateUI(
             attributeDescription,
-            attributeDictionary: personAttributeContainer.valuesDictionary,
+            valuesAttributeDictionary: personAttributeContainer.valuesDictionary,
             action: { (data) in
                 let key = attributeDescription.keys.first ?? ""
                 personAttributeContainer.valuesDictionary[key] = data

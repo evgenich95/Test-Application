@@ -24,7 +24,7 @@ class SimpleTextFieldCell: CustomTableViewCell {
     }
 
     func updateUI(attributeDescription: PersonAttributeDescription,
-                  attributeDictionary: [String : AnyObject],
+                  valuesAttributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {
 
@@ -33,7 +33,7 @@ class SimpleTextFieldCell: CustomTableViewCell {
 
         attributeDescriptionString = attributeDescription.description
         textFieldPlaceholder = attributeDescription.placeholder
-        let data = attributeDictionary[attributeDescription.keys.first ?? ""]
+        let data = valuesAttributeDictionary[attributeDescription.keys.first ?? ""]
         attributeValue = data
         handleDataAction = action
     }

@@ -113,7 +113,7 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: Help functions
     func updateUI(attributeDescription: PersonAttributeDescription,
-                  attributeDictionary: [String : AnyObject],
+                  valuesAttributeDictionary: [String : AnyObject],
                   action: ResultDataActionType,
                   actionForClearField: () -> Void) {
 
@@ -124,9 +124,9 @@ class DateInputViewCell: CustomTableViewCell {
         self.textFieldPlaceholder = attributeDescription.placeholder
         self.handleDataAction = action
 
-        if  let startDate = attributeDictionary[attributeDescription.keys[0]]
+        if  let startDate = valuesAttributeDictionary[attributeDescription.keys[0]]
             as? NSDate,
-            endDate = attributeDictionary[attributeDescription.keys[1]]
+            endDate = valuesAttributeDictionary[attributeDescription.keys[1]]
                 as? NSDate {
             self.startTimeDatePicker.setDate(startDate, animated: false)
             self.endTimeDatePicker.setDate(endDate, animated: false)

@@ -26,18 +26,18 @@ class Person: NSManagedObject, CoreDataModelable {
         return keys
     }
 
-    var attributeDictionary: [String: AnyObject] {
+    var valuesAttributeDictionary: [String: AnyObject] {
         guard let selfAttributeKeys = EmployeeType
                                         .init(aPerson: self)?.attributeKeys
             else {
                 fatalError("Person's subcluss \(self.entity.name) doesn't have EmployeeType")
         }
-        var attributeDictionary = [String: AnyObject]()
+        var valuesAttributeDictionary = [String: AnyObject]()
 
         for key in selfAttributeKeys {
-            attributeDictionary[key] = self.valueForKey(key)
+            valuesAttributeDictionary[key] = self.valueForKey(key)
         }
-        return attributeDictionary
+        return valuesAttributeDictionary
     }
 
     func fillAttributes(dictionary: [String: AnyObject]) {
