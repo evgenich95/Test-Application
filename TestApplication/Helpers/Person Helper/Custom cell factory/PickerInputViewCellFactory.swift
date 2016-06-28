@@ -27,7 +27,9 @@ struct PickerInputViewCellFactory: AbstractFactory {
         guard let cell = self.tableView
             .dequeueReusableCellWithIdentifier(
                 PickerInputViewCell.reuseIdentifier) as? PickerInputViewCell
-        else {fatalError()}
+        else {
+            fatalError("cell with identifier \"\(PickerInputViewCell.reuseIdentifier)\" must be registered")
+        }
 
         cell.updateUI(
             attributeDescription,

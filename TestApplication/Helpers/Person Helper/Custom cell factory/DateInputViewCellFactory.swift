@@ -26,7 +26,9 @@ struct DateInputViewCellFactory: AbstractFactory {
 
         guard let cell = self.tableView.dequeueReusableCellWithIdentifier(
             DateInputViewCell.reuseIdentifier) as? DateInputViewCell
-        else {fatalError()}
+            else {
+                fatalError("cell with identifier \"\(DateInputViewCell.reuseIdentifier)\" must be registered")
+        }
 
         cell.updateUI(
             attributeDescription,

@@ -12,6 +12,7 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: Parameters
     static let reuseIdentifier = "DateInputViewCell"
+    
     typealias ResultDataActionType = ((startDate: NSDate, endDate: NSDate) -> Void)
     var handleDataAction: ResultDataActionType?
 

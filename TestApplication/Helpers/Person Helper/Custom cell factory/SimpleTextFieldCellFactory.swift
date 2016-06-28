@@ -27,7 +27,9 @@ struct SimpleTextFieldCellFactory: AbstractFactory {
         guard let cell = self.tableView
             .dequeueReusableCellWithIdentifier(
                 SimpleTextFieldCell.reuseIdentifier) as? SimpleTextFieldCell
-        else {fatalError()}
+        else {
+            fatalError("cell with identifier \"\(SimpleTextFieldCell.reuseIdentifier)\" must be registered")
+        }
 
         cell.updateUI(
             attributeDescription,
