@@ -190,7 +190,7 @@ class GalleryViewController: UIViewController {
             height: pageHeight)
     }
 
-    private func moveToPage (direction: NavigationDirection) {
+    private func moveToPageInDirection (direction: NavigationDirection) {
         UIView.animateWithDuration(0.2) {
         self.scrollView.scrollRectToVisible(
             self.imageViews[self.currentPage + direction.rawValue].frame,
@@ -234,9 +234,9 @@ class GalleryViewController: UIViewController {
     @objc func arrowBarButtonAction(sender: UIBarButtonItem) {
         switch sender {
         case leftArrowBarButton:
-            moveToPage(NavigationDirection.Left)
+            moveToPageInDirection(NavigationDirection.Left)
         case rightArrowBarButton:
-            moveToPage(NavigationDirection.Rigth)
+            moveToPageInDirection(NavigationDirection.Rigth)
         default:
             break
         }
