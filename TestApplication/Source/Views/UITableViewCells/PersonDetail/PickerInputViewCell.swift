@@ -22,14 +22,13 @@ class PickerInputViewCell: CustomTableViewCell {
                 pickerView.selectRow(data.integerValue,
                                      inComponent: 0,
                                      animated: false)
-                guard let
-                    possibleValues = EmployeeAttribute.AccountantType.possibleValues where possibleValues.count > 0 else {
-                        fatalError()
-                }
+                guard let possibleValues = EmployeeAttribute
+                                                    .AccountantType
+                                                    .possibleValues
+                    where possibleValues.count > 0
+                    else {fatalError()}
 
-                guard let text = possibleValues[data.integerValue] as? String else {
-                    fatalError()
-                }
+                guard let text = possibleValues[data.integerValue] as? String else {fatalError()}
 
                 attributeValue = text
             }
@@ -38,6 +37,7 @@ class PickerInputViewCell: CustomTableViewCell {
 
     private lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
+        picker.backgroundColor = UIColor.whiteColor()
         picker.delegate = self
         return picker
     }()
@@ -50,6 +50,7 @@ class PickerInputViewCell: CustomTableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     override func prepareForReuse() {
         currentValue = nil
         attributeValue = nil

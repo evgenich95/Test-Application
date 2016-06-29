@@ -62,6 +62,7 @@ class CreatingState: State {
             .coreDataStack
             .createEntityByName(entityName) as? Person {
             newPerson.fillAttributes(valuesDictionary)
+        newPerson.sectionOrder = owner.employeeAttributeContainer.displayedPersonType.orderIndex
             owner.coreDataStack.saveAndLog()
         }
     }
