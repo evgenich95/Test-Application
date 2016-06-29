@@ -20,7 +20,6 @@ class DateInputViewCell: CustomTableViewCell {
     //MARK: Lazy parameters
     private var customTimePicker: UIDatePicker {
         let datePicker = UIDatePicker()
-        datePicker.backgroundColor = UIColor.grayColor()
         datePicker.datePickerMode = UIDatePickerMode.Time
         datePicker.locale = NSLocale(localeIdentifier: "en_GB")
         datePicker.addTarget(self,
@@ -43,7 +42,7 @@ class DateInputViewCell: CustomTableViewCell {
             x: 0, y: 0,
             width: self.bounds.width,
             height: 200))
-        view.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.2)
+        view.backgroundColor = UIColor.whiteColor()
 
         let startLable = UILabel()
         startLable.text = "Start Time"
@@ -98,9 +97,6 @@ class DateInputViewCell: CustomTableViewCell {
 
     //MARK: AddTarget's functions
     @objc func datePickerValueChange(sender: UIDatePicker) {
-        startTimeDatePicker.backgroundColor = UIColor.whiteColor()
-        endTimeDatePicker.backgroundColor = UIColor.whiteColor()
-
         chekValidAfterInteredData(sender)
         updateTextFieldValue()
     }
