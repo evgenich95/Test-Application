@@ -12,7 +12,7 @@ import BNRCoreDataStack
 class ListPersonTableViewController: UITableViewController {
 
     //MARK: Parameters
-    var coreDataStack: CoreDataStack!
+    var managedObjectContext: NSManagedObjectContext!
 
     lazy private var addButton: UIBarButtonItem = {
         return UIBarButtonItem(
@@ -21,9 +21,11 @@ class ListPersonTableViewController: UITableViewController {
             action: #selector(createNewPerson)
         )
     }()
-
-    lazy private var fetchedResultsController: FetchedResultsController<Person> = {
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        // Initialize Fetch Request
         let fetchRequest = NSFetchRequest(entityName: Person.entityName)
+
+        // Add Sort Descriptors
 
         let nameSortDescriptor = NSSortDescriptor(key: "fullName",
                                                   ascending:  true)
@@ -35,22 +37,59 @@ class ListPersonTableViewController: UITableViewController {
         fetchRequest.sortDescriptors = [typeSortDescriptor, orderSortDescriptor,
                                         nameSortDescriptor ]
 
-        let frc = FetchedResultsController<Person>(
+        // Initialize Fetched Results Controller
+        let fetchedResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
-            managedObjectContext: self.coreDataStack.mainQueueContext,
-            sectionNameKeyPath: "entity.name")
+            managedObjectContext: self.managedObjectContext,
+            sectionNameKeyPath: "entity.name", cacheName: nil)
 
-        frc.setDelegate(self.frcDelegate)
-        return frc
+        fetchedResultsController.delegate = self
+
+        return fetchedResultsController
     }()
 
-    lazy private var frcDelegate: PersonsFetchedResultsControllerDelegate = {
-        return PersonsFetchedResultsControllerDelegate(tableView: self.tableView)
-    }()
+//    lazy private var fetchedResultsController: FetchedResultsController<Person> = {
+//        let fetchRequest = NSFetchRequest(entityName: Person.entityName)
+//
+//        let nameSortDescriptor = NSSortDescriptor(key: "fullName",
+//                                                  ascending:  true)
+//        let typeSortDescriptor = NSSortDescriptor(key: "entity.name",
+//                                                  ascending:  true)
+//        let orderSortDescriptor = NSSortDescriptor(key: "order",
+//                                                   ascending:  false)
+//
+//        fetchRequest.sortDescriptors = [typeSortDescriptor, orderSortDescriptor,
+//                                        nameSortDescriptor ]
+//
+//        let frc = FetchedResultsController<Person>(
+//            fetchRequest: fetchRequest,
+//            managedObjectContext: self.coreDataStack.mainQueueContext,
+//            sectionNameKeyPath: "entity.name")
+//
+//        frc.setDelegate(self.frcDelegate)
+//        return frc
+//    }()
+
+//    lazy private var frcDelegate: PersonsFetchedResultsControllerDelegate = {
+//        return PersonsFetchedResultsControllerDelegate(tableView: self.tableView)
+//    }()
     //MARK:-
 
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
+
+//    private var fetchedResultsController: NSFetchedResultsController? {
+//        didSet {
+//            do {
+//                try fetchedResultsController?.performFetch()
+//            } catch {
+//                print("Failed to fetch objects: \(error)")
+//            }
+//            tableView?.reloadData()
+//        }
+//    }
+
+
+    init(managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
         super.init(nibName: "ListPersonTableViewController", bundle: nil)
     }
 
@@ -60,6 +99,9 @@ class ListPersonTableViewController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
 //        performFetch()
+//        super.viewDidAppear(animated)
+//        tableView.reloadData()
+
     }
 
     override func viewDidLoad() {
@@ -71,16 +113,30 @@ class ListPersonTableViewController: UITableViewController {
         performFetch()
     }
 
+
+
     //MARK: Working with TableView
 
     override func tableView(tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
-        guard let
-            firstPersonInSection = fetchedResultsController
-                                                .sections?[section]
-                                                .objects.first,
+//        guard let
+//            firstPersonInSection = fetchedResultsController
+//                                                .sections?[section]
+//                                                .objects!.first,
+//            iconAndTitleName = firstPersonInSection.entity.name
+//        else {return nil}
+
+        guard let sections = fetchedResultsController
+            .sections?[section]
+            else { fatalError() }
+
+        guard let firstPersonInSection = sections.objects?.first as? Person,
             iconAndTitleName = firstPersonInSection.entity.name
-        else {return nil}
+
+            else {
+                return nil
+        }
+
 
         let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier(
             KeysForCells.personTableViewHeader)
@@ -95,11 +151,16 @@ class ListPersonTableViewController: UITableViewController {
                             commitEditingStyle editingStyle: UITableViewCellEditingStyle,
                             forRowAtIndexPath indexPath: NSIndexPath) {
 
+//        if editingStyle == .Delete {
+//            if let person = fetchedResultsController
+//                                            .sections?[indexPath.section]
+//                                            .objects![indexPath.row] {
+//                self.managedObjectContext.deleteObject(person as! NSManagedObject)
+//            }
+//        }
         if editingStyle == .Delete {
-            if let person = fetchedResultsController
-                                            .sections?[indexPath.section]
-                                            .objects[indexPath.row] {
-                self.coreDataStack.mainQueueContext.deleteObject(person)
+            if let record = fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject {
+                record.delete()
             }
         }
     }
@@ -117,10 +178,17 @@ class ListPersonTableViewController: UITableViewController {
     override func tableView(tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
 
+//        if let sections = fetchedResultsController.sections {
+//            let currentSection = sections[section]
+//            return currentSection.objects!.count
+//        }
+//        return 0
+
         if let sections = fetchedResultsController.sections {
-            let currentSection = sections[section]
-            return currentSection.objects.count
+            let sectionInfo = sections[section]
+            return sectionInfo.numberOfObjects
         }
+
         return 0
     }
 
@@ -129,10 +197,14 @@ class ListPersonTableViewController: UITableViewController {
 
         var maybeCell: UITableViewCell?
 
-        guard let person = fetchedResultsController
+        guard let sections = fetchedResultsController
                                     .sections?[indexPath.section]
-                                    .objects[indexPath.row]
             else { fatalError("Don't have aPerson for \(indexPath) indexPath ") }
+
+        guard let person = sections.objects?[indexPath.row]
+        else {
+            fatalError()
+        }
 
         switch person {
         case let manager as Manager :
@@ -173,12 +245,15 @@ class ListPersonTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        if let person = fetchedResultsController
-                                    .sections?[indexPath.section]
-                                    .objects[indexPath.row] {
+        guard let sections = fetchedResultsController
+            .sections?[indexPath.section]
+            else { fatalError("Don't have aPerson for \(indexPath) indexPath ") }
+
+        if  let person = sections.objects?[indexPath.row] as? Person {
 
             let createNewPersonViewController = PersonDetailViewController(
-                coreDataStack: coreDataStack)
+                managedObjectContext: managedObjectContext)
+
             createNewPersonViewController.person = person
 
             self.navigationController?.pushViewController(
@@ -205,42 +280,47 @@ class ListPersonTableViewController: UITableViewController {
         return proposedDestinationIndexPath
     }
 
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-        if fromIndexPath == toIndexPath {
-            return
-        }
-
-        //disable auto updating tableView
-        //need to avoid error "invalid number of rows in section"
-        frcDelegate.userIsEditing = true
-
-        if var persons = fetchedResultsController
-                            .sections?[fromIndexPath.section]
-                            .objects {
-            let person = persons[fromIndexPath.row] as Person
-
-            persons.removeAtIndex(fromIndexPath.row)
-            persons.insert(person, atIndex: toIndexPath.row)
-
-            var idx = persons.count
-            for person in persons {
-                idx-=1
-                person.order = idx
-            }
-
-            //need to save order of sections after reording elements
-            coreDataStack.saveAndLog()
-
-            frcDelegate.userIsEditing = false
-            performFetch()
-        }
-    }
+//    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+//
+//        if fromIndexPath == toIndexPath {
+//            return
+//        }
+//
+//        //disable auto updating tableView
+//        //need to avoid error "invalid number of rows in section"
+//        frcDelegate.userIsEditing = true
+//
+//        if var persons = fetchedResultsController
+//                            .sections?[fromIndexPath.section]
+//                            .objects {
+//            let person = persons[fromIndexPath.row] as! Person
+//
+//            persons.removeAtIndex(fromIndexPath.row)
+//            persons.insert(person, atIndex: toIndexPath.row)
+//
+//            var idx = persons.count
+//            for person in persons {
+//                idx-=1
+//                person.order = idx
+//            }
+//
+//            //need to save order of sections after reording elements
+////            coreDataStack.saveAndLog()
+//            do {
+//                try self.managedObjectContext.save()
+//            } catch {
+//                NSLog("\(error)")
+//            }
+//
+//            frcDelegate.userIsEditing = false
+//            performFetch()
+//        }
+//    }
 
     //MARK: AddTarget's functions
 
     @objc func createNewPerson() {
-        let createNewPersonViewController = PersonDetailViewController(coreDataStack: coreDataStack)
+        let createNewPersonViewController = PersonDetailViewController(managedObjectContext: managedObjectContext)
         self.navigationController?.pushViewController(createNewPersonViewController, animated: true)
     }
 
@@ -293,6 +373,7 @@ class ListPersonTableViewController: UITableViewController {
             let fetchError = error as NSError
             print("\(fetchError), \(fetchError.userInfo)")
         }
+//        tableView.reloadData()
     }
 
     //MARK: Structs
@@ -303,3 +384,79 @@ class ListPersonTableViewController: UITableViewController {
         static let personTableViewHeader = "PersonTableViewHeader"
     }
 }
+
+extension ListPersonTableViewController : NSFetchedResultsControllerDelegate {
+
+    // swiftlint:disable control_statement
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject,
+                    atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch (type) {
+        case .Insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+
+        case .Delete:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+
+        case .Update:
+            if let indexPath = indexPath {
+                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            }
+
+        case .Move:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+
+            if let newIndexPath = newIndexPath {
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+            }
+
+        }
+    }
+
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+
+        switch type {
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        default:
+            break
+        }
+    }
+
+}
+
+extension NSManagedObject {
+    func delete () {
+        self.managedObjectContext?.deleteObject(self)
+
+        do {
+            // Save Record
+            try self.managedObjectContext?.save()
+            print("All are saved")
+
+        } catch {
+            let saveError = error as NSError
+            print("\(saveError), \(saveError.userInfo)")
+
+
+            print("Your to-do could not be saved.")
+        }
+        
+    }
+}
+

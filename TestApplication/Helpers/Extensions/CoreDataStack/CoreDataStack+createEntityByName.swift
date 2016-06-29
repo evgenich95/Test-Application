@@ -10,7 +10,7 @@ import BNRCoreDataStack
 
 extension CoreDataStack {
 
-    func createEntityByName(entityName: String) -> NSManagedObject {
+    func createEntityByName(entityName: String, managesContext: NSManagedObjectContext) -> NSManagedObject {
         guard let description = NSEntityDescription
             .entityForName(entityName,
                            inManagedObjectContext: self.mainQueueContext)

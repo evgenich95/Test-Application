@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class EditingState: State {
     //MARK: Parameters
@@ -53,7 +54,7 @@ class EditingState: State {
         guard let editedPerson = owner.person
             else {return}
 
-        let dataStack = owner.coreDataStack
+        let context = owner.managedObjectContext
         let valuesDictionary = owner.employeeAttributeContainer.valuesDictionary
         let finalPersonTypeName = owner.employeeAttributeContainer
                                                     .displayedPersonType
@@ -62,13 +63,30 @@ class EditingState: State {
         if finalPersonTypeName == editedPerson.entity.name {
             editedPerson.fillAttributes(valuesDictionary)
         } else {
-            dataStack.mainQueueContext.deleteObject(editedPerson)
-            if let newPerson = dataStack
-                .createEntityByName(finalPersonTypeName) as? Person {
+            context.deleteObject(editedPerson)
+            if let newPerson = createEntityByName(finalPersonTypeName,managesContext: context) as? Person {
                 newPerson.fillAttributes(valuesDictionary)
             }
         }
-        owner.coreDataStack.saveAndLog()
+        do {
+            try context.save()
+        } catch {
+            NSLog("\(error)")
+        }
         owner.navigationController?.popViewControllerAnimated(true)
     }
+
+    func createEntityByName(entityName: String, managesContext: NSManagedObjectContext) -> NSManagedObject {
+        guard let description = NSEntityDescription
+            .entityForName(entityName,
+                           inManagedObjectContext: managesContext)
+            else {
+                fatalError("Could not create an entity with the given name: \"\(entityName)\"")
+        }
+
+        return NSManagedObject
+            .init(entity: description,
+                  insertIntoManagedObjectContext: managesContext)
+    }
+
 }

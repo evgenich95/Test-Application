@@ -34,7 +34,7 @@ class PersonDetailViewController: UIViewController {
     //MARK: -
 
     //MARK: Parameters
-    var coreDataStack: CoreDataStack!
+    var managedObjectContext: NSManagedObjectContext!
 
     var person: Person?
     var currentDisplayedPersonType: EmployeeType {
@@ -103,8 +103,8 @@ class PersonDetailViewController: UIViewController {
     }()
     //MARK: -
 
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
+    init(managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
         super.init(nibName: nil, bundle: nil)
     }
 

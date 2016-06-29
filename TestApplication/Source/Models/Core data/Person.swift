@@ -19,6 +19,10 @@ class Person: NSManagedObject, CoreDataModelable {
         return "Person"
     }
 
+    var sectionName: String? {
+        return self.entity.name
+    }
+
     class var keys: [String] {
         var keys = [String]()
         keys.append(PersonAttributeKeys.fullName)

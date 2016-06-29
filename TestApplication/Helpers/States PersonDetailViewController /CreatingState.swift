@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class CreatingState: State {
     //MARK: Parameters
@@ -58,11 +59,27 @@ class CreatingState: State {
         let entityName = owner.employeeAttributeContainer.displayedPersonType
                                                                 .description
 
-        if let newPerson = owner
-            .coreDataStack
-            .createEntityByName(entityName) as? Person {
+        if let newPerson = createEntityByName(entityName, managesContext: owner.managedObjectContext) as? Person {
             newPerson.fillAttributes(valuesDictionary)
-            owner.coreDataStack.saveAndLog()
+            do {
+                try owner.managedObjectContext.save()
+            } catch {
+                NSLog("\(error)")
+            }
+
         }
+    }
+
+    func createEntityByName(entityName: String, managesContext: NSManagedObjectContext) -> NSManagedObject {
+        guard let description = NSEntityDescription
+            .entityForName(entityName,
+                           inManagedObjectContext: managesContext)
+            else {
+                fatalError("Could not create an entity with the given name: \"\(entityName)\"")
+        }
+
+        return NSManagedObject
+            .init(entity: description,
+                  insertIntoManagedObjectContext: managesContext)
     }
 }

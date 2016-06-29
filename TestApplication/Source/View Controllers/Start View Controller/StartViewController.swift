@@ -10,10 +10,10 @@ import BNRCoreDataStack
 
 class StartViewController: UITabBarController {
 
-    var coreDataStack: CoreDataStack!
+    var managedObjectContext: NSManagedObjectContext!
 
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
+    init(managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -36,7 +36,7 @@ class StartViewController: UITabBarController {
 
         let listVC = UINavigationController(
                             rootViewController: ListPersonTableViewController(
-                                coreDataStack: coreDataStack))
+                                managedObjectContext: managedObjectContext))
         let serviceVC = UINavigationController(
             rootViewController: ServiceTableViewController())
 
