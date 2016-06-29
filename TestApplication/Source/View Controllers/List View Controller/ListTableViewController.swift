@@ -64,7 +64,6 @@ class ListPersonTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureTableView()
         setupNavigationItems()
         registrateAllUsingCell()

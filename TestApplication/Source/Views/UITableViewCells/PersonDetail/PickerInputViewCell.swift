@@ -114,13 +114,13 @@ extension PickerInputViewCell: UIPickerViewDelegate {
 
     func pickerView(pickerView: UIPickerView,
                     titleForRow row: Int,
-                                forComponent component: Int) -> String? {
+                    forComponent component: Int) -> String? {
         return values[row]
     }
 
     func pickerView(pickerView: UIPickerView,
                     didSelectRow row: Int,
-                                 inComponent component: Int) {
+                    inComponent component: Int) {
         currentValue = row
     }
     func adaptivePresentationStyleForPresentationController(

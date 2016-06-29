@@ -181,7 +181,8 @@ extension CustomTableViewCell: UITextFieldDelegate {
         case .DateAttributeType:
             return false
         default:
-            let aSet = NSCharacterSet(charactersInString:"0123456789.").invertedSet
+            let aSet = NSCharacterSet(charactersInString:"0123456789.")
+                .invertedSet
             let compSepByCharInSet = string.componentsSeparatedByCharactersInSet(aSet)
             let numberFiltered = compSepByCharInSet.joinWithSeparator("")
             return string == numberFiltered

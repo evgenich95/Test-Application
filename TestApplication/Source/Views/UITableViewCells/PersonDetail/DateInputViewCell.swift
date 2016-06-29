@@ -80,8 +80,6 @@ class DateInputViewCell: CustomTableViewCell {
     }()
 
     //MARK: -
-
-
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -127,7 +125,6 @@ class DateInputViewCell: CustomTableViewCell {
             updateTextFieldValue()
         }
     }
-
 
     func updateTextFieldValue() {
         attributeValue = "from \(startTimeDatePicker.date.timeString) to \(endTimeDatePicker.date.timeString)"
