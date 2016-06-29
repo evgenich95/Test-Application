@@ -315,7 +315,6 @@ class ListEmployeeTableViewController: UITableViewController {
 
 extension ListEmployeeTableViewController : NSFetchedResultsControllerDelegate {
 
-    // swiftlint:disable control_statement
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         if userIsEditing {return}
         tableView.beginUpdates()
@@ -333,7 +332,7 @@ extension ListEmployeeTableViewController : NSFetchedResultsControllerDelegate {
                     newIndexPath: NSIndexPath?) {
 
         if userIsEditing {return}
-        switch (type) {
+        switch type {
         case .Insert:
             if let indexPath = newIndexPath {
                 tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
