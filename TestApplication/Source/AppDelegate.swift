@@ -72,12 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = LaunchViewController()
 
-        let mainViewController = StartViewController(managedObjectContext: self.managedObjectContext)
-
-        
-        let navController = UINavigationController(rootViewController: mainViewController)
-
-        window?.rootViewController = navController
+        window?.rootViewController = StartViewController(managedObjectContext: self.managedObjectContext)
         window?.makeKeyAndVisible()
         return true
     }
