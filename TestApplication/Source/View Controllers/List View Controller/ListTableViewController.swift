@@ -28,12 +28,12 @@ class ListPersonTableViewController: UITableViewController {
 
         let fetchRequest = NSFetchRequest(entityName: Person.entityName)
 
-        let nameSortDescriptor = NSSortDescriptor(
-            key: SortDescriptorKeys.FullName,
-            ascending: true)
-
         let typeSortDescriptor = NSSortDescriptor(
             key: SortDescriptorKeys.SectionOrder,
+            ascending: true)
+
+        let nameSortDescriptor = NSSortDescriptor(
+            key: SortDescriptorKeys.FullName,
             ascending: true)
 
         let orderSortDescriptor = NSSortDescriptor(
