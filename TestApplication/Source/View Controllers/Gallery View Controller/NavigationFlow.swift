@@ -40,13 +40,13 @@ struct NavigationFlow {
         }
     }
 
-    func indexOfPhotosToDelete(forPage page: Int) -> Int {
+    func indexOfPhotoToDelete(forPage page: Int) -> Int {
         return page -
             ((numberPhotoInOppositeNavigationDirection) + 1)
             * (direction?.rawValue ?? 0)
     }
 
-    func indexOfPhotosToLoad(forPage page: Int) -> Int {
+    func indexOfPhotoToLoad(forPage page: Int) -> Int {
         return page + (numberPhotoInThisNavigationDirection ?? 0)
             * (direction?.rawValue ?? 0)
     }

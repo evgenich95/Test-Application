@@ -130,7 +130,6 @@ class GalleryViewController: UIViewController {
     }
 
     func loadImagesForCurrentPage() {
-
         navigationFlow.direction = nil
         if lastPage - currentPage > 0 {
             navigationFlow.direction = .Left
@@ -142,10 +141,10 @@ class GalleryViewController: UIViewController {
             return
         }
 
-        let deletionIdx = navigationFlow.indexOfPhotosToDelete(
+        let deletionIdx = navigationFlow.indexOfPhotoToDelete(
             forPage: currentPage)
 
-        let loadingIdx = navigationFlow.indexOfPhotosToLoad(forPage: currentPage)
+        let loadingIdx = navigationFlow.indexOfPhotoToLoad(forPage: currentPage)
 
         if deletionIdx >= 0 && deletionIdx < imageViews.count {
             imageViews[deletionIdx].image = nil
@@ -154,8 +153,8 @@ class GalleryViewController: UIViewController {
         if loadingIdx >= 0 && loadingIdx < imageViews.count {
             imageViews[loadingIdx].image = UIImage(
                 contentsOfFile: imageNames[loadingIdx])
-
         }
+
         //to avoid same loadings
         indexLastTransition = (lastPage, currentPage)
     }
