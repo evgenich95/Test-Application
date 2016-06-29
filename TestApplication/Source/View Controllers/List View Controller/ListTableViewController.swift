@@ -27,7 +27,7 @@ class ListPersonTableViewController: UITableViewController {
 
         let nameSortDescriptor = NSSortDescriptor(key: "fullName",
                                                   ascending:  true)
-        let typeSortDescriptor = NSSortDescriptor(key: "entity.name",
+        let typeSortDescriptor = NSSortDescriptor(key: "sectionOrder",
                                                   ascending:  true)
         let orderSortDescriptor = NSSortDescriptor(key: "order",
                                                    ascending:  false)
@@ -38,7 +38,7 @@ class ListPersonTableViewController: UITableViewController {
         let frc = FetchedResultsController<Person>(
             fetchRequest: fetchRequest,
             managedObjectContext: self.coreDataStack.mainQueueContext,
-            sectionNameKeyPath: "entity.name")
+            sectionNameKeyPath: "sectionName")
 
         frc.setDelegate(self.frcDelegate)
         return frc

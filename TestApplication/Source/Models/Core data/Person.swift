@@ -15,8 +15,15 @@ class Person: NSManagedObject, CoreDataModelable {
     @NSManaged var order: NSNumber?
     @NSManaged var salary: NSNumber?
 
+    @NSManaged var sectionOrder: Int
+
+
     class var entityName: String {
         return "Person"
+    }
+
+    var sectionName: String? {
+        return self.entity.name
     }
 
     class var keys: [String] {
