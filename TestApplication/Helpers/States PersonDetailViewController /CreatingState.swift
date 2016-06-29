@@ -55,14 +55,13 @@ class CreatingState: State {
         }
 
         let valuesDictionary = owner.employeeAttributeContainer.valuesDictionary
-        let entityName = owner.employeeAttributeContainer.displayedPersonType
-                                                                .description
+        let displayedPersonType = owner.employeeAttributeContainer
+                                                        .displayedPersonType
 
-        if let newPerson = owner
-            .coreDataStack
-            .createEntityByName(entityName) as? Person {
+        if let newPerson = owner.coreDataStack
+                .createEntityByName(displayedPersonType.description) as? Person {
             newPerson.fillAttributes(valuesDictionary)
-        newPerson.sectionOrder = owner.employeeAttributeContainer.displayedPersonType.orderIndex
+            newPerson.sectionOrder = displayedPersonType.orderIndex
             owner.coreDataStack.saveAndLog()
         }
     }

@@ -64,8 +64,11 @@ class EditingState: State {
         } else {
             dataStack.mainQueueContext.deleteObject(editedPerson)
             if let newPerson = dataStack
-                .createEntityByName(finalPersonTypeName) as? Person {
+                        .createEntityByName(finalPersonTypeName) as? Person {
                 newPerson.fillAttributes(valuesDictionary)
+                newPerson.sectionOrder = owner.employeeAttributeContainer
+                                                        .displayedPersonType
+                                                        .orderIndex
             }
         }
         owner.coreDataStack.saveAndLog()
