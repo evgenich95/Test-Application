@@ -9,9 +9,9 @@
 import Foundation
 
 protocol State {
-    var owner: PersonDetailViewController {get set}
+    var owner: EmployeeDetailViewController {get set}
 
-    init(contex: PersonDetailViewController)
+    init(contex: EmployeeDetailViewController)
 
     func isBrowsing() -> Bool
     func isCreating() -> Bool

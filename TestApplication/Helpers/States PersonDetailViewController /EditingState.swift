@@ -11,9 +11,9 @@ import UIKit
 
 class EditingState: State {
     //MARK: Parameters
-    typealias Owner = PersonDetailViewController
+    typealias Owner = EmployeeDetailViewController
     var owner: Owner
-    var copyOfPerson: Person?
+    var copyOfEmployee: Employee?
 
     lazy private var cancelBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(title: "Cancel",
@@ -50,24 +50,24 @@ class EditingState: State {
     }
 
     @objc func doneAction() {
-        guard let editedPerson = owner.person
+        guard let editedEmployee = owner.employee
             else {return}
 
         let dataStack = owner.coreDataStack
         let valuesDictionary = owner.employeeAttributeContainer.valuesDictionary
-        let finalPersonTypeName = owner.employeeAttributeContainer
-                                                    .displayedPersonType
+        let finalEmployeeTypeName = owner.employeeAttributeContainer
+                                                    .displayedEmployeeType
                                                     .description
 
-        if finalPersonTypeName == editedPerson.entity.name {
-            editedPerson.fillAttributes(valuesDictionary)
+        if finalEmployeeTypeName == editedEmployee.entity.name {
+            editedEmployee.fillAttributes(valuesDictionary)
         } else {
-            dataStack.mainQueueContext.deleteObject(editedPerson)
-            if let newPerson = dataStack
-                        .createEntityByName(finalPersonTypeName) as? Person {
-                newPerson.fillAttributes(valuesDictionary)
-                newPerson.sectionOrder = owner.employeeAttributeContainer
-                                                        .displayedPersonType
+            dataStack.mainQueueContext.deleteObject(editedEmployee)
+            if let newEmployee = dataStack
+                        .createEntityByName(finalEmployeeTypeName) as? Employee {
+                newEmployee.fillAttributes(valuesDictionary)
+                newEmployee.sectionOrder = owner.employeeAttributeContainer
+                                                        .displayedEmployeeType
                                                         .orderIndex
             }
         }

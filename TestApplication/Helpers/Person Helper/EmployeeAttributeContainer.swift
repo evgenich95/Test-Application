@@ -18,7 +18,7 @@ class EmployeeAttributeContainer {
     //MARK: Parameters
     var delegate: EmployeeAttributeContainerDelegate?
 
-    var displayedPersonType: EmployeeType {
+    var displayedEmployeeType: EmployeeType {
         didSet {
             updateValuesDictionary()
             updateAttributeDescriptions()
@@ -34,20 +34,20 @@ class EmployeeAttributeContainer {
     var attributeDescriptions = [EmployeeAttribute]()
     //MARK:-
 
-    init(displayedPersonType: EmployeeType, aPerson: Person?) {
-        self.displayedPersonType = displayedPersonType
+    init(displayedEmployeeType: EmployeeType, aEmployee: Employee?) {
+        self.displayedEmployeeType = displayedEmployeeType
         updateAttributeDescriptions()
 
-        guard let person = aPerson
+        guard let employee = aEmployee
             else {return}
-        for key in displayedPersonType.attributeKeys {
-            valuesDictionary[key] = person.valueForKey(key)
+        for key in displayedEmployeeType.attributeKeys {
+            valuesDictionary[key] = employee.valueForKey(key)
         }
     }
 
     func updateAttributeDescriptions() {
         attributeDescriptions.removeAll()
-        for key in displayedPersonType.attributeKeys {
+        for key in displayedEmployeeType.attributeKeys {
             if let description = EmployeeAttribute(attributeKey: key) {
                 if !attributeDescriptions.contains(description) {
                     attributeDescriptions.append(description)
@@ -58,7 +58,7 @@ class EmployeeAttributeContainer {
 
     func updateValuesDictionary() {
         for key in valuesDictionary.keys {
-            if !displayedPersonType.attributeKeys.contains(key) {
+            if !displayedEmployeeType.attributeKeys.contains(key) {
                 valuesDictionary[key] = nil
             }
         }

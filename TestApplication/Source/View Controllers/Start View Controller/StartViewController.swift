@@ -35,7 +35,7 @@ class StartViewController: UITabBarController {
     private func setupTabBar() {
 
         let listVC = UINavigationController(
-                            rootViewController: ListPersonTableViewController(
+                            rootViewController: ListEmployeeTableViewController(
                                 coreDataStack: coreDataStack))
         let serviceVC = UINavigationController(
             rootViewController: ServiceTableViewController())

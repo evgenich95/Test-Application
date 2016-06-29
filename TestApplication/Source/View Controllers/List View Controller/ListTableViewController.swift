@@ -1,5 +1,5 @@
 //
-//  ListPersonTableViewController.swift
+//  ListEmployeeTableViewController.swift
 //  ToDoList
 //
 //  Created by developer on 06.04.16.
@@ -9,7 +9,7 @@
 import UIKit
 import BNRCoreDataStack
 
-class ListPersonTableViewController: UITableViewController {
+class ListEmployeeTableViewController: UITableViewController {
 
     //MARK: Parameters
     var coreDataStack: CoreDataStack!
@@ -20,13 +20,13 @@ class ListPersonTableViewController: UITableViewController {
         return UIBarButtonItem(
             barButtonSystemItem: .Add,
             target: self,
-            action: #selector(createNewPerson)
+            action: #selector(createNewEmployee)
         )
     }()
 
     lazy var fetchedResultsController: NSFetchedResultsController = {
 
-        let fetchRequest = NSFetchRequest(entityName: Person.entityName)
+        let fetchRequest = NSFetchRequest(entityName: Employee.entityName)
 
         let typeSortDescriptor = NSSortDescriptor(
             key: SortDescriptorKeys.SectionOrder,
@@ -55,7 +55,7 @@ class ListPersonTableViewController: UITableViewController {
 
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
-        super.init(nibName: "ListPersonTableViewController", bundle: nil)
+        super.init(nibName: "ListEmployeeTableViewController", bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -76,16 +76,16 @@ class ListPersonTableViewController: UITableViewController {
                             viewForHeaderInSection section: Int) -> UIView? {
 
         guard let
-            firstPersonInSection = fetchedResultsController
+            firstEmployeeInSection = fetchedResultsController
                                                 .sections?[section]
                                                 .objects?
-                                                .first as? Person,
-            iconAndTitleName = firstPersonInSection.entity.name
+                                                .first as? Employee,
+            iconAndTitleName = firstEmployeeInSection.entity.name
             else {return nil}
 
         let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier(
-            KeysForCells.personTableViewHeader)
-        if let header = cell as? PersonTableViewHeader {
+            KeysForCells.employeeTableViewHeader)
+        if let header = cell as? EmployeeTableViewHeader {
             //sectionName == sectionIcon
             header.updateUI(iconAndTitleName, sectionIconName: iconAndTitleName)
         }
@@ -130,14 +130,14 @@ class ListPersonTableViewController: UITableViewController {
 
         var maybeCell: UITableViewCell?
 
-        guard let person = fetchedResultsController
+        guard let employee = fetchedResultsController
                                     .sections?[indexPath.section]
                                     .objects?[indexPath.row]
             else {
-                fatalError("aPerson in \(indexPath) indexPath dosen't exist ")
+                fatalError("aEmployee in \(indexPath) indexPath dosen't exist ")
         }
 
-        switch person {
+        switch employee {
         case let manager as Manager :
 
             if let managerCell = (tableView.dequeueReusableCellWithIdentifier(
@@ -179,20 +179,20 @@ class ListPersonTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        guard let person = fetchedResultsController
+        guard let employee = fetchedResultsController
                                     .sections?[indexPath.section]
-                                    .objects?[indexPath.row] as? Person
+                                    .objects?[indexPath.row] as? Employee
             else {
-                fatalError("aPerson in \(indexPath) indexPath dosen't exist ")
+                fatalError("aEmployee in \(indexPath) indexPath dosen't exist ")
         }
 
-        let createNewPersonViewController = PersonDetailViewController(
+        let createNewEmployeeViewController = EmployeeDetailViewController(
             coreDataStack: coreDataStack)
 
-        createNewPersonViewController.person = person
+        createNewEmployeeViewController.employee = employee
 
         self.navigationController?.pushViewController(
-            createNewPersonViewController,
+            createNewEmployeeViewController,
             animated: true
         )
     }
@@ -220,18 +220,18 @@ class ListPersonTableViewController: UITableViewController {
 
         userIsEditing = true
 
-        if var persons = fetchedResultsController
+        if var employees = fetchedResultsController
                                 .sections?[fromIndexPath.section]
-                                .objects as? [Person] {
+                                .objects as? [Employee] {
 
-            let person = persons[fromIndexPath.row]
-            persons.removeAtIndex(fromIndexPath.row)
-            persons.insert(person, atIndex: toIndexPath.row)
+            let employee = employees[fromIndexPath.row]
+            employees.removeAtIndex(fromIndexPath.row)
+            employees.insert(employee, atIndex: toIndexPath.row)
 
-            var idx = persons.count
-            for person in persons {
+            var idx = employees.count
+            for employee in employees {
                 idx-=1
-                person.order = idx
+                employee.order = idx
             }
 
             coreDataStack.saveAndLog()
@@ -241,9 +241,9 @@ class ListPersonTableViewController: UITableViewController {
 
     //MARK: AddTarget's functions
 
-    @objc func createNewPerson() {
-        let createNewPersonViewController = PersonDetailViewController(coreDataStack: coreDataStack)
-        self.navigationController?.pushViewController(createNewPersonViewController, animated: true)
+    @objc func createNewEmployee() {
+        let createNewEmployeeViewController = EmployeeDetailViewController(coreDataStack: coreDataStack)
+        self.navigationController?.pushViewController(createNewEmployeeViewController, animated: true)
     }
 
     @objc func editOrderOfList() {
@@ -263,8 +263,8 @@ class ListPersonTableViewController: UITableViewController {
     }
 
     private func registrateAllUsingCell () {
-        tableView.registerClass(PersonTableViewHeader.self,
-                                forHeaderFooterViewReuseIdentifier: KeysForCells.personTableViewHeader)
+        tableView.registerClass(EmployeeTableViewHeader.self,
+                                forHeaderFooterViewReuseIdentifier: KeysForCells.employeeTableViewHeader)
 
         tableView.registerNib(UINib(nibName: KeysForCells.managerTableViewCell, bundle: nil),
                               forCellReuseIdentifier: KeysForCells.managerTableViewCell)
@@ -302,7 +302,7 @@ class ListPersonTableViewController: UITableViewController {
         static let managerTableViewCell = "ManagerTableViewCell"
         static let accountantTableViewCell = "AccountantTableViewCell"
         static let workerTableViewCell = "WorkerTableViewCell"
-        static let personTableViewHeader = "PersonTableViewHeader"
+        static let employeeTableViewHeader = "EmployeeTableViewHeader"
     }
 
     private struct SortDescriptorKeys {
@@ -313,7 +313,7 @@ class ListPersonTableViewController: UITableViewController {
     }
 }
 
-extension ListPersonTableViewController : NSFetchedResultsControllerDelegate {
+extension ListEmployeeTableViewController : NSFetchedResultsControllerDelegate {
 
     // swiftlint:disable control_statement
     func controllerWillChangeContent(controller: NSFetchedResultsController) {

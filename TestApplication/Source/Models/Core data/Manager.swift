@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Manager: Person {
+class Manager: Employee {
     @NSManaged var startVisitingHours: NSDate?
     @NSManaged var endVisitingHours: NSDate?
 
@@ -18,8 +18,8 @@ class Manager: Person {
 
     override class var keys: [String] {
         var keys = super.keys
-        keys.append(PersonAttributeKeys.startVisitingHours)
-        keys.append(PersonAttributeKeys.endVisitingHours)
+        keys.append(EmployeeAttributeKeys.startVisitingHours)
+        keys.append(EmployeeAttributeKeys.endVisitingHours)
         return keys
     }
 }

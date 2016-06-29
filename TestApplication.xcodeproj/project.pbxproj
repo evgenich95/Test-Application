@@ -16,9 +16,9 @@
 		8B3961E71CEE0FCA00EDC4C0 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3961E61CEE0FCA00EDC4C0 /* GalleryViewController.swift */; };
 		8B396CFD1D0E8A820082ED2F /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 8B396CFC1D0E8A820082ED2F /* Images */; };
 		8B3EA9981CF3A7910057B57A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3EA9971CF3A7910057B57A /* NetworkError.swift */; };
-		8B4B0B0C1D070A6D009C0807 /* PersonTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */; };
+		8B4B0B0C1D070A6D009C0807 /* EmployeeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B0B0B1D070A6D009C0807 /* EmployeeTableViewHeader.swift */; };
 		8B5B26821CE0474D004B3223 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B267A1CE0474D004B3223 /* Worker.swift */; };
-		8B5B26861CE0474D004B3223 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B267E1CE0474D004B3223 /* Person.swift */; };
+		8B5B26861CE0474D004B3223 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B267E1CE0474D004B3223 /* Employee.swift */; };
 		8B5B26881CE0474D004B3223 /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B26801CE0474D004B3223 /* Accountant.swift */; };
 		8B5B268A1CE06ADD004B3223 /* NSDate+timeFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B26891CE06ADD004B3223 /* NSDate+timeFormatting.swift */; };
 		8B7DCCD51CDB2A4A008AEDF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7DCCD41CDB2A4A008AEDF6 /* AppDelegate.swift */; };
@@ -41,7 +41,7 @@
 		8BA93DF51CE4E8B400E55BA7 /* SimpleTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA93DF41CE4E8B400E55BA7 /* SimpleTextFieldCell.swift */; };
 		8BEF1E5D1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF1E5C1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift */; };
 		8BF275DC1CDB524600E1566D /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF275DA1CDB524600E1566D /* ListTableViewController.swift */; };
-		8BF275DD1CDB524600E1566D /* ListPersonTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF275DB1CDB524600E1566D /* ListPersonTableViewController.xib */; };
+		8BF275DD1CDB524600E1566D /* ListEmployeeTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF275DB1CDB524600E1566D /* ListEmployeeTableViewController.xib */; };
 		8BF337D11CECAE9E005CB57B /* UIViewController+EZLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF337CF1CECAE9E005CB57B /* UIViewController+EZLoading.swift */; };
 		8BF337D21CECAE9E005CB57B /* UIViewController+handleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF337D01CECAE9E005CB57B /* UIViewController+handleError.swift */; };
 		8BF337D71CECB505005CB57B /* ServiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF337D51CECB505005CB57B /* ServiceTableViewController.swift */; };
@@ -53,7 +53,7 @@
 		8BF347671CEB496000241D23 /* BrowsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF347661CEB496000241D23 /* BrowsingState.swift */; };
 		8BF347691CEB4C5700241D23 /* CreatingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF347681CEB4C5700241D23 /* CreatingState.swift */; };
 		8BF3476B1CEB4E5900241D23 /* EditingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3476A1CEB4E5900241D23 /* EditingState.swift */; };
-		8BF41B331CE43E8900E98285 /* PersonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF41B321CE43E8900E98285 /* PersonDetailViewController.swift */; };
+		8BF41B331CE43E8900E98285 /* EmployeeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF41B321CE43E8900E98285 /* EmployeeDetailViewController.swift */; };
 		8BF4E3591CEC1226005AE3D5 /* Array+removeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF4E3581CEC1226005AE3D5 /* Array+removeObject.swift */; };
 		8BF776A31D085AA900BBC55C /* CustomCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776A21D085AA900BBC55C /* CustomCellFactory.swift */; };
 		8BF776A51D085FA400BBC55C /* AbstractFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF776A41D085FA400BBC55C /* AbstractFactory.swift */; };
@@ -76,9 +76,9 @@
 		8B396CFC1D0E8A820082ED2F /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		8B3EA9941CF37A440057B57A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3EA9971CF3A7910057B57A /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewHeader.swift; sourceTree = "<group>"; };
+		8B4B0B0B1D070A6D009C0807 /* EmployeeTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewHeader.swift; sourceTree = "<group>"; };
 		8B5B267A1CE0474D004B3223 /* Worker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
-		8B5B267E1CE0474D004B3223 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		8B5B267E1CE0474D004B3223 /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		8B5B26801CE0474D004B3223 /* Accountant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accountant.swift; sourceTree = "<group>"; };
 		8B5B26891CE06ADD004B3223 /* NSDate+timeFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+timeFormatting.swift"; sourceTree = "<group>"; };
 		8B7DCCD11CDB2A4A008AEDF6 /* TestApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +102,7 @@
 		8BA93DF41CE4E8B400E55BA7 /* SimpleTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTextFieldCell.swift; sourceTree = "<group>"; };
 		8BEF1E5C1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+addSubstructMinute.swift"; sourceTree = "<group>"; };
 		8BF275DA1CDB524600E1566D /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
-		8BF275DB1CDB524600E1566D /* ListPersonTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListPersonTableViewController.xib; sourceTree = "<group>"; };
+		8BF275DB1CDB524600E1566D /* ListEmployeeTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListEmployeeTableViewController.xib; sourceTree = "<group>"; };
 		8BF337CF1CECAE9E005CB57B /* UIViewController+EZLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+EZLoading.swift"; sourceTree = "<group>"; };
 		8BF337D01CECAE9E005CB57B /* UIViewController+handleError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+handleError.swift"; sourceTree = "<group>"; };
 		8BF337D51CECB505005CB57B /* ServiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTableViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 		8BF347661CEB496000241D23 /* BrowsingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowsingState.swift; sourceTree = "<group>"; };
 		8BF347681CEB4C5700241D23 /* CreatingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatingState.swift; sourceTree = "<group>"; };
 		8BF3476A1CEB4E5900241D23 /* EditingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingState.swift; sourceTree = "<group>"; };
-		8BF41B321CE43E8900E98285 /* PersonDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDetailViewController.swift; sourceTree = "<group>"; };
+		8BF41B321CE43E8900E98285 /* EmployeeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeDetailViewController.swift; sourceTree = "<group>"; };
 		8BF4E3581CEC1226005AE3D5 /* Array+removeObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+removeObject.swift"; sourceTree = "<group>"; };
 		8BF776A21D085AA900BBC55C /* CustomCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellFactory.swift; sourceTree = "<group>"; };
 		8BF776A41D085FA400BBC55C /* AbstractFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractFactory.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8B001DCD1CF1ED97001EB1C0 /* PersonDetail */ = {
+		8B001DCD1CF1ED97001EB1C0 /* Employee Detail */ = {
 			isa = PBXGroup;
 			children = (
 				8BA93DF21CE4E3DA00E55BA7 /* CustomTableViewCell.swift */,
@@ -148,6 +148,7 @@
 				8BF7FFE01CE5C9930002C5F1 /* PickerInputViewCell.swift */,
 				8BA93DF41CE4E8B400E55BA7 /* SimpleTextFieldCell.swift */,
 			);
+			name = "Employee Detail";
 			path = PersonDetail;
 			sourceTree = "<group>";
 		};
@@ -160,7 +161,7 @@
 			path = NSDate;
 			sourceTree = "<group>";
 		};
-		8B3D75D51D0C3FFF00A41714 /* Person Helper */ = {
+		8B3D75D51D0C3FFF00A41714 /* Employee Helper */ = {
 			isa = PBXGroup;
 			children = (
 				8BF776A11D085A7A00BBC55C /* Custom cell factory */,
@@ -168,6 +169,7 @@
 				8B3613701D090A2700B4BFE4 /* EmployeeAttribute.swift */,
 				8B35BD3C1D07CA5D006B028D /* EmployeeType.swift */,
 			);
+			name = "Employee Helper";
 			path = "Person Helper";
 			sourceTree = "<group>";
 		};
@@ -175,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				8BF275D11CDB4D2900E1566D /* List */,
-				8B001DCD1CF1ED97001EB1C0 /* PersonDetail */,
+				8B001DCD1CF1ED97001EB1C0 /* Employee Detail */,
 				8BF337DF1CECB7B2005CB57B /* Service */,
 			);
 			path = UITableViewCells;
@@ -202,8 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				8B5B26761CE03DAA004B3223 /* Extensions */,
-				8B3D75D51D0C3FFF00A41714 /* Person Helper */,
-				8BF347631CEB463700241D23 /* States PersonDetailViewController  */,
+				8B3D75D51D0C3FFF00A41714 /* Employee Helper */,
+				8BF347631CEB463700241D23 /* States EmployeeDetailViewController  */,
 				8BFF16021CE3780700F200CF /* Constants.swift */,
 				8B3EA9971CF3A7910057B57A /* NetworkError.swift */,
 				8B9E1FD01CEC52670071C648 /* WebService.swift */,
@@ -265,7 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				8B3EA9961CF386FE0057B57A /* UITableViewCells */,
-				8B4B0B0B1D070A6D009C0807 /* PersonTableViewHeader.swift */,
+				8B4B0B0B1D070A6D009C0807 /* EmployeeTableViewHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -276,7 +278,7 @@
 				8BF275BE1CDB330B00E1566D /* Gallery View Controller */,
 				8BF275BF1CDB331E00E1566D /* Launch View Controller */,
 				8BF275C01CDB332500E1566D /* List View Controller */,
-				8B87C7EB1CE2194A00A667C6 /* Person Detail View Controller */,
+				8B87C7EB1CE2194A00A667C6 /* Employee Detail View Controller */,
 				8BF275C11CDB332F00E1566D /* Service View Controller */,
 				8BF275C31CDB334600E1566D /* Start View Controller */,
 			);
@@ -328,11 +330,12 @@
 			path = "Worker Table View Cell";
 			sourceTree = "<group>";
 		};
-		8B87C7EB1CE2194A00A667C6 /* Person Detail View Controller */ = {
+		8B87C7EB1CE2194A00A667C6 /* Employee Detail View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8BF41B321CE43E8900E98285 /* PersonDetailViewController.swift */,
+				8BF41B321CE43E8900E98285 /* EmployeeDetailViewController.swift */,
 			);
+			name = "Employee Detail View Controller";
 			path = "Person Detail View Controller";
 			sourceTree = "<group>";
 		};
@@ -341,7 +344,7 @@
 			children = (
 				8B5B26801CE0474D004B3223 /* Accountant.swift */,
 				8B0951711D06D65600F67C9A /* Manager.swift */,
-				8B5B267E1CE0474D004B3223 /* Person.swift */,
+				8B5B267E1CE0474D004B3223 /* Employee.swift */,
 				8B7DCCFA1CDB2C14008AEDF6 /* TestApplication.xcdatamodeld */,
 				8B5B267A1CE0474D004B3223 /* Worker.swift */,
 			);
@@ -370,7 +373,7 @@
 		8BF275C01CDB332500E1566D /* List View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8BF275DB1CDB524600E1566D /* ListPersonTableViewController.xib */,
+				8BF275DB1CDB524600E1566D /* ListEmployeeTableViewController.xib */,
 				8BF275DA1CDB524600E1566D /* ListTableViewController.swift */,
 			);
 			path = "List View Controller";
@@ -422,7 +425,7 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		8BF347631CEB463700241D23 /* States PersonDetailViewController  */ = {
+		8BF347631CEB463700241D23 /* States EmployeeDetailViewController  */ = {
 			isa = PBXGroup;
 			children = (
 				8BF347661CEB496000241D23 /* BrowsingState.swift */,
@@ -430,6 +433,7 @@
 				8BF3476A1CEB4E5900241D23 /* EditingState.swift */,
 				8BF347641CEB465500241D23 /* State.swift */,
 			);
+			name = "States EmployeeDetailViewController ";
 			path = "States PersonDetailViewController ";
 			sourceTree = "<group>";
 		};
@@ -529,7 +533,7 @@
 				8B87C7D91CE1CA0600A667C6 /* AccountantTableViewCell.xib in Resources */,
 				8B87C7DE1CE1CB2100A667C6 /* WorkerTableViewCell.xib in Resources */,
 				8B7DCCF11CDB2B10008AEDF6 /* StartViewController.xib in Resources */,
-				8BF275DD1CDB524600E1566D /* ListPersonTableViewController.xib in Resources */,
+				8BF275DD1CDB524600E1566D /* ListEmployeeTableViewController.xib in Resources */,
 				8B7DCD0A1CDB2C3F008AEDF6 /* LaunchViewController.xib in Resources */,
 				8B7DCCDF1CDB2A4A008AEDF6 /* Assets.xcassets in Resources */,
 				8BF337DE1CECB7A8005CB57B /* QuoteTableViewCell.xib in Resources */,
@@ -627,7 +631,7 @@
 				8B0951731D06D65600F67C9A /* Manager.swift in Sources */,
 				8BF7FFE11CE5C9930002C5F1 /* PickerInputViewCell.swift in Sources */,
 				8B87C7D31CE1C80500A667C6 /* ManagerTableViewCell.swift in Sources */,
-				8BF41B331CE43E8900E98285 /* PersonDetailViewController.swift in Sources */,
+				8BF41B331CE43E8900E98285 /* EmployeeDetailViewController.swift in Sources */,
 				8BF347691CEB4C5700241D23 /* CreatingState.swift in Sources */,
 				8BF776A31D085AA900BBC55C /* CustomCellFactory.swift in Sources */,
 				8B35BD3D1D07CA5D006B028D /* EmployeeType.swift in Sources */,
@@ -643,12 +647,12 @@
 				8BA93DF31CE4E3DA00E55BA7 /* CustomTableViewCell.swift in Sources */,
 				8B7DCCD51CDB2A4A008AEDF6 /* AppDelegate.swift in Sources */,
 				8B98C1401D1BD86700611943 /* NavigationFlow.swift in Sources */,
-				8B5B26861CE0474D004B3223 /* Person.swift in Sources */,
+				8B5B26861CE0474D004B3223 /* Employee.swift in Sources */,
 				8B5B26821CE0474D004B3223 /* Worker.swift in Sources */,
 				8B5B268A1CE06ADD004B3223 /* NSDate+timeFormatting.swift in Sources */,
 				8BF337D11CECAE9E005CB57B /* UIViewController+EZLoading.swift in Sources */,
 				8BEF1E5D1D0B0ED20086C0D2 /* NSDate+addSubstructMinute.swift in Sources */,
-				8B4B0B0C1D070A6D009C0807 /* PersonTableViewHeader.swift in Sources */,
+				8B4B0B0C1D070A6D009C0807 /* EmployeeTableViewHeader.swift in Sources */,
 				8BA93DF51CE4E8B400E55BA7 /* SimpleTextFieldCell.swift in Sources */,
 				8BF7FFDF1CE58B4E0002C5F1 /* DateInputViewCell.swift in Sources */,
 			);

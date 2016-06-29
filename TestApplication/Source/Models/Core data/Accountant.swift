@@ -17,7 +17,7 @@ class Accountant: Worker {
 
     override class var keys: [String] {
         var keys = super.keys
-        keys.append(PersonAttributeKeys.accountantType)
+        keys.append(EmployeeAttributeKeys.accountantType)
         return keys
     }
 }

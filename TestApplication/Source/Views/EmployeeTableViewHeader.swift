@@ -1,5 +1,5 @@
 //
-//  PersonTableViewHeader.swift
+//  EmployeeTableViewHeader.swift
 //  TestApplication
 //
 //  Created by developer on 07.06.16.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class PersonTableViewHeader: UITableViewHeaderFooterView {
+class EmployeeTableViewHeader: UITableViewHeaderFooterView {
 
     var sectionIcon = UIImageView()
     var sectionName = UILabel()

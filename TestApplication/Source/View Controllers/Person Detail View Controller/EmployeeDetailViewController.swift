@@ -1,5 +1,5 @@
 //
-//  PersonDetailViewController.swift
+//  EmployeeDetailViewController.swift
 //  TestApplication
 //
 //  Created by developer on 12.05.16.
@@ -9,7 +9,7 @@
 import UIKit
 import BNRCoreDataStack
 
-class PersonDetailViewController: UIViewController {
+class EmployeeDetailViewController: UIViewController {
 
     //MARK: State
     private var state: State?
@@ -36,12 +36,12 @@ class PersonDetailViewController: UIViewController {
     //MARK: Parameters
     var coreDataStack: CoreDataStack!
 
-    var person: Person?
-    var currentDisplayedPersonType: EmployeeType {
+    var employee: Employee?
+    var currentDisplayedEmployeeType: EmployeeType {
         guard let type = EmployeeType(
-            orderIndex: personTypeSegmentControl.selectedSegmentIndex)
+            orderIndex: employeeTypeSegmentControl.selectedSegmentIndex)
         else {
-            fatalError("Invalid selectedSegmentIndex (\(personTypeSegmentControl.selectedSegmentIndex)) for enum EmployeeType.init(_:)")
+            fatalError("Invalid selectedSegmentIndex (\(employeeTypeSegmentControl.selectedSegmentIndex)) for enum EmployeeType.init(_:)")
         }
 
         return type
@@ -55,8 +55,8 @@ class PersonDetailViewController: UIViewController {
 
     lazy var employeeAttributeContainer: EmployeeAttributeContainer = {
         let attributeContainer = EmployeeAttributeContainer(
-            displayedPersonType: self.currentDisplayedPersonType,
-            aPerson: self.person)
+            displayedEmployeeType: self.currentDisplayedEmployeeType,
+            aEmployee: self.employee)
 
         attributeContainer.delegate = self
         return attributeContainer
@@ -70,7 +70,7 @@ class PersonDetailViewController: UIViewController {
         return table
     }()
 
-    lazy var personTypeSegmentControl: UISegmentedControl = {
+    lazy var employeeTypeSegmentControl: UISegmentedControl = {
 
         let entityNames = [
             EmployeeType.Manager.description,
@@ -79,14 +79,14 @@ class PersonDetailViewController: UIViewController {
         ]
         let segment = UISegmentedControl(items: entityNames)
 
-        if let person = self.person {
+        if let employee = self.employee {
             segment.enabled = false
             self.changeStateToBrowsing()
         } else {
             self.changeStateToCreating()
         }
 
-        let index = EmployeeType(aPerson: self.person)?.orderIndex
+        let index = EmployeeType(aEmployee: self.employee)?.orderIndex
 
         switch index {
         case let (index?):
@@ -121,7 +121,7 @@ class PersonDetailViewController: UIViewController {
 
     //MARK: addTarget's functions
     @objc func segmentControlChangeValue(sender: UISegmentedControl) {
-        employeeAttributeContainer.displayedPersonType = currentDisplayedPersonType
+        employeeAttributeContainer.displayedEmployeeType = currentDisplayedEmployeeType
         self.customTableView.reloadData()
     }
 
@@ -145,7 +145,7 @@ class PersonDetailViewController: UIViewController {
             .valuesDictionary
             .keys
         let allAttributeKeys = employeeAttributeContainer
-            .displayedPersonType
+            .displayedEmployeeType
             .attributeKeys
         var canTapSave = true
         for key in allAttributeKeys {
@@ -159,7 +159,7 @@ class PersonDetailViewController: UIViewController {
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         customTableView.setEditing(editing, animated: animated)
-        personTypeSegmentControl.enabled = editing
+        employeeTypeSegmentControl.enabled = editing
 
         if editing {
             changeStateToEditing()
@@ -170,12 +170,12 @@ class PersonDetailViewController: UIViewController {
     }
 
     private func setupAoutoLayoutConstrains() {
-        personTypeSegmentControl.snp_makeConstraints { (make) in
+        employeeTypeSegmentControl.snp_makeConstraints { (make) in
             make.top.centerX.equalTo(self.view).offset(8)
         }
 
         customTableView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.personTypeSegmentControl.snp_bottom).offset(8)
+            make.top.equalTo(self.employeeTypeSegmentControl.snp_bottom).offset(8)
             make.leading.trailing.bottom.equalTo(self.view)
         }
     }
@@ -194,7 +194,7 @@ class PersonDetailViewController: UIViewController {
 //MARK: Extension
 //MARK: - EmployeeAttributeContainerDelegate
 
-extension PersonDetailViewController: EmployeeAttributeContainerDelegate {
+extension EmployeeDetailViewController: EmployeeAttributeContainerDelegate {
     func employeeAttributeContainerDidEnterData(
         container: EmployeeAttributeContainer) {
         checkValid()
@@ -202,7 +202,7 @@ extension PersonDetailViewController: EmployeeAttributeContainerDelegate {
 }
 
 //MARK: - UITableViewDelegate
-extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension EmployeeDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(tableView: UITableView,
                    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
@@ -234,7 +234,7 @@ extension PersonDetailViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         return employeeAttributeContainer
-                                .displayedPersonType
+                                .displayedEmployeeType
                                 .numberDisplayedAttributes
     }
 

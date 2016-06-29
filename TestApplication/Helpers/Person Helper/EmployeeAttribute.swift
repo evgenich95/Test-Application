@@ -19,19 +19,19 @@ enum EmployeeAttribute: CustomStringConvertible {
 
     init?(attributeKey: String) {
         switch attributeKey {
-        case PersonAttributeKeys.fullName:
+        case EmployeeAttributeKeys.fullName:
             self = .FullName
-        case PersonAttributeKeys.salary:
+        case EmployeeAttributeKeys.salary:
             self = .Salary
-        case PersonAttributeKeys.endVisitingHours,
-             PersonAttributeKeys.startVisitingHours:
+        case EmployeeAttributeKeys.endVisitingHours,
+             EmployeeAttributeKeys.startVisitingHours:
             self = .VisitingHours
-        case PersonAttributeKeys.endMealTime,
-             PersonAttributeKeys.startMealTime:
+        case EmployeeAttributeKeys.endMealTime,
+             EmployeeAttributeKeys.startMealTime:
             self = .MealTime
-        case PersonAttributeKeys.workplaceNumber:
+        case EmployeeAttributeKeys.workplaceNumber:
             self = .WorkplaceNumber
-        case PersonAttributeKeys.accountantType:
+        case EmployeeAttributeKeys.accountantType:
             self = .AccountantType
         default:
             return nil
@@ -58,22 +58,22 @@ enum EmployeeAttribute: CustomStringConvertible {
     var keys: [String] {
         switch self {
         case FullName:
-            return [PersonAttributeKeys.fullName]
+            return [EmployeeAttributeKeys.fullName]
         case Salary:
-            return [PersonAttributeKeys.salary]
+            return [EmployeeAttributeKeys.salary]
         case AccountantType:
-            return [PersonAttributeKeys.accountantType]
+            return [EmployeeAttributeKeys.accountantType]
         case WorkplaceNumber:
-            return [PersonAttributeKeys.workplaceNumber]
+            return [EmployeeAttributeKeys.workplaceNumber]
         case .VisitingHours:
             return [
-                PersonAttributeKeys.startVisitingHours,
-                PersonAttributeKeys.endVisitingHours
+                EmployeeAttributeKeys.startVisitingHours,
+                EmployeeAttributeKeys.endVisitingHours
             ]
         case .MealTime:
             return [
-                PersonAttributeKeys.startMealTime,
-                PersonAttributeKeys.endMealTime
+                EmployeeAttributeKeys.startMealTime,
+                EmployeeAttributeKeys.endMealTime
             ]
         }
     }

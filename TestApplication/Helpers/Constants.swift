@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PersonAttributeKeys {
+struct EmployeeAttributeKeys {
     static let fullName = "fullName"
     static let salary = "salary"
     static let startVisitingHours = "startVisitingHours"

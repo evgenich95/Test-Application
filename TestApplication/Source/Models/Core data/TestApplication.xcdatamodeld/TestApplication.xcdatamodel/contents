@@ -3,18 +3,18 @@
     <entity name="Accountant" representedClassName=".Accountant" parentEntity="Worker" syncable="YES">
         <attribute name="type" attributeType="Integer 32" syncable="YES"/>
     </entity>
-    <entity name="Manager" representedClassName=".Manager" parentEntity="Person" syncable="YES">
-        <attribute name="endVisitingHours" attributeType="Date" syncable="YES"/>
-        <attribute name="startVisitingHours" attributeType="Date" syncable="YES"/>
-    </entity>
-    <entity name="Person" representedClassName=".Person" isAbstract="YES" syncable="YES">
+    <entity name="Employee" representedClassName=".Employee" isAbstract="YES" syncable="YES">
         <attribute name="fullName" attributeType="String" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="-1" syncable="YES"/>
         <attribute name="salary" attributeType="Double" syncable="YES"/>
         <attribute name="sectionName" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="sectionOrder" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Worker" representedClassName=".Worker" parentEntity="Person" syncable="YES">
+    <entity name="Manager" representedClassName=".Manager" parentEntity="Employee" syncable="YES">
+        <attribute name="endVisitingHours" attributeType="Date" syncable="YES"/>
+        <attribute name="startVisitingHours" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="Worker" representedClassName=".Worker" parentEntity="Employee" syncable="YES">
         <attribute name="endMealTime" attributeType="Date" syncable="YES"/>
         <attribute name="startMealTime" attributeType="Date" syncable="YES"/>
         <attribute name="workplaceNumber" attributeType="Integer 32" syncable="YES"/>
@@ -22,7 +22,7 @@
     <elements>
         <element name="Accountant" positionX="-81" positionY="140" width="128" height="60"/>
         <element name="Manager" positionX="153" positionY="-4" width="153" height="75"/>
-        <element name="Person" positionX="34" positionY="-156" width="128" height="120"/>
+        <element name="Employee" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Worker" positionX="-81" positionY="-9" width="128" height="90"/>
     </elements>
 </model>

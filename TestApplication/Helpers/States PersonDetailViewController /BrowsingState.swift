@@ -11,7 +11,7 @@ import UIKit
 
 class BrowsingState: State {
     //MARK: Parameters
-    typealias Owner = PersonDetailViewController
+    typealias Owner = EmployeeDetailViewController
     var owner: Owner
 
     lazy private var backBarButtonItem: UIBarButtonItem = {
@@ -36,7 +36,7 @@ class BrowsingState: State {
     func isCreating() -> Bool {return false}
 
     func setupNavigationItem() {
-        owner.navigationItem.title = owner.person?.fullName
+        owner.navigationItem.title = owner.employee?.fullName
         owner.navigationItem.rightBarButtonItem = owner.editButtonItem()
         owner.navigationItem.leftBarButtonItem = backBarButtonItem
     }

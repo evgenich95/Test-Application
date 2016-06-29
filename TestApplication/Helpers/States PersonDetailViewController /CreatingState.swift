@@ -11,7 +11,7 @@ import UIKit
 
 class CreatingState: State {
     //MARK: Parameters
-    typealias Owner = PersonDetailViewController
+    typealias Owner = EmployeeDetailViewController
     var owner: Owner
 
     lazy private var cancelBarButtonItem: UIBarButtonItem = {
@@ -21,7 +21,7 @@ class CreatingState: State {
                                action: #selector(cancelAction))
     }()
 
-    lazy private var saveNewPersonBarButton: UIBarButtonItem = {
+    lazy private var saveNewEmployeeBarButton: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .Save,
                                target: self,
                                action: #selector(doneAction))
@@ -40,8 +40,8 @@ class CreatingState: State {
     func isEditing() -> Bool {return false}
 
     func setupNavigationItem() {
-        owner.navigationItem.title = "New Person"
-        owner.navigationItem.rightBarButtonItem = saveNewPersonBarButton
+        owner.navigationItem.title = "New Employee"
+        owner.navigationItem.rightBarButtonItem = saveNewEmployeeBarButton
         owner.navigationItem.leftBarButtonItem = cancelBarButtonItem
     }
 
@@ -55,13 +55,13 @@ class CreatingState: State {
         }
 
         let valuesDictionary = owner.employeeAttributeContainer.valuesDictionary
-        let displayedPersonType = owner.employeeAttributeContainer
-                                                        .displayedPersonType
+        let displayedEmployeeType = owner.employeeAttributeContainer
+                                                        .displayedEmployeeType
 
-        if let newPerson = owner.coreDataStack
-                .createEntityByName(displayedPersonType.description) as? Person {
-            newPerson.fillAttributes(valuesDictionary)
-            newPerson.sectionOrder = displayedPersonType.orderIndex
+        if let newEmployee = owner.coreDataStack
+                .createEntityByName(displayedEmployeeType.description) as? Employee {
+            newEmployee.fillAttributes(valuesDictionary)
+            newEmployee.sectionOrder = displayedEmployeeType.orderIndex
             owner.coreDataStack.saveAndLog()
         }
     }

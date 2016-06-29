@@ -18,8 +18,8 @@ enum EmployeeType: CustomStringConvertible {
     case Worker
     case Accountant
 
-    init?(aPerson: Person?) {
-        switch aPerson?.entity.name ?? "" {
+    init?(aEmployee: Employee?) {
+        switch aEmployee?.entity.name ?? "" {
         case AccountantClass.entityName:
             self = .Accountant
         case ManagerClass.entityName:

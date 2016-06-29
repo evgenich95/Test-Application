@@ -1,5 +1,5 @@
 //
-//  Person.swift
+//  Employee.swift
 //  TestApplication
 //
 //  Created by developer on 09.05.16.
@@ -9,7 +9,7 @@
 import Foundation
 import BNRCoreDataStack
 
-class Person: NSManagedObject, CoreDataModelable {
+class Employee: NSManagedObject, CoreDataModelable {
 
     @NSManaged var fullName: String?
     @NSManaged var order: NSNumber?
@@ -19,7 +19,7 @@ class Person: NSManagedObject, CoreDataModelable {
 
 
     class var entityName: String {
-        return "Person"
+        return "Employee"
     }
 
     var sectionName: String? {
@@ -28,16 +28,16 @@ class Person: NSManagedObject, CoreDataModelable {
 
     class var keys: [String] {
         var keys = [String]()
-        keys.append(PersonAttributeKeys.fullName)
-        keys.append(PersonAttributeKeys.salary)
+        keys.append(EmployeeAttributeKeys.fullName)
+        keys.append(EmployeeAttributeKeys.salary)
         return keys
     }
 
     var valuesAttributeDictionary: [String: AnyObject] {
         guard let selfAttributeKeys = EmployeeType
-                                        .init(aPerson: self)?.attributeKeys
+                                        .init(aEmployee: self)?.attributeKeys
             else {
-                fatalError("Person's subcluss \(self.entity.name) doesn't have EmployeeType")
+                fatalError("Employee's subcluss \(self.entity.name) doesn't have EmployeeType")
         }
         var valuesAttributeDictionary = [String: AnyObject]()
 

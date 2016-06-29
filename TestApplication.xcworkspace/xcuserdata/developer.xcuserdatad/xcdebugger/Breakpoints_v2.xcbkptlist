@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApplication/Helpers/States PersonDetailViewController /CreatingState.swift"
-            timestampString = "488872813.100265"
+            timestampString = "488882853.376763"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93">
+            startingLineNumber = "92"
+            endingLineNumber = "92">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
